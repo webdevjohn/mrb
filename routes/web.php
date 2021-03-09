@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Auth routes
+Route::middleware(['auth', 'verified'])->group(function () {
+        
+    Route::get('/auth/enable-two-factor-authentication', function() { 
+        return view('auth.enable-2fa');
+    })
+    ->name('auth.enable-2fa');
+});
