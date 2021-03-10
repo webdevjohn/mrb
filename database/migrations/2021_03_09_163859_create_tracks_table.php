@@ -20,8 +20,8 @@ class CreateTracksTable extends Migration
 			$table->unsignedBigInteger('label_id');
 			$table->unsignedBigInteger('format_id');
 			$table->integer('year_released');
-			$table->date('purchase_date');		
-			$table->decimal('purchase_price', 5, 2);
+			$table->date('purchase_date')->nullable();		
+			$table->decimal('purchase_price', 5, 2)->nullable();
 			$table->unsignedBigInteger('key_code_id')->nullable();
 			$table->decimal('bpm', 5, 2)->nullable();
 			$table->string('track_thumbnail')->nullable();
