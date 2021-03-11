@@ -4,6 +4,7 @@ use App\Http\Controllers\AlbumsController;
 use App\Http\Controllers\AlbumsTracksController;
 use App\Http\Controllers\ArtistsController;
 use App\Http\Controllers\ArtistsTracksController;
+use App\Http\Controllers\Basket\TrackBasketController;
 use App\Http\Controllers\GenresController;
 use App\Http\Controllers\GenresTracksController;
 use App\Http\Controllers\HomeController;
@@ -27,7 +28,9 @@ use Illuminate\Support\Facades\Route;
 
 // Auth routes
 Route::middleware(['auth', 'verified'])->group(function () {
-        
+    
+    Route::get('/dashboard')->middleware(['auth', 'dashboard.redirector'])->name('dashboard');
+
     Route::get('/auth/enable-two-factor-authentication', function() { 
         return view('auth.enable-2fa');
     })
@@ -53,3 +56,49 @@ Route::get('playlists/{playlist}/tracks', [PlaylistsTracksController::class, 'in
 
 Route::get('tracks', [TracksController::class, 'show'])->name('tracks.show');
 Route::post('tracks/{id}/played', [TracksController::class, 'played'])->name('tracks.played');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Track Basket
+|--------------------------------------------------------------------------
+|
+*/
+Route::prefix('basket')->group(function () {
+   
+    // Track Basket
+    Route::get('basket', [TrackBasketController::class, 'index'])->name('basket.index');
+    Route::post('basket/{id}/store', [TrackBasketController::class, 'store'])->name('basket.store');
+    Route::get('basket/destroy', [TrackBasketController::class, 'destroy'])->name('basket.destroy');
+    Route::get('basket/qty', [TrackBasketController::class, 'getBasketQty'])->name('basket.qty');
+    Route::post('basket/{id}/remove', [TrackBasketController::class, 'remove'])->name('basket.remove');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin CMS Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('cms')->name('cms.')->middleware(['auth', 'verified', 'roles.administrator'])->group(function () {
+
+    Route::get('/home', [App\Http\Controllers\CMS\HomeController::class, 'index'])
+        ->name('homepage');
+
+    Route::get('tracks/by-year-purchased/{year}', [
+        App\Http\Controllers\CMS\TracksController::class, 'getTracksByYearPurchased'
+    ])->name('tracks.by-year-purchased');
+
+    Route::resource('albums', App\Http\Controllers\CMS\Albums\AlbumsController::class);
+    Route::resource('albums.tracks', App\Http\Controllers\CMS\Albums\Tracks\TracksController::class);
+    Route::resource('artists', App\Http\Controllers\CMS\ArtistsController::class);
+    Route::resource('formats', App\Http\Controllers\CMS\FormatsController::class);
+    Route::resource('genres', App\Http\Controllers\CMS\GenresController::class);
+    Route::resource('key-codes', App\Http\Controllers\CMS\KeyCodesController::class);
+    Route::resource('labels', App\Http\Controllers\CMS\LabelsController::class);
+    Route::resource('playlists', App\Http\Controllers\CMS\Playlists\PlaylistsController::class);
+    Route::resource('playlists', App\Http\Controllers\CMS\PlaylistsTracksController::class);
+    Route::resource('tags', App\Http\Controllers\CMS\TagsController::class);
+    Route::resource('tracks', App\Http\Controllers\CMS\TracksController::class);
+});

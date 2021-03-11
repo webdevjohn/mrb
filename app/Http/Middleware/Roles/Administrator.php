@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Roles;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class MustBeAnAdmin
+class Administrator
 {
+
     /**
      * The Guard implementation.
      *
      * @var Guard
      */
     protected $auth;
+
 
     /**
      * Create a new filter instance.
@@ -25,6 +27,7 @@ class MustBeAnAdmin
         $this->auth = $auth;
     }
 
+
     /**
      * Handle an incoming request.
      *
@@ -34,11 +37,11 @@ class MustBeAnAdmin
      */
     public function handle($request, Closure $next)
     {
-        if ( ! $this->auth->user()->hasRoleOf('Admin') ) 
+        if (! $this->auth->user()->hasRoleOf('Admin')) 
         {    
             return response()->view('errors.403');   
         }
 
         return $next($request);
-    }
+    } 
 }
