@@ -1,0 +1,139 @@
+/*** BASHBOARD ***/
+.widget-list {
+	margin-top: 30px;
+}
+.widget-list article {
+  float: left;
+  border: 1px solid #E6E6E6;
+  padding: 20px 20px;
+  background: #fff;
+  margin-right: 20px;
+  margin-bottom: 30px;
+  text-align: right;
+  border-radius: 5px;
+}
+
+.widget-list article h1 {
+  font-size: 90%;
+  color: #777;
+}
+
+.widget-list article p {
+  font-weight: bold;
+  line-height: 1.5em;
+}
+
+.widget-list article .icon {
+  float: left;
+  width: 96px;
+  height: 96px;
+  margin-top: -30px;
+  border-radius: 5px;
+}
+
+.widget-list article:nth-child(4n) {
+  margin-right: 0px;
+}
+
+
+
+
+.chart-list {
+	clear: both;
+	display: block;
+}
+
+.chart-list article {
+	float: left;
+	padding: 20px;
+	background: #fff;
+	border: 1px solid #E6E6E6;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.chart-list article:nth-child(2n) {
+  margin-right: 0px;
+}
+
+
+.feature-list article {
+  float: left;
+  border: 1px solid #E6E6E6;
+  min-height: 600px;
+  padding: 20px 20px;
+  background: #fff;
+  margin-top: 30px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.feature-list article:nth-child(3n) {
+  margin-right: 0px;
+}
+
+.feature-list article .icon {
+	float: left;
+	width: 100%;
+	height: 200px;
+	margin-top: -35px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+.feature-list article .icon h1 {
+	display: block;
+	padding-top: 170px;
+	color: #fff;
+}
+
+.feature-list article ul {
+	clear: both;
+}
+
+.feature-list ul li a {
+	display: block;
+	padding: 18px 10px;
+	border-bottom: 1px solid #F0F0F0;
+}
+
+/** default rwd styles **/
+.wrapper {
+	padding: 0px 10px 0px 10px;
+	width: 1180px;
+/*	background: url(images/bg/grid/1200px.png) repeat-y;*/
+}
+.feature-list ul li a:hover {
+	background: #f7f7f7;
+}
+.widget-list article {
+	width: 238px;
+}
+.chart-list article {
+	width: 538px;
+}
+.feature-list article {
+  width: 338px;
+}
+/** end default rwd styles **/
+
+@media screen and (min-width: 1500px) {
+    .wrapper {
+		padding: 0px 10px 0px 10px;
+		width: 1480px;
+	/*	background: url(images/bg/grid/1500px.png) repeat-y;*/   
+	}
+	
+	.widget-list article {
+		width: 313px;
+	}
+	
+	.chart-list article {
+		width: 688px;
+	}
+	
+	.feature-list article {
+	  width: 438px;
+	}
+}

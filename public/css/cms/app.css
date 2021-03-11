@@ -1,0 +1,683 @@
+/* colour Scheme */
+/* genre colour codes */
+.breakbeat-bg {
+  background: #624634;
+}
+
+.drumandbass-bg {
+  background: #000000;
+}
+
+.hardhouse-bg {
+  background: #FF3F9E;
+}
+
+.hardtrance-bg {
+  background: #0B7F83;
+}
+
+.house-bg {
+  background: #0091C0;
+}
+
+.nrg-bg {
+  background: #D40000;
+}
+
+.tech-house-bg {
+  background: #999;
+}
+
+.techtrance-bg {
+  background: #872FFF;
+}
+
+.techno-bg {
+  background: #E87800;
+}
+
+.trance-bg {
+  background: #A69400;
+}
+
+.default-bg {
+  background: #222;
+}
+
+.breakbeat {
+  border-bottom: 3px solid #624634;
+}
+
+.drumandbass {
+  border-bottom: 3px solid #000000;
+}
+
+.hardhouse {
+  border-bottom: 3px solid #FF3F9E;
+}
+
+.hardtrance {
+  border-bottom: 3px solid #0B7F83;
+}
+
+.house {
+  border-bottom: 3px solid #0091C0;
+}
+
+.nrg {
+  border-bottom: 3px solid #D40000;
+}
+
+.tech-house {
+  border-bottom: 3px solid #999;
+}
+
+.techtrance {
+  border-bottom: 3px solid #872FFF;
+}
+
+.techno {
+  border-bottom: 3px solid #E87800;
+}
+
+.trance {
+  border-bottom: 3px solid #A69400;
+}
+
+.default {
+  border-bottom: 3px solid #222;
+}
+
+.icon-track {
+  background: #FD8B05 url(images/bg/icons/track_64x64.png) no-repeat center;
+}
+
+.icon-artist {
+  background: #EB4744 url(images/bg/icons/artist_64x64.png) no-repeat center;
+}
+
+.icon-record-label {
+  background: #53AD55 url(images/bg/icons/record_label_64x64.png) no-repeat center;
+}
+
+.icon-album {
+  background: #0EB4C8 url(images/bg/icons/album_64x64.png) no-repeat center;
+}
+
+.icon-database {
+  background: #1C80A5 url(images/bg/icons/database.png) no-repeat center;
+  text-align: center;
+}
+
+.icon-tools {
+  background: #1C80A5 url(images/bg/icons/tools.png) no-repeat center;
+  text-align: center;
+}
+
+.icon-reports {
+  background: #1C80A5 url(images/bg/icons/reports.png) no-repeat center;
+  text-align: center;
+}
+
+.btn {
+  color: #fff;
+  font-weight: bold;
+  display: block;
+  border-radius: 5px;
+  padding: 10px 12px;
+}
+
+.btn-new-record {
+  background: #28A745;
+}
+
+.btn-new-record:hover {
+  background: #1e7e34;
+}
+
+.btn-view-record {
+  background: #007BFF;
+}
+
+.btn-view-record:hover {
+  background: #0062cc;
+}
+
+.btn-edit-record {
+  background: #6C757D;
+}
+
+.btn-edit-record:hover {
+  background: #545b62;
+}
+
+.btn-delete-record {
+  background: #DC3545;
+}
+
+.btn-delete-record:hover {
+  background: #bd2130;
+}
+
+.frm-crud-buttons li {
+  float: left;
+  margin-right: 5px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  background: #EEEEEE;
+  color: #222;
+}
+
+body, html {
+  height: 100%;
+}
+
+.clear {
+  clear: both;
+}
+
+a {
+  text-decoration: none;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.wrapper {
+  margin: 0px auto;
+}
+
+.float-right {
+  float: right;
+}
+
+#logo {
+  float: left;
+  display: block;
+  background: #1C80A5;
+  text-align: center;
+  color: #fff;
+  font-family: "montserratbold";
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 100%;
+  border-right: 1px solid #1A7796;
+  padding: 32px 20px 27px 20px;
+}
+
+#logo span {
+  color: #ccc;
+}
+
+#appbar {
+  display: block;
+  background: #1C80A5;
+  min-height: 76px;
+}
+
+#appbar ul li a {
+  display: block;
+  float: left;
+  border-right: 1px solid #1A7796;
+  padding: 30px 30px;
+  color: #fff;
+}
+
+#appbar ul li a:hover {
+  background: #fff;
+  color: #000;
+}
+
+#page-footer {
+  min-height: 125px;
+  background: #fff;
+  margin-top: 50px;
+  border-top: 1px solid #E6E6E6;
+}
+
+/************************/
+/*		Breadcrums		*/
+/************************/
+#breadcrums {
+  background: #fff;
+  padding: 5px 20px 5px 20px;
+}
+
+#breadcrums ul li {
+  color: #444;
+  font-size: 90%;
+  display: inline-block;
+}
+
+#breadcrums ul li a {
+  display: block;
+  padding: 10px 12px 10px 0px;
+}
+
+#breadcrums ul li.active-breadcrum {
+  color: #aaa;
+  padding: 10px 12px 10px 11px;
+}
+
+/************************/
+/*		Pagination 		*/
+/************************/
+.pagination {
+  background: #fff;
+  border: 1px solid #E6E6E6;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  clear: both;
+  padding: 20px 20px 10px 20px;
+  text-align: center;
+}
+
+.pagination li {
+  font-size: 100%;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.pagination li a, .pagination .active {
+  padding: 18px 25px 18px 25px;
+  background: #fff;
+  color: #222;
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.pagination .active {
+  background: #1081CC;
+  border: 1px solid #1081CC;
+  color: #fff;
+}
+
+.pagination .disabled {
+  display: none;
+}
+
+/************************/
+/*		Tables			*/
+/************************/
+.table-con {
+  margin-top: 40px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #E6E6E6;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border: 0px solid #fff;
+  font-size: 90%;
+}
+
+table th {
+  font-weight: bold;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
+  background: #ffffff;
+  /* Old browsers */
+  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  text-align: left;
+  border: 1px solid #ddd;
+  padding: 10px;
+  line-height: 2em;
+  color: #000;
+}
+
+table tr td {
+  padding: 10px 10px;
+  border: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+table tr {
+  border: 1px solid #ddd;
+  background: #fff url(images/table-cell-bg.gif) repeat-x;
+}
+
+table tr:nth-child(odd) {
+  background: #fff;
+}
+
+table tfoot td {
+  text-align: right;
+  background: #f7f7f7;
+  padding: 20px;
+}
+
+table th.access-level {
+  width: 125px;
+}
+
+table tr td.selectedId {
+  padding: 0px 15px;
+}
+
+table tbody tr:hover {
+  padding: 20px;
+  background: #eee;
+  font-weight: bold;
+}
+
+.table-col-title {
+  width: 40%;
+}
+
+.table-col-record-label {
+  width: 22%;
+}
+
+.table-col-purchase-date {
+  width: 15%;
+}
+
+/************************/
+/*		  Form	 		*/
+/************************/
+/* logout form */
+.logout-form button {
+  padding: 15px 20px;
+  float: right;
+  margin: 10px 20px 10px 20px;
+}
+
+/* form styles */
+#form-con {
+  border: 20px solid #fff;
+  background: #FAFAFA;
+  padding: 0px 20px 20px 20px;
+  width: 860px;
+  margin-bottom: 40px;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px -4px #bbb;
+}
+
+#form-con h2 {
+  font-size: 125%;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+#form-con label {
+  display: block;
+  font-size: 100%;
+  color: #222;
+  margin-bottom: 10px;
+  margin-top: 40px;
+}
+
+input, textarea, select {
+  color: #555;
+  padding: 10px 10px;
+  font-size: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  /*	margin-bottom: 40px; */
+}
+
+#form-con input, textarea, select {
+  width: 840px;
+}
+
+#form-con input.selectedId {
+  height: 20px;
+  width: 20px;
+  padding: 0px;
+}
+
+#form-con select {
+  width: 100%;
+}
+
+#form-con .input-field-bpm {
+  width: 75px;
+}
+
+#form-con .input-field-filename {
+  width: 400px;
+}
+
+#form-con button {
+  display: block;
+  padding: 20px 70px;
+  margin: 40px auto 0px auto;
+}
+
+#form-con .form-input-error {
+  display: block;
+  font-size: 100%;
+  padding: 10px;
+  color: red;
+  margin-top: 0px;
+  margin-bottom: 35px;
+  width: 880px;
+}
+
+#form-con hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #bbb;
+  margin-top: 50px;
+  padding: 0;
+}
+
+/*** BASHBOARD ***/
+.widget-list {
+  margin-top: 30px;
+}
+
+.widget-list article {
+  float: left;
+  border: 1px solid #E6E6E6;
+  padding: 20px 20px;
+  background: #fff;
+  margin-right: 20px;
+  margin-bottom: 30px;
+  text-align: right;
+  border-radius: 5px;
+}
+
+.widget-list article h1 {
+  font-size: 90%;
+  color: #777;
+}
+
+.widget-list article p {
+  font-weight: bold;
+  line-height: 1.5em;
+}
+
+.widget-list article .icon {
+  float: left;
+  width: 96px;
+  height: 96px;
+  margin-top: -30px;
+  border-radius: 5px;
+}
+
+.widget-list article:nth-child(4n) {
+  margin-right: 0px;
+}
+
+.chart-list {
+  clear: both;
+  display: block;
+}
+
+.chart-list article {
+  float: left;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #E6E6E6;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.chart-list article:nth-child(2n) {
+  margin-right: 0px;
+}
+
+.feature-list article {
+  float: left;
+  border: 1px solid #E6E6E6;
+  min-height: 600px;
+  padding: 20px 20px;
+  background: #fff;
+  margin-top: 30px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.feature-list article:nth-child(3n) {
+  margin-right: 0px;
+}
+
+.feature-list article .icon {
+  float: left;
+  width: 100%;
+  height: 200px;
+  margin-top: -35px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.feature-list article .icon h1 {
+  display: block;
+  padding-top: 170px;
+  color: #fff;
+}
+
+.feature-list article ul {
+  clear: both;
+}
+
+.feature-list ul li a {
+  display: block;
+  padding: 18px 10px;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+/** default rwd styles **/
+.wrapper {
+  padding: 0px 10px 0px 10px;
+  width: 1180px;
+  /*	background: url(images/bg/grid/1200px.png) repeat-y;*/
+}
+
+.feature-list ul li a:hover {
+  background: #f7f7f7;
+}
+
+.widget-list article {
+  width: 238px;
+}
+
+.chart-list article {
+  width: 538px;
+}
+
+.feature-list article {
+  width: 338px;
+}
+
+/** end default rwd styles **/
+@media screen and (min-width: 1500px) {
+  .wrapper {
+    padding: 0px 10px 0px 10px;
+    width: 1480px;
+    /*	background: url(images/bg/grid/1500px.png) repeat-y;*/
+  }
+
+  .widget-list article {
+    width: 313px;
+  }
+
+  .chart-list article {
+    width: 688px;
+  }
+
+  .feature-list article {
+    width: 438px;
+  }
+}
+.table-col-albums-title {
+  width: 40%;
+}
+
+.table-col-albums-year-released {
+  width: 10%;
+}
+
+.table-col-albums-purchase-date {
+  width: 10%;
+}
+
+.table-col-albums-purchase-price {
+  width: 10%;
+}
+
+.table-col-albums-tracks-title {
+  width: 40%;
+}
+
+.table-col-albums-tracks-record-label {
+  width: 22%;
+}
+
+.table-col-albums-tracks-purchase-date {
+  width: 15%;
+}
+
+.table-col-artists-artist {
+  width: 50%;
+}
+
+.table-col-formats-format {
+  width: 50%;
+}
+
+.table-col-genres-genre {
+  width: 50%;
+}
+
+.table-col-labels-label {
+  width: 25%;
+}
+
+.table-col-labels-thumbnail {
+  width: 25%;
+}
+
+.table-col-labels-main-image {
+  width: 25%;
+}
+
+.table-col-playlists-name {
+  width: 50%;
+}
+
+.table-col-playlists-tracks-title {
+  width: 25%;
+}
+
+.table-col-playlists-tracks-label {
+  width: 25%;
+}
+
+.table-col-tags-tag {
+  width: 50%;
+}

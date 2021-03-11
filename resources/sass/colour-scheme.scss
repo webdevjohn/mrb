@@ -1,0 +1,58 @@
+/* colour Scheme */
+$appbarBG: #0C0C0C linear-gradient(180deg, rgba(12,12,12,1) 0%, rgba(25,24,28,1) 45%, rgba(12,12,12,1) 100%);  
+$pageHeaderBg: #19181C;
+$pageFooterBg: #0C0C0C;
+$bodyBGColour: #121115;
+$accentDarker: #1A1F22;
+$borderColour: #212024;
+$borderColourLighten: lighten($borderColour, 5%);
+$logoFontColor: #fff;
+$sectionHeaderFontColor: #fff;
+
+$articleBg: #18171B;
+
+$trackBasketBGColor: #000;
+$trackBasketBgHover: lighten($trackBasketBGColor, 4%);
+
+
+/* genre colour codes */
+$breakbeat: #624634;
+$drumAndBass: #000000;
+$hardHouse: #FF3F9E;
+$hardTrance: #0B7F83;
+$house: #0091C0;
+$nrg: #fd1d1d;
+$techTrance: #872FFF;
+$techHouse: #3C883C;
+$techno: #FF6600;
+$trance: #D0BA00;
+$default: #222;
+$progressiveTrance: #B0004B;
+
+
+.breakbeat-bg { background: $breakbeat }
+.drum-and-bass-bg { background: $drumAndBass }
+.hard-house-bg 	{ background: $hardHouse }
+.hard-trance-bg { background: $hardTrance }
+.house-bg { background: $house }
+.nrg-bg { background: $nrg }
+.tech-house-bg { background: $techHouse }
+.tech-trance-bg { background: $techTrance }
+.techno-bg { background: $techno }
+.trance-bg { background: $trance }
+.default-bg { background: $default }
+.progressive-trance-bg { background: $progressiveTrance }
+
+
+.breakbeat { border-bottom: 4px solid $breakbeat }
+.drum-and-bass { border-bottom: 4px solid $drumAndBass}
+.hard-house { border-bottom: 4px solid $hardHouse }
+.hard-trance { border-bottom: 4px solid $hardTrance }
+.house { border-bottom: 4px solid $house}
+.nrg { border-bottom: 4px solid $nrg }
+.tech-house { border-bottom: 4px solid $techHouse }
+.tech-trance { border-bottom: 4px solid $techTrance }
+.techno { border-bottom: 4px solid $techno}
+.trance { border-bottom: 4px solid $trance }
+.default { border-bottom: 4px solid $default }	
+.progressive-trance { border-bottom: 4px solid $progressiveTrance }

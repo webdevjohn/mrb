@@ -40,4 +40,102 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Relationships
+    |--------------------------------------------------------------------------   
+    */
+
+    public function roles() 
+    {
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id')->WithTimeStamps();
+    }
+
+    public function favouriteArtists()
+    {
+        return $this->belongsToMany(Artist::class, 'favourite_artist_user', 'user_id', 'artist_id')->WithTimeStamps();
+    }
+
+    public function favouriteLabels()
+    {
+        return $this->belongsToMany(Label::class, 'favourite_label_user', 'user_id', 'label_id')->WithTimeStamps();
+    }
+
+    public function favouriteTracks()
+    {
+        return $this->belongsToMany(Track::class, 'favourite_track_user', 'user_id', 'track_id')->WithTimeStamps();
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Getters
+    |--------------------------------------------------------------------------   
+    */
+
+    /**
+     * Checks that a User has a given role.
+     *
+     * @param   string  $userHasRole
+     * @return  boolean
+     */
+    public function hasRoleOf(string $userHasRole)
+    {        
+        foreach ($this->Roles as $role) 
+        {        
+            if (strtolower($role->role) == strtolower($userHasRole)) return true;        
+        }
+        return false;
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Mutators
+    |--------------------------------------------------------------------------   
+    */
+
+    /**
+     * Add artists to the registered users favourites.
+     *
+     * @param array $artists
+     * 
+     * @return void
+     */
+    public function addArtistsToFavourites(array $artists)
+    {
+        if ($artists) {
+            $this->favouriteArtists()->syncWithoutDetaching($artists);
+        }
+    }
+
+    /**
+     * Add record labels to the registered users favourites.
+     *
+     * @param array $labels
+     * 
+     * @return void
+     */
+    public function addLabelsToFavourites(array $labels)
+    {
+        if ($labels) {
+            $this->favouriteLabels()->syncWithoutDetaching($labels);
+        }
+    }
+
+    /**
+     * Add tracks to the registered users favourites.
+     *
+     * @param array $tracks
+     * 
+     * @return void
+     */
+    public function addTracksToFavourites(array $tracks)
+    {
+        if ($tracks) {
+            $this->favouriteTracks()->syncWithoutDetaching($tracks);
+        }
+    }
 }

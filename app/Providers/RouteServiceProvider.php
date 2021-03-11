@@ -37,16 +37,68 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->configureRateLimiting();
 
-        $this->routes(function () {
-            Route::prefix('api')
-                ->middleware('api')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/api.php'));
+        // $this->routes(function () {
+        //     Route::prefix('api')
+        //         ->middleware('api')
+        //         ->namespace($this->namespace)
+        //         ->group(base_path('routes/api.php'));
 
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/web.php'));
-        });
+        //     Route::middleware('web')
+        //         ->namespace($this->namespace)
+        //         ->group(base_path('routes/web.php'));
+        // });
+
+        $this->mapWebRoutes();
+        
+        $this->mapWebBasketRoutes();
+
+        // $this->mapWebCMSRoutes();
+        
+        // $this->mapWebRegisteredUsersRoutes();
+    }
+
+    protected function mapWebRoutes()
+    {
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/web.php'));
+    }
+
+    protected function mapWebBasketRoutes()
+    {
+        Route::middleware('web')
+             ->namespace($this->namespace  . '\basket')
+             ->group(base_path('routes/webBasket.php'));
+    }
+
+     /**
+     * Define the "CMS" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapWebCMSRoutes()
+    {
+        Route::prefix('cms')
+             ->as('cms.')
+             ->middleware(['web', 'auth', 'admin'])   
+             ->namespace($this->namespace . '\cms')                      
+             ->group(base_path('routes/webCMS.php'));
+    }
+
+    /**
+     * Define the "Registered Users" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapWebRegisteredUsersRoutes()
+    {
+        Route::middleware(['web', 'auth'])   
+             ->namespace($this->namespace . '\RegisteredUsers')                      
+             ->group(base_path('routes/webRegisteredUsers.php'));
     }
 
     /**

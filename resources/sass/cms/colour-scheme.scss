@@ -1,0 +1,55 @@
+/* colour Scheme */
+$appbarBG: #121519;
+$bodyBGColour: #21262B;
+$accentDarker: #1A1F22;
+$borderColour: #121416;
+$borderColourLighten: lighten($borderColour, 5%);
+$logoFontColor: #fff;
+$sectionHeaderFontColor: #ffffff;
+
+$trackBasketBGColor: #1d3557;
+$trackBasketBGColorDarken: darken($trackBasketBGColor, 5%);
+$recordLabelBasketBGColor: #e63946;
+$recordLabelBasketBGColorDarken: darken($recordLabelBasketBGColor, 5%);
+$artistBasketBGColor: #457b9d;
+$artistBasketBGColorDarken: darken($artistBasketBGColor, 5%);
+
+/* genre colour codes */
+$breakbeat: #624634;
+$drumAndBass: #000000;
+$hardHouse: #FF3F9E;
+$hardTrance: #0B7F83;
+$house: #0091C0;
+$nrg: #D40000;
+$techTrance: #872FFF;
+$techHouse: #999;
+$techno: #E87800;
+$trance: #A69400;
+$default: #222;
+
+
+.breakbeat-bg 	{	background: $breakbeat }
+.drumandbass-bg { 	background: $drumAndBass }
+.hardhouse-bg 	{ 	background: $hardHouse }
+.hardtrance-bg 	{ 	background: $hardTrance }
+.house-bg 		{	background: $house }
+.nrg-bg 		{	background: $nrg }
+.tech-house-bg  {   background: $techHouse }
+.techtrance-bg 	{	background: $techTrance }
+.techno-bg 		{	background: $techno }
+.trance-bg 		{	background: $trance }
+.default-bg 	{	background: $default }
+
+
+
+.breakbeat {    border-bottom: 3px solid $breakbeat }
+.drumandbass { 	border-bottom: 3px solid $drumAndBass}
+.hardhouse { 	border-bottom: 3px solid $hardHouse }
+.hardtrance { 	border-bottom: 3px solid $hardTrance }
+.house {		border-bottom: 3px solid $house}
+.nrg { 			border-bottom: 3px solid $nrg }
+.tech-house {	border-bottom: 3px solid $techHouse }
+.techtrance {	border-bottom: 3px solid $techTrance }
+.techno {		border-bottom: 3px solid $techno}
+.trance {		border-bottom: 3px solid $trance }
+.default {		border-bottom: 3px solid $default }	

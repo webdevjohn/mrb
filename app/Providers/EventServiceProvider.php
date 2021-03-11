@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\PlaylistWasViewed;
+use App\Events\TrackWasPlayed;
+use App\Events\TrackWasViewed;
+use App\Listeners\UpdatePlaylistWasViewedCounter;
+use App\Listeners\UpdateTrackWasPlayedCounter;
+use App\Listeners\UpdateTrackWasViewedCounter;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +24,15 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        TrackWasPlayed::class => [
+            UpdateTrackWasPlayedCounter::class
+        ],
+        TrackWasViewed::class => [
+            UpdateTrackWasViewedCounter::class
+        ],
+        PlaylistWasViewed::class => [
+            UpdatePlaylistWasViewedCounter::class
+        ]
     ];
 
     /**

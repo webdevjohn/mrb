@@ -1,0 +1,81 @@
+#filters-overlay h1 {
+    font-size: 150%;   
+    box-sizing: border-box;
+    padding: 12px 15px;
+    text-transform: uppercase;
+}
+.filter-group {
+    padding: 10px;
+    background: $accentDarker;
+    border: 1px solid $borderColour;
+    border-radius: 5px;
+}
+#filters-overlay ul {
+    column-count: 6;
+}
+#filters-overlay ul li {
+    padding: 5px 5px;
+}
+#filters-overlay label {
+    padding: 7px 5px;
+}
+
+.modal-overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    background: url(images/bg/model-trans-bg-98.png) repeat;     
+    overflow-y: scroll;
+    transition: 0.5s;
+}
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+.modal-overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+.modal-overlay a:hover, .modal-overlay a:focus {
+    color: #f1f1f1;
+}
+.modal-overlay .closebtn {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 60px;
+}
+
+#sortable-fields {
+    font-size: 90%;
+    margin-top: 20px;
+    box-sizing: border-box;
+    padding: 25px 0px 10px 0px;
+    border-radius: 5px;
+}
+#sortable-fields ul {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 230px 230px
+}
+#sortable-fields ul li a {
+    padding: 7px 12px;
+    background: $accentDarker;
+    border: 1px solid $borderColour;
+}
+#sortable-fields ul li a:hover {
+    background-color: #000;
+}
+#sortable-fields ul li span {
+    margin-right: 4px;
+}

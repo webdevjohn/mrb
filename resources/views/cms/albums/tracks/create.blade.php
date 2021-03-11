@@ -1,0 +1,79 @@
+@extends('cms-layout')
+@section('title', 'Create a New Track')
+
+@section('breadcrums')
+	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+	<li><a href="{{ route('cms.albums.index') }}">Albums</a></li>
+	<li><a href="{{ route('cms.albums.tracks.index', $album->slug) }}">{{ $album->title }}</a></li>
+	<li class="last">Create Track</li>
+@stop
+
+@section('content')
+	
+	<h1 class="section-header">Add a new track to: {{ $album->title }}</h1>
+
+	<section id="form-con">		
+
+		<form method="POST" action="{{ route('cms.albums.tracks.store', $album->slug) }}">
+			@csrf
+
+			<label for="artists[]">Artists:</label>	
+			{!! Form::select('artists[]', $artistList, null, ['id' => 'artists', 'multiple']) !!}
+			@error('artists')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
+
+			<label for="title">Title: </label>
+			<input name="title" type="text" id="title">
+			@error('title')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
+
+			<label for="genre_id">Genre: </label>	
+			<select name="genre_id">				
+				@foreach($genreList as $key => $value)				
+					<option value="{{$key}}" {{ (old('genre_id') == $key) ? "selected='selected" : ""}}>{{ $value }}</option>
+				@endforeach
+			</select>
+			@error('genre_id')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
+
+			<label for="label_id">Label:</label>	
+			<select name="label_id">				
+				@foreach($labelList as $key => $value)		
+					<option value="{{$key}}" {{ ($album->label_id === $key) ? "selected='selected" : ""}}>{{ $value }}</option>
+				@endforeach
+			</select>
+			@error('label_id')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
+
+			<label for="tags[]">Tags:</label>	
+			{!! Form::select('tags[]', $tagList, null, ['id' => 'tags', 'multiple']) !!}
+			@error('tags')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
+
+			<input name="format_id" type="hidden" value="{{ $album->format_id }}">			
+			<input name="year_released" type="hidden" value="{{ $album->year_released }}">					
+			<input name="purchase_date" type="hidden" value="{{ $album->purchase_date }}">					
+			<input name="purchase_price" type="hidden" value="{{ $album->purchase_price }}">						
+			<input name="album_id" type="hidden" value="{{ $album->id }}">
+	
+			<button type="submit">Create Track</button>		
+		</form>
+	</section>
+@stop
+
+@section('javascript')
+	<script>
+		$('#artists').select2({
+			 placeholder: "Select Artists"
+		});
+
+		$('#tags').select2({
+			 placeholder: "Select Tags"
+		});
+	</script>
+@stop

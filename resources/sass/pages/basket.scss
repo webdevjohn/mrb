@@ -1,0 +1,17 @@
+#basket-options ul li a {
+    display: block;
+    margin-top: 10px;
+    padding: 28px 25px;
+    padding-left: 70px;
+    color: #fff;
+    background: $appbarBG;
+}
+#basket-options ul li a.empty-basket {  
+    background: $appbarBG url(images/icons/empty_basket.png) no-repeat 10px;    
+}
+#basket-options ul li a.add-to-favourites {  
+    background: $appbarBG url(images/icons/favorites.png) no-repeat 10px;    
+}
+#basket-options ul li a.purchase {  
+    background: $appbarBG url(images/icons/basket.png) no-repeat 10px;    
+}

@@ -1,0 +1,79 @@
+/* genre list */
+
+#genre-list-gird {    
+    box-sizing: border-box;
+    padding: 25px 0px 0px 0px;
+    display: grid; 
+    grid-gap: 20px;
+    grid-template-columns: 1fr
+}
+
+#genre-list-gird article {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: $articleBg;
+    box-shadow: 6px 6px 12px -3px rgba(0,0,0,0.15);
+}
+
+#genre-list-gird article h1 {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 35px 20px;
+    background-color: #1F1E22;
+}
+
+#genre-list-gird article ul {
+    padding: 20px 20px 10px 20px;
+}
+
+#genre-list-gird article ul li a {
+    display: block;
+    padding: 25px 20px 25px 45px;
+    font-size: 90%;
+    margin-bottom: 10px;
+    
+    border-radius: 5px;
+    border-top: 1px solid $borderColour;
+    border-bottom: 1px solid $borderColour;
+}
+#genre-list-gird article ul li a span {
+    color: #bbb;
+}
+#genre-list-gird article ul li a.icon-home {
+    background: #121115 url(images/icons/20x20/home.png) no-repeat 20px center; 
+}
+#genre-list-gird article ul li a.icon-home:hover {
+    background-color: $borderColour; 
+}
+#genre-list-gird article ul li a.icon-music {
+    background: #121115 url(images/icons/24x24/music.png) no-repeat 20px center; 
+}
+#genre-list-gird article ul li a.icon-music:hover {
+    background-color: $borderColour; 
+}
+
+@media screen and (max-width: 500px) {
+    #genre-list-gird { 
+        grid-template-columns: 1fr  		
+    }
+}
+
+@media screen and (min-width: 501px) and (max-width: 999px) {
+    #genre-list-gird { 
+        grid-template-columns: 1fr 1fr  		
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1249px) {
+    #genre-list-gird { 
+        grid-template-columns: 1fr 1fr 1fr  		
+    }
+}
+
+@media screen and (min-width: 1250px) {
+    #genre-list-gird { 
+        grid-template-columns: 1fr 1fr 1fr 1fr  		
+    }
+}

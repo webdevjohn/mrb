@@ -1,0 +1,143 @@
+/***
+    Layout used on the following pages:
+        Home Page 
+        Genre Homepages
+***/
+
+#homepage-layout {
+    box-sizing: border-box;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-rows: 1fr;  
+}
+
+#homepage-layout #main {
+    box-sizing: border-box;
+    margin-right: 20px;
+}
+
+#homepage-layout #main #playlists {
+    box-sizing: border-box;
+    display: grid; 
+    grid-gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 18px; 
+}
+#homepage-layout #main #playlists article {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: $articleBg;
+}
+#homepage-layout #main #playlists footer a {
+    display: block;
+    padding: 20px;
+    font-size: 90%;
+}
+
+#homepage-layout #main #playlists article img {
+    width: 100%;
+    height: auto; 
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px
+}
+
+#homepage-layout #popular-tracks {
+    box-sizing: border-box;
+    min-height: 600px;
+}
+
+#homepage-layout #main .track-listings {
+    padding: 0px 0px 20px 0px;
+}
+
+#homepage-layout #popular-labels {
+    box-sizing: border-box;
+    padding: 20px 0px;
+    display: grid; 
+    grid-gap: 20px; 
+}
+#popular-labels article img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px
+}
+#popular-labels article {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: $articleBg;
+    border: 1px solid $borderColour;
+}
+#popular-labels article h2 {
+    padding: 15px;
+    font-size: 90%;
+}
+
+@media screen and (min-width: 500px) {
+    #homepage-layout {
+        grid-template-columns: 1fr
+    }
+    #homepage-layout #main .track-listings { 
+        grid-template-columns: 230px 230px  		
+    } 
+    #homepage-layout #popular-labels {
+        grid-template-columns: 1fr 1fr
+    }
+    #homepage-layout #popular-labels {
+        width: 480px;
+    }
+}
+
+@media screen and (min-width: 750px) {
+    #homepage-layout #main #playlists {
+        grid-template-columns: 1fr 1fr
+    }
+    #homepage-layout #main .track-listings { 
+        grid-template-columns: 230px 230px 230px  		
+    } 
+    #homepage-layout #popular-labels {
+        width: 730px;
+    }
+    #homepage-layout #popular-labels {
+        grid-template-columns: 1fr 1fr 1fr
+    }
+}
+
+
+@media screen and (min-width: 1000px) {
+    #homepage-layout #main .track-listings { 
+        grid-template-columns: 230px 230px 230px 230px 		
+    } 
+    #homepage-layout #popular-labels {
+        width: 980px;
+    }  
+    #homepage-layout #popular-labels {
+        grid-template-columns: 1fr 1fr 1fr
+    }
+}
+
+@media screen and (min-width: 1250px) {
+    #homepage-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+    #homepage-layout #main .track-listings { 
+        grid-template-columns: 230px 230px 230px 		
+    } 
+    #homepage-layout #popular-labels {
+        width: auto;
+    }
+    #homepage-layout #popular-labels {
+        grid-template-columns: 1fr
+    }
+}
+
+
+@media screen and (min-width: 1500px) {
+    #homepage-layout #main .track-listings { 
+        grid-template-columns: 230px 230px 230px 230px		
+    } 
+    #homepage-layout #popular-labels {
+        grid-template-columns: 1fr;
+    }
+}
+ 

@@ -1,0 +1,50 @@
+$btnNewRecord: #28A745;
+$btnViewRecord: #007BFF;
+$btnEditRecord: #6C757D;
+$btnDeleteRecord: #DC3545;
+
+$btnNewRecordDarken: darken($btnNewRecord, 10%);
+$btnViewRecordDarken: darken($btnViewRecord, 10%);
+$btnEditRecordDarken: darken($btnEditRecord, 10%);
+$btnDeleteRecordDarken: darken($btnDeleteRecord, 10%);
+
+.btn {
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    border-radius: 5px;
+    padding: 10px 12px;
+}
+
+.btn-new-record {
+    background: $btnNewRecord
+}
+.btn-new-record:hover {
+    background: $btnNewRecordDarken
+}
+
+.btn-view-record {
+    background: $btnViewRecord
+}
+.btn-view-record:hover {
+    background: $btnViewRecordDarken
+}
+
+.btn-edit-record {
+    background: $btnEditRecord
+}
+.btn-edit-record:hover {
+    background: $btnEditRecordDarken
+}
+
+.btn-delete-record {
+    background: $btnDeleteRecord
+}
+.btn-delete-record:hover {
+    background: $btnDeleteRecordDarken
+}
+
+.frm-crud-buttons li {
+    float: left;
+    margin-right: 5px;   
+}
