@@ -8,14 +8,13 @@ use App\Http\Requests\CMS\Albums\Tracks\UpdateAlbumTrack;
 use App\Models\Album;
 use App\Models\Track;
 use App\Repositories\CMS\CMSAlbumRepository;
-use App\Repositories\CMS\CMSTrackRepository;
 use App\Repositories\ComboListsRepository;
 
 class TracksController extends Controller
 {
     public function __construct(
        protected CMSAlbumRepository $albums, 
-       protected CMSTrackRepository $tracks,
+       protected Track $tracks,
        protected ComboListsRepository $comboLists
     ){}
 
@@ -119,14 +118,14 @@ class TracksController extends Controller
      */
     public function update(UpdateAlbumTrack $request, Album $album, Track $track)
     {
-        $track = $this->tracks->update(
-            $track->id, 
+        $track = $this->tracks->amend(
+            $track, 
             $request->validated()
         );
 
         return redirect()
             ->route("cms.albums.tracks.index", [$album->slug])
-            ->with("success", "The track has been updated successfully on the album: $album->title");              
+            ->with("success", "The track: $track->title has been updated successfully on the album: $album->title");              
     }
 
     /**

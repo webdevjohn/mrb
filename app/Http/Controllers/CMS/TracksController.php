@@ -7,13 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Tracks\CreateTrack;
 use App\Http\Requests\CMS\Tracks\UpdateTrack;
 use App\Models\Track;
-use App\Repositories\CMS\CMSTrackRepository;
 use App\Repositories\ComboListsRepository;
 
 class TracksController extends Controller
 {
     public function __construct(
-        protected CMSTrackRepository $tracks, 
+        protected Track $tracks, 
         protected ComboListsRepository $comboLists
     ){}
 
@@ -25,7 +24,7 @@ class TracksController extends Controller
     public function index(Request $request)
     {     
         return View('cms.tracks.index', [
-            'tracks' => $this->tracks->getTracks($request)
+            'tracks' => $this->tracks->getTracks($request->input())
         ]);
     }
 
@@ -52,7 +51,7 @@ class TracksController extends Controller
      */
     public function store(CreateTrack $request)
     {
-        $this->tracks->store(
+        $this->tracks->storeTrack(
             $request->validated()
         );
 
@@ -100,8 +99,8 @@ class TracksController extends Controller
      */
     public function update(UpdateTrack $request, Track $track)
     {
-        $this->tracks->update(
-            $track->id, 
+        $this->tracks->amend(
+            $track, 
             $request->validated()
         );
         
@@ -123,7 +122,7 @@ class TracksController extends Controller
     
 
     public function getTracksByYearPurchased($year = 2017)
-    {
+    {        
         return $this->tracks->getTracksByYearPurchased($year);
     }
 }

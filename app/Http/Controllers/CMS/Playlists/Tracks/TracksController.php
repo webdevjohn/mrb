@@ -1,55 +1,53 @@
 <?php
 
-namespace App\Http\Controllers\CMS;
+namespace App\Http\Controllers\CMS\Playlists\Tracks;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\CMS\CMSTrackRepository;
+use App\Models\Playlist;
+use App\Models\Track;
 use App\Repositories\CMS\CMSPlaylistRepository;
 
-class PlaylistsTracksController extends Controller
+class TracksController extends Controller
 {
-    protected $playlists, $tracks, $comboLists;
-
-    public function __construct(CMSPlaylistRepository $playlists, CMSTrackRepository $tracks)
-    {
-        $this->playlists = $playlists;
-        $this->tracks = $tracks;
-    }
+    public function __construct(
+       protected CMSPlaylistRepository $playlists, 
+       protected Track $tracks
+    ){}
 
 
     /**
      * Display a listing of the resource.
-     * GET /cms/playlists/{$slug)/tracks
+     * GET /cms/playlists/{playlist)/tracks
      *
-     * @param string $slug
+     * @param Playlist $playlist
      * @param \Illuminate\Http\Request  $request
      * 
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function index(string $slug, Request $request)
+    public function index(Playlist $playlist, Request $request)
     {
         return View('cms.playlists-tracks.index', [
-            'playlist' => $this->playlists->getPlaylistTracks($slug),
-            'tracks'    => $this->tracks->getTracks($request)
+            'playlist' => $this->playlists->getPlaylistTracks($playlist->slug),
+            'tracks' => $this->tracks->getTracks($request->input())
         ]);
     }
 
   
     /**
      * Show the form for creating a new resource.
-     * GET /cms/playlists/{$slug)/tracks/create
+     * GET /cms/playlists/{playlist)/tracks/create
      *
-     * @param string $slug
+     * @param Playlist $playlist
      * @param \Illuminate\Http\Request  $request
      * 
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function create(string $slug, Request $request)
+    public function create(Playlist $playlist, Request $request)
     {
         return View('cms.playlists-tracks.create', [
-            'playlistTracks'    => $this->playlists->getPlaylistTracks($slug),
-            'tracks'            => $this->tracks->getTracks($request)
+            'playlistTracks' => $this->playlists->getPlaylistTracks($playlist->slug),
+            'tracks' => $this->tracks->getTracks($request->input())
         ]);
     }
 
@@ -58,12 +56,14 @@ class PlaylistsTracksController extends Controller
      * POST /cms/playlists/{$slug)/tracks
      * 
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
-    public function store(string $slug, Request $request)
+    public function store(Playlist $playlist, Request $request)
     {        
-        $playlist = $this->playlists->findBySlug($slug);
-        $playlist->Tracks()->attach($request->id);
+        $playlist = $this->playlists->findBySlug($playlist->slug);
+        $playlist->tracks()->attach($request->id);
+        
         return redirect()->back(); 
     }
 

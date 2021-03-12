@@ -4,14 +4,16 @@ namespace App\Models;
 
 use App\Models\Traits\CountablePlays;
 use App\Models\Traits\CountableViews;
+use App\Models\Traits\Paginateable;
 use App\Models\Traits\Sortable;
+use App\Models\Traits\Track\AdminCMSQueries;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Webdevjohn\Filterable\Traits\Filterable;
 
 class Track extends Model
 {
-    use HasFactory, Filterable, Sortable, CountableViews, CountablePlays;
+    use HasFactory, Paginateable, Filterable, Sortable, CountableViews, CountablePlays, AdminCMSQueries;
 
     /**
      * The database table used by the model.
@@ -26,7 +28,7 @@ class Track extends Model
      * @var array
     */
 	protected $fillable = ['title','genre_id','label_id','format_id','year_released',
-							'purchase_date','purchase_price','key_code_id','bpm', 'album_id', 'track_thumbnail',
+							'purchase_date','purchase_price','key_code_id','bpm','album_id','track_thumbnail',
 								'track_image','mp3_sample_filename','full_track_filename'];
 
 
