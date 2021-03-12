@@ -6,13 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Albums\CreateAlbum;
 use App\Http\Requests\CMS\Albums\UpdateAlbum;
 use App\Models\Album;
-use App\Repositories\CMS\CMSAlbumRepository;
 use App\Repositories\ComboListsRepository;
 
 class AlbumsController extends Controller
 {
     public function __construct(
-       protected CMSAlbumRepository $albums, 
+       protected Album $albums, 
        protected ComboListsRepository $comboLists
     ){}
 
@@ -20,8 +19,7 @@ class AlbumsController extends Controller
      * Display a listing of the resource.
      * GET /cms/albums
      * 
-     * @param \Illuminate\Http\Request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -33,20 +31,21 @@ class AlbumsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
         return View('cms.albums.create', [
-            'genreList'     => $this->comboLists->getList('App\Models\Genre', 'genre'),
-            'labelList'     => $this->comboLists->getList('App\Models\Label', 'label'),
-            'formatList'    => $this->comboLists->getList('App\Models\Format', 'format')
+            'genreList' => $this->comboLists->getList('App\Models\Genre', 'genre'),
+            'labelList' => $this->comboLists->getList('App\Models\Label', 'label'),
+            'formatList' => $this->comboLists->getList('App\Models\Format', 'format')
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
+    /**    
+     * @param CreateAlbum $request
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
     public function store(CreateAlbum $request)
     {
@@ -73,8 +72,9 @@ class AlbumsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  string  $slug
-     * @return \Illuminate\Http\Response
+     * @param Album $album
+     * 
+     * @return \Illuminate\View\View
      */
     public function edit(Album $album)
     {
@@ -89,14 +89,15 @@ class AlbumsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\CMS\albums\UpdateAlbum
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateAlbum $request
+     * @param Album $album
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
     public function update(UpdateAlbum $request, Album $album)
     {
-        $album = $this->albums->update(
-            $album->id, 
+        $album = $this->albums->amend(
+            $album, 
             $request->validated()
         );
 

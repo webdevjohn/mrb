@@ -7,22 +7,21 @@ use App\Http\Requests\CMS\Albums\Tracks\CreateAlbumTrack;
 use App\Http\Requests\CMS\Albums\Tracks\UpdateAlbumTrack;
 use App\Models\Album;
 use App\Models\Track;
-use App\Repositories\CMS\CMSAlbumRepository;
 use App\Repositories\ComboListsRepository;
 
 class TracksController extends Controller
 {
     public function __construct(
-       protected CMSAlbumRepository $albums, 
+       protected Album $albums, 
        protected Track $tracks,
        protected ComboListsRepository $comboLists
     ){}
 
     /**
      * Display a listing of the resource.
-     * GET /cms/albums/{$slug)/tracks
+     * GET /cms/albums/{album)/tracks
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Album $album)
     {
@@ -34,11 +33,11 @@ class TracksController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     * GET /cms/albums/{$slug)/tracks/create
+     * GET /cms/albums/{album)/tracks/create
      *
      * @param Album $album
      * 
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create(Album $album)
     {        
@@ -60,6 +59,7 @@ class TracksController extends Controller
      * @param CreateAlbumTrack $request
      * @param Album $album
      * 
+     * @return Illuminate\Http\RedirectResponse
      */
     public function store(CreateAlbumTrack $request, Album $album)
     {
@@ -86,12 +86,12 @@ class TracksController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * GET /cms/albums/{albumId)/tracks/{$trackId}/edit
+     * GET /cms/albums/{album)/tracks/{track}/edit
      *
      * @param Album $album
      * @param Track $track
      * 
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Album $album, Track $track)
     {     
@@ -108,13 +108,13 @@ class TracksController extends Controller
 
     /**
      * Update an existing track on an existing album.
-     * PATCH /cms/albums/{slug)/tracks/{$trackId}
+     * PATCH /cms/albums/{album)/tracks/{track}
      *
      * @param UpdateAlbumTrack $request
      * @param Album $album
      * @param Track $track
      * 
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\RedirectResponse
      */
     public function update(UpdateAlbumTrack $request, Album $album, Track $track)
     {

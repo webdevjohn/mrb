@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Album\AdminCMSQueries;
+use App\Models\Traits\Paginateable;
 use App\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +11,7 @@ use Webdevjohn\Filterable\Traits\Filterable;
 
 class Album extends Model
 {
-    use HasFactory, Filterable, Sortable;
+    use HasFactory, Paginateable, Filterable, Sortable, AdminCMSQueries;
 
     /**
      * The database table used by the model.
