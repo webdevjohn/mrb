@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\TagRepository;
 use App\Http\Requests\CMS\Tags\CreateTag;
 use App\Http\Requests\CMS\Tags\UpdateTag;
+use App\Models\Tag;
 
 class TagsController extends Controller
 {
     protected $tags;
 
-    public function __construct(TagRepository $tags)
+    public function __construct(Tag $tags)
     {
         $this->tags = $tags;        
     }
@@ -20,20 +20,19 @@ class TagsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
         return View('cms.tags.index', [
-            'page' => 'Tags',
-            'tags' => $this->tags->getPaginated()
+            'tags' => $this->tags->orderBy('tag')->paginate(25)
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -43,12 +42,18 @@ class TagsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new Tag.
      *
+     * @param CreateTag $request
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
     public function store(CreateTag $request)
     {
-        $this->tags->store($request->all());
+        $this->tags->create(
+            $request->validated()
+        );
+        
         return redirect()
             ->route('cms.tags.create')
             ->with('success','Tag created successfully!');  
@@ -68,31 +73,33 @@ class TagsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Tag  $tag
+     * 
+     * @return \Illuminate\View\View
      */
-    public function edit($id)
-    {
-        $tag = $this->tags->find($id);
+    public function edit(Tag $tag)
+    {        
         return View('cms.tags.edit', [
-            'page'  => 'Tags',
-            'tag'   => $tag,
+            'tag' => $tag
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\CMS\Tags\UpdateTag  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  UpdateTag  $request
+     * @param  Tag $tag
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateTag $request, $id)
-    {
-        $tag = $this->tags->update($id, $request->all());
+    public function update(UpdateTag $request, Tag $tag)
+    {                
+        $tag->fill(
+            $request->validated()
+        )->save();
 
         return redirect()
-            ->route('cms.tags.edit', $tag->id)
+            ->route('cms.tags.index')
             ->with('success',"Tag updated successfully!");   
     }
 

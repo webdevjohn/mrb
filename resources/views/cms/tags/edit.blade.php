@@ -2,11 +2,9 @@
 @section('title', 'Edit Tag: ' . $tag->tag)
 
 @section('breadcrums')
-	<li><a href="{!! URL::route('cms.homepage') !!}">Home</a></li>
-	<li>&gt;  &nbsp;</li>
-	<li><a href="{!! URL::route('cms.tags.index') !!}">Tags</a></li>
-	<li>&gt;</li>
-	<li class="active-breadcrum">Edit Tag: {{ $tag->tag }}</li>
+	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+	<li><a href="{{ route('cms.tags.index') }}">Tags</a></li>	
+	<li class="last">Edit Tag: {{ $tag->tag }}</li>
 @stop
 
 @section('content')
@@ -15,12 +13,14 @@
 	
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.tags.update', $tag->id) }}">
-			{{ method_field('PATCH') }}
-			{{ csrf_field() }}
-
+		  	@method('PATCH')
+			@csrf
+		
 			<label for="tag">Tag: </label>
 			<input name="tag" type="text" id="tag" value="{{ old('tag') ?? $tag->tag }}">
-			{!! $errors->first('tag', '<span class="form-input-error">:message</span>') !!}
+			@error('tag')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 
 			<input name="id" type="hidden" id="id" value="{{ $tag->id }}">			
 			<button type="submit">Update</button>			

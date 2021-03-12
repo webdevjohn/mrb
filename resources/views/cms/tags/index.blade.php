@@ -3,8 +3,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li>&gt;</li>
-	<li class="active-breadcrum">{{ $page }}</li>
+	<li class="last">Tags</li>
 @stop
 
 @section('content')

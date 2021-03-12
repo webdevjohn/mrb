@@ -106,7 +106,7 @@ class TracksController extends Controller
         );
         
         return redirect()
-            ->route('cms.tracks.edit', $track->id)
+            ->route('cms.tracks.index')
             ->with('success','Track updated successfully!');  
     }
 
