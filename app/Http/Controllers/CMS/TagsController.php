@@ -9,12 +9,9 @@ use App\Models\Tag;
 
 class TagsController extends Controller
 {
-    protected $tags;
-
-    public function __construct(Tag $tags)
-    {
-        $this->tags = $tags;        
-    }
+    public function __construct(
+        protected Tag $tags
+    ){}
 
 
     /**
