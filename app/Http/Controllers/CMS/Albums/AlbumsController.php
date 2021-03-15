@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Albums\CreateAlbum;
 use App\Http\Requests\CMS\Albums\UpdateAlbum;
 use App\Models\Album;
-use App\Repositories\ComboListsRepository;
+use App\Services\Helpers\SelectBoxService;
 
 class AlbumsController extends Controller
 {
     public function __construct(
        protected Album $albums, 
-       protected ComboListsRepository $comboLists
+       protected SelectBoxService $selectBox
     ){}
 
     /**
@@ -36,9 +36,18 @@ class AlbumsController extends Controller
     public function create()
     {
         return View('cms.albums.create', [
-            'genreList' => $this->comboLists->getList('App\Models\Genre', 'genre'),
-            'labelList' => $this->comboLists->getList('App\Models\Label', 'label'),
-            'formatList' => $this->comboLists->getList('App\Models\Format', 'format')
+            'genreList' => $this->selectBox->createFrom('App\Models\Genre')
+                ->orderBy('genre')
+                ->display('genre')
+                ->asArray(),
+            'labelList' => $this->selectBox->createFrom('App\Models\Label')
+                ->orderBy('label')
+                ->display('label')
+                ->asArray(),  
+            'formatList' => $this->selectBox->createFrom('App\Models\Format')
+                ->orderBy('format')
+                ->display('format')
+                ->asArray(),
         ]);
     }
 
@@ -79,10 +88,19 @@ class AlbumsController extends Controller
     public function edit(Album $album)
     {
         return View('cms.albums.edit', [
-            'album'         => $album,
-            'genreList'     => $this->comboLists->getList('App\Models\Genre', 'genre'),
-            'labelList'     => $this->comboLists->getList('App\Models\Label', 'label'),
-            'formatList'    => $this->comboLists->getList('App\Models\Format', 'format')
+            'album' => $album,
+            'genreList' => $this->selectBox->createFrom('App\Models\Genre')
+                ->orderBy('genre')
+                ->display('genre')
+                ->asArray(),
+            'labelList' => $this->selectBox->createFrom('App\Models\Label')
+                ->orderBy('label')
+                ->display('label')
+                ->asArray(),  
+            'formatList' => $this->selectBox->createFrom('App\Models\Format')
+                ->orderBy('format')
+                ->display('format')
+                ->asArray(),
         ]);
     }
 

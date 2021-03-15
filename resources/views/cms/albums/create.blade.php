@@ -35,7 +35,7 @@
 			<label for="label_id">Label:</label>	
 			<select name="label_id">				
 				@foreach($labelList as $key => $value)		
-					<option value="{{$key}}" {{ (old('label_id') == $key) ? "selected='selected" : "" }}>{{ $value }}</option>
+					<option value="{{$key}}" {{ (old('label_id') == $key) ? "selected='selected" : ""}}>{{ $value }}</option>
 				@endforeach
 			</select>
 			@error('label_id')
@@ -50,7 +50,7 @@
 			</select>
 			@error('format_id')
     			<div class="form-input-error">{{ $message }}</div>
-			@enderror
+			@enderror 
 
 			<label for="year_released">Year Released: </label>
 			<input name="year_released" type="text" id="year_released"  value="{{ old('year_released') }}">

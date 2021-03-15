@@ -2,18 +2,21 @@
 
 namespace App\Services\Factories;
 
+use Exception;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 class ModelFactory {
 
-	public function make($model)
+	public function make(string $model) :Model|Exception
 	{
+		$model = Str::title($model);
+
 		$model = new $model;
-
-		if ($this->isEloquentModel($model)) 
-		{
-			return $model;
-		}
-
-		throw new \Exception("Model creation error: " . get_class($model) . " is not an instance of \Illuminate\Database\Eloquent\Model");
+	
+		if ($this->isEloquentModel($model)) return $model;
+	
+		throw new Exception("Model creation error: " . get_class($model) . " is not an instance of \Illuminate\Database\Eloquent\Model");
 	}
 
 
@@ -24,5 +27,4 @@ class ModelFactory {
   		}
   		return false;
   	}
-
 }
