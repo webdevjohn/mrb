@@ -98,16 +98,7 @@ class Track extends Model
     |--------------------------------------------------------------------------   
     */
 
-	public function getArtistIds()
-	{
-		return $this->artists->pluck('id')->toArray();
-	}
-
-	public function getTagIds()
-	{
-		return $this->tags->pluck('id')->toArray();
-	}
-
+	
     /**
 	 * Returns a track thumbnail, if available.  
 	 * Otherwise will return Label thumbnail.

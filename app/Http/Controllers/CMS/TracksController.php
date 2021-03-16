@@ -7,13 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Tracks\CreateTrack;
 use App\Http\Requests\CMS\Tracks\UpdateTrack;
 use App\Models\Track;
-use App\Repositories\ComboListsRepository;
+use App\Services\SelectBoxes\SelectBoxService;
 
 class TracksController extends Controller
 {
     public function __construct(
         protected Track $tracks, 
-        protected ComboListsRepository $comboLists
+        protected SelectBoxService $selectBoxes
     ){}
 
     /**
@@ -36,12 +36,7 @@ class TracksController extends Controller
     public function create()
     {
         return View('cms.tracks.create', [
-            'artistList'    => $this->comboLists->getList('App\Models\Artist', 'artist_name', false),
-            'genreList'     => $this->comboLists->getList('App\Models\Genre', 'genre'),
-            'labelList'     => $this->comboLists->getList('App\Models\Label', 'label'),
-            'formatList'    => $this->comboLists->getList('App\Models\Format', 'format'),
-            'albumList'     => $this->comboLists->getList('App\Models\Album', 'title'),
-            'tagList'       => $this->comboLists->getList('App\Models\Tag', 'tag', false)
+            'selectBoxes' => $this->selectBoxes->createForPage('cms.tracks')->get(),
         ]);
     }
 
@@ -51,7 +46,7 @@ class TracksController extends Controller
      */
     public function store(CreateTrack $request)
     {
-        $this->tracks->storeTrack(
+        $this->tracks->store(
             $request->validated()
         );
 
@@ -80,12 +75,8 @@ class TracksController extends Controller
     public function edit(Track $track)
     {
         return View('cms.tracks.edit', [
-            'track'         => $track,
-            'artistList'    => $this->comboLists->getList('App\Models\Artist', 'artist_name', false),
-            'genreList'     => $this->comboLists->getList('App\Models\Genre', 'genre'),
-            'labelList'     => $this->comboLists->getList('App\Models\Label', 'label'),
-            'formatList'    => $this->comboLists->getList('App\Models\Format', 'format'),
-            'tagList'       => $this->comboLists->getList('App\Models\Tag', 'tag', false) 
+            'track' => $track,
+            'selectBoxes' => $this->selectBoxes->createForPage('cms.tracks')->get(),
         ]);
     }
 

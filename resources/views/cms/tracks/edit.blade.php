@@ -3,9 +3,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li>&gt;  &nbsp;</li>
 	<li><a href="{{ route('cms.tracks.index') }}">Tracks</a></li>
-	<li>&gt;</li>
 	<li class="active-breadcrum">{{ $track->title }}</li>
 @stop
 
@@ -14,68 +12,109 @@
 	<h1 class="section-header">Edit Track: {{ $track->title }}</h1>
 
 	<section id="form-con">		
-		{!! Form::open(array('method' => 'patch', 'route' => array('cms.tracks.update', $track->id))) !!}
 
-			{!! Form::label('artists', 'Artist: ') !!}
-			{!! Form::select('artists[]', $artistList, $track->getArtistIds(), ['id' => 'artists', 'multiple']) !!}
-			{!! $errors->first('artists', '<span class="form-input-error">:message</span>') !!}
+		<form method="POST" action="{{ route('cms.tracks.update', $track->id) }}">
+			@method('PATCH')
+			@csrf
 
-			{!! Form::label('title', 'Title: ') !!}
-			{!! Form::text('title', $track->title) !!}
-			{!! $errors->first('title', '<span class="form-input-error">:message</span>') !!}
+			<label for="artists[]">Artists:</label>	
+			{!! Form::select('artists[]', $selectBoxes['artistList'], $track->getArtistIds(), ['id' => 'artists', 'multiple']) !!}
+			@error('artists')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 
-			{!! Form::label('genre_id', 'Genre: ') !!}
-			{!! Form::select('genre_id', $genreList, $track->genre_id) !!}
-			{!! $errors->first('genre_id', '<span class="form-input-error">:message</span>') !!}
+			<label for="title">Title: </label>
+			<input name="title" type="text" id="title" value="{{ old('title') ?? $track->title }}">
+			@error('title')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 
-			{!! Form::label('label_id', 'Label: ') !!}
-			{!! Form::select('label_id', $labelList, $track->label_id) !!}
-			{!! $errors->first('label_id', '<span class="form-input-error">:message</span>') !!}
+			<label for="genre_id">Genre: </label>	
+			<select name="genre_id">				
+				@foreach($selectBoxes['genreList'] as $key => $value)				
+					<option value="{{$key}}" {{ (old('genre_id') ?? $track->genre_id) == $key ? "selected='selected" : ""}}}>{{ $value }}</option>
+				@endforeach
+			</select>
+			@error('genre_id')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 
-			{!! Form::label('format_id', 'Format: ') !!}
-			{!! Form::select('format_id', $formatList, $track->format_id) !!}
-			{!! $errors->first('format_id', '<span class="form-input-error">:message</span>') !!}
+			<label for="label_id">Label:</label>	
+			<select name="label_id">				
+				@foreach($selectBoxes['labelList'] as $key => $value)		
+					<option value="{{ $key }}" {{ (old('label_id') ?? $track->label_id) == $key ? "selected='selected" : ""}}>{{ $value }}</option>
+				@endforeach
+			</select>
+			@error('label_id')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 
-			{!! Form::label('year_released', 'Year Released: ') !!}
-			{!! Form::text('year_released', $track->year_released) !!}
-			{!! $errors->first('year_released', '<span class="form-input-error">:message</span>') !!}
+			<label for="format_id">Format:</label>	
+			<select name="format_id">				
+				@foreach($selectBoxes['formatList'] as $key => $value)		
+					<option value="{{ $key }}" {{ (old('format_id') ?? $track->format_id) == $key ? "selected='selected" : ""}}>{{ $value }}</option>
+				@endforeach
+			</select>
+			@error('format_id')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 
-			{!! Form::label('purchase_date', 'Purchase Date: ') !!}
-			{!! Form::text('purchase_date', $track->purchase_date) !!}
-			{!! $errors->first('purchase_date', '<span class="form-input-error">:message</span>') !!}
+			<label for="year_released">Year Released: </label>
+			<input name="year_released" type="text" id="year_released" value="{{ old('year_released') ?? $track->year_released }}">
+			@error('year_released')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 
-			{!! Form::label('purchase_price', 'Purchase Price: ') !!}
-			{!! Form::text('purchase_price', $track->purchase_price) !!}
-			{!! $errors->first('purchase_price', '<span class="form-input-error">:message</span>') !!}
+			<label for="purchase_date">Purchase Date: </label>
+			<input name="purchase_date" type="text" id="purchase_date" value="{{ old('purchase_date') ?? $track->purchase_date }}">
+			@error('purchase_date')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 
-			{!! Form::label('tags', 'Tags: ') !!}
-			{!! Form::select('tags[]', $tagList, $track->getTagIds(), ['id' => 'tags', 'multiple']) !!}
-			{!! $errors->first('tags', '<span class="form-input-error">:message</span>') !!}
+			<label for="purchase_price">Purchase Price: </label>
+			<input name="purchase_price" type="text" id="purchase_price" value="{{ old('purchase_price') ?? $track->purchase_price }}">
+			@error('purchase_price')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
+
+			<label for="tags[]">Tags:</label>	
+			{!! Form::select('tags[]', $selectBoxes['tagList'], $track->getTagIds(), ['id' => 'tags', 'multiple']) !!}
+			@error('tags')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 
 			<hr />
+
+			<label for="track_thumbnail">Track Thumbnail: </label>
+			<input name="track_thumbnail" type="text" id="track_thumbnail" value="{{ old('track_thumbnail') ?? $track->track_thumbnail }}">
+			@error('track_thumbnail')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 	
-			{!! Form::label('track_thumbnail', 'Track Thumbnail: ') !!}
-			{!! Form::text('track_thumbnail', $track->track_thumbnail) !!}
-			{!! $errors->first('track_thumbnail', '<span class="form-input-error">:message</span>') !!}
-		
-			{!! Form::label('track_image', 'Track Main Image: ') !!}
-			{!! Form::text('track_image', $track->track_image) !!}
-			{!! $errors->first('track_image', '<span class="form-input-error">:message</span>') !!}
+			<label for="track_image">Track Main Image: </label>
+			<input name="track_image" type="text" id="track_image" value="{{ old('track_image') ?? $track->track_image }}">
+			@error('track_image')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 
 			<hr />
 
-			{!! Form::label('mp3_sample_filename', 'MP3 Filename: ') !!}
-			{!! Form::text('mp3_sample_filename', $track->mp3_sample_filename) !!}
-			{!! $errors->first('mp3_sample_filename', '<span class="form-input-error">:message</span>') !!}
+			<label for="mp3_sample_filename">MP3 Filename: </label>
+			<input name="mp3_sample_filename" type="text" id="mp3_sample_filename" value="{{ old('mp3_sample_filename') ?? $track->mp3_sample_filename }}">
+			@error('mp3_sample_filename')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 
-			{!! Form::label('full_track_filename', 'WAV Filename: ') !!}
-			{!! Form::text('full_track_filename', $track->full_track_filename) !!}
-			{!! $errors->first('full_track_filename', '<span class="form-input-error">:message</span>') !!}
+			<label for="full_track_filename">WAV Filename: </label>
+			<input name="full_track_filename" type="text" id="full_track_filename" value="{{ old('full_track_filename') ?? $track->full_track_filename }}">
+			@error('full_track_filename')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 
-			{!! Form::hidden('id', $track->id) !!}
-			{!! Form::button('Update', array('type' => 'submit')) !!}
-		
-		{!! Form::close() !!}
+			{{-- <input name="id" type="hidden" value="{{ $track->id }}"> --}}
+
+			<button type="submit">Update Track</button>			
+		</form>
 	</section>
 @stop
 

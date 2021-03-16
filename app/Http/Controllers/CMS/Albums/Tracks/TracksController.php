@@ -7,14 +7,14 @@ use App\Http\Requests\CMS\Albums\Tracks\CreateAlbumTrack;
 use App\Http\Requests\CMS\Albums\Tracks\UpdateAlbumTrack;
 use App\Models\Album;
 use App\Models\Track;
-use App\Repositories\ComboListsRepository;
+use App\Services\SelectBoxes\SelectBoxService;
 
 class TracksController extends Controller
 {
     public function __construct(
        protected Album $albums, 
        protected Track $tracks,
-       protected ComboListsRepository $comboLists
+       protected SelectBoxService $selectBoxes
     ){}
 
     /**
@@ -41,13 +41,9 @@ class TracksController extends Controller
      */
     public function create(Album $album)
     {        
-        return View('cms.albums.tracks.create', [
-            'page'          => 'Albums',
-            'album'         => $album,
-            'artistList'    => $this->comboLists->getList('App\Models\Artist', 'artist_name', false),
-            'genreList'     => $this->comboLists->getList('App\Models\Genre', 'genre'),
-            'labelList'     => $this->comboLists->getList('App\Models\Label', 'label'),
-            'tagList'       => $this->comboLists->getList('App\Models\Tag', 'tag', false) 
+        return View('cms.albums.tracks.create', [            
+            'album' => $album,
+            'selectBoxes' => $this->selectBoxes->createForPage('cms.albums.tracks.create')->get()
         ]);
     }
 
@@ -96,12 +92,9 @@ class TracksController extends Controller
     public function edit(Album $album, Track $track)
     {     
         return View('cms.albums.tracks.edit', [
-            'album'         => $album,
-            'track'         => $track,
-            'artistList'    => $this->comboLists->getList('App\Models\Artist', 'artist_name', false),
-            'genreList'     => $this->comboLists->getList('App\Models\Genre', 'genre'),
-            'labelList'     => $this->comboLists->getList('App\Models\Label', 'label'),
-            'tagList'       => $this->comboLists->getList('App\Models\Tag', 'tag', false) 
+            'album' => $album,
+            'track' => $track,
+            'selectBoxes' => $this->selectBoxes->createForPage('cms.albums.tracks.edit')->get()
         ]);
     }
 

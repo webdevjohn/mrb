@@ -1,23 +1,35 @@
 <?php 
 
-namespace App\Services\Helpers;
+namespace App\Services\SelectBoxes;
 
 use App\Services\Factories\ModelFactory;
+use Exception;
+use Illuminate\Contracts\Config\Repository;
 
 class SelectBoxService {
 	
 	/**
-	 *
-	 * @var mixed
-	 */
-	protected $list;
-
-	/**
 	 * @var ModelFactory $modelFactory
 	 */
 	public function __construct(
-		protected ModelFactory $modelFactory
+		protected ModelFactory $modelFactory,
+		protected Repository $config
 	){}
+
+
+	/**
+	 * Factory method that instantiates a Page class and retrieves 
+	 * the select boxes for a given page.
+	 *
+	 * @param string $page
+	 * @return object
+	 */
+	public function createForPage(string $page): object
+	{
+		$page = $this->pages($page);
+
+		return new $page($this->modelFactory, $this->config);
+	}
 
 
 	/**
@@ -27,7 +39,7 @@ class SelectBoxService {
 	 * 
 	 * @return self
 	 */
-	public function createFrom(string $model) :self
+	public function createFrom(string $model): self
 	{
 		$this->list = $this->modelFactory->make($model);
 
@@ -44,7 +56,7 @@ class SelectBoxService {
 	 * 
 	 * @return self
 	 */
-	public function orderBy(string $orderBy, string $sortOrder = 'ASC') :self
+	public function orderBy(string $orderBy, string $sortOrder = 'ASC'): self
 	{
 		$this->list = $this->list->orderBy($orderBy, $sortOrder);
 
@@ -60,7 +72,7 @@ class SelectBoxService {
 	 * 
 	 * @return self
 	 */
-	public function display(string $field, string $keyField = 'id') :self
+	public function display(string $field, string $keyField = 'id'): self
 	{
 		$this->list = $this->list->pluck($field, $keyField);
 
@@ -71,11 +83,12 @@ class SelectBoxService {
 	/**
 	 * Returns the list as an Array.
 	 * 
-	 * @param boolean $placeHolder (default = true)
+	 * @param boolean $placeHolder
+	 * @param string $placeHolderText
 	 * 
 	 * @return array
 	 */
-	public function asArray(bool $placeHolder = true, string $placeHolderText = 'Please Select....') :array
+	public function asArray(bool $placeHolder = true, string $placeHolderText = 'Please Select....'): array
 	{					
 		$this->list = $this->list->toArray();
 
@@ -90,11 +103,12 @@ class SelectBoxService {
 	/**
 	 * Returns the list as JSON.
 	 *
-	 * @param boolean $placeHolder (default = true)
+	 * @param boolean $placeHolder
+	 * @param string $placeHolderText
 	 * 
 	 * @return string (JSON)
 	 */
-	public function asJson(bool $placeHolder = true, string $placeHolderText = 'Please Select....') :string
+	public function asJson(bool $placeHolder = true, string $placeHolderText = 'Please Select....'): string
 	{
 		$this->list = $this->list->toJson();
 
@@ -107,15 +121,32 @@ class SelectBoxService {
 
 
 	/**
+	 * Returns a fully qualified path for a given page.
+	 *
+	 * @param string $page
+	 * 
+	 * @return string
+	 */
+	protected function pages(string $page): string
+	{
+		if ( ! $this->config->has('selectboxes')) {
+			throw new Exception("Config error: The config\selectboxes.php file doesn't exist.");
+		}
+	
+		return $this->config->get('selectboxes')[$page];	
+	}
+
+
+	/**
 	 * Adds a placeholder to the list.
 	 *
 	 * @param array|string $list
 	 * 
 	 * @return array|string
 	 */
-	protected function addPlaceHolder(array|string $list, string $placeHolderText) :array|string
+	protected function addPlaceHolder(array|string $list, string $placeHolderText): array|string
 	{
-		$placeHolder [0] = "$placeHolderText";
+		$placeHolder[0] = "$placeHolderText";
 
 		if(is_string($list)) {
 			$list = json_decode($list, TRUE);

@@ -24,7 +24,7 @@
 
 			<label for="genre_id">Genre: </label>	
 			<select name="genre_id">				
-				@foreach($genreList as $key => $value)		
+				@foreach($selectBoxes['genreList'] as $key => $value)		
 					<option value="{{$key}}" {{ (old('genre_id') == $key) ? "selected='selected" : "" }}>{{ $value }}</option>
 				@endforeach
 			</select>
@@ -34,7 +34,7 @@
 		
 			<label for="label_id">Label:</label>	
 			<select name="label_id">				
-				@foreach($labelList as $key => $value)		
+				@foreach($selectBoxes['labelList'] as $key => $value)		
 					<option value="{{$key}}" {{ (old('label_id') == $key) ? "selected='selected" : ""}}>{{ $value }}</option>
 				@endforeach
 			</select>
@@ -44,7 +44,7 @@
 
 			<label for="format_id">Format:</label>	
 			<select name="format_id">				
-				@foreach($formatList as $key => $value)		
+				@foreach($selectBoxes['formatList'] as $key => $value)		
 					<option value="{{ $key }}" {{ (old('format_id') == $key) ? "selected='selected" : "" }}>{{ $value }}</option>
 				@endforeach
 			</select>

@@ -5,7 +5,7 @@
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li><a href="{{ route('cms.albums.index') }}">Albums</a></li>
 	<li><a href="{{ route('cms.albums.tracks.index', $album->slug) }}">{{ $album->title }}</a></li>	
-	<li class="last">{{$track->title}}</li>
+	<li class="last">{{ $track->title }}</li>
 @stop
 
 @section('content')
@@ -14,12 +14,12 @@
 
 	<section id="form-con">		
 
-		<form method="POST" action="{{ route('cms.albums.tracks.update', [$album->slug, $track->id]) }}">
-			@csrf
+		<form method="POST" action="{{ route('cms.albums.tracks.update', [$album->slug, $track->id]) }}">			
 		  	@method('PATCH')
+			@csrf
 
 			<label for="artists[]">Artists:</label>	
-			{!! Form::select('artists[]', $artistList, $track->getArtistIds(), ['id' => 'artists', 'multiple']) !!}
+			{!! Form::select('artists[]', $selectBoxes['artistList'], $track->getArtistIds(), ['id' => 'artists', 'multiple']) !!}
 			@error('artists')
     			<div class="form-input-error">{{ $message }}</div>
 			@enderror
@@ -32,7 +32,7 @@
 
 			<label for="genre_id">Genre: </label>	
 			<select name="genre_id">				
-				@foreach($genreList as $key => $value)				
+				@foreach($selectBoxes['genreList'] as $key => $value)				
 					<option value="{{$key}}" {{ (old('genre_id') ?? $track->genre_id) == $key ? "selected='selected" : ""}}>{{ $value }}</option>
 				@endforeach
 			</select>
@@ -42,7 +42,7 @@
 
 			<label for="label_id">Label:</label>	
 			<select name="label_id">				
-				@foreach($labelList as $key => $value)		
+				@foreach($selectBoxes['labelList'] as $key => $value)		
 					<option value="{{$key}}" {{ (old('label_id') ?? $album->label_id) == $key ? "selected='selected" : ""}}>{{ $value }}</option>
 				@endforeach
 			</select>
@@ -51,7 +51,7 @@
 			@enderror
 
 			<label for="tags[]">Tags:</label>	
-			{!! Form::select('tags[]', $tagList, $track->getTagIds(), ['id' => 'tags', 'multiple']) !!}
+			{!! Form::select('tags[]', $selectBoxes['tagList'], $track->getTagIds(), ['id' => 'tags', 'multiple']) !!}
 			@error('tags')
     			<div class="form-input-error">{{ $message }}</div>
 			@enderror

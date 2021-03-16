@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Albums\CreateAlbum;
 use App\Http\Requests\CMS\Albums\UpdateAlbum;
 use App\Models\Album;
-use App\Services\Helpers\SelectBoxService;
+use App\Services\SelectBoxes\SelectBoxService;
 
 class AlbumsController extends Controller
 {
     public function __construct(
        protected Album $albums, 
-       protected SelectBoxService $selectBox
+       protected SelectBoxService $selectBoxes
     ){}
 
     /**
@@ -35,20 +35,9 @@ class AlbumsController extends Controller
      */
     public function create()
     {
-        return View('cms.albums.create', [
-            'genreList' => $this->selectBox->createFrom('App\Models\Genre')
-                ->orderBy('genre')
-                ->display('genre')
-                ->asArray(),
-            'labelList' => $this->selectBox->createFrom('App\Models\Label')
-                ->orderBy('label')
-                ->display('label')
-                ->asArray(),  
-            'formatList' => $this->selectBox->createFrom('App\Models\Format')
-                ->orderBy('format')
-                ->display('format')
-                ->asArray(),
-        ]);
+       return View('cms.albums.create', [                
+           'selectBoxes' => $this->selectBoxes->createForPage('cms.albums.create')->get(),
+       ]);
     }
 
     /**    
@@ -89,18 +78,7 @@ class AlbumsController extends Controller
     {
         return View('cms.albums.edit', [
             'album' => $album,
-            'genreList' => $this->selectBox->createFrom('App\Models\Genre')
-                ->orderBy('genre')
-                ->display('genre')
-                ->asArray(),
-            'labelList' => $this->selectBox->createFrom('App\Models\Label')
-                ->orderBy('label')
-                ->display('label')
-                ->asArray(),  
-            'formatList' => $this->selectBox->createFrom('App\Models\Format')
-                ->orderBy('format')
-                ->display('format')
-                ->asArray(),
+            'selectBoxes' => $this->selectBoxes->createForPage('cms.albums.edit')->get()
         ]);
     }
 

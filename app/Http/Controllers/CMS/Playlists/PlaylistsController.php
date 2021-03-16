@@ -4,21 +4,18 @@ namespace App\Http\Controllers\CMS\Playlists;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\ComboListsRepository;
 use App\Repositories\CMS\CMSPlaylistRepository;
 use App\Http\Requests\CMS\Playlists\CreatePlaylist;
 use App\Http\Requests\CMS\Playlists\UpdatePlaylist;
 use App\Models\Playlist;
+use App\Services\SelectBoxes\SelectBoxService;
 
 class PlaylistsController extends Controller
 {
-    protected $playlists, $comboLists;
-
-    public function __construct(CMSPlaylistRepository $playlists, ComboListsRepository $comboLists)
-    {
-        $this->playlists = $playlists;
-        $this->comboLists = $comboLists;  
-    }
+    public function __construct(
+        protected CMSPlaylistRepository $playlists, 
+        protected SelectBoxService $selectBox
+    ){}
 
 
     /**
@@ -45,7 +42,10 @@ class PlaylistsController extends Controller
     public function create()
     {
         return View('cms.playlists.create', [
-            'genreList' => $this->comboLists->getList('App\Models\Genre', 'genre')
+            'genreList' => $this->selectBox->createFrom('App\Models\Genre')
+                ->orderBy('genre')
+                ->display('genre')
+                ->asArray()
         ]);
     }
 
@@ -88,7 +88,10 @@ class PlaylistsController extends Controller
     {
         return View('cms.playlists.edit', [
             'playlist'  => $playlist,
-            'genreList' => $this->comboLists->getList('App\Models\Genre', 'genre')
+            'genreList' => $this->selectBox->createFrom('App\Models\Genre')
+                ->orderBy('genre')
+                ->display('genre')
+                ->asArray()
         ]);
     }
 

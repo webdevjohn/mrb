@@ -59,6 +59,15 @@ trait AdminCMSQueries {
 			->paginate($this->paginateSize);			
 	}
 
+	public function getArtistIds()
+	{
+		return $this->artists->pluck('id')->toArray();
+	}
+
+	public function getTagIds()
+	{
+		return $this->tags->pluck('id')->toArray();
+	}
 
     /*
     |--------------------------------------------------------------------------
