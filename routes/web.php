@@ -96,7 +96,9 @@ Route::prefix('cms')->name('cms.')->middleware(['auth', 'verified', 'roles.admin
     Route::resource('formats', App\Http\Controllers\CMS\FormatsController::class);
     Route::resource('genres', App\Http\Controllers\CMS\GenresController::class);
     Route::resource('key-codes', App\Http\Controllers\CMS\KeyCodesController::class);
-    Route::resource('labels', App\Http\Controllers\CMS\LabelsController::class);
+    Route::resource('labels', App\Http\Controllers\CMS\LabelsController::class)->scoped([
+        'label' => 'slug',
+    ]);;
     Route::resource('playlists', App\Http\Controllers\CMS\Playlists\PlaylistsController::class);
     Route::resource('playlists.tracks', App\Http\Controllers\CMS\Playlists\Tracks\TracksController::class);
     Route::resource('tags', App\Http\Controllers\CMS\TagsController::class);

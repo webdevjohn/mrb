@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Label extends Model
 {
@@ -24,14 +25,17 @@ class Label extends Model
     */
 	protected $fillable = ['label', 'slug', 'label_thumbnail', 'label_image'];
 
-	/**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
+	public static function boot()
+	{
+		parent::boot();
+
+        static::creating(function($item) {            
+            $item->slug = Str::slug($item->label);
+        });
+
+		static::updating(function($item) {            
+        	$item->slug = Str::slug($item->label);
+        });
 	}
 
 
@@ -94,13 +98,13 @@ class Label extends Model
 	public function scopeWithTrackCount($query, $genre)
 	{
 		return $query->join('tracks', 'tracks.label_id', '=', 'labels.id')
-					 ->when($genre, function ($query) use ($genre) {
-						return $query->where('tracks.genre_id', $genre);
-					 })
-					 ->groupBy('labels.label', 'labels.slug', 'labels.id', 'labels.label_image')					
-					 ->orderBy('track_count', 'DESC')	
-					 ->take(6)				
-					 ->get(['labels.id', 'labels.label', 'labels.slug', 'labels.label_image', DB::raw('count(*) as track_count')]);						 				
+			->when($genre, function ($query) use ($genre) {
+				return $query->where('tracks.genre_id', $genre);
+			})
+			->groupBy('labels.label', 'labels.slug', 'labels.id', 'labels.label_image')					
+			->orderBy('track_count', 'DESC')	
+			->take(6)				
+			->get(['labels.id', 'labels.label', 'labels.slug', 'labels.label_image', DB::raw('count(*) as track_count')]);						 				
 	}
 
 	public function scopeFilterByTracks($query, array $tracks)

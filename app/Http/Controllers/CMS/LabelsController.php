@@ -21,7 +21,9 @@ class LabelsController extends Controller
     public function index()
     {
         return View('cms.labels.index', [     
-            'labels' => $this->labels->orderBy('label')->paginate(48)
+            'labels' => $this->labels->WithFields()
+                ->orderBy('label')
+                ->paginate(48)
         ]);
     }
 
