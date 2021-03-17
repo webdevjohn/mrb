@@ -49,7 +49,7 @@ Route::resource('genres', GenresController::class)->only(['index', 'show']);
 Route::get('genres/{genre}/tracks', [GenresTracksController::class, 'index'])->name('genres.tracks.index');
 
 Route::get('labels', [LabelsController::class, 'index'])->name('labels.index');
-Route::get('labels/{label}/tracks', [LabelsTracksController::class, 'index'])->name('labels.tracks.index');
+Route::get('labels/{label:slug}/tracks', [LabelsTracksController::class, 'index'])->name('labels.tracks.index');
 
 Route::get('playlists', [PlaylistsController::class, 'index'])->name('playlists.index');
 Route::get('playlists/{playlist}/tracks', [PlaylistsTracksController::class, 'index'])->name('playlists.tracks.index');
