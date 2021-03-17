@@ -2,55 +2,52 @@
 
 namespace App\Http\Controllers\CMS;
 
-use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
-use App\Repositories\CMS\CMSLabelRepository;
 use App\Http\Requests\CMS\Labels\CreateLabel;
 use App\Http\Requests\CMS\Labels\UpdateLabel;
+use App\Models\Label;
 
 class LabelsController extends Controller
 {
-
-    protected $labels;
-
-    public function __construct(CMSLabelRepository $labels)
-    {
-        $this->labels = $labels;        
-    }
+    public function __construct(
+        protected Label $labels
+    ){}
 
     /**
-     * Display a listing of the resource.
+     * Display all labels.
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\View\View 
      */
     public function index()
     {
-        return View('cms.labels.index', [
-            'page'      => 'Labels',
-            'labels'    => $this->labels->getLabels()
+        return View('cms.labels.index', [     
+            'labels' => $this->labels->orderBy('label')->paginate(48)
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new label.
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\View\View 
      */
     public function create()
     {
-        return View('cms.labels.create', [
-            'page' => 'Labels'
-        ]);
+        return View('cms.labels.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created label.
      *
+     * @param CreateLabel $request
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
     public function store(CreateLabel $request)
     {
-        $this->labels->store($request->all());
+        $this->labels->create(
+            $request->validated()
+        );
+
         return redirect()
             ->route('cms.labels.create')
             ->with('success','Label created successfully!');  
@@ -70,41 +67,44 @@ class LabelsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Label $label
+     * 
+     * @return Illuminate\View\View 
      */
-    public function edit($id)
+    public function edit(Label $label)
     {
-        $label = $this->labels->find($id);
-        return View('cms.labels.edit', [
-            'page'  => 'Labels',
+        return View('cms.labels.edit', [   
             'label' => $label
         ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update an existing label.
      *
-     * @param  \App\Http\Requests\CMS\Labels\UpdateLabel  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateLabel $request
+     * @param Label $label
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateLabel $request, $id)
+    public function update(UpdateLabel $request, Label $label)
     {
-        $label = $this->labels->update($id, $request->all());
+        $label->fill(
+            $request->validated()
+        )->save();
 
         return redirect()
-            ->route('cms.labels.edit', $label->id)
+            ->route('cms.labels.index')
             ->with('success',"Label updated successfully!");   
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified label from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Label $label
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Label $label)
     {
         //
     }

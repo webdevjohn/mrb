@@ -24,15 +24,6 @@ class Label extends Model
     */
 	protected $fillable = ['label', 'slug', 'label_thumbnail', 'label_image'];
 
-    // /**
-    //  * Default attribute values.
-    //  * @var array 
-    // */
-    // protected $attributes = [
-    // 	'label_thumbnail' 	=> null,
-    // 	'label_image'		=> null        
-    // ];
-
 	/**
      * Get the route key for the model.
      *

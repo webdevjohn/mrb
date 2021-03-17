@@ -3,8 +3,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li>&gt;</li>
-	<li class="active-breadcrum">{{ $page }}</li>
+	<li class="last">Labels</li>
 @stop
 
 @section('content')
@@ -38,7 +37,7 @@
 					<td>
 						<ul class="frm-crud-buttons">
 							<li>
-								<a href="{{ route('cms.labels.edit', $label->id) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
+								<a href="{{ route('cms.labels.edit', $label->slug) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
 							</li>
 						</ul>
 					</td>

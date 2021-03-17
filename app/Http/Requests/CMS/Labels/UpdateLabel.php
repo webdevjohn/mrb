@@ -3,6 +3,7 @@
 namespace App\Http\Requests\CMS\Labels;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 
 class UpdateLabel extends Request
 {
@@ -16,21 +17,23 @@ class UpdateLabel extends Request
         return true;
     }
 
-
     /**
      * Get the validation rules that apply to the request.
      *
      * @return array
      */
     public function rules()
-    {
-        return [
-            'label' => 'required|max:50|unique:labels,label, ' . $this->id,
+    {      
+        return [            
+            'label' => [
+                'required', 
+                'max:50', 
+                Rule::unique('labels')->ignore($this->route('label')->id)
+            ],        
             'label_thumbnail' => 'max:50',
             'label_image' => 'max:50'
         ];
     }
-
 
     /**
      * Get the custom error messages that apply to the request.
