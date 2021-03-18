@@ -16,7 +16,6 @@ class CreatePlaylist extends Request
         return true;
     }
 
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,11 +24,10 @@ class CreatePlaylist extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:100' ,
+            'name' => 'required|max:100|unique:playlists,name' ,
             'genre_id' => 'required|numeric|min:1|exists:genres,id',  
         ];
     }
-
 
     /**
      * Get the custom error messages that apply to the request.
@@ -41,6 +39,7 @@ class CreatePlaylist extends Request
         return [
             'name.required' => 'A Name is required.',
             'name.max' => 'A Name must not exceed :max characters.',
+            'name.unique' => 'The Playlist name specified is already in the database.',
             
             'genre_id.required' => 'A Genre is required.',
             'genre_id.numeric' => 'A Genre is required.',

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\CountableViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Playlist extends Model
 {
@@ -31,15 +32,18 @@ class Playlist extends Model
      */
     protected $imagePath = "images/playlists/";
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+	public static function boot()
+	{
+		parent::boot();
+
+        static::creating(function($playlist) {            
+            $playlist->slug = Str::slug($playlist->name);
+        });
+
+		static::updating(function($playlist) {            
+        	$playlist->slug = Str::slug($playlist->name);
+        });
+	}
 
 
     /*
