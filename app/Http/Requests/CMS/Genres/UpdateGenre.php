@@ -3,6 +3,7 @@
 namespace App\Http\Requests\CMS\Genres;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 
 class UpdateGenre extends Request
 {
@@ -16,7 +17,6 @@ class UpdateGenre extends Request
         return true;
     }
 
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,10 +25,13 @@ class UpdateGenre extends Request
     public function rules()
     {
         return [
-            'genre' => 'required|max:35|unique:genres,genre, ' . $this->id
+            'genre' => [
+                'required',
+                'max:35',
+                Rule::unique('genres')->ignore($this->route('genre')->id)
+            ]
         ];
     }
-
 
     /**
      * Get the custom error messages that apply to the request.

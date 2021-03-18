@@ -5,49 +5,49 @@ namespace App\Http\Controllers\CMS;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Genres\CreateGenre;
 use App\Http\Requests\CMS\Genres\UpdateGenre;
-use App\Repositories\CMS\CMSGenreRepository;
+use App\Models\Genre;
 
 class GenresController extends Controller
 {
-    protected $genres;
-
-    public function __construct(CMSGenreRepository $genres)
-    {
-        $this->genres = $genres;        
-    }
+    public function __construct(
+        protected Genre $genres
+    ){}
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\View\View 
      */
     public function index()
     {
         return View('cms.genres.index', [
-            'page' => 'Genres',
-            'genres' => $this->genres->getPaginated()
+            'genres' => $this->genres->paginate(48)
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\View\View 
      */
     public function create()
     {
-        return View('cms.genres.create', [
-            'page' => 'Genres'
-        ]);
+        return View('cms.genres.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created genre.
      *
+     * @param CreateGenre $request
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
     public function store(CreateGenre $request)
     {
-        $this->genres->store($request->all());
+        $this->genres->create(
+            $request->validated()
+        );
+
         return redirect()
             ->route('cms.genres.create')
             ->with('success','Genre created successfully!');   
@@ -65,43 +65,46 @@ class GenresController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified genre.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Genre $genre
+     * 
+     * @return Illuminate\View\View 
      */
-    public function edit($id)
+    public function edit(Genre $genre)
     {
-        $genre = $this->genres->find($id);
-        return View('cms.genres.edit', [
-            'page'  => 'Genres',
+        return View('cms.genres.edit', [     
             'genre' => $genre
         ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified genre.
      *
-     * @param  \App\Http\Requests\CMS\Genres\UpdateGenre  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateGenre $request
+     * @param Genre $genre
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateGenre $request, $id)
+    public function update(UpdateGenre $request, Genre $genre)
     {
-        $genre = $this->genres->update($id, $request->all());
+        $genre->fill(
+            $request->validated()
+        )->save();
         
         return redirect()
-            ->route('cms.genres.edit', $genre->id)
+            ->route('cms.genres.index')
             ->with('success',"Genre updated successfully!");   
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified genre from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Genre $genre
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Genre $genre)
     {
         //
     }
