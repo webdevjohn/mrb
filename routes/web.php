@@ -45,7 +45,7 @@ Route::get('albums/{album}/tracks', [AlbumsTracksController::class, 'index'])->n
 Route::get('artists', [ArtistsController::class, 'index'])->name('artists.index');
 Route::get('artists/{artist:slug}/tracks', [ArtistsTracksController::class, 'index'])->name('artists.tracks.index');
 
-Route::resource('genres', GenresController::class)->only(['index', 'show']);
+Route::resource('genres', GenresController::class)->only(['index', 'show'])->scoped(['genre' => 'slug',]);
 Route::get('genres/{genre:slug}/tracks', [GenresTracksController::class, 'index'])->name('genres.tracks.index');
 
 Route::get('labels', [LabelsController::class, 'index'])->name('labels.index');

@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genre;
-use App\Repositories\GenreRepository;
 use App\Repositories\LabelRepository;
 use App\Repositories\TrackRepository;
 
 class GenresController extends Controller
 {
     public function __construct(
-        protected GenreRepository $genres,
+        protected Genre $genres,
         protected TrackRepository $tracks, 
         protected LabelRepository $labels
     ){}
@@ -18,20 +17,22 @@ class GenresController extends Controller
     
     /**
      * Display a listing of the resource for public viewing.
-     * GET /genres
      *
-     * @return Response
+     * @return Illuminate\View\View 
      */
     public function index()
     {
         return View('genres.index', array(
-            'genres' => $this->genres->getAllWithTrackCount()
+            'genres' => $this->genres->withTrackCount()
         ));
     }
 
 
     /**
-     * GET genres/{genre}   
+     *
+     * @param Genre $genre
+     * 
+     * @return Illuminate\View\View 
      */
     public function show(Genre $genre)
     {
