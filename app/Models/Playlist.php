@@ -84,4 +84,11 @@ class Playlist extends Model
 	{
 		return $this->tracks->pluck('id')->toArray();
 	}
+
+	public function popular(int $take = 4)
+	{
+		return $this->orderBy('viewed_counter', 'DESC')
+			->take($take)
+			->get();
+	}
 }

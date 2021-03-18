@@ -2,14 +2,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Label;
+use App\Models\Playlist;
 use Illuminate\Http\Request;
-use App\Repositories\PlaylistRepository;
 use App\Repositories\TrackRepository;
 
 class HomeController extends Controller
 {        
     public function __construct(
-       protected PlaylistRepository $playlists, 
+       protected Playlist $playlists, 
        protected TrackRepository $tracks,
        protected Label $labels
     ){}
