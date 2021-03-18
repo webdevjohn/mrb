@@ -6,37 +6,33 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Playlist;
 use App\Models\Track;
-use App\Repositories\CMS\CMSPlaylistRepository;
 
 class TracksController extends Controller
 {
     public function __construct(
-       protected CMSPlaylistRepository $playlists, 
        protected Track $tracks
     ){}
 
 
     /**
-     * Display a listing of the resource.
-     * GET /cms/playlists/{playlist)/tracks
+     * Display a playlist with tracks.
      *
-     * @param Playlist $playlist
-     * @param \Illuminate\Http\Request  $request
+     * @param Playlist $playlist     
      * 
      * @return \Illuminate\View\View
      */
-    public function index(Playlist $playlist, Request $request)
+    public function index(Playlist $playlist)
     {
-        return View('cms.playlists-tracks.index', [
-            'playlist' => $this->playlists->getPlaylistTracks($playlist->slug),
-            'tracks' => $this->tracks->getTracks($request->input())
+        return View('cms.playlists.tracks.index', [
+            'playlist' => $playlist->with('tracks.label')
+                ->where('slug', $playlist->slug)
+                ->firstOrFail()
         ]);
     }
 
   
     /**
      * Show the form for creating a new resource.
-     * GET /cms/playlists/{playlist)/tracks/create
      *
      * @param Playlist $playlist
      * @param \Illuminate\Http\Request  $request
@@ -44,24 +40,28 @@ class TracksController extends Controller
      * @return \Illuminate\View\View
      */
     public function create(Playlist $playlist, Request $request)
-    {
-        return View('cms.playlists-tracks.create', [
-            'playlistTracks' => $this->playlists->getPlaylistTracks($playlist->slug),
-            'tracks' => $this->tracks->getTracks($request->input())
+    {    
+        return View('cms.playlists.tracks.create', [
+            'playlist' => $playlist,
+            'tracks' => $this->tracks->WithRelations()
+                ->whereNotIn('id', $playlist->getTrackIds())
+                ->Filters($request->input())
+			    ->Sortable($request->input())
+                ->orderBy('purchase_date', 'DESC')
+                ->paginate(48)	
         ]);
     }
-
+    
     /**
-     * Store a newly created resource in storage.
-     * POST /cms/playlists/{$slug)/tracks
-     * 
-     * @param  \Illuminate\Http\Request  $request
+     * Add an existing track to an existing playlist.
+     *
+     * @param Playlist $playlist
+     * @param Request $request
      * 
      * @return Illuminate\Http\RedirectResponse
      */
     public function store(Playlist $playlist, Request $request)
     {        
-        $playlist = $this->playlists->findBySlug($playlist->slug);
         $playlist->tracks()->attach($request->id);
         
         return redirect()->back(); 

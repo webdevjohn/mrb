@@ -79,4 +79,9 @@ class Playlist extends Model
     {
         return $this->imagePath . "main/" . $this->image;
     }
+
+    public function getTrackIds()
+	{
+		return $this->tracks->pluck('id')->toArray();
+	}
 }
