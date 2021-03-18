@@ -83,6 +83,16 @@ class Label extends Model
 		return "storage/images/main/ics-600.gif";	
 	}
 
+	/**
+	 * Returns a count of the number of records.
+	 *
+	 * @return int 
+	 */
+	public function getModelCount(): int
+	{
+		return $this->count();
+	}
+
 
     /*
     |--------------------------------------------------------------------------
@@ -116,4 +126,12 @@ class Label extends Model
 		->orderBy('label')
 		->get();
 	} 
+
+	public function scopeGetPaginated()
+	{
+		return $this->has('tracks')
+			->WithFields()
+			->orderBy('label')
+			->paginate(48);
+	}
 }

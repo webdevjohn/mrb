@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genre;
-use App\Repositories\LabelRepository;
+use App\Models\Label;
 use App\Repositories\TrackRepository;
 
 class GenresController extends Controller
@@ -11,7 +11,7 @@ class GenresController extends Controller
     public function __construct(
         protected Genre $genres,
         protected TrackRepository $tracks, 
-        protected LabelRepository $labels
+        protected Label $labels
     ){}
 
     
@@ -41,7 +41,7 @@ class GenresController extends Controller
         return View('genres.show', [
 			'genre' => $genre,
             'popularTracks' => $popularTracks,	
-			'labelsWithMostTracks' => $this->labels->withMostTracks($genre->id),
+			'labelsWithMostTracks' => $this->labels->WithTrackCount($genre->id),
         ]);
     }
 }

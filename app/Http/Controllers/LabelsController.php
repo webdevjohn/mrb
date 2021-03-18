@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\LabelRepository;
+use App\Models\Label;
 
 class LabelsController extends Controller
 {    
     public function __construct(
-        protected LabelRepository $labels
+        protected Label $labels
     ){}
 
     /**
