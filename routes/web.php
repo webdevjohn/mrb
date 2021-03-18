@@ -43,7 +43,7 @@ Route::get('albums', [AlbumsController::class, 'index'])->name('albums.index');
 Route::get('albums/{album}/tracks', [AlbumsTracksController::class, 'index'])->name('albums.tracks.index');
 
 Route::get('artists', [ArtistsController::class, 'index'])->name('artists.index');
-Route::get('artists/{artist}/tracks', [ArtistsTracksController::class, 'index'])->name('artists.tracks.index');
+Route::get('artists/{artist:slug}/tracks', [ArtistsTracksController::class, 'index'])->name('artists.tracks.index');
 
 Route::resource('genres', GenresController::class)->only(['index', 'show']);
 Route::get('genres/{genre:slug}/tracks', [GenresTracksController::class, 'index'])->name('genres.tracks.index');
@@ -92,7 +92,9 @@ Route::prefix('cms')->name('cms.')->middleware(['auth', 'verified', 'roles.admin
 
     Route::resource('albums', App\Http\Controllers\CMS\Albums\AlbumsController::class);
     Route::resource('albums.tracks', App\Http\Controllers\CMS\Albums\Tracks\TracksController::class);
-    Route::resource('artists', App\Http\Controllers\CMS\ArtistsController::class);
+    Route::resource('artists', App\Http\Controllers\CMS\ArtistsController::class)->scoped([
+        'artist' => 'slug',
+    ]);
     Route::resource('formats', App\Http\Controllers\CMS\FormatsController::class);
     Route::resource('genres', App\Http\Controllers\CMS\GenresController::class)->scoped([
         'genre' => 'slug',

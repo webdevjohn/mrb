@@ -3,6 +3,7 @@
 namespace App\Http\Requests\CMS\Artists;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 
 class UpdateArtist extends Request
 {
@@ -16,7 +17,6 @@ class UpdateArtist extends Request
         return true;
     }
 
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,10 +25,13 @@ class UpdateArtist extends Request
     public function rules()
     {   
         return [
-            'artist_name' => 'required|max:50|unique:artists,artist_name, ' . $this->id
+            'artist_name' => [
+                'required',
+                'max:50',
+                Rule::unique('artists')->ignore($this->route('artist')->id)        
+            ]    
         ];
     }
-
 
     /**
      * Get the custom error messages that apply to the request.
