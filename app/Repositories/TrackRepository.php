@@ -59,17 +59,6 @@ class TrackRepository extends EloquentRepository {
 	}	
 
 
-	public function byLabel(int $labelId, array $requestInput)
-	{
-		return $this->model->WithRelations()
-			->Filters(['label' => $labelId])
-			->Filters($requestInput)
-			->Sortable($requestInput)
-			->orderBy('purchase_date', 'DESC')
-			->paginate($this->paginateSize);		
-	}
-
-
 	public function byPlaylist(string $slug, array $requestInput)
 	{
 		return $this->model->WithRelations()
