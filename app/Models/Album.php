@@ -106,6 +106,15 @@ class Album extends Model
 		return false;
 	}
 
+	/**
+	 * Returns a count of the number of records.
+	 *
+	 * @return int 
+	 */
+	public function getModelCount(): int
+	{
+		return $this->count();
+	}
 
     /*
     |--------------------------------------------------------------------------

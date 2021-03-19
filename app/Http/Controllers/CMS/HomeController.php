@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
+use App\Models\Album;
+use App\Models\Artist;
 use App\Models\Label;
-use App\Repositories\AlbumRepository;
-use App\Repositories\ArtistRepository;
-use App\Repositories\TrackRepository;
+use App\Models\Track;
 
 class HomeController extends Controller
 {
     public function __construct(
-        protected TrackRepository $tracks, 
-        protected ArtistRepository $artists,
+        protected Track $tracks, 
+        protected Artist $artists,
         protected Label $labels, 
-        protected AlbumRepository $albums
+        protected Album $albums
     ){}
 
     /**
@@ -25,11 +25,10 @@ class HomeController extends Controller
     public function index()
     {    
         return View('cms.home.index', [
-        	'page'          => 'Home',
-            'trackCount'    => $this->tracks->getModelCount(),
-            'artistCount'   => $this->artists->getModelCount(),
-            'labelCount'    => $this->labels->getModelCount(),
-            'albumCount'    => $this->albums->getModelCount()
+            'trackCount' => $this->tracks->getModelCount(),
+            'artistCount' => $this->artists->getModelCount(),
+            'labelCount' => $this->labels->getModelCount(),
+            'albumCount' => $this->albums->getModelCount()
         ]);
     }
 }

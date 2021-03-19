@@ -55,6 +55,23 @@ class Artist extends Model
 		return $this->belongsToMany(User::class, 'favourite_artist_user', 'user_id', 'artist_id')->WithTimeStamps();
 	}
 
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Getters
+    |--------------------------------------------------------------------------   
+    */
+
+    /**
+	 * Returns a count of the number of records.
+	 *
+	 * @return int 
+	 */
+	public function getModelCount(): int
+	{
+		return $this->count();
+	}
+
 
     /*
     |--------------------------------------------------------------------------

@@ -153,7 +153,17 @@ class Track extends Model
 		return "/samples/" . $this->genre->slug . "/" . $this->mp3_sample_filename;
 	}
 
+    /**
+	 * Returns a count of the number of records.
+	 *
+	 * @return int 
+	 */
+	public function getModelCount(): int
+	{
+		return $this->count();
+	}
 
+	
     /*
     |--------------------------------------------------------------------------
     | Query Scopes
