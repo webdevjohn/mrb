@@ -9,8 +9,11 @@ use App\Models\Playlist;
 class PlaylistsTracksController extends Controller
 {  
     /**
-	 * Display all tracks for a given playlist.
+	 * Display all tracks for a given playlist
      *
+     * @param Request $request
+     * @param Playlist $playlist
+     * 
      * @return Illuminate\View\View 
      */
     public function index(Request $request, Playlist $playlist)
