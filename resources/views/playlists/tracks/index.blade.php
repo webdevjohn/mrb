@@ -2,19 +2,16 @@
 @section('title', 'My Record Box -' . $playlist->name)
 @section('content')
 
-
 	<h1 id="page-header">
 		<div class="wrapper">{{ $playlist->name }}</div>
 	</h1>
-	
-	<div class="wrapper">
-		<section class="track-listings">
-			@include('_partials.tracks', ['tracks' => $playlistTracks])				
-		</section> 						
-	</div>
+
+	<section class="track-listings wrapper">
+		@include('_partials.tracks', ['tracks' => $tracks])				
+	</section> 						
 	 
 	<section>
-		{!! $playlistTracks->appends(request()->input())->render() !!}	
+		{!! $tracks->appends(request()->input())->render() !!}	
 	</section>
 	
 @stop
