@@ -18,7 +18,6 @@ class UpdateTrackWasViewedCounter
         //
     }
 
-
     /**
      * Handle the event.
      *
@@ -29,8 +28,4 @@ class UpdateTrackWasViewedCounter
     {
         $event->track()->incViewedCounter()->save();
     }
-
-
-
-
 }
