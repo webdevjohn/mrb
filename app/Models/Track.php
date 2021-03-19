@@ -154,16 +154,25 @@ class Track extends Model
 	}
 
 
-
     /*
     |--------------------------------------------------------------------------
     | Query Scopes
     |--------------------------------------------------------------------------   
     */
 
-    public function scopeFilters($query, $request)
+	public function scopeWithRelationsAndSorted($query, array $requestInput) 
 	{
-		return $this->getFilterFactory('TrackFilters')->make($query, $request);
+		return $query->withRelations()->filterAndSort($requestInput);
+	}
+
+    public function scopeFilters($query, array $requestInput)
+	{
+		return $this->getFilterFactory('TrackFilters')->make($query, $requestInput);
+	}
+
+	public function scopeFilterAndSort($query, array $requestInput)
+	{
+		return $query->filters($requestInput)->Sortable($requestInput);
 	}
 
 	public function scopeWithTrackReportingFields($query)
