@@ -154,6 +154,7 @@ class Track extends Model
 	}
 
 
+
     /*
     |--------------------------------------------------------------------------
     | Query Scopes
@@ -182,5 +183,13 @@ class Track extends Model
             ->whereIn('id', $trackIds)
             ->orderBy('year_released', 'desc')
             ->get(['year_released']);       
+	}
+
+	public function scopePopular($query, $take = 12)
+	{
+		return $query->WithRelations()							    	
+			->orderBy('played_counter', 'DESC')
+			->take($take)
+			->get();
 	}
 }
