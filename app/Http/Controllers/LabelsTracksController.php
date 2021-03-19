@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class LabelsTracksController extends Controller
 {
 	/**
-	 * Display a listing of the resource.
+	 * Display all tracks for a given label.
 	 *
 	 * @param Request $request
 	 * @param Label $label
