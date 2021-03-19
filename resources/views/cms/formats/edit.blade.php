@@ -2,11 +2,9 @@
 @section('title', 'Edit Format')
 
 @section('breadcrums')
-	<li><a href="{!! route('cms.homepage') !!}">Home</a></li>
-	<li>&gt;  &nbsp;</li>
-	<li><a href="{!! route('cms.formats.index') !!}">Formats</a></li>
-	<li>&gt;</li>
-	<li class="active-breadcrum">Edit Format: {{ $format->format }}</li>
+	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+	<li><a href="{{ route('cms.formats.index') }}">Formats</a></li>	
+	<li class="last">Edit Format: {{ $format->format }}</li>
 @stop
 
 @section('content')
@@ -16,14 +14,14 @@
 	<section id="form-con">		
 
 		<form method="POST" action="{{ route('cms.formats.update', $format->id) }}">
-			{{ method_field('PATCH') }}
-			{{ csrf_field() }}
+			@method('PATCH')
+			@csrf
 
 			<label for="format">Format: </label>
 			<input name="format" type="text" id="format" value="{{ $format->format }}">
-			{!! $errors->first('format', '<span class="form-input-error">:message</span>') !!}
-
-			<input name="id" type="hidden" id="id" value="{{ $format->id }}">
+			@error('format')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
 		
 			<button type="submit">Update Format</button>			
 		</form>

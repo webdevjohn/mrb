@@ -3,6 +3,7 @@
 namespace App\Http\Requests\CMS\Formats;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 
 class UpdateFormat extends Request
 {
@@ -16,7 +17,6 @@ class UpdateFormat extends Request
         return true;
     }
 
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,10 +25,13 @@ class UpdateFormat extends Request
     public function rules()
     {
         return [
-            'format' => 'required|max:25|unique:formats,format, ' . $this->id
+            'format' => [
+                'required',
+                'max:25', 
+                Rule::unique('formats')->ignore($this->route('format')->id)     
+            ]
         ];
     }
-
 
     /**
      * Get the custom error messages that apply to the request.
