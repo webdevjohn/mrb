@@ -58,28 +58,6 @@ class TrackRepository extends EloquentRepository {
 			->get();
 	}	
 
-	
-	public function byArtist(int $artistId, array $requestInput)
-	{
-		return $this->model->WithRelations()
-			->Filters(['artist' => $artistId])
-			->Filters($requestInput)
-			->Sortable($requestInput)
-			->orderBy('purchase_date', 'DESC')
-			->paginate($this->paginateSize);	
-	}
-
-
-	public function byGenre(int $genreId, array $requestInput)
-	{
-		return $this->model->WithRelations()
-			->Filters(['genre' => $genreId])
-			->Filters($requestInput)
-			->Sortable($requestInput)
-			->orderBy('purchase_date', 'DESC')
-			->get();
-	}
-
 
 	public function byLabel(int $labelId, array $requestInput)
 	{

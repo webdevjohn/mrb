@@ -4,25 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Artist;
 use Illuminate\Http\Request;
-use App\Repositories\TrackRepository;
 
 class ArtistsTracksController extends Controller
 {
-    public function __construct(
-        protected TrackRepository $tracks
-    ){}
-
     /**
-     * Display a listing of the resource.
-     * GET /artists/{artistSlug)/tracks
+	 * Display all tracks for a given artist.
      *
-     * @return Response
+     * @return Illuminate\View\View 
      */
     public function index(Request $request, Artist $artist)
     {
+		$tracks = $artist->tracks()->withRelationsAndSorted($request->input())
+			->orderBy('purchase_date', 'DESC')
+			->paginate(48);
+
         return View('artists.tracks.index', array(
             'artist' => $artist,
-            'artistTracks' => $this->tracks->byArtist($artist->id, $request->input()),
+            'artistTracks' => $tracks
         ));
     }
 }
