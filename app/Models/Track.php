@@ -7,6 +7,7 @@ use App\Models\Traits\CountableViews;
 use App\Models\Traits\Sortable;
 use App\Models\Traits\Track\AdminCMSQueries;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Webdevjohn\Filterable\Traits\Filterable;
@@ -190,28 +191,61 @@ class Track extends Model
 		return $query->withRelations()->filterAndSort($requestInput)->orderBy($orderBy, $sortOrder);	
 	}
 
-    public function scopeFilters(Builder $query, array $requestInput)
+	/**	 
+	 *
+	 * @param Builder $query
+	 * @param array $requestInput
+	 * 
+	 * @return Builder|Null
+	 */
+    public function scopeFilters(Builder $query, array $requestInput): Builder|Null
 	{
 		return $this->getFilterFactory('TrackFilters')->make($query, $requestInput);
 	}
 
-	public function scopeFilterAndSort(Builder $query, array $requestInput)
+	/**
+	 *
+	 * @param Builder $query
+	 * @param array $requestInput
+	 * 
+	 * @return Builder
+	 */
+	public function scopeFilterAndSort(Builder $query, array $requestInput): Builder
 	{
 		return $query->filters($requestInput)->sortable($requestInput);
 	}
 
-	public function scopeWithTrackReportingFields(Builder $query)
+	/**
+	 *
+	 * @param Builder $query
+	 * 
+	 * @return Builder
+	 */
+	public function scopeWithTrackReportingFields(Builder $query): Builder
 	{
 		return $query->select('id', 'title', 'genre_id', 'label_id', 'format_id', 'year_released', 
 								'purchase_date', 'mp3_sample_filename', 'track_thumbnail', 'track_image');
 	}
 
-	public function scopeWithRelations(Builder $query)
+	/**
+	 *
+	 * @param Builder $query
+	 * 
+	 * @return Builder
+	 */
+	public function scopeWithRelations(Builder $query): Builder
 	{
 		return $query->with('artists', 'label', 'genre', 'tags', 'album.label');
 	}
 
-	public function scopeReleaseYears(Builder $query, $trackIds)
+	/**
+	 *
+	 * @param Builder $query
+	 * @param array $trackIds
+	 * 
+	 * @return Collection
+	 */
+	public function scopeReleaseYears(Builder $query, array $trackIds): Collection
 	{
 		return $query->groupBy('year_released')
             ->whereIn('id', $trackIds)
@@ -219,11 +253,17 @@ class Track extends Model
             ->get(['year_released']);       
 	}
 
-	public function scopePopular(Builder $query, $take = 12)
+	/**
+	 *
+	 * @param Builder $query
+	 * @param integer $take
+	 * 
+	 * @return Builder
+	 */
+	public function scopePopular(Builder $query, int $take = 12): Builder
 	{
 		return $query->WithRelations()							    	
 			->orderBy('played_counter', 'DESC')
-			->take($take)
-			->get();
+			->take($take);
 	}
 }

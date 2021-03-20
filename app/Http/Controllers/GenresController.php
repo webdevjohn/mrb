@@ -37,7 +37,7 @@ class GenresController extends Controller
     {       
         return View('genres.show', [
 			'genre' => $genre,
-            'popularTracks' => $genre->tracks()->popular(take: 36),
+            'popularTracks' => $genre->tracks()->popular(take: 36)->get(),
 			'labelsWithMostTracks' => $this->labels->WithTrackCount($genre->id),
         ]);
     }
