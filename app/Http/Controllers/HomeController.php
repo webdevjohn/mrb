@@ -3,13 +3,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Label;
 use App\Models\Playlist;
-use App\Repositories\TrackRepository;
+use App\Models\Track;
 
 class HomeController extends Controller
 {        
     public function __construct(
        protected Playlist $playlists, 
-       protected TrackRepository $tracks,
+       protected Track $tracks,
        protected Label $labels
     ){}
 
@@ -22,9 +22,9 @@ class HomeController extends Controller
     {    
         return View('home.index', array(
             'playlists' => $this->playlists->popular(),
-            'latestTracks' => $this->tracks->popular(orderBy: 'purchase_date'),      
+            'latestTracks' => $this->tracks->latestTracks()->get(),      
             'labelsWithMostTracks' => $this->labels->withTrackCount(),
-            'popularTracks' => $this->tracks->popular(orderBy: 'played_counter'), 
+            'popularTracks' => $this->tracks->popular()->get(), 
         ));
     }
 }

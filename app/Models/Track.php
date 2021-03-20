@@ -262,8 +262,20 @@ class Track extends Model
 	 */
 	public function scopePopular(Builder $query, int $take = 12): Builder
 	{
-		return $query->relations()							    	
+		return $query->fields()->relations()							    	
 			->orderBy('played_counter', 'DESC')
 			->take($take);
+	}
+
+	/**
+	 *
+	 * @param Builder $query
+	 * @param integer $take
+	 * 
+	 * @return Builder
+	 */
+	public function scopeLatestTracks(Builder $query, int $take = 12): Builder
+	{
+		return $query->fields()->relations()->latest()->take($take);
 	}
 }

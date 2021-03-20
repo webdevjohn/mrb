@@ -18,7 +18,7 @@ abstract class BasketController extends Controller
 	 */
 	public function store(int $id)
 	{
-		$item = $this->model->find($id);
+		$item = $this->model->findOrFail($id);
 		$this->basket->addItem($item);
 	}
 
@@ -34,13 +34,12 @@ abstract class BasketController extends Controller
 		return redirect()->back(); 
 	}
 
-
 	/**
-	 * View items in the basket.
+	 * Get the number items in the basket.
 	 *
-	 * @return void
+	 * @return integer
 	 */
-	public function getBasketQty()
+	public function getBasketQty(): int
 	{
 		return $this->basket->getNumberOfItems();
 	}
@@ -57,5 +56,4 @@ abstract class BasketController extends Controller
 	{
 		return $this->basket->removeItem($id);
 	}
-
 }
