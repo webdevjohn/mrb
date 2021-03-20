@@ -37,9 +37,9 @@ abstract class BasketController extends Controller
 	/**
 	 * Get the number items in the basket.
 	 *
-	 * @return integer
+	 * @return integer|null
 	 */
-	public function getBasketQty(): int
+	public function getBasketQty(): int|null
 	{
 		return $this->basket->getNumberOfItems();
 	}
