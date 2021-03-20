@@ -3,7 +3,7 @@
 	<img src="{{ asset($track->getTrackThumbnail()) }}" alt="{{ $track->title }}">
 	<div class="overlay">
 		<div class="sm2-inline-list">
-			<div class="ui360 ui360-vis btn-play-track" data-track-id="{{$track->id}}" data-playing="false">		
+			<div class="ui360 ui360-vis btn-play-track" data-track-id="{{ route('tracks.played', $track->id) }}" data-playing="false">		
 				<a href="{{ asset($track->getTrackMp3Sample())}}" title="Play Track"></a>
 			</div>
 		</div>

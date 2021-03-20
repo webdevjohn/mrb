@@ -55,7 +55,7 @@ Route::get('playlists', [PlaylistsController::class, 'index'])->name('playlists.
 Route::get('playlists/{playlist:slug}/tracks', [PlaylistsTracksController::class, 'index'])->name('playlists.tracks.index');
 
 Route::get('tracks/{track}', [TracksController::class, 'show'])->name('tracks.show');
-Route::post('tracks/{id}/played', [TracksController::class, 'played'])->name('tracks.played');
+Route::post('tracks/{track}/played', [TracksController::class, 'played'])->name('tracks.played');
 
 
 /*

@@ -117,7 +117,7 @@
                         $.ajax
                         ({
                             type: "POST",
-                            url: "http://localhost/mrb/public/tracks/"+trackId+"/played",                      
+                            url: trackId,                      
                             data: {
                                 '_token': '{!! csrf_token() !!}'
                         }
