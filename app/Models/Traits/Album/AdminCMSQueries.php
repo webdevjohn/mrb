@@ -35,7 +35,7 @@ trait AdminCMSQueries {
 	public function getAlbums()
 	{
 		return $this->orderBy('purchase_date', 'DESC')
-			->paginate($this->paginateSize);
+			->paginate(48);
 	}
 
 

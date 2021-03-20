@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Label;
 use App\Models\Playlist;
-use Illuminate\Http\Request;
 use App\Repositories\TrackRepository;
 
 class HomeController extends Controller
@@ -19,12 +18,12 @@ class HomeController extends Controller
      *
      * @return Illuminate\View\View 
      */
-    public function index(Request $request)
+    public function index()
     {    
         return View('home.index', array(
             'playlists' => $this->playlists->popular(),
             'latestTracks' => $this->tracks->popular(orderBy: 'purchase_date'),      
-            'labelsWithMostTracks' => $this->labels->WithTrackCount($request->genre),
+            'labelsWithMostTracks' => $this->labels->withTrackCount(),
             'popularTracks' => $this->tracks->popular(orderBy: 'played_counter'), 
         ));
     }

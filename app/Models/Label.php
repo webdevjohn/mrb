@@ -105,7 +105,7 @@ class Label extends Model
 		return $query->select('id', 'label', 'slug', 'label_thumbnail', 'label_image');
 	}
 
-	public function scopeWithTrackCount($query, $genre)
+	public function scopeWithTrackCount($query, int $genre = null)
 	{
 		return $query->join('tracks', 'tracks.label_id', '=', 'labels.id')
 			->when($genre, function ($query) use ($genre) {

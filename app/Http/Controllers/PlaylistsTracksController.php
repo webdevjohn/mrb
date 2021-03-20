@@ -18,7 +18,7 @@ class PlaylistsTracksController extends Controller
      */
     public function index(Request $request, Playlist $playlist)
     {
-        $tracks = $playlist->tracks()->withRelationsAndSorted($request->input())->paginate(48);
+        $tracks = $playlist->tracks()->withFilters($request->input(), orderBy: 'year_released')->paginate(48);
         
         event(new PlaylistWasViewed($playlist));
 

@@ -22,9 +22,7 @@ class GenresTracksController extends Controller
 	 */
 	public function index(Request $request, Genre $genre)
 	{
-		$tracks = $genre->tracks()->withRelationsAndSorted($request->input())
-			->orderBy('purchase_date', 'DESC')
-			->get();
+		$tracks = $genre->tracks()->withFilters($request->input())->get();
 	
 		$facets = $this->facets->filterBy($tracks); 
 

@@ -4,16 +4,16 @@ namespace App\Models;
 
 use App\Models\Traits\CountablePlays;
 use App\Models\Traits\CountableViews;
-use App\Models\Traits\Paginateable;
 use App\Models\Traits\Sortable;
 use App\Models\Traits\Track\AdminCMSQueries;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Webdevjohn\Filterable\Traits\Filterable;
 
 class Track extends Model
 {
-    use HasFactory, Paginateable, Filterable, Sortable, CountableViews, CountablePlays, AdminCMSQueries;
+    use HasFactory, Filterable, Sortable, CountableViews, CountablePlays, AdminCMSQueries;
 
     /**
      * The database table used by the model.
@@ -170,33 +170,48 @@ class Track extends Model
     |--------------------------------------------------------------------------   
     */
 
-	public function scopeWithRelationsAndSorted($query, array $requestInput) 
+	/**
+	 * Retrive filtered and sorted tracks from the database with realations. 
+	 *
+	 * @param Builder $query
+	 * @param array $requestInput
+	 * @param string $orderBy
+	 * @param string $sortOrder
+	 * 
+	 * @return Builder
+	 */
+	public function scopeWithFilters(
+		Builder $query, 
+		array $requestInput, 
+		string $orderBy = 'purchase_date', 
+		string $sortOrder = 'DESC'
+	) 
 	{
-		return $query->withRelations()->filterAndSort($requestInput);
+		return $query->withRelations()->filterAndSort($requestInput)->orderBy($orderBy, $sortOrder);	
 	}
 
-    public function scopeFilters($query, array $requestInput)
+    public function scopeFilters(Builder $query, array $requestInput)
 	{
 		return $this->getFilterFactory('TrackFilters')->make($query, $requestInput);
 	}
 
-	public function scopeFilterAndSort($query, array $requestInput)
+	public function scopeFilterAndSort(Builder $query, array $requestInput)
 	{
-		return $query->filters($requestInput)->Sortable($requestInput);
+		return $query->filters($requestInput)->sortable($requestInput);
 	}
 
-	public function scopeWithTrackReportingFields($query)
+	public function scopeWithTrackReportingFields(Builder $query)
 	{
 		return $query->select('id', 'title', 'genre_id', 'label_id', 'format_id', 'year_released', 
 								'purchase_date', 'mp3_sample_filename', 'track_thumbnail', 'track_image');
 	}
 
-	public function scopeWithRelations($query)
+	public function scopeWithRelations(Builder $query)
 	{
-		return $query->with('artists', 'label', 'genre', 'tags', 'album', 'album.label');
+		return $query->with('artists', 'label', 'genre', 'tags', 'album.label');
 	}
 
-	public function scopeReleaseYears($query, $trackIds)
+	public function scopeReleaseYears(Builder $query, $trackIds)
 	{
 		return $query->groupBy('year_released')
             ->whereIn('id', $trackIds)
@@ -204,7 +219,7 @@ class Track extends Model
             ->get(['year_released']);       
 	}
 
-	public function scopePopular($query, $take = 12)
+	public function scopePopular(Builder $query, $take = 12)
 	{
 		return $query->WithRelations()							    	
 			->orderBy('played_counter', 'DESC')

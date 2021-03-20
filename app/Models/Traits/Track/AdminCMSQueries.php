@@ -56,7 +56,7 @@ trait AdminCMSQueries {
 			->Filters($requestInput)
 			->Sortable($requestInput)
 			->orderBy('purchase_date', 'DESC')
-			->paginate($this->paginateSize);			
+			->paginate(48);			
 	}
 
 	public function getArtistIds()

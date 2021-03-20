@@ -14,9 +14,7 @@ class ArtistsTracksController extends Controller
      */
     public function index(Request $request, Artist $artist)
     {
-		$tracks = $artist->tracks()->withRelationsAndSorted($request->input())
-			->orderBy('purchase_date', 'DESC')
-			->paginate(48);
+		$tracks = $artist->tracks()->withFilters($request->input())->paginate(48);
 
         return View('artists.tracks.index', array(
             'artist' => $artist,

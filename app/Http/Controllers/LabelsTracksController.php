@@ -17,9 +17,7 @@ class LabelsTracksController extends Controller
 	 */
 	public function index(Request $request, Label $label)
 	{
-		$tracks = $label->tracks()->withRelationsAndSorted($request->input())
-			->orderBy('purchase_date', 'DESC')
-			->paginate(48);
+		$tracks = $label->tracks()->withFilters($request->input())->paginate(48);
 
  		return View('labels.tracks.index', array(
  			'label' => $label,

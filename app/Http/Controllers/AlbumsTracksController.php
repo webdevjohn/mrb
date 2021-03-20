@@ -19,7 +19,7 @@ class AlbumsTracksController extends Controller
     {       
         return View('albums.tracks.index', array(
             'album' => $album,
-            'tracks' => $album->tracks()->withRelationsAndSorted($request->input())->get()
+            'tracks' => $album->tracks()->withFilters($request->input())->get()
         ));        
     }
 }
