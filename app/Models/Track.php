@@ -171,7 +171,7 @@ class Track extends Model
     */
 
 	/**
-	 * Retrive filtered and sorted tracks from the database with realations. 
+	 * Retrive filtered and sorted tracks from the database with relations. 
 	 *
 	 * @param Builder $query
 	 * @param array $requestInput
