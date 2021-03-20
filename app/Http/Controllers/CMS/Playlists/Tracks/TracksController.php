@@ -43,7 +43,7 @@ class TracksController extends Controller
     {    
         return View('cms.playlists.tracks.create', [
             'playlist' => $playlist,
-            'tracks' => $this->tracks->WithRelations()
+            'tracks' => $this->tracks->relations()
                 ->whereNotIn('id', $playlist->getTrackIds())
                 ->Filters($request->input())
 			    ->Sortable($request->input())

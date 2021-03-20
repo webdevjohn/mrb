@@ -23,7 +23,7 @@ class TrackRepository extends EloquentRepository {
 	// Homepage
 	public function popular(string $orderBy, int $take = 12)
 	{
-		return $this->model->WithRelations()
+		return $this->model->relations()
 			->orderBy($orderBy, 'DESC')
 			->take($take)
 			->get();						   

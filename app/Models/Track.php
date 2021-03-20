@@ -188,7 +188,7 @@ class Track extends Model
 		string $sortOrder = 'DESC'
 	) 
 	{
-		return $query->withRelations()->filterAndSort($requestInput)->orderBy($orderBy, $sortOrder);	
+		return $query->fields()->relations()->filterAndSort($requestInput)->orderBy($orderBy, $sortOrder);	
 	}
 
 	/**	 
@@ -221,10 +221,10 @@ class Track extends Model
 	 * 
 	 * @return Builder
 	 */
-	public function scopeWithTrackReportingFields(Builder $query): Builder
+	public function scopeFields(Builder $query): Builder
 	{
-		return $query->select('id', 'title', 'genre_id', 'label_id', 'format_id', 'year_released', 
-								'purchase_date', 'mp3_sample_filename', 'track_thumbnail', 'track_image');
+		return $query->select('tracks.id', 'title', 'genre_id', 'label_id', 'format_id', 'year_released', 
+								'album_id', 'mp3_sample_filename', 'track_thumbnail');
 	}
 
 	/**
@@ -233,7 +233,7 @@ class Track extends Model
 	 * 
 	 * @return Builder
 	 */
-	public function scopeWithRelations(Builder $query): Builder
+	public function scopeRelations(Builder $query): Builder
 	{
 		return $query->with('artists', 'label', 'genre', 'tags', 'album.label');
 	}
@@ -262,7 +262,7 @@ class Track extends Model
 	 */
 	public function scopePopular(Builder $query, int $take = 12): Builder
 	{
-		return $query->WithRelations()							    	
+		return $query->relations()							    	
 			->orderBy('played_counter', 'DESC')
 			->take($take);
 	}

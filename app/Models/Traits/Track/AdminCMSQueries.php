@@ -52,7 +52,7 @@ trait AdminCMSQueries {
 
     public function getTracks(array $requestInput)
 	{
-		return $this->WithRelations()
+		return $this->relations()
 			->Filters($requestInput)
 			->Sortable($requestInput)
 			->orderBy('purchase_date', 'DESC')
