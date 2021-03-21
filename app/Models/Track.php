@@ -38,7 +38,7 @@ class Track extends Model
 	 * @var array
 	 */							
 	protected $sortableFields = ['year_released', 'popularity'];
-
+	// protected $sortableNamespace = 'Micky Mouse';
 
 	public static function boot()
 	{
