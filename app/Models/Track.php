@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Traits\CountablePlays;
 use App\Models\Traits\CountableViews;
 use App\Models\Traits\Sortable;
-use App\Models\Traits\Track\AdminCMSQueries;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +14,7 @@ use Webdevjohn\Filterable\Traits\Filterable;
 
 class Track extends Model
 {
-    use HasFactory, Filterable, Sortable, CountableViews, CountablePlays, AdminCMSQueries;
+    use HasFactory, Filterable, Sortable, CountableViews, CountablePlays;
 
     /**
      * The database table used by the model.
