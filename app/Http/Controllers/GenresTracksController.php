@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Helpers\Pagination\Paginator;
 use App\Models\Genre;
 use App\Services\FacetCreators\GenresTracksFacets;
+use App\Services\Paginator\Paginator;
 
 class GenresTracksController extends Controller
 {

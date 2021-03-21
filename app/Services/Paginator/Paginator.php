@@ -1,5 +1,6 @@
 <?php 
-namespace App\Helpers\Pagination;
+namespace App\Services\Paginator;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
@@ -7,6 +8,9 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class Paginator {
 
+    public function __construct(
+        protected Request $request
+    ){}
 
     /**
      * Paginate and return a given collection.
@@ -17,9 +21,9 @@ class Paginator {
      * @return Illuminate\Pagination\LengthAwarePaginator;
      */
     public function paginate(Collection $collection, $perPage = 48)
-    {
+    {     
         $total = $collection->count();
-        $currentPage = \Request::get('page', 1);
+        $currentPage = $this->request->input('page', 1);
         $offset = ($currentPage * $perPage) - $perPage;
         $itemsToShow = $collection->slice($offset, $perPage);
 
