@@ -11,7 +11,7 @@ class GenresTracksFacets extends FacetCreator {
      */
     protected function getFacetableEntities()
     {
-        return ['Artist', 'Label'];
+        return ['artist', 'format', 'genre', 'label', 'tag'];
     }
 
 
@@ -25,8 +25,8 @@ class GenresTracksFacets extends FacetCreator {
      */
     protected function applyFilter(\Illuminate\Database\Eloquent\Model $entity)
     { 
-        if ($this->hasMethod($entity, 'scopeFilterByTracks')) {
-            return $entity->FilterByTracks($this->pluckIdsFromCollection());
+        if ($this->hasMethod($entity, 'scopeTrackFacet')) {
+            return $entity->trackFacet($this->pluckIdsFromCollection());
         }   
     }
 }

@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Traits\FacetableByTracks;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -9,7 +12,7 @@ use Illuminate\Support\Str;
 
 class Label extends Model
 {
-    use HasFactory;
+    use HasFactory, FacetableByTracks;
 
     /**
      * The database table used by the model.
@@ -117,14 +120,17 @@ class Label extends Model
 			->get(['labels.id', 'labels.label', 'labels.slug', 'labels.label_image', DB::raw('count(*) as track_count')]);						 				
 	}
 
-	public function scopeFilterByTracks($query, array $tracks)
+
+	/**
+	 *
+	 * @param Builder $query
+	 * @param array $trackIds
+	 * 
+	 * @return Collection
+	 */
+	public function scopeTrackFacet(Builder $query, array $trackIds): Collection
 	{
-		return $query->whereHas('tracks', function($query) use ($tracks)
-        {
-            $query->whereIn('id', $tracks);              
-		})
-		->orderBy('label')
-		->get();
+		return $query->facetableByTracks($trackIds)->orderBy('label')->get();
 	} 
 
 	public function scopeGetPaginated()

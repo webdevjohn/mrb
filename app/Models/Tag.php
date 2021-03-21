@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Traits\FacetableByTracks;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    use HasFactory;
+    use HasFactory, FacetableByTracks;
 
         /**
      * The database table used by the model.
@@ -42,13 +45,15 @@ class Tag extends Model
     |--------------------------------------------------------------------------   
     */
     
-	public function scopeFilterByTracks($query, array $tracks)
+    /**
+	 *
+	 * @param Builder $query
+	 * @param array $trackIds
+	 * 
+	 * @return Collection
+	 */
+	public function scopeTrackFacet(Builder $query, array $trackIds): Collection
 	{
-		return $query->whereHas('tracks', function($query) use ($tracks)
-        {
-            $query->whereIn('track_id', $tracks);              
-		})
-		->orderBy('tag')
-		->get();
+		return $query->facetableByTracks($trackIds)->orderBy('tag')->get();
 	} 
 }
