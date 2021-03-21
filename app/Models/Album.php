@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Album\AdminCMSQueries;
-use App\Models\Traits\Paginateable;
 use App\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Webdevjohn\Filterable\Traits\Filterable;
+use Illuminate\Support\Str;
 
 class Album extends Model
 {
-    use HasFactory, Paginateable, Filterable, Sortable, AdminCMSQueries;
+    use HasFactory, Filterable, Sortable;
 
     /**
      * The database table used by the model.
@@ -36,6 +35,19 @@ class Album extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+	}
+
+	public static function boot()
+	{
+		parent::boot();
+
+        static::creating(function($album) {            
+            $album->slug = Str::slug($album->title);
+        });
+
+		static::updating(function($album) {            
+        	$album->slug = Str::slug($album->title);
+        });
 	}
 
 
@@ -106,6 +118,15 @@ class Album extends Model
 		return false;
 	}
 
+	/**
+	 * Returns a count of the number of records.
+	 *
+	 * @return int 
+	 */
+	public function getModelCount(): int
+	{
+		return $this->count();
+	}
 
     /*
     |--------------------------------------------------------------------------

@@ -4,16 +4,17 @@ namespace App\Models;
 
 use App\Models\Traits\CountablePlays;
 use App\Models\Traits\CountableViews;
-use App\Models\Traits\Paginateable;
 use App\Models\Traits\Sortable;
-use App\Models\Traits\Track\AdminCMSQueries;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Webdevjohn\Filterable\Traits\Filterable;
 
 class Track extends Model
 {
-    use HasFactory, Paginateable, Filterable, Sortable, CountableViews, CountablePlays, AdminCMSQueries;
+    use HasFactory, Filterable, Sortable, CountableViews, CountablePlays;
 
     /**
      * The database table used by the model.
@@ -31,13 +32,38 @@ class Track extends Model
 							'purchase_date','purchase_price','key_code_id','bpm','album_id','track_thumbnail',
 								'track_image','mp3_sample_filename','full_track_filename'];
 
-
 	/**
 	 * The fields that can be dynamically sorted.
 	 *
 	 * @var array
 	 */							
 	protected $sortableFields = ['year_released', 'popularity'];
+	// protected $sortableNamespace = 'Micky Mouse';
+
+	public static function boot()
+	{
+		parent::boot();
+
+		static::created(function($track) {            
+
+			$track->artists()->attach(Request()->artists);
+				
+			if (isset(Request()->tags) ) {
+				$track->tags()->attach(Request()->tags);
+			}
+		});
+
+		static::updated(function($track) {   
+
+        	$track->artists()->sync(Request()->artists);	
+		
+			$track->tags()->detach();
+		
+			if (isset(Request()->tags) ) {	
+				$track->tags()->attach(Request()->tags);
+			}
+        });
+	}
 
 
     /*
@@ -97,7 +123,6 @@ class Track extends Model
     | Getters
     |--------------------------------------------------------------------------   
     */
-
 	
     /**
 	 * Returns a track thumbnail, if available.  
@@ -153,6 +178,53 @@ class Track extends Model
 		return "/samples/" . $this->genre->slug . "/" . $this->mp3_sample_filename;
 	}
 
+    /**
+	 * Returns a count of the number of records.
+	 *
+	 * @return int 
+	 */
+	public function getModelCount(): int
+	{
+		return $this->count();
+	}
+
+	/**
+	 * Get the artist ids for use with the select2 plugin, on the Admin CMS.
+	 *
+	 * @return array
+	 */
+	public function getArtistIds(): array
+	{
+		return $this->artists->pluck('id')->toArray();
+	}
+
+	/**
+	 * Get the tag ids for use with the select2 plugin, on the Admin CMS.
+	 *
+	 * @return array
+	 */
+	public function getTagIds(): array
+	{
+		return $this->tags->pluck('id')->toArray();
+	}
+
+	/**
+	 * Admin CMS - Dashboard Homepage - Chart Data
+	 *
+	 * @param integer $year
+	 * 
+	 * @return Collection
+	 */
+	public function getTracksByYearPurchased(int $year): Collection
+	{
+		return $this->select(DB::raw('DATE_FORMAT(purchase_date,"%M") as month'), DB::raw('COUNT(id) as track_count'))
+			->groupBy('month')
+			->whereNull('album_id')
+			->orderBy('purchase_date')
+			->where(DB::raw('YEAR(purchase_date)'), '=', $year)
+			->get();
+	}
+	
 
     /*
     |--------------------------------------------------------------------------
@@ -160,27 +232,111 @@ class Track extends Model
     |--------------------------------------------------------------------------   
     */
 
-    public function scopeFilters($query, $request)
+	/**
+	 * Retrive filtered and sorted tracks from the database with relations. 
+	 *
+	 * @param Builder $query
+	 * @param array $requestInput
+	 * @param string $orderBy
+	 * @param string $sortOrder
+	 * 
+	 * @return Builder
+	 */
+	public function scopeWithFilters(
+		Builder $query, 
+		array $requestInput, 
+		string $orderBy = 'purchase_date', 
+		string $sortOrder = 'DESC'
+	) 
 	{
-		return $this->getFilterFactory('TrackFilters')->make($query, $request);
+		return $query->fields()->relations()->filterAndSort($requestInput)->orderBy($orderBy, $sortOrder);	
 	}
 
-	public function scopeWithTrackReportingFields($query)
+	/**	 
+	 *
+	 * @param Builder $query
+	 * @param array $requestInput
+	 * 
+	 * @return Builder|Null
+	 */
+    public function scopeFilters(Builder $query, array $requestInput): Builder|Null
 	{
-		return $query->select('id', 'title', 'genre_id', 'label_id', 'format_id', 'year_released', 
-								'purchase_date', 'mp3_sample_filename', 'track_thumbnail', 'track_image');
+		return $this->getFilterFactory('TrackFilters')->make($query, $requestInput);
 	}
 
-	public function scopeWithRelations($query)
+	/**
+	 *
+	 * @param Builder $query
+	 * @param array $requestInput
+	 * 
+	 * @return Builder
+	 */
+	public function scopeFilterAndSort(Builder $query, array $requestInput): Builder
 	{
-		return $query->with('artists', 'label', 'genre', 'tags', 'album', 'album.label');
+		return $query->filters($requestInput)->sortable($requestInput);
 	}
 
-	public function scopeReleaseYears($query, $trackIds)
+	/**
+	 *
+	 * @param Builder $query
+	 * 
+	 * @return Builder
+	 */
+	public function scopeFields(Builder $query): Builder
+	{
+		return $query->select('tracks.id', 'title', 'genre_id', 'label_id', 'format_id', 'year_released', 
+								'purchase_date', 'album_id', 'mp3_sample_filename', 'track_thumbnail');
+	}
+
+	/**
+	 *
+	 * @param Builder $query
+	 * 
+	 * @return Builder
+	 */
+	public function scopeRelations(Builder $query): Builder
+	{
+		return $query->with('artists', 'label', 'genre', 'tags', 'album.label');
+	}
+
+	/**
+	 *
+	 * @param Builder $query
+	 * @param array $trackIds
+	 * 
+	 * @return Collection
+	 */
+	public function scopeReleaseYears(Builder $query, array $trackIds): Collection
 	{
 		return $query->groupBy('year_released')
             ->whereIn('id', $trackIds)
             ->orderBy('year_released', 'desc')
             ->get(['year_released']);       
+	}
+
+	/**
+	 *
+	 * @param Builder $query
+	 * @param integer $take
+	 * 
+	 * @return Builder
+	 */
+	public function scopePopular(Builder $query, int $take = 12): Builder
+	{
+		return $query->fields()->relations()							    	
+			->orderBy('played_counter', 'DESC')
+			->take($take);
+	}
+
+	/**
+	 *
+	 * @param Builder $query
+	 * @param integer $take
+	 * 
+	 * @return Builder
+	 */
+	public function scopeLatestTracks(Builder $query, int $take = 12): Builder
+	{
+		return $query->fields()->relations()->latest()->take($take);
 	}
 }

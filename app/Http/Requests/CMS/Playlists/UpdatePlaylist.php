@@ -3,6 +3,7 @@
 namespace App\Http\Requests\CMS\Playlists;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 
 class UpdatePlaylist extends Request
 {
@@ -25,7 +26,11 @@ class UpdatePlaylist extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
+            'name' => [
+                'required',
+                'max:100',
+                Rule::unique('playlists')->ignore($this->route('playlist')->id)
+            ],    
             'genre_id' => 'required|numeric|min:1|exists:genres,id',  
         ];
     }
@@ -41,6 +46,7 @@ class UpdatePlaylist extends Request
         return [
             'name.required' => 'A Name is required.',
             'name.max' => 'A Name must not exceed :max characters.',
+            'name.unique' => 'The Playlist name specified is already in the database.',
             
             'genre_id.required' => 'A Genre is required.',
             'genre_id.numeric' => 'A Genre is required.',

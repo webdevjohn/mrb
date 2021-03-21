@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\ArtistRepository;
+use App\Models\Artist;
 
 class ArtistsController extends Controller
 {
     public function __construct(
-        protected ArtistRepository $artists
+        protected Artist $artists
     ){}
 
     /**
-     * Display a listing of the resource for public viewing.
-     * GET /artists
+     * Display a paginated list of artists.
      *
-     * @return Response
+     * @return Illuminate\View\View 
      */
     public function index()
     {
         return View('artists.index', array(
-            'artists' => $this->artists->getAllWithTrackCount()
+            'artists' => $this->artists->withTrackCount()->orderBy('artist_name')->paginate(96)
         ));
     }
 }

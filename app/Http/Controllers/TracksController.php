@@ -19,15 +19,14 @@ class TracksController extends Controller
         event(new TrackWasViewed($track));        
     }
 
-
     /**
      * Updates the played_counter when a track is played.
      * 
-     * @param  int $id 
+     * @param Track $track 
      * @return void
      */
-    public function played(Track $id)
+    public function played(Track $track)
     {
-        event(new TrackWasPlayed($id));
+        event(new TrackWasPlayed($track));
     }
 }

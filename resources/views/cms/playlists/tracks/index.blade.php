@@ -3,10 +3,8 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li>&gt;  &nbsp;</li>
 	<li><a href="{{ route('cms.playlists.index') }}">Playlists</a></li>
-	<li>&gt;</li>
-	<li class="active-breadcrum">{{ $playlist->name }}</li>
+	<li class="last">{{ $playlist->name }}</li>
 @stop
 
 @section('content')
@@ -30,10 +28,10 @@
 				</tr>
 			</tfoot>
 			<tbody>
-			@foreach($playlist->Tracks as $tracks)
+			@foreach($playlist->tracks as $tracks)
 			<tr>
 				<td>{{ $tracks->title }}</td>				
-				<td>{{ $tracks->Label->label }}</td>					
+				<td>{{ $tracks->label->label }}</td>					
 			</tr>	
 			@endforeach
 			</tbody>

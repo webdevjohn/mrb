@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Albums\CreateAlbum;
 use App\Http\Requests\CMS\Albums\UpdateAlbum;
 use App\Models\Album;
-use App\Services\SelectBoxes\SelectBoxService;
+use App\Services\SelectBoxes\Pages\CMS\AlbumsCreateEdit;
 
 class AlbumsController extends Controller
 {
     public function __construct(
        protected Album $albums, 
-       protected SelectBoxService $selectBoxes
+       protected AlbumsCreateEdit $selectBoxes
     ){}
 
     /**
@@ -24,7 +24,7 @@ class AlbumsController extends Controller
     public function index()
     {
         return View('cms.albums.index', [
-            'albums' => $this->albums->getAlbums()
+            'albums' => $this->albums->orderBy('purchase_date', 'DESC')->paginate(48)
         ]);
     }
 
@@ -36,7 +36,7 @@ class AlbumsController extends Controller
     public function create()
     {
        return View('cms.albums.create', [                
-           'selectBoxes' => $this->selectBoxes->createForPage('cms.albums.create')->get(),
+           'selectBoxes' => $this->selectBoxes->get(),
        ]);
     }
 
@@ -47,7 +47,7 @@ class AlbumsController extends Controller
      */
     public function store(CreateAlbum $request)
     {
-        $this->albums->store(
+        $this->albums->create(
             $request->validated()
         );
         
@@ -78,7 +78,7 @@ class AlbumsController extends Controller
     {
         return View('cms.albums.edit', [
             'album' => $album,
-            'selectBoxes' => $this->selectBoxes->createForPage('cms.albums.edit')->get()
+            'selectBoxes' => $this->selectBoxes->get(),
         ]);
     }
 
@@ -92,10 +92,7 @@ class AlbumsController extends Controller
      */
     public function update(UpdateAlbum $request, Album $album)
     {
-        $album = $this->albums->amend(
-            $album, 
-            $request->validated()
-        );
+        $album->fill($request->validated())->save();
 
         return redirect()
             ->route("cms.albums.index")

@@ -45,18 +45,17 @@ Route::get('albums/{album}/tracks', [AlbumsTracksController::class, 'index'])->n
 Route::get('artists', [ArtistsController::class, 'index'])->name('artists.index');
 Route::get('artists/{artist:slug}/tracks', [ArtistsTracksController::class, 'index'])->name('artists.tracks.index');
 
-Route::resource('genres', GenresController::class)->only(['index', 'show']);
+Route::resource('genres', GenresController::class)->only(['index', 'show'])->scoped(['genre' => 'slug',]);
 Route::get('genres/{genre:slug}/tracks', [GenresTracksController::class, 'index'])->name('genres.tracks.index');
 
 Route::get('labels', [LabelsController::class, 'index'])->name('labels.index');
 Route::get('labels/{label:slug}/tracks', [LabelsTracksController::class, 'index'])->name('labels.tracks.index');
 
 Route::get('playlists', [PlaylistsController::class, 'index'])->name('playlists.index');
-Route::get('playlists/{playlist}/tracks', [PlaylistsTracksController::class, 'index'])->name('playlists.tracks.index');
+Route::get('playlists/{playlist:slug}/tracks', [PlaylistsTracksController::class, 'index'])->name('playlists.tracks.index');
 
-Route::get('tracks', [TracksController::class, 'show'])->name('tracks.show');
-Route::post('tracks/{id}/played', [TracksController::class, 'played'])->name('tracks.played');
-
+Route::get('tracks/{track}', [TracksController::class, 'show'])->name('tracks.show');
+Route::post('tracks/{track}/played', [TracksController::class, 'played'])->name('tracks.played');
 
 
 /*
@@ -103,8 +102,12 @@ Route::prefix('cms')->name('cms.')->middleware(['auth', 'verified', 'roles.admin
     Route::resource('labels', App\Http\Controllers\CMS\LabelsController::class)->scoped([
         'label' => 'slug',
     ]);
-    Route::resource('playlists', App\Http\Controllers\CMS\Playlists\PlaylistsController::class);
-    Route::resource('playlists.tracks', App\Http\Controllers\CMS\Playlists\Tracks\TracksController::class);
+    Route::resource('playlists', App\Http\Controllers\CMS\Playlists\PlaylistsController::class)->scoped([
+        'playlist' => 'slug',
+    ]);
+    Route::resource('playlists.tracks', App\Http\Controllers\CMS\Playlists\Tracks\TracksController::class)->scoped([
+        'playlist' => 'slug',
+    ]);
     Route::resource('tags', App\Http\Controllers\CMS\TagsController::class);
     Route::resource('tracks', App\Http\Controllers\CMS\TracksController::class);
 });

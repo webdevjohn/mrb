@@ -6,10 +6,7 @@
 		<div class="wrapper">{{ $album->title }}</div>
 	</h1>
 
-	<div class="wrapper">
-		<section class="track-listings">						
-			@include('_partials.tracks', ['tracks' => $album->Tracks])		
-		</section>
-	</div>
-
+	<section class="track-listings wrapper">						
+		@include('_partials.tracks', ['tracks' => $tracks])		
+	</section>
 @stop

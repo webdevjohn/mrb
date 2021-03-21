@@ -4,30 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Label;
 use Illuminate\Http\Request;
-use App\Repositories\TrackRepository;
 
 class LabelsTracksController extends Controller
 {
-	public function __construct(
-		protected TrackRepository $tracks
-	){}
-
-
 	/**
-	 * Display a listing of the resource.
-	 * GET /labels/{$label}/tracks
+	 * Display all tracks for a given label.
 	 *
 	 * @param Request $request
 	 * @param Label $label
 	 * 
-	 * @return Response
+     * @return Illuminate\View\View 
 	 */
 	public function index(Request $request, Label $label)
 	{
+		$tracks = $label->tracks()->withFilters($request->input())->paginate(48);
+
  		return View('labels.tracks.index', array(
  			'label' => $label,
-			'labelTracks' => $this->tracks->byLabel($label->id, $request->input()),
-			'tracksYearCount' => $this->tracks->getTracksYearCountByLabel($label->id, $request->input()),
+			'tracks' => $tracks
  		));
 	}
 }

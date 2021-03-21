@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\CMS\Playlists;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\CMS\CMSPlaylistRepository;
 use App\Http\Requests\CMS\Playlists\CreatePlaylist;
 use App\Http\Requests\CMS\Playlists\UpdatePlaylist;
 use App\Models\Playlist;
@@ -13,31 +11,26 @@ use App\Services\SelectBoxes\SelectBoxService;
 class PlaylistsController extends Controller
 {
     public function __construct(
-        protected CMSPlaylistRepository $playlists, 
+        protected Playlist $playlists, 
         protected SelectBoxService $selectBox
     ){}
 
-
     /**
      * Display a listing of the resource.
-     * GET /cms/playlists
      * 
-     * @param \Illuminate\Http\Request 
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\View\View 
      */
-    public function index(Request $request)
+    public function index()
     {
         return View('cms.playlists.index', [
-            'playlists' => $this->playlists->getPaginated()
+            'playlists' => $this->playlists->paginate(48)
         ]);
     }
 
-
     /**
      * Show the form for creating a new resource.
-     * GET /cms/playlists/create
      * 
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\View\View 
      */
     public function create()
     {
@@ -49,17 +42,18 @@ class PlaylistsController extends Controller
         ]);
     }
 
-
     /**
-     * Store a newly created resource in storage.
-     * POST /cms/playlists
+     * Store a newly created playlist.
+     *
+     * @param CreatePlaylist $request
      * 
-     * @param  \App\Http\Requests\CMS\Playlists\CreatePlaylist  $request
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\RedirectResponse
      */
     public function store(CreatePlaylist $request)
     {
-        $this->playlists->store($request->all());
+        $this->playlists->create(
+            $request->validated()
+        );
 
         return redirect()
             ->route('cms.playlists.create')
@@ -78,11 +72,11 @@ class PlaylistsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     * GET /cms/playlists/{$slug}/edit
+     * Show the form for editing the specified playlist.
+     *
+     * @param Playlist $playlist
      * 
-     * @param  string  $slug
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\View\View 
      */
     public function edit(Playlist $playlist)
     {
@@ -95,31 +89,33 @@ class PlaylistsController extends Controller
         ]);
     }
 
-    
     /**
-     * Update the specified resource in storage.
+     * Update the specified playlist.
      *
-     * @param  string  $slug
-     * @param  \Illuminate\Http\Request  $request
-     *      
-     * @return \Illuminate\Http\Response
+     * @param UpdatePlaylist $request
+     * @param Playlist $playlist
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
-    public function update(Playlist $playlist, UpdatePlaylist $request)
+    public function update(UpdatePlaylist $request, Playlist $playlist)
     {
-        $playlist = $this->playlists->update($playlist->id, $request->all());
+        $playlist->fill(
+            $request->validated()
+        )->save();
 
         return redirect()
-            ->route('cms.playlists.edit', $playlist->slug)
+            ->route('cms.playlists.index')
             ->with('success',"Playlist updated successfully!");   
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified playlist.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Playlist $playlist
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Playlist $playlist)
     {
         //
     }

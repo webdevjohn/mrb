@@ -3,23 +3,19 @@
 namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\AlbumRepository;
-use App\Repositories\ArtistRepository;
-use App\Repositories\LabelRepository;
-use App\Repositories\TrackRepository;
+use App\Models\Album;
+use App\Models\Artist;
+use App\Models\Label;
+use App\Models\Track;
 
 class HomeController extends Controller
 {
-    protected $tracks, $artists, $labels;
-
-    public function __construct(TrackRepository $tracks, ArtistRepository $artists,
-                                    LabelRepository $labels, AlbumRepository $albums)
-    {
-        $this->tracks = $tracks;
-        $this->artists = $artists;
-        $this->labels = $labels;
-        $this->albums = $albums;
-    }
+    public function __construct(
+        protected Track $tracks, 
+        protected Artist $artists,
+        protected Label $labels, 
+        protected Album $albums
+    ){}
 
     /**
      * Display a listing of the resource.
@@ -29,12 +25,10 @@ class HomeController extends Controller
     public function index()
     {    
         return View('cms.home.index', [
-        	'page'          => 'Home',
-            'trackCount'    => $this->tracks->getModelCount(),
-            'artistCount'   => $this->artists->getModelCount(),
-            'labelCount'    => $this->labels->getModelCount(),
-            'albumCount'    => $this->albums->getModelCount()
+            'trackCount' => $this->tracks->getModelCount(),
+            'artistCount' => $this->artists->getModelCount(),
+            'labelCount' => $this->labels->getModelCount(),
+            'albumCount' => $this->albums->getModelCount()
         ]);
     }
-
 }

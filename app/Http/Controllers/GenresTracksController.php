@@ -3,30 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Helpers\Pagination\Paginator;
 use App\Models\Genre;
-use App\Repositories\TrackRepository;
 use App\Services\FacetCreators\GenresTracksFacets;
+use App\Services\Paginator\Paginator;
 
 class GenresTracksController extends Controller
 {
 	public function __construct(
-		protected TrackRepository $tracks, 
 		protected GenresTracksFacets $facets, 
 		protected Paginator $paginator
 	) {}
 
 
    	/**
-	 * Display a listing of the resource.
-	 * GET /genres/{$slug}/tracks
+	 * Display all tracks for a given genre.
 	 *
-	 * @return Response
+     * @return Illuminate\View\View 
 	 */
 	public function index(Request $request, Genre $genre)
 	{
-		$tracks = $this->tracks->byGenre($genre->id, $request->input());
-
+		$tracks = $genre->tracks()->withFilters($request->input())->get();
+	
 		$facets = $this->facets->filterBy($tracks); 
 
 		$pageData = [

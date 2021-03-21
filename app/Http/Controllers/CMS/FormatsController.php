@@ -3,51 +3,51 @@
 namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\FormatRepository;
 use App\Http\Requests\CMS\Formats\CreateFormat;
 use App\Http\Requests\CMS\Formats\UpdateFormat;
+use App\Models\Format;
 
 class FormatsController extends Controller
 {
-    protected $formats;
-
-    public function __construct(FormatRepository $formats)
-    {
-        $this->formats = $formats;        
-    }
+    public function __construct(
+        protected Format $formats
+    ){}
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View 
      */
     public function index()
     {
         return View('cms.formats.index', [
-            'page'      => 'Formats',
-            'formats'   => $this->formats->getPaginated()
+            'formats' => $this->formats->paginate(48)
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new format.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View 
      */
     public function create()
     {
-        return View('cms.formats.create', [
-            'page' => 'Formats'
-        ]);
+        return View('cms.formats.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created format.n
      *
+     * @param CreateFormat $request
+     * 
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateFormat $request)
     {
-        $this->formats->store($request->all());
+        $this->formats->create(
+            $request->validated()
+        );
+
         return redirect()
             ->route('cms.formats.create')
             ->with('success','Format created successfully!');  
@@ -65,43 +65,46 @@ class FormatsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing an existing format.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Format $format
+     * 
+     * @return \Illuminate\View\View 
      */
-    public function edit($id)
+    public function edit(Format $format)
     {
-        $format = $this->formats->find($id);
-        return View('cms.formats.edit', [
-            'page'          => 'Formats',
-            'format'        => $format
+        return View('cms.formats.edit', [     
+            'format' => $format
         ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update an existing format.
      *
-     * @param  \App\Http\Requests\CMS\Formats\UpdateFormat
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateFormat
+     * @param Format $format
+     * 
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateFormat $request, $id)
+    public function update(UpdateFormat $request, Format $format)
     {
-        $format = $this->formats->update($id, $request->all());
+        $format->fill(
+            $request->validated()
+        )->save();
 
         return redirect()
-            ->route('cms.formats.edit', $format->id)
+            ->route('cms.formats.index')
             ->with('success',"Format updated successfully!");   
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified format from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param format $format
+     * 
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Format $format)
     {
         //
     }

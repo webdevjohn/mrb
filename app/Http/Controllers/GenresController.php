@@ -3,44 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genre;
-use App\Repositories\GenreRepository;
-use App\Repositories\LabelRepository;
-use App\Repositories\TrackRepository;
+use App\Models\Label;
 
 class GenresController extends Controller
 {
     public function __construct(
-        protected GenreRepository $genres,
-        protected TrackRepository $tracks, 
-        protected LabelRepository $labels
+        protected Genre $genres,
+        protected Label $labels
     ){}
 
     
     /**
-     * Display a listing of the resource for public viewing.
-     * GET /genres
+     * Display all genres.
      *
-     * @return Response
+     * @return Illuminate\View\View 
      */
     public function index()
     {
         return View('genres.index', array(
-            'genres' => $this->genres->getAllWithTrackCount()
+            'genres' => $this->genres->withTrackCount()
         ));
     }
 
 
     /**
-     * GET genres/{genre}   
+     * Show the genre homepage.
+     * 
+     * @param Genre $genre
+     * 
+     * @return Illuminate\View\View 
      */
     public function show(Genre $genre)
-    {
-        $popularTracks = $this->tracks->getPopularTracksByGenre($genre->id, 36);
-        
+    {       
         return View('genres.show', [
 			'genre' => $genre,
-            'popularTracks' => $popularTracks,	
-			'labelsWithMostTracks' => $this->labels->withMostTracks($genre->id),
+            'popularTracks' => $genre->tracks()->popular(take: 36)->get(),
+			'labelsWithMostTracks' => $this->labels->WithTrackCount($genre->id),
         ]);
     }
 }

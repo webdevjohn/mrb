@@ -7,13 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Tracks\CreateTrack;
 use App\Http\Requests\CMS\Tracks\UpdateTrack;
 use App\Models\Track;
-use App\Services\SelectBoxes\SelectBoxService;
+use App\Services\SelectBoxes\Pages\CMS\TracksCreateEdit;
 
 class TracksController extends Controller
 {
     public function __construct(
         protected Track $tracks, 
-        protected SelectBoxService $selectBoxes
+        protected TracksCreateEdit $selectBoxes
     ){}
 
     /**
@@ -24,7 +24,7 @@ class TracksController extends Controller
     public function index(Request $request)
     {     
         return View('cms.tracks.index', [
-            'tracks' => $this->tracks->getTracks($request->input())
+            'tracks' => $this->tracks->withFilters($request->input())->paginate(48)
         ]);
     }
 
@@ -36,7 +36,7 @@ class TracksController extends Controller
     public function create()
     {
         return View('cms.tracks.create', [
-            'selectBoxes' => $this->selectBoxes->createForPage('cms.tracks')->get(),
+            'selectBoxes' => $this->selectBoxes->get(),
         ]);
     }
 
@@ -46,7 +46,7 @@ class TracksController extends Controller
      */
     public function store(CreateTrack $request)
     {
-        $this->tracks->store(
+        $this->tracks->create(
             $request->validated()
         );
 
@@ -58,7 +58,7 @@ class TracksController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Track  $track
+     * @param Track $track
      * @return \Illuminate\Http\Response
      */
     public function show(Track $track)
@@ -69,31 +69,30 @@ class TracksController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Track  $track
+     * @param Track $track
      * @return \Illuminate\Http\Response
      */
     public function edit(Track $track)
     {
         return View('cms.tracks.edit', [
             'track' => $track,
-            'selectBoxes' => $this->selectBoxes->createForPage('cms.tracks')->get(),
+            'selectBoxes' => $this->selectBoxes->get(),
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\CMS\Tracks\UpdateTrack  $request
-     * @param  Track  $track
+     * @param \App\Http\Requests\CMS\Tracks\UpdateTrack  $request
+     * @param Track $track
      * 
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateTrack $request, Track $track)
     {
-        $this->tracks->amend(
-            $track, 
-            $request->validated()
-        );
+		$track->fill($request->validated())->save();
+
+        event('eloquent.updated: App\Models\Track', $track);
         
         return redirect()
             ->route('cms.tracks.index')

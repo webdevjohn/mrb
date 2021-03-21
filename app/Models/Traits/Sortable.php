@@ -4,14 +4,14 @@ namespace App\Models\Traits;
 
 use App\Exceptions\PropertyNotFoundException;
 use App\Exceptions\NotASortSubclassException;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 trait Sortable {
 
 	/**
-	 * The default namespace of the Sort subclasses.  The $sortableNamespace
-	 * can be superseded by including a $sortableNamespace property on any
-	 * Model that uses the Sortable trait.  Useful for organising Sorts.
+	 * The default namespace of the Sort subclasses.  This can be 
+	 * overridden by passing a namespace to the scopeSortable() query scope. 
 	 *
 	 * @var string
 	 */
@@ -19,15 +19,17 @@ trait Sortable {
 
 
 	/**
-	 * Dynamically applies a data sort to the model.
 	 *
-	 * @param $query
+	 * @param Builder $query
 	 * @param array $sort
+	 * @param string $namespace - override the default $sortableNamespace.
 	 * 
 	 * @return void
 	 */
-	public function scopeSortable($query, array $sort)
+	public function scopeSortable(Builder $query, array $sort, string $namespace = null)
     {	
+		$this->sortableNamespace = $namespace ?? $this->sortableNamespace;
+
 		if ( ! empty($sort['field']) && ! empty($sort['order'] )) {				
 			if ($this->isValidSortableField($sort['field'])) {
 				$this->createSort($sort['field'])->sort($query, $sort['order']);
@@ -63,28 +65,11 @@ trait Sortable {
 	 */
 	protected function createSort(string $className)
 	{
-		$class = $this->resolveSortableNamespace($className);
+		$class = $this->sortableNamespace . str::studly($className);
 		
 		$c = new $class();
 		
 		if ($this->isSortInstance($c)) return $c;	
-	}
-
-
-	/**
-	 * Determines which namespace to prepend to the classname.
-	 *
-	 * @param string $className
-	 * 
-	 * @return $class
-	 */
-	protected function resolveSortableNamespace(string $className)
-	{
-		$className = str::studly($className);
-
-		if (property_exists($this, 'sortableNamespace')) return $this->sortableNamespace . $className;
-
-		return $this->sortableNamespace . $className;		
 	}
 
 

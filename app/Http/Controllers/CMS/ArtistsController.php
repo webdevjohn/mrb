@@ -21,7 +21,7 @@ class ArtistsController extends Controller
     public function index()
     {
         return View('cms.artists.index', [
-            'artists' => $this->artists->paginate(48)
+            'artists' => $this->artists->orderBy('artist_name')->paginate(48)
         ]);
     }
 

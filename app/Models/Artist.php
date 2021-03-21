@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Traits\FacetableByTracks;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -9,7 +12,7 @@ use Illuminate\Support\Str;
 
 class Artist extends Model
 {
-    use HasFactory;
+    use HasFactory, FacetableByTracks;
 
     /**
      * The database table used by the model.
@@ -55,6 +58,23 @@ class Artist extends Model
 		return $this->belongsToMany(User::class, 'favourite_artist_user', 'user_id', 'artist_id')->WithTimeStamps();
 	}
 
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Getters
+    |--------------------------------------------------------------------------   
+    */
+
+    /**
+	 * Returns a count of the number of records.
+	 *
+	 * @return int 
+	 */
+	public function getModelCount(): int
+	{
+		return $this->count();
+	}
+
 
     /*
     |--------------------------------------------------------------------------
@@ -69,14 +89,15 @@ class Artist extends Model
 					 ->select(['artists.id', 'artists.artist_name', 'artists.slug', DB::raw('count(*) as track_count')]);					 
 	}
 
-
-	public function scopeFilterByTracks($query, array $tracks)
+    /**
+     *
+     * @param Builder $query
+     * @param array $trackIds
+     * 
+     * @return Collection
+     */
+	public function scopeTrackFacet(Builder $query, array $trackIds): Collection
 	{
-		return $query->whereHas('tracks', function($query) use ($tracks)
-        {
-            $query->whereIn('track_id', $tracks);              
-		})
-		->orderBy('artist_name')
-		->get();
+        return $query->facetableByTracks($trackIds)->orderBy('artist_name')->get();
 	} 
 }

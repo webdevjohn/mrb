@@ -8,12 +8,12 @@
 
 	<div class="wrapper">
 		<section class="track-listings">
-			@include('_partials.tracks', ['tracks' => $labelTracks])
+			@include('_partials.tracks', ['tracks' => $tracks])
 		</section> 					
  	</div>
 
 	<section>
-		{!! $labelTracks->appends(request()->input())->render() !!}	
+		{!! $tracks->appends(request()->input())->render() !!}	
 	</section>
 	
 @stop

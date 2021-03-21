@@ -17,13 +17,6 @@
     <script src="{{ asset('js/berniecode-animator.js')}}"></script>  
     <script src="{{ asset('js/soundmanager2.js')}}"></script>  
     <script src="{{ asset('js/360player.js')}}"></script>  
-
-    {{-- <script>
-        soundManager.setup({
-          // path to directory containing SM2 SWF
-            url: "http://localhost/mrb2/public/swf"
-        });
-    </script> --}}
 </head>   
     <body>
         <div id="colour-strip"></div>
@@ -124,7 +117,7 @@
                         $.ajax
                         ({
                             type: "POST",
-                            url: "http://localhost/mrb2/public/tracks/"+trackId+"/played",                      
+                            url: trackId,                      
                             data: {
                                 '_token': '{!! csrf_token() !!}'
                         }

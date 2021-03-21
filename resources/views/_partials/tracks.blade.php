@@ -1,21 +1,21 @@
 @foreach($tracks as $track)
-<article class="{{ $track->Genre->slug }}">		
+<article class="{{ $track->genre->slug }}">		
 	<img src="{{ asset($track->getTrackThumbnail()) }}" alt="{{ $track->title }}">
 	<div class="overlay">
 		<div class="sm2-inline-list">
-			<div class="ui360 ui360-vis btn-play-track" data-track-id="{{$track->id}}" data-playing="false">		
+			<div class="ui360 ui360-vis btn-play-track" data-track-id="{{ route('tracks.played', $track->id) }}" data-playing="false">		
 				<a href="{{ asset($track->getTrackMp3Sample())}}" title="Play Track"></a>
 			</div>
 		</div>
 	</div>
 	<section class="track-details-con">
 		<ul class="artist-list">
-			@foreach ($track->Artists as $artist)
+			@foreach ($track->artists as $artist)
 			<li><a href="{{ route('artists.tracks.index', $artist->slug) }}">{{ $artist->artist_name }}</a></li>						
 			@endforeach
 		</ul>
 		<h1>{{ $track->title }}</h1>
-		<h2><a href="{{ route('labels.tracks.index', $track->Label->slug)  }}">{{ $track->Label->label }}</a></h2>
+		<h2><a href="{{ route('labels.tracks.index', $track->label->slug)  }}">{{ $track->label->label }}</a></h2>
 		<h3>{{ $track->year_released }}</h3>
 	</section>
 	<footer>

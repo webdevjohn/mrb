@@ -3,24 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
-use App\Repositories\AlbumRepository;
+use Illuminate\Http\Request;
 
 class AlbumsTracksController extends Controller
 {
-    public function __construct(
-        protected AlbumRepository $albums
-    ){}
-
-
     /**
-     * Return an album with tracks.
-     *
-     * @param Album $album
-     */
-    public function index(Album $album)
-    {
+	  * Display all tracks for a given album.
+      *
+      * @param Album $album
+      * @param Request $request
+
+      * @return Illuminate\View\View 
+      */
+    public function index(Album $album, Request $request)
+    {       
         return View('albums.tracks.index', array(
-            'album' => $this->albums->getAlbumTracks($album->slug),
+            'album' => $album,
+            'tracks' => $album->tracks()->withFilters($request->input())->get()
         ));        
     }
 }

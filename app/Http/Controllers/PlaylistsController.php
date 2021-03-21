@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\PlaylistRepository;
+use App\Models\Playlist;
 
 class PlaylistsController extends Controller
 {    
     public function __construct(
-        protected PlaylistRepository $playlists
+        protected Playlist $playlists
     ){}
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\View\View 
      */
     public function index()
     {
         return View('playlists.index', array(
-            'playlists' => $this->playlists->getPaginated()
+            'playlists' => $this->playlists->paginate(24)
         ));
     }
 }

@@ -1,20 +1,17 @@
 <?php
 namespace App\Http\Controllers\Basket;
 
+use App\Models\Track;
 use Illuminate\Auth\AuthManager;
 use App\Services\Basket\TrackBasket;
-use App\Repositories\TrackRepository;
 
 class TrackBasketController extends BasketController
 {
-   	protected $auth, $basket, $model;
-
-	public function __construct(AuthManager $auth, TrackBasket $basket, TrackRepository $tracks)
-	{
-		$this->auth = $auth;
-		$this->basket = $basket;
-		$this->model = $tracks;
-	}
+	public function __construct(
+		protected AuthManager $auth, 
+		protected TrackBasket $basket, 
+		protected Track $model
+	){}
 
 
 	/**
@@ -39,11 +36,10 @@ class TrackBasketController extends BasketController
 	 */
 	public function addToUserFavourites()
 	{
-		$this->auth->User()->addTracksToFavourites(
+		$this->auth->user()->addTracksToFavourites(
 			$this->basket->getItemsIDArray()
 		);	
 
 		return redirect()->back(); 
 	}
-
 }

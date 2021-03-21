@@ -45,10 +45,10 @@
 		<article>
 			<div class="icon icon-database"><h1>Manage Base Database</h1></div>
 			<ul>
-				<li><a href="{!! route('cms.albums.index') !!}">Albums</a></li>
+				<li><a href="{{ route('cms.albums.index') }}">Albums</a></li>
 				<li><a href="{{ route('cms.artists.index') }}">Artists</a></li>
-				<li><a href="{!! route('cms.formats.index') !!}">Formats</a></li>
-				<li><a href="{!! route('cms.genres.index') !!}">Genres</a></li>
+				<li><a href="{{ route('cms.formats.index') }}">Formats</a></li>
+				<li><a href="{{ route('cms.genres.index') }}">Genres</a></li>
 				<li><a href="{{ route('cms.labels.index') }}">Labels</a></li>
 				<li><a href="{{ route('cms.playlists.index') }}">Playlists</a></li>
 				<li><a href="{{ route('cms.tags.index') }}">Tags</a></li>
