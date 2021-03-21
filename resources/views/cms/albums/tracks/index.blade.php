@@ -30,15 +30,15 @@
 				</tr>
 			</tfoot>
 			<tbody>
-			@foreach($album->Tracks as $tracks)
+			@foreach($tracks as $track)
 			<tr>
-				<td>{{ $tracks->title }}</td>				
-				<td>{{ $tracks->Label->label }}</td>
-				<td>{{ $tracks->purchase_date }}</td>
+				<td>{{ $track->title }}</td>				
+				<td>{{ $track->label->label }}</td>
+				<td>{{ $track->purchase_date }}</td>
 				<td>
 					<ul class="frm-crud-buttons">
 						<li>
-							<a href="{{ route('cms.albums.tracks.edit', [$album->slug, $tracks->id]) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
+							<a href="{{ route('cms.albums.tracks.edit', [$album->slug, $track->id]) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
 						</li>
 					</ul>
 				</td>

@@ -8,6 +8,7 @@ use App\Http\Requests\CMS\Albums\Tracks\UpdateAlbumTrack;
 use App\Models\Album;
 use App\Models\Track;
 use App\Services\SelectBoxes\Pages\CMS\AlbumsTracksCreateEdit;
+use Illuminate\Http\Request;
 
 class TracksController extends Controller
 {
@@ -23,10 +24,11 @@ class TracksController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Album $album)
+    public function index(Album $album, Request $request)
     {
         return View('cms.albums.tracks.index', [
-            'album' => $this->albums->getAlbumTracks($album->slug)
+            'album' => $album,
+            'tracks' => $album->tracks()->withFilters($request->input())->get()
         ]);
     }
 
@@ -46,7 +48,6 @@ class TracksController extends Controller
         ]);
     }
 
-
     /**
      * Add a new track to an Album.
      * POST /cms/albums/{album)/tracks
@@ -58,13 +59,13 @@ class TracksController extends Controller
      */
     public function store(CreateAlbumTrack $request, Album $album)
     {
-        $this->tracks->store(
+        $this->tracks->create(
             $request->validated()
         );
 
         return redirect()
-            ->route('cms.albums.tracks.create', $album->slug)
-            ->with('success',"Track added to $album->title successfully!");   
+            ->route('cms.albums.tracks.index', $album->slug)
+            ->with('success',"Successfully added a new track to: $album->title !");   
     }
 
     /**
@@ -77,7 +78,6 @@ class TracksController extends Controller
     {
         //
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -97,7 +97,6 @@ class TracksController extends Controller
         ]);
     }
 
-
     /**
      * Update an existing track on an existing album.
      * PATCH /cms/albums/{album)/tracks/{track}
@@ -110,14 +109,11 @@ class TracksController extends Controller
      */
     public function update(UpdateAlbumTrack $request, Album $album, Track $track)
     {
-        $track = $this->tracks->amend(
-            $track, 
-            $request->validated()
-        );
+        $track->fill($request->validated())->save();
 
         return redirect()
             ->route("cms.albums.tracks.index", [$album->slug])
-            ->with("success", "The track: $track->title has been updated successfully on the album: $album->title");              
+            ->with("success", "The track has been updated successfully on the album: $album->title");              
     }
 
     /**

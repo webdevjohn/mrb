@@ -24,7 +24,7 @@ class AlbumsController extends Controller
     public function index()
     {
         return View('cms.albums.index', [
-            'albums' => $this->albums->getAlbums()
+            'albums' => $this->albums->orderBy('purchase_date', 'DESC')->paginate(48)
         ]);
     }
 
@@ -47,7 +47,7 @@ class AlbumsController extends Controller
      */
     public function store(CreateAlbum $request)
     {
-        $this->albums->store(
+        $this->albums->create(
             $request->validated()
         );
         
@@ -92,10 +92,7 @@ class AlbumsController extends Controller
      */
     public function update(UpdateAlbum $request, Album $album)
     {
-        $album = $this->albums->amend(
-            $album, 
-            $request->validated()
-        );
+        $album->fill($request->validated())->save();
 
         return redirect()
             ->route("cms.albums.index")
