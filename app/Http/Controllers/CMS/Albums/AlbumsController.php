@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Albums\CreateAlbum;
 use App\Http\Requests\CMS\Albums\UpdateAlbum;
 use App\Models\Album;
-use App\Services\SelectBoxes\SelectBoxService;
+use App\Services\SelectBoxes\Pages\CMS\AlbumsCreateEdit;
 
 class AlbumsController extends Controller
 {
     public function __construct(
        protected Album $albums, 
-       protected SelectBoxService $selectBoxes
+       protected AlbumsCreateEdit $selectBoxes
     ){}
 
     /**
@@ -36,7 +36,7 @@ class AlbumsController extends Controller
     public function create()
     {
        return View('cms.albums.create', [                
-           'selectBoxes' => $this->selectBoxes->createForPage('cms.albums.create')->get(),
+           'selectBoxes' => $this->selectBoxes->get(),
        ]);
     }
 
@@ -78,7 +78,7 @@ class AlbumsController extends Controller
     {
         return View('cms.albums.edit', [
             'album' => $album,
-            'selectBoxes' => $this->selectBoxes->createForPage('cms.albums.edit')->get()
+            'selectBoxes' => $this->selectBoxes->get(),
         ]);
     }
 

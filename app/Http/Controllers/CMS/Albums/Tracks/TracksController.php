@@ -7,14 +7,14 @@ use App\Http\Requests\CMS\Albums\Tracks\CreateAlbumTrack;
 use App\Http\Requests\CMS\Albums\Tracks\UpdateAlbumTrack;
 use App\Models\Album;
 use App\Models\Track;
-use App\Services\SelectBoxes\SelectBoxService;
+use App\Services\SelectBoxes\Pages\CMS\AlbumsTracksCreateEdit;
 
 class TracksController extends Controller
 {
     public function __construct(
        protected Album $albums, 
        protected Track $tracks,
-       protected SelectBoxService $selectBoxes
+       protected AlbumsTracksCreateEdit $selectBoxes
     ){}
 
     /**
@@ -26,7 +26,6 @@ class TracksController extends Controller
     public function index(Album $album)
     {
         return View('cms.albums.tracks.index', [
-            'page' => 'Albums',
             'album' => $this->albums->getAlbumTracks($album->slug)
         ]);
     }
@@ -43,7 +42,7 @@ class TracksController extends Controller
     {        
         return View('cms.albums.tracks.create', [            
             'album' => $album,
-            'selectBoxes' => $this->selectBoxes->createForPage('cms.albums.tracks.create')->get()
+            'selectBoxes' => $this->selectBoxes->get()
         ]);
     }
 
@@ -94,7 +93,7 @@ class TracksController extends Controller
         return View('cms.albums.tracks.edit', [
             'album' => $album,
             'track' => $track,
-            'selectBoxes' => $this->selectBoxes->createForPage('cms.albums.tracks.edit')->get()
+            'selectBoxes' => $this->selectBoxes->get()
         ]);
     }
 

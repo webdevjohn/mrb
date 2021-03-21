@@ -7,13 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Tracks\CreateTrack;
 use App\Http\Requests\CMS\Tracks\UpdateTrack;
 use App\Models\Track;
-use App\Services\SelectBoxes\SelectBoxService;
+use App\Services\SelectBoxes\Pages\CMS\TracksCreateEdit;
 
 class TracksController extends Controller
 {
     public function __construct(
         protected Track $tracks, 
-        protected SelectBoxService $selectBoxes
+        protected TracksCreateEdit $selectBoxes
     ){}
 
     /**
@@ -36,7 +36,7 @@ class TracksController extends Controller
     public function create()
     {
         return View('cms.tracks.create', [
-            'selectBoxes' => $this->selectBoxes->createForPage('cms.tracks')->get(),
+            'selectBoxes' => $this->selectBoxes->get(),
         ]);
     }
 
@@ -76,7 +76,7 @@ class TracksController extends Controller
     {
         return View('cms.tracks.edit', [
             'track' => $track,
-            'selectBoxes' => $this->selectBoxes->createForPage('cms.tracks')->get(),
+            'selectBoxes' => $this->selectBoxes->get(),
         ]);
     }
 
