@@ -24,7 +24,7 @@ class TracksController extends Controller
     public function index(Request $request)
     {     
         return View('cms.tracks.index', [
-            'tracks' => $this->tracks->getTracks($request->input())
+            'tracks' => $this->tracks->withFilters($request->input())->paginate(48)
         ]);
     }
 
@@ -46,7 +46,7 @@ class TracksController extends Controller
      */
     public function store(CreateTrack $request)
     {
-        $this->tracks->store(
+        $this->tracks->create(
             $request->validated()
         );
 
@@ -58,7 +58,7 @@ class TracksController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Track  $track
+     * @param Track $track
      * @return \Illuminate\Http\Response
      */
     public function show(Track $track)
@@ -69,7 +69,7 @@ class TracksController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Track  $track
+     * @param Track $track
      * @return \Illuminate\Http\Response
      */
     public function edit(Track $track)
@@ -83,17 +83,16 @@ class TracksController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\CMS\Tracks\UpdateTrack  $request
-     * @param  Track  $track
+     * @param \App\Http\Requests\CMS\Tracks\UpdateTrack  $request
+     * @param Track $track
      * 
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateTrack $request, Track $track)
     {
-        $this->tracks->amend(
-            $track, 
-            $request->validated()
-        );
+		$track->fill($request->validated())->save();
+
+        event('eloquent.updated: App\Models\Track', $track);
         
         return redirect()
             ->route('cms.tracks.index')

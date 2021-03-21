@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Webdevjohn\Filterable\Traits\Filterable;
 
 class Track extends Model
@@ -32,13 +33,38 @@ class Track extends Model
 							'purchase_date','purchase_price','key_code_id','bpm','album_id','track_thumbnail',
 								'track_image','mp3_sample_filename','full_track_filename'];
 
-
 	/**
 	 * The fields that can be dynamically sorted.
 	 *
 	 * @var array
 	 */							
 	protected $sortableFields = ['year_released', 'popularity'];
+
+
+	public static function boot()
+	{
+		parent::boot();
+
+		static::created(function($track) {            
+
+			$track->artists()->attach(Request()->artists);
+				
+			if (isset(Request()->tags) ) {
+				$track->tags()->attach(Request()->tags);
+			}
+		});
+
+		static::updated(function($track) {   
+
+        	$track->artists()->sync(Request()->artists);	
+		
+			$track->tags()->detach();
+		
+			if (isset(Request()->tags) ) {	
+				$track->tags()->attach(Request()->tags);
+			}
+        });
+	}
 
 
     /*
@@ -98,7 +124,6 @@ class Track extends Model
     | Getters
     |--------------------------------------------------------------------------   
     */
-
 	
     /**
 	 * Returns a track thumbnail, if available.  
@@ -164,7 +189,44 @@ class Track extends Model
 		return $this->count();
 	}
 
+	/**
+	 * Get the artist ids for use with the select2 plugin, on the Admin CMS.
+	 *
+	 * @return array
+	 */
+	public function getArtistIds(): array
+	{
+		return $this->artists->pluck('id')->toArray();
+	}
+
+	/**
+	 * Get the tag ids for use with the select2 plugin, on the Admin CMS.
+	 *
+	 * @return array
+	 */
+	public function getTagIds(): array
+	{
+		return $this->tags->pluck('id')->toArray();
+	}
+
+	/**
+	 * Admin CMS - Dashboard Homepage - Chart Data
+	 *
+	 * @param integer $year
+	 * 
+	 * @return Collection
+	 */
+	public function getTracksByYearPurchased(int $year): Collection
+	{
+		return $this->select(DB::raw('DATE_FORMAT(purchase_date,"%M") as month'), DB::raw('COUNT(id) as track_count'))
+			->groupBy('month')
+			->whereNull('album_id')
+			->orderBy('purchase_date')
+			->where(DB::raw('YEAR(purchase_date)'), '=', $year)
+			->get();
+	}
 	
+
     /*
     |--------------------------------------------------------------------------
     | Query Scopes
@@ -224,7 +286,7 @@ class Track extends Model
 	public function scopeFields(Builder $query): Builder
 	{
 		return $query->select('tracks.id', 'title', 'genre_id', 'label_id', 'format_id', 'year_released', 
-								'album_id', 'mp3_sample_filename', 'track_thumbnail');
+								'purchase_date', 'album_id', 'mp3_sample_filename', 'track_thumbnail');
 	}
 
 	/**
