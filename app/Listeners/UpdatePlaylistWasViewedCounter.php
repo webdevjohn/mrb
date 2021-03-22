@@ -26,6 +26,6 @@ class UpdatePlaylistWasViewedCounter
      */
     public function handle(PlaylistWasViewed $event)
     {
-        $event->playlist()->incViewedCounter()->save();
+        $event->playlist()->incViewedCounter()->saveQuietly();
     }
 }
