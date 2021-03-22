@@ -15,7 +15,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         try {
-            DB::unprepared(file_get_contents('_db_dumps/users.sql'));
+            DB::unprepared(file_get_contents('_db_dumps/users2.sql'));
         } catch(\Exception $e) {
             echo "\n Something has gone wrong with the users.sql database dump! \n";
             \App\Models\User::factory(5)->create();
