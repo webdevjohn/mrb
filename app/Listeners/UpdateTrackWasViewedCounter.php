@@ -26,6 +26,6 @@ class UpdateTrackWasViewedCounter
      */
     public function handle(TrackWasViewed $event)
     {
-        $event->track()->incViewedCounter()->save();
+        $event->track()->incViewedCounter()->saveQuietly();
     }
 }

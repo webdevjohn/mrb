@@ -26,6 +26,6 @@ class UpdateTrackWasPlayedCounter
      */
     public function handle(TrackWasPlayed $event)
     {
-        $event->track()->incPlayedCounter()->save();
+        $event->track()->incPlayedCounter()->saveQuietly();
     }
 }
