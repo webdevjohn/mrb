@@ -17,26 +17,9 @@ class RealDataSeeder extends Seeder
     {
         DB::beginTransaction();
 
-        $sqlFiles = [
-            'users.sql',
-            'tags.sql',
-            'artists.sql',
-            'labels.sql',
-            'genres.sql',
-            'formats.sql',
-            'albums.sql',
-            'tracks.sql',
-            'tag_track.sql',
-            'artist_track.sql',
-            'roles.sql',
-            'role_user.sql',
-            'playlists.sql',
-            'playlist_track.sql'
-        ];
-
         try {
 
-            foreach($sqlFiles as $sqlFile)
+            foreach($this->sqlFiles() as $sqlFile)
             {                
                 DB::unprepared(file_get_contents("_db_dumps/$sqlFile"));
                 $this->printStatus($sqlFile);
@@ -57,6 +40,26 @@ class RealDataSeeder extends Seeder
 
             DB::rollBack();
         }
+    }
+
+    protected function sqlFiles(): array
+    {
+        return [
+            'users.sql',
+            'tags.sql',
+            'artists.sql',
+            'labels.sql',
+            'genres.sql',
+            'formats.sql',
+            'albums.sql',
+            'tracks.sql',
+            'tag_track.sql',
+            'artist_track.sql',
+            'roles.sql',
+            'role_user.sql',
+            'playlists.sql',
+            'playlist_track.sql'
+        ];
     }
 
     /**
