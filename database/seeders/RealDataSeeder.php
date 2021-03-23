@@ -17,49 +17,31 @@ class RealDataSeeder extends Seeder
     {
         DB::beginTransaction();
 
+        $sqlFiles = [
+            'users.sql',
+            'tags.sql',
+            'artists.sql',
+            'labels.sql',
+            'genres.sql',
+            'formats.sql',
+            'albums.sql',
+            'tracks.sql',
+            'tag_track.sql',
+            'artist_track.sql',
+            'roles.sql',
+            'role_user.sql',
+            'playlists.sql',
+            'playlist_track.sql'
+        ];
+
         try {
-            DB::unprepared(file_get_contents('_db_dumps/users.sql'));
-            $this->printStatus('users.sql');
 
-            DB::unprepared(file_get_contents('_db_dumps/tags.sql'));
-            $this->printStatus('tags.sql');
-            
-            DB::unprepared(file_get_contents('_db_dumps/artists.sql'));
-            $this->printStatus('artists.sql');
-            
-            DB::unprepared(file_get_contents('_db_dumps/labels.sql'));
-            $this->printStatus('labels.sql');
-
-            DB::unprepared(file_get_contents('_db_dumps/genres.sql'));
-            $this->printStatus('genres.sql');
-
-            DB::unprepared(file_get_contents('_db_dumps/formats.sql'));
-            $this->printStatus('formats.sql');
-
-            DB::unprepared(file_get_contents('_db_dumps/albums.sql'));
-            $this->printStatus('albums.sql');
-
-            DB::unprepared(file_get_contents('_db_dumps/tracks.sql'));
-            $this->printStatus('tracks.sql');
-
-            DB::unprepared(file_get_contents('_db_dumps/tag_track.sql'));
-            $this->printStatus('tag_track.sql');
-
-            DB::unprepared(file_get_contents('_db_dumps/artist_track.sql'));
-            $this->printStatus('artist_track.sql');
-
-            DB::unprepared(file_get_contents('_db_dumps/roles.sql'));
-            $this->printStatus('roles.sql');
-
-            DB::unprepared(file_get_contents('_db_dumps/role_user.sql'));
-            $this->printStatus('role_user.sql');
-
-            DB::unprepared(file_get_contents('_db_dumps/playlists.sql'));
-            $this->printStatus('playlists.sql');
-
-            DB::unprepared(file_get_contents('_db_dumps/playlist_track.sql'));
-            $this->printStatus('playlist_track.sql');
-
+            foreach($sqlFiles as $sqlFile)
+            {                
+                DB::unprepared(file_get_contents("_db_dumps/$sqlFile"));
+                $this->printStatus($sqlFile);
+            }
+        
             DB::commit();
 
         } catch(\Exception $e) { 
