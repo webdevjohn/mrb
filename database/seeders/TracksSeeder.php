@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Artist;
+use App\Models\Tag;
+use App\Models\Track;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class TracksSeeder extends Seeder
 {
@@ -14,10 +16,15 @@ class TracksSeeder extends Seeder
      */
     public function run()
     {
-        try {
-            DB::unprepared(file_get_contents('_db_dumps/tracks.sql'));
-        } catch(\Exception $e) {
-            echo "\n Something has gone wrong with the tracks.sql database dump! \n";       
-        }
+        Track::factory(25)->create()->each(function ($track) {
+        
+            $track->artists()->attach(
+                Artist::inRandomOrder()->first() ?? Artist::factory()->create()
+            );
+
+            $track->tags()->attach(
+                Tag::inRandomOrder()->limit(5)->get() ?? Tag::factory()->create()
+            );
+        });   
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class RolesSeeder extends Seeder
 {
@@ -14,10 +14,9 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        try {
-            DB::unprepared(file_get_contents('_db_dumps/roles.sql'));
-        } catch(\Exception $e) {
-            echo "\n Something has gone wrong with the roles.sql database dump! \n";       
-        }
+        Role::factory()->createMany([
+            ['role' => 'Registered User'], 
+            ['role' => 'Admin']
+        ]); 
     }
 }

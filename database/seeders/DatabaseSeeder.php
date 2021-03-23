@@ -21,11 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FormatsSeeder::class);
         $this->call(AlbumsSeeder::class);
         $this->call(TracksSeeder::class);
-        $this->call(TagsTracksSeeder::class);
-        $this->call(ArtistsTracksSeeder::class);
         $this->call(RolesSeeder::class);
-        $this->call(RolesUsersSeeder::class);
         $this->call(PlaylistsSeeder::class);
-        $this->call(PlaylistsTracksSeeder::class);
     }
 }

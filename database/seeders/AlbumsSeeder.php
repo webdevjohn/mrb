@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Album;
+use App\Models\Track;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class AlbumsSeeder extends Seeder
 {
@@ -14,10 +15,8 @@ class AlbumsSeeder extends Seeder
      */
     public function run()
     {
-        try {
-            DB::unprepared(file_get_contents('_db_dumps/albums.sql'));
-        } catch(\Exception $e) {
-            echo "\n Something has gone wrong with the albums.sql database dump! \n";       
-        }
+        Album::factory(2)->create()->each(function ($album){
+            Track::factory(6)->create(['album_id' => $album->id]);
+        });
     }
 }
