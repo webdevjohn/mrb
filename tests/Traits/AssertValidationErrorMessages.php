@@ -4,12 +4,8 @@ namespace Tests\Traits;
 
 trait AssertValidationErrorMessages {
 
-    protected $response;
-
-    protected function assertValidationErrorMessage(string $expectedValidationMessage)
+    protected function assertValidationErrorMessage(string $expectedValidationMessage, array $actualValidationMessage)
     {
-        $actualValidationMessage = $this->response['errors']['tag'];
-
         $this->assertContains($expectedValidationMessage, $actualValidationMessage); 
     }
 }
