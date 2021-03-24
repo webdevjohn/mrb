@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\CMS\Admin\Genre\Validation;
+namespace Tests\Feature\CMS\Admin\Validation\Genre;
 
 use App\Models\Genre;
 use Tests\TestCase;

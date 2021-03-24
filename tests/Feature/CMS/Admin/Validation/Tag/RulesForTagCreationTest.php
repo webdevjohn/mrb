@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\CMS\Admin\Tag\Validation;
+namespace Tests\Feature\CMS\Admin\Validation\Tag;
 
 use App\Models\Tag;
 use Tests\TestCase;
