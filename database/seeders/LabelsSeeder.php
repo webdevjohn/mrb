@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Label;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class LabelsSeeder extends Seeder
 {
@@ -14,10 +14,6 @@ class LabelsSeeder extends Seeder
      */
     public function run()
     {
-        try {
-            DB::unprepared(file_get_contents('_db_dumps/labels.sql'));
-        } catch(\Exception $e) {
-            echo "\n Something has gone wrong with the labels.sql database dump! \n";       
-        }
+        Label::factory(15)->create();    
     }
 }

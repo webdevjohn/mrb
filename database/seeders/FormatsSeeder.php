@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Format;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class FormatsSeeder extends Seeder
 {
@@ -14,10 +14,10 @@ class FormatsSeeder extends Seeder
      */
     public function run()
     {
-        try {
-            DB::unprepared(file_get_contents('_db_dumps/formats.sql'));
-        } catch(\Exception $e) {
-            echo "\n Something has gone wrong with the formats.sql database dump! \n";       
-        }
+        Format::factory()->createMany([
+            ['format' => 'WAV'], 
+            ['format' => 'MP3 (320kbps)'],
+            ['format' => 'CD']
+        ]);         
     }
 }

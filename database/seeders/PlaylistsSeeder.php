@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Playlist;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class PlaylistsSeeder extends Seeder
 {
@@ -14,10 +14,6 @@ class PlaylistsSeeder extends Seeder
      */
     public function run()
     {
-        try {
-            DB::unprepared(file_get_contents('_db_dumps/playlists.sql'));
-        } catch(\Exception $e) {
-            echo "\n Something has gone wrong with the playlists.sql database dump! \n";       
-        }
+        Playlist::factory(2)->create();            
     }
 }

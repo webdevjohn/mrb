@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class TagsSeeder extends Seeder
 {
@@ -14,10 +14,6 @@ class TagsSeeder extends Seeder
      */
     public function run()
     {
-        try {
-            DB::unprepared(file_get_contents('_db_dumps/tags.sql'));
-        } catch(\Exception $e) {
-            echo "\n Something has gone wrong with the tags.sql database dump! \n";          
-        }
+        Tag::factory(25)->create();           
     }
 }
