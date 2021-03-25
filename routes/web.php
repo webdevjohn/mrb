@@ -108,6 +108,7 @@ Route::prefix('cms')->name('cms.')->middleware(['auth', 'verified', 'roles.admin
     Route::resource('playlists.tracks', App\Http\Controllers\CMS\Playlists\Tracks\TracksController::class)->scoped([
         'playlist' => 'slug',
     ]);
+    Route::resource('roles', App\Http\Controllers\CMS\RolesController::class);
     Route::resource('tags', App\Http\Controllers\CMS\TagsController::class);
     Route::resource('tracks', App\Http\Controllers\CMS\TracksController::class);
 });
