@@ -38,9 +38,9 @@ class UpdateTag extends Request
     public function messages()
     {
         return [        
-            'tag.required' => 'A Tag is required.',
-            'tag.max' => 'A Tag must not exceed :max characters.',
-            'tag.unique' => 'The Tag specified is already in the database.'
+            'tag.required' => 'A tag is required.',
+            'tag.max' => 'A tag must not exceed :max characters.',
+            'tag.unique' => 'The tag submitted is already in the database.'
         ];
     }
 }

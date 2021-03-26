@@ -16,7 +16,7 @@ class RulesForTagCreationTest extends TestCase
     protected $endpoint = '/cms/tags';
 
     /** @test  */
-    public function the_tag_field_can_not_be_null()
+    public function a_tag_is_required()
     {
         $response = $this->postJson($this->endpoint, [
             'tag' => null
@@ -31,7 +31,7 @@ class RulesForTagCreationTest extends TestCase
     }
 
     /** @test  */
-    public function the_tag_field_must_not_exceed_50_characters()
+    public function a_tag_must_not_exceed_50_characters()
     {
         $response = $this->postJson($this->endpoint, [
             'tag' => str::random(51)

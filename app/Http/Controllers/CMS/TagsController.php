@@ -70,7 +70,7 @@ class TagsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Tag  $tag
+     * @param Tag $tag
      * 
      * @return \Illuminate\View\View
      */
@@ -84,17 +84,15 @@ class TagsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  UpdateTag  $request
-     * @param  Tag $tag
+     * @param UpdateTag $request
+     * @param Tag $tag
      * 
      * @return Illuminate\Http\RedirectResponse
      */
     public function update(UpdateTag $request, Tag $tag)
-    {                
-        $tag->fill(
-            $request->validated()
-        )->save();
-
+    {             
+        $tag->fill($request->validated())->save();
+        
         return redirect()
             ->route('cms.tags.index')
             ->with('success',"Tag updated successfully!");   
