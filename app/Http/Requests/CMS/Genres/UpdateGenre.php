@@ -41,9 +41,9 @@ class UpdateGenre extends Request
     public function messages()
     {
         return [        
-            'genre.required' => 'A Genre is required.',
-            'genre.max' => 'A Genre must not exceed :max characters.',
-            'genre.unique' => 'The Genre specified is already in the database.'
+            'genre.required' => 'A genre is required.',
+            'genre.max' => 'A genre must not exceed :max characters.',
+            'genre.unique' => 'The genre submitted is already in the database.'
         ];
     }
 }
