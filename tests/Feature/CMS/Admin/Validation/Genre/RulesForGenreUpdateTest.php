@@ -68,7 +68,7 @@ class RulesForGenreUpdateTest extends TestCase
     }
 
     /** @test  */
-    public function if_changed_the_updated_genre_must_be_unique()
+    public function if_the_genre_has_changed_the_updated_genre_submitted_must_be_unique()
     {
         $genre = Genre::factory()->createOne();
         $genre2 = Genre::factory()->createOne();
@@ -81,7 +81,8 @@ class RulesForGenreUpdateTest extends TestCase
                 'genre' => $genre->genre
             ]
         )
-        ->assertStatus(422);
+        ->assertStatus(422)
+        ->assertJsonValidationErrors('genre');
     
         $this->assertValidationErrorMessage(
             expectedValidationMessage: 'The genre submitted is already in the database.',
