@@ -54,7 +54,7 @@ class RulesForGenreUpdateTest extends TestCase
     }
       
     /** @test  */
-    public function when_a_genre_is_submited_without_modification_the_genre_must_be_unique_rule_is_ignored()
+    public function when_a_genre_is_submitted_without_modification_the_genre_must_be_unique_rule_is_ignored()
     {
         $genre = Genre::factory()->createOne();
         
