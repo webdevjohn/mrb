@@ -54,22 +54,16 @@ class RulesForTagUpdateTest extends TestCase
     }
  
     /** @test  */
-    public function a_tag_must_be_unique()
+    public function the_tag_must_be_unique_rule_is_ignored_when_updating_a_the_record_without_modifying_the_tag_field()
     {
         $tag = Tag::factory()->createOne();
         
-        $response = $this->patchJson(
+        $this->patchJson(
             route('cms.tags.update', $tag), 
             [
                 'tag' => $tag->tag
             ]
         )
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('tag');
-  
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The tag submitted is already in the database.',
-            actualValidationMessage: $response['errors']['tag']
-        );    
+        ->assertStatus(302);    
     }
 }

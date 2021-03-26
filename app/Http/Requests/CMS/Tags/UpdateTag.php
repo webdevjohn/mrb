@@ -3,6 +3,7 @@
 namespace App\Http\Requests\CMS\Tags;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 
 class UpdateTag extends Request
 {
@@ -25,7 +26,11 @@ class UpdateTag extends Request
     public function rules()
     {
         return [
-            'tag' => 'required|max:50|unique:tags,tag,' . $this->id,
+            'tag' => [
+                'required',
+                'max:50',
+                Rule::unique('tags', 'tag')->ignore($this->route('tag')->id)
+            ]
         ];
     }
     
