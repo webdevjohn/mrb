@@ -15,7 +15,7 @@ class CreateTracksTable extends Migration
     {
         Schema::create('tracks', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 100);
+            $table->string('title', 125);
 			$table->unsignedBigInteger('genre_id');
 			$table->unsignedBigInteger('label_id');
 			$table->unsignedBigInteger('format_id');
@@ -24,10 +24,10 @@ class CreateTracksTable extends Migration
 			$table->decimal('purchase_price', 5, 2)->nullable();
 			$table->unsignedBigInteger('key_code_id')->nullable();
 			$table->decimal('bpm', 5, 2)->nullable();
-			$table->string('track_thumbnail')->nullable();
-			$table->string('track_image')->nullable();
-			$table->string('mp3_sample_filename')->nullable();
-			$table->string('full_track_filename')->nullable();
+			$table->string('track_thumbnail', 200)->nullable();
+			$table->string('track_image', 200)->nullable();
+			$table->string('mp3_sample_filename', 200)->nullable();
+			$table->string('full_track_filename', 200)->nullable();
 			$table->unsignedBigInteger('album_id')->nullable();
 			$table->integer('played_counter')->nullable();
 			$table->integer('viewed_counter')->nullable();
