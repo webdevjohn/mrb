@@ -52,9 +52,9 @@ class RulesForLabelUpdateTest extends TestCase
             actualValidationMessage: $response['errors']['label']
         );
     }
-
+    
     /** @test  */
-    public function the_label_must_be_unique_rule_is_ignored_when_updating_a_the_record_without_modifying_the_label_field()
+    public function when_a_label_is_submited_without_modification_the_label_must_be_unique_rule_is_ignored()
     {
         $label = Label::factory()->createOne();
     
@@ -65,6 +65,29 @@ class RulesForLabelUpdateTest extends TestCase
             ]
         )
         ->assertStatus(302);
+    }
+
+    /** @test  */
+    public function if_the_label_has_changed_the_updated_label_submitted_must_be_unique()
+    {
+        $label = Label::factory()->createOne();
+        $label2 = Label::factory()->createOne();
+        
+        // attempt to update $label2 with a label that 
+        // already exists in the database.
+        $response = $this->patchJson(
+            route('cms.labels.update', $label2), 
+            [
+                'label' => $label->label
+            ]
+        )
+        ->assertStatus(422)
+        ->assertJsonValidationErrors('label');
+
+        $this->assertValidationErrorMessage(
+            expectedValidationMessage: 'The label submitted is already in the database.',
+            actualValidationMessage: $response['errors']['label']
+        );
     }
 
 
