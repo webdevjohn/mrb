@@ -44,14 +44,14 @@ class UpdatePlaylist extends Request
     public function messages()
     {
         return [
-            'name.required' => 'A Name is required.',
-            'name.max' => 'A Name must not exceed :max characters.',
-            'name.unique' => 'The Playlist name specified is already in the database.',
+            'name.required' => 'A name is required.',
+            'name.max' => 'A name must not exceed :max characters.',
+            'name.unique' => 'The name submitted is already in the database.',
             
-            'genre_id.required' => 'A Genre is required.',
-            'genre_id.numeric' => 'A Genre is required.',
-            'genre_id.min' => 'A Genre is required.',
-            'genre_id.exists' => 'The selected Genre does not exist in the database.',
+            'genre_id.required' => 'A genre is required.',
+            'genre_id.numeric' => 'A genre is required.',
+            'genre_id.min' => 'A genre is required.',
+            'genre_id.exists' => 'The submitted genre does not exist in the database.',
         ];
     }
 }
