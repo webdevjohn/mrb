@@ -41,9 +41,9 @@ class UpdateFormat extends Request
     public function messages()
     {
         return [        
-            'format.required' => 'A Format is required.',
-            'format.max' => 'A Format must not exceed :max characters.',
-            'format.unique' => 'The Format specified is already in the database.'
+            'format.required' => 'A format is required.',
+            'format.max' => 'A format must not exceed :max characters.',
+            'format.unique' => 'The format submitted is already in the database.'
         ];
     }
 }
