@@ -4,8 +4,8 @@ namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Roles\CreateRole;
+use App\Http\Requests\CMS\Roles\UpdateRole;
 use App\Models\Role;
-use Illuminate\Http\Request;
 
 class RolesController extends Controller
 {
@@ -63,26 +63,34 @@ class RolesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Edit an existing role.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Role $role
+     * 
+     * @return Illuminate\View\View 
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+        return View('cms.roles.edit', [
+            'role' => $role
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified role.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateRole $request
+     * @param Role $role
+     * 
+     * @return Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRole $request, Role $role)
     {
-        //
+        $role->fill($request->validated())->save();
+
+        return redirect()
+            ->route('cms.roles.index')
+            ->with('success',"Role updated successfully!");   
     }
 
     /**
