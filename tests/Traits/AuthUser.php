@@ -5,14 +5,12 @@ namespace Tests\Traits;
 use App\Models\Role;
 use App\Models\User;
 
-trait AuthAdminUser {
+trait AuthUser {
 
-    function setUp(): void
+    function createAuthUser(string $role = 'Admin'): void
     {
-        parent::setup();
-
         User::factory()->createOne()->roles()->attach(
-            Role::factory()->createOne(['role' => 'Admin'])
+            Role::factory()->createOne(['role' => $role])
         );
 
         $this->actingAs(

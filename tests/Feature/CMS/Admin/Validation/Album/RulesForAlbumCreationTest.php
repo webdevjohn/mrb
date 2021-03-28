@@ -3,17 +3,24 @@
 namespace Tests\Feature\CMS\Admin\Validation\Album;
 
 use App\Models\Album;
-use Tests\TestCase;
-use Tests\Traits\AuthAdminUser;
-use Tests\Traits\AssertValidationErrorMessages;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
+use Tests\TestCase;
+use Tests\Traits\AuthUser;
+use Tests\Traits\AssertValidationErrorMessages;
 
 class RulesForAlbumCreationTest extends TestCase
 {
-    use AuthAdminUser, RefreshDatabase, AssertValidationErrorMessages;
+    use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
 
     protected $endpoint = '/cms/albums';
+
+    function setUp(): void
+    {
+        parent::setup();
+
+        $this->createAuthUser();
+    }
 
     /** @test  */
     public function a_title_can_not_be_null()

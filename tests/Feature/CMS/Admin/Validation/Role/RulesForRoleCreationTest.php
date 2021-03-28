@@ -3,17 +3,24 @@
 namespace Tests\Feature\CMS\Admin\Validation\Role;
 
 use App\Models\Role;
-use Tests\TestCase;
-use Tests\Traits\AuthAdminUser;
-use Tests\Traits\AssertValidationErrorMessages;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
+use Tests\TestCase;
+use Tests\Traits\AssertValidationErrorMessages;
+use Tests\Traits\AuthUser;
 
 class RulesForRoleCreationTest extends TestCase
 {
-    use AuthAdminUser, RefreshDatabase, AssertValidationErrorMessages;
+    use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
 
     protected $endpoint = '/cms/roles';
+
+    function setUp(): void
+    {
+        parent::setup();
+
+        $this->createAuthUser();
+    }
 
     /** @test  */
     public function a_role_can_not_be_null()

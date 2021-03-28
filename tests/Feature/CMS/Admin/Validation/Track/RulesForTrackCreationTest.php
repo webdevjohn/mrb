@@ -2,17 +2,24 @@
 
 namespace Tests\Feature\CMS\Admin\Validation\Track;
 
-use Tests\TestCase;
-use Tests\Traits\AuthAdminUser;
-use Tests\Traits\AssertValidationErrorMessages;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
+use Tests\TestCase;
+use Tests\Traits\AssertValidationErrorMessages;
+use Tests\Traits\AuthUser;
 
 class RulesForTrackCreationTest extends TestCase
 {
-    use AuthAdminUser, RefreshDatabase, AssertValidationErrorMessages;
+    use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
 
     protected $endpoint = '/cms/tracks';
+
+    function setUp(): void
+    {
+        parent::setup();
+
+        $this->createAuthUser();
+    }
 
     /** @test  */
     public function an_artist_is_required()
