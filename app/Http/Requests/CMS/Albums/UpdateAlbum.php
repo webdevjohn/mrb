@@ -3,6 +3,7 @@
 namespace App\Http\Requests\CMS\Albums;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 
 class UpdateAlbum extends Request
 {
@@ -25,16 +26,20 @@ class UpdateAlbum extends Request
     public function rules()
     {
         return [
-            'title' => 'required|max:125',
+            'title' => [
+                'required',
+                'max:125',
+                Rule::unique('albums', 'title')->ignore($this->route('album')->id)   
+            ],
             'genre_id' => 'required|numeric|min:1|exists:genres,id',  
             'label_id' => 'required|numeric|min:1|exists:labels,id',    
             'format_id' => 'required|numeric|min:1|exists:formats,id', 
-            'year_released' => 'required|numeric|between:1980,2080', 
+            'year_released' => 'required|digits:4|numeric|min:1980|max:'.(date('Y')),
             'purchase_date' => 'required|date|date_format: "Y-m-d"',
-            'purchase_price' => 'required|numeric|between:0,300',
+            'purchase_price' => 'required|numeric|between:0,50',            
 
             // nullable fields.
-            'album_thumbnail' => 'nullable',
+            'album_thumbnail' => 'nullable|',
             'album_image' => 'nullable',
             'use_track_artwork' => 'nullable|boolean'  
         ];
@@ -49,37 +54,40 @@ class UpdateAlbum extends Request
     public function messages()
     {
         return [
-            'title.required' => 'A Title is required.',
-            'title.max' => 'A Title must not exceed :max characters.',
+            'title.required' => 'A title is required.',
+            'title.max' => 'A title must not exceed :max characters.',
+            'title.unique' => 'The submitted title is already in the database.',
 
-            'genre_id.required' => 'A Genre is required.',
-            'genre_id.numeric' => 'A Genre is required.',
-            'genre_id.min' => 'A Genre is required.',
-            'genre_id.exists' => 'The selected Genre does not exist in the database.',
+            'genre_id.required' => 'A genre is required.',
+            'genre_id.numeric' => 'A genre is required.',
+            'genre_id.min' => 'A genre is required.',
+            'genre_id.exists' => 'The submitted genre does not exist in the database.',
             
-            'label_id.required' => 'A Label is required.',
-            'label_id.numeric' => 'A Label is required.',
-            'label_id.min' => 'A Label is required.',
-            'label_id.exists' => 'The selected Label does not exist in the database.',
+            'label_id.required' => 'A label is required.',
+            'label_id.numeric' => 'A label is required.',
+            'label_id.min' => 'A label is required.',
+            'label_id.exists' => 'The submitted label does not exist in the database.',
 
-            'format_id.required' => 'A Format is required.',
-            'format_id.numeric' => 'A Format is required.',
-            'format_id.min' => 'A Format is required.',
-            'format_id.exists' => 'The selected Format does not exist in the database.',
+            'format_id.required' => 'A format is required.',
+            'format_id.numeric' => 'A format is required.',
+            'format_id.min' => 'A format is required.',
+            'format_id.exists' => 'The submitted format does not exist in the database.',
 
-            'year_released.required' => 'The Year Released field is required.',
-            'year_released.numeric' => 'The Year Released field must be numeric.',
-            'year_released.between' => 'The Year Released field must be between :min - :max.',
-
-            'purchase_date.required' => 'The Purchase Date field is required.',
-            'purchase_date.date' => 'The Purchase Date field must be a valid date.',
-            'purchase_date.date_format' => 'The Purchase Date must be in the Y-m-d format (e.g. 2020-12-18).',
+            'year_released.required' => 'The year of release is required.',
+            'year_released.digits' => 'The submitted year of release must be exactly 4 digits in length.',
+            'year_released.numeric' => 'The year of release must be numeric.',
+            'year_released.min' => 'The submitted year of release must be greater than 1979.',
+            'year_released.max' => 'The submitted year of release can not be in the future.',
+           
+            'purchase_date.required' => 'A purchase date is required.',
+            'purchase_date.date' => 'The purchase date must be a valid date.',
+            'purchase_date.date_format' => 'The purchase date must be in the yyyy-mm-dd format (e.g. 2020-12-18).',
       
-            'purchase_price.required' => 'The Purchase Price field is required.',
-            'purchase_price.numeric' => 'The Purchase Price field must be numeric.',
-            'purchase_price.between' => 'The Purchase Price field must be between :min - :max.',
+            'purchase_price.required' => 'A purchase price is required.',
+            'purchase_price.numeric' => 'A purchase price must be numeric.',
+            'purchase_price.between' => 'A purchase price must be between :min - :max.',
 
-            'use_track_artwork.boolean' => 'The Use Track Artwork field must be either True or False.'
+            'use_track_artwork.boolean' => 'The use track artwork checkbox must be either True or False.'
         ];
     }
 }
