@@ -41,9 +41,9 @@ class UpdateArtist extends Request
     public function messages()
     {
         return [     
-            'artist_name.required' => 'An Artist Name is required.',
-            'artist_name.max' => 'An Artist Name must not exceed :max characters.',
-            'artist_name.unique' => 'The Artist Name specified is already in the database.'
+            'artist_name.required' => 'An artist name is required.',
+            'artist_name.max' => 'An artist name must not exceed :max characters.',
+            'artist_name.unique' => 'The artist name submitted is already in the database.'
         ];
     }
 }

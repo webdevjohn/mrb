@@ -92,6 +92,8 @@ class TracksController extends Controller
     {
 		$track->fill($request->validated())->save();
 
+        // Need to fire the event manually, after every update, as the event will 
+        // not fire automatically if only the pivot table changes (e.g. Artists, Tags).
         event('eloquent.updated: App\Models\Track', $track);
         
         return redirect()

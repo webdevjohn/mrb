@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\CMS\Formats;
+namespace App\Http\Requests\CMS\Roles;
 
-use App\Http\Requests\Request;
-use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateFormat extends Request
+class CreateRole extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +24,7 @@ class UpdateFormat extends Request
     public function rules()
     {
         return [
-            'format' => [
-                'required',
-                'max:25', 
-                Rule::unique('formats')->ignore($this->route('format')->id)     
-            ]
+            'role' => 'required|max:50|unique:roles,role',
         ];
     }
 
@@ -41,9 +36,9 @@ class UpdateFormat extends Request
     public function messages()
     {
         return [        
-            'format.required' => 'A format is required.',
-            'format.max' => 'A format must not exceed :max characters.',
-            'format.unique' => 'The format submitted is already in the database.'
+            'role.required' => 'A role is required.',
+            'role.max' => 'A role must not exceed :max characters.',
+            'role.unique' => 'The role submitted is already in the database.'
         ];
     }
 }

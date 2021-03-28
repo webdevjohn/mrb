@@ -3,6 +3,7 @@
 namespace App\Http\Requests\CMS\Tags;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 
 class UpdateTag extends Request
 {
@@ -25,7 +26,11 @@ class UpdateTag extends Request
     public function rules()
     {
         return [
-            'tag' => 'required|max:50|unique:tags,tag,' . $this->id,
+            'tag' => [
+                'required',
+                'max:50',
+                Rule::unique('tags', 'tag')->ignore($this->route('tag')->id)
+            ]
         ];
     }
     
@@ -38,9 +43,9 @@ class UpdateTag extends Request
     public function messages()
     {
         return [        
-            'tag.required' => 'A Tag is required.',
-            'tag.max' => 'A Tag must not exceed :max characters.',
-            'tag.unique' => 'The Tag specified is already in the database.'
+            'tag.required' => 'A tag is required.',
+            'tag.max' => 'A tag must not exceed :max characters.',
+            'tag.unique' => 'The tag submitted is already in the database.'
         ];
     }
 }

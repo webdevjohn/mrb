@@ -27,11 +27,11 @@ class UpdateLabel extends Request
         return [            
             'label' => [
                 'required', 
-                'max:50', 
+                'max:50',
                 Rule::unique('labels')->ignore($this->route('label')->id)
             ],        
-            'label_thumbnail' => 'max:50',
-            'label_image' => 'max:50'
+            'label_thumbnail' => 'nullable|max:50',
+            'label_image' => 'nullable|max:50'
         ];
     }
 
@@ -43,12 +43,12 @@ class UpdateLabel extends Request
     public function messages()
     {
         return [        
-            'label.required' => 'A Label is required.',
-            'label.max' => 'A Label must not exceed :max characters.',
-            'label.unique' => 'The Label specified is already in the database.',
+            'label.required' => 'A label is required.',
+            'label.max' => 'A label must not exceed :max characters.',
+            'label.unique' => 'The label submitted is already in the database.',
 
-            'label_thumbnail.max' => 'A Label Thumbnail must not exceed :max characters.',
-            'label_image.max' => 'A Label Image must not exceed :max characters.'
+            'label_thumbnail.max' => 'A label thumbnail must not exceed :max characters.',
+            'label_image.max' => 'A label image must not exceed :max characters.'
         ];
     }
 }
