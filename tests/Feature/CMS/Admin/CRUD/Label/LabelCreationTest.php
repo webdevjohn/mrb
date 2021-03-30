@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\CMS\Admin\CRUD\Genre;
+namespace Tests\Feature\CMS\Admin\CRUD\Label;
 
 use App\Models\Label;
 use Illuminate\Foundation\Testing\RefreshDatabase;
