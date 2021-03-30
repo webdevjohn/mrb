@@ -8,6 +8,13 @@ use Illuminate\Support\Str;
 
 trait AuthUser {
 
+    /**
+     * Create an authenticated user with a given role.
+     *
+     * @param string $role
+     * 
+     * @return void
+     */
     function createAuthUser(string $role = 'Admin'): void
     {
         User::factory()->createOne()->roles()->attach(
