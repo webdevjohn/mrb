@@ -46,9 +46,13 @@ class RolesController extends Controller
      */
     public function store(CreateRole $request)
     {
-        $this->role->create(
+        $this->roles->create(
             $request->validated()
         );
+
+        return redirect()
+            ->route('cms.roles.create')
+            ->with('success','Role created successfully!');  
     }
 
     /**

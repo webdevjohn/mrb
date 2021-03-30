@@ -8,12 +8,19 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 use Tests\Traits\AssertValidationErrorMessages;
-use Tests\Traits\AuthAdminUser;
+use Tests\Traits\AuthUser;
 
 class RulesForPlaylistUpdateTest extends TestCase
 {
-    use RefreshDatabase, AuthAdminUser, AssertValidationErrorMessages;
+    use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
    
+    function setUp(): void
+    {
+        parent::setup();
+
+        $this->createAuthUser();
+    }
+
     /** @test  */
     public function a_name_is_required()
     {

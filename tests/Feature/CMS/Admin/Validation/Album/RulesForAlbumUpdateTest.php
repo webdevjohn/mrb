@@ -1,19 +1,18 @@
 <?php
 
-namespace Tests\Feature\CMS\Admin\Validation\Track;
+namespace Tests\Feature\CMS\Admin\Validation\Album;
 
+use App\Models\Album;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 use Tests\Traits\AssertValidationErrorMessages;
 use Tests\Traits\AuthUser;
 
-class RulesForTrackCreationTest extends TestCase
+class RulesForAlbumUpdateTest extends TestCase
 {
     use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
-
-    protected $endpoint = '/cms/tracks';
-
+   
     function setUp(): void
     {
         parent::setup();
@@ -22,60 +21,19 @@ class RulesForTrackCreationTest extends TestCase
     }
 
     /** @test  */
-    public function an_artist_is_required()
+    public function a_title_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'artists' => null
-        ])
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('artists');
+       $album = Album::factory()->createOne();
 
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'An artist is required.',
-            actualValidationMessage: $response['errors']['artists']
-        );
-    }
-
-    /** @test  */
-    public function the_submitted_artists_must_be_sent_as_an_array()
-    {
-        $response = $this->postJson($this->endpoint, [
-            'artists' => 'ewrewr'
-        ])
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('artists');
-
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'An artist is required.',
-            actualValidationMessage: $response['errors']['artists']
-        );
-    }
-
-    /** @test  */
-    public function the_selected_artists_must_exist_in_the_database()
-    {
-        $response = $this->postJson($this->endpoint, [
-            'artists' => [99999, 99998]
-        ])
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('artists');
-
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The submitted artist(s) do not exist in the database.',
-            actualValidationMessage: $response['errors']['artists']
-        );
-    }
-
-
-    /** @test  */
-    public function a_title_can_not_be_null()
-    {
-        $response = $this->postJson($this->endpoint, [
-            'title' => null
-        ])
+       $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'title' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('title');
-        
+
         $this->assertValidationErrorMessage(
             expectedValidationMessage: 'A title is required.',
             actualValidationMessage: $response['errors']['title']
@@ -83,11 +41,16 @@ class RulesForTrackCreationTest extends TestCase
     }
 
     /** @test  */
-    public function the_title_must_not_exceed_125_characters()
+    public function a_title_must_not_exceed_125_characters()
     {
-        $response = $this->postJson($this->endpoint, [
-            'title' => str::random(126)
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'title' => str::random(126)
+            ]
+        )     
         ->assertStatus(422)
         ->assertJsonValidationErrors('title');
 
@@ -96,14 +59,57 @@ class RulesForTrackCreationTest extends TestCase
             actualValidationMessage: $response['errors']['title']
         );
     }
+    
+    /** @test  */
+    public function when_a_title_is_submitted_without_modification_the_title_must_be_unique_rule_is_ignored()
+    {
+        $album = Album::factory()->createOne();
+  
+        $this->patchJson(
+            route('cms.albums.update', $album), array_merge(
+                $album->toArray(),
+                [
+                    'title' => $album->title
+                ]
+            ))
+            ->assertStatus(302);             
+    }
+
+    /** @test  */
+    public function if_the_title_has_changed_the_updated_title_submitted_must_be_unique()
+    {
+        $album = Album::factory()->createOne();
+        $album2 = Album::factory()->createOne();
+        
+        // attempt to update the title with a title that 
+        // already exists in the database.
+        $response = $this->patchJson(
+            route('cms.albums.update', $album2), 
+            [
+                'title' => $album->title
+            ]
+        )
+        ->assertStatus(422)
+        ->assertJsonValidationErrors('title');
+
+        $this->assertValidationErrorMessage(
+            expectedValidationMessage: 'The submitted title is already in the database.',
+            actualValidationMessage: $response['errors']['title']
+        );
+    }
 
 
     /** @test  */
     public function a_genre_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'genre_id' => null
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'genre_id' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('genre_id');
 
@@ -116,9 +122,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_genre_id_must_be_numeric()
     {
-        $response = $this->postJson($this->endpoint, [
-            'genre_id' => 'qoiwjreoi'
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'genre_id' => 'oiewjroijew'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('genre_id');
 
@@ -131,9 +142,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_genre_id_must_be_greater_that_zero()
     {
-        $response = $this->postJson($this->endpoint, [
-            'genre_id' => 0
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'genre_id' => 0
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('genre_id');
 
@@ -146,9 +162,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_genre_must_exist_in_the_database()
     {
-        $response = $this->postJson($this->endpoint, [
-            'genre_id' => 9999
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'genre_id' => 9999
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('genre_id');
 
@@ -162,9 +183,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function a_label_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'label_id' => null
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'label_id' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('label_id');
 
@@ -177,9 +203,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_label_id_must_be_numeric()
     {
-        $response = $this->postJson($this->endpoint, [
-            'label_id' => 'qoiwjreoi'
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'label_id' => 'oiewjroijew'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('label_id');
 
@@ -192,9 +223,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_label_id_must_be_greater_that_zero()
     {
-        $response = $this->postJson($this->endpoint, [
-            'label_id' => 0
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'label_id' => 0
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('label_id');
 
@@ -207,9 +243,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_label_must_exist_in_the_database()
     {
-        $response = $this->postJson($this->endpoint, [
-            'label_id' => 9999
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'label_id' => 9999,
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('label_id');
 
@@ -223,9 +264,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function a_format_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'format_id' => null
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'format_id' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('format_id');
 
@@ -238,9 +284,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_format_id_must_be_numeric()
     {
-        $response = $this->postJson($this->endpoint, [
-            'format_id' => 'qoiwjreoi'
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'format_id' => 'oiewjroijew'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('format_id');
 
@@ -253,9 +304,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_format_id_must_be_greater_that_zero()
     {
-        $response = $this->postJson($this->endpoint, [
-            'format_id' => 0
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'format_id' => 0
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('format_id');
 
@@ -268,9 +324,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_format_must_exist_in_the_database()
     {
-        $response = $this->postJson($this->endpoint, [
-            'format_id' => 9999
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'format_id' => 9999,
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('format_id');
 
@@ -282,26 +343,36 @@ class RulesForTrackCreationTest extends TestCase
 
 
     /** @test  */
-    public function a_year_released_is_required()
+    public function a_year_of_released_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'year_released' => null
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album), 
+            [
+                'year_released' => null,
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('year_released'); 
 
         $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'A year released is required.',
+            expectedValidationMessage: 'The year of release is required.',
             actualValidationMessage: $response['errors']['year_released']
         );
     }
 
     /** @test  */
-    public function the_submitted_year_released_must_be_exactly_4_digits_in_length()
+    public function the_submitted_year_of_release_must_be_exactly_4_digits_in_length()
     {
-        $response = $this->postJson($this->endpoint, [
-            'year_released' => 19801
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album),
+            [ 
+                'year_released' => 19801
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('year_released'); 
 
@@ -311,31 +382,40 @@ class RulesForTrackCreationTest extends TestCase
         );
     }
 
-
     /** @test  */
-    public function the_submitted_year_released_must_be_numeric()
+    public function the_submitted_year_of_release_must_be_numeric()
     {
-        $response = $this->postJson($this->endpoint, [
-            'year_released' => 'qoiwjreoi'
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album),
+            [ 
+                'year_released' => 'ejwrewew'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('year_released'); 
 
         $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The year released must be numeric.',
+            expectedValidationMessage: 'The year of release must be numeric.',
             actualValidationMessage: $response['errors']['year_released']
         );
     }
 
     /** @test  */
-    public function the_submitted_year_released_can_not_be_before_1980()
+    public function the_submitted_year_of_release_must_be_after_1979()
     {
-        $response = $this->postJson($this->endpoint, [
-            'year_released' => 1979
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album),
+            [
+                'year_released' => 1979
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('year_released'); 
-             
+            
         $this->assertValidationErrorMessage(
             expectedValidationMessage: 'The submitted year of release must be greater than 1979.',
             actualValidationMessage: $response['errors']['year_released']
@@ -345,9 +425,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_year_released_can_not_be_in_the_future()
     {
-        $response = $this->postJson($this->endpoint, [
-            'year_released' => 2022
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album),
+            [
+                'year_released' => (date('Y')+1)
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('year_released'); 
 
@@ -361,9 +446,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function a_purchase_date_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_date' => null
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album),
+            [
+                'purchase_date' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_date');
 
@@ -376,9 +466,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function a_purchase_date_must_be_a_valid_date()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_date' => '2019-21-21'
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album),
+            [
+                'purchase_date' => '2019-21-21'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_date');
 
@@ -391,9 +486,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_purchase_date_must_be_formatted_correctly()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_date' => '01-01-2020'
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album),
+            [
+                'purchase_date' => '01-01-2020'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_date');
 
@@ -407,9 +507,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function a_purchase_price_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_price' => null
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album),
+            [
+                'purchase_price' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_price');
 
@@ -418,13 +523,18 @@ class RulesForTrackCreationTest extends TestCase
             actualValidationMessage: $response['errors']['purchase_price']
         );
     }
-
+  
     /** @test  */
     public function the_purchase_price_field_must_be_numeric()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_price' => 'qoiwjreoi'
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album),
+            [
+                'purchase_price' => 'qoiwjreoi'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_price');
 
@@ -437,9 +547,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function a_purchase_price_must_be_at_least_zero()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_price' => -1
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album),
+            [
+                'purchase_price' => -1
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_price');
 
@@ -448,13 +563,19 @@ class RulesForTrackCreationTest extends TestCase
             actualValidationMessage: $response['errors']['purchase_price']
         );
     }
+
 
     /** @test  */
     public function a_purchase_price_can_not_be_greater_than_50()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_price' => 51
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album),
+            [
+                'purchase_price' => 51
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_price');
 
@@ -465,131 +586,23 @@ class RulesForTrackCreationTest extends TestCase
     }
 
 
-    /*
-    |---------------------------------------------------------------------------------------
-    | The following tests are for the fields that can be nullable when creating a new Track.
-    |---------------------------------------------------------------------------------------   
-    */
-
     /** @test  */
-    public function if_submitted_the_bpm_field_must_be_numeric()
+    public function the_use_track_artwork_checkbox_must_be_a_boolean()
     {
-        $response = $this->postJson($this->endpoint, [
-            'bpm' => 'qoiwjreoi'
-        ])
+        $album = Album::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.albums.update', $album),
+            [
+                'use_track_artwork' => 'ewropew'
+            ]
+        )
         ->assertStatus(422)
-        ->assertJsonValidationErrors('bpm');
+        ->assertJsonValidationErrors('use_track_artwork');
 
         $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The BPM field must be numeric.',
-            actualValidationMessage: $response['errors']['bpm']
-        );
-    }
-
-    /** @test  */
-    public function if_submitted_the_bpm_field_must_be_at_least_100()
-    {
-        $response = $this->postJson($this->endpoint, [
-            'bpm' => 99
-        ])
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('bpm');
-
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The BPM field must be between 100.0 - 200.0.',
-            actualValidationMessage: $response['errors']['bpm']
-        );
-    }
-
-    /** @test  */
-    public function if_submitted_the_bpm_field_must_not_be_greater_than_200()
-    {
-        $response = $this->postJson($this->endpoint, [
-            'bpm' => 200.5
-        ])
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('bpm');
-
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The BPM field must be between 100.0 - 200.0.',
-            actualValidationMessage: $response['errors']['bpm']
-        );
-    }
-
-
-    /** @test  */
-    public function if_submitted_the_album_id_field_must_be_numeric()
-    {
-        $response = $this->postJson($this->endpoint, [
-            'album_id' => 'qoiwjreoi'
-        ])
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('album_id');
-
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The submitted album must be valid.',
-            actualValidationMessage: $response['errors']['album_id']
-        );
-    }    
-
-    /** @test  */
-    public function if_submitted_the_selected_album_id_must_be_greater_that_zero()
-    {
-        $response = $this->postJson($this->endpoint, [
-            'album_id' => 0
-        ])
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('album_id');
-
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The submitted album must be valid.',
-            actualValidationMessage: $response['errors']['album_id']
-        );
-    }
-
-    /** @test  */
-    public function if_submitted_the_selected_album_id_must_exist_in_the_database()
-    {
-        $response = $this->postJson($this->endpoint, [
-            'album_id' => 999999
-        ])
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('album_id');
-
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The submitted album does not exist in the database.',
-            actualValidationMessage: $response['errors']['album_id']
-        );
-    }
-
-
-    /** @test  */
-    public function if_submitted_the_selected_tags_must_be_sent_as_an_array()
-    {
-        $response = $this->postJson($this->endpoint, [
-            'tags' => 'ewrewr'
-        ])
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('tags');
-
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The selected tag(s) do not exist in the database.',
-            actualValidationMessage: $response['errors']['tags']
-        );
-    }
-
-    /** @test  */
-    public function if_submitted_the_selected_tags_must_exist_in_the_database()
-    {
-        $response = $this->postJson($this->endpoint, [
-            'tags' => [9998,9999]
-        ])
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('tags');
-
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The selected tag(s) do not exist in the database.',
-            actualValidationMessage: $response['errors']['tags']
+            expectedValidationMessage: 'The use track artwork checkbox must be either True or False.',
+            actualValidationMessage: $response['errors']['use_track_artwork']
         );
     }
 }

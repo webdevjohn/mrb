@@ -2,18 +2,17 @@
 
 namespace Tests\Feature\CMS\Admin\Validation\Track;
 
+use App\Models\Track;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 use Tests\Traits\AssertValidationErrorMessages;
 use Tests\Traits\AuthUser;
 
-class RulesForTrackCreationTest extends TestCase
+class RulesForTrackUpdateTest extends TestCase
 {
     use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
-
-    protected $endpoint = '/cms/tracks';
-
+   
     function setUp(): void
     {
         parent::setup();
@@ -24,9 +23,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function an_artist_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'artists' => null
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'artists' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('artists');
 
@@ -39,9 +43,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_artists_must_be_sent_as_an_array()
     {
-        $response = $this->postJson($this->endpoint, [
-            'artists' => 'ewrewr'
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(            
+            route('cms.tracks.update', $track), 
+            [
+                'artists' => 'ewrewr'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('artists');
 
@@ -52,11 +61,16 @@ class RulesForTrackCreationTest extends TestCase
     }
 
     /** @test  */
-    public function the_selected_artists_must_exist_in_the_database()
+    public function the_submitted_artists_must_exist_in_the_database()
     {
-        $response = $this->postJson($this->endpoint, [
-            'artists' => [99999, 99998]
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(            
+            route('cms.tracks.update', $track), 
+            [
+                'artists' => [99999, 99998]
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('artists');
 
@@ -68,14 +82,19 @@ class RulesForTrackCreationTest extends TestCase
 
 
     /** @test  */
-    public function a_title_can_not_be_null()
+    public function a_title_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'title' => null
-        ])
+       $track = Track::factory()->createOne();
+
+       $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'title' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('title');
-        
+
         $this->assertValidationErrorMessage(
             expectedValidationMessage: 'A title is required.',
             actualValidationMessage: $response['errors']['title']
@@ -83,11 +102,16 @@ class RulesForTrackCreationTest extends TestCase
     }
 
     /** @test  */
-    public function the_title_must_not_exceed_125_characters()
+    public function a_title_must_not_exceed_125_characters()
     {
-        $response = $this->postJson($this->endpoint, [
-            'title' => str::random(126)
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'title' => str::random(126)
+            ]
+        )     
         ->assertStatus(422)
         ->assertJsonValidationErrors('title');
 
@@ -96,14 +120,18 @@ class RulesForTrackCreationTest extends TestCase
             actualValidationMessage: $response['errors']['title']
         );
     }
-
-
+    
     /** @test  */
     public function a_genre_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'genre_id' => null
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'genre_id' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('genre_id');
 
@@ -116,9 +144,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_genre_id_must_be_numeric()
     {
-        $response = $this->postJson($this->endpoint, [
-            'genre_id' => 'qoiwjreoi'
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'genre_id' => 'oiewjroijew'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('genre_id');
 
@@ -131,9 +164,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_genre_id_must_be_greater_that_zero()
     {
-        $response = $this->postJson($this->endpoint, [
-            'genre_id' => 0
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'genre_id' => 0
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('genre_id');
 
@@ -146,9 +184,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_genre_must_exist_in_the_database()
     {
-        $response = $this->postJson($this->endpoint, [
-            'genre_id' => 9999
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'genre_id' => 9999
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('genre_id');
 
@@ -162,9 +205,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function a_label_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'label_id' => null
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'label_id' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('label_id');
 
@@ -177,9 +225,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_label_id_must_be_numeric()
     {
-        $response = $this->postJson($this->endpoint, [
-            'label_id' => 'qoiwjreoi'
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'label_id' => 'oiewjroijew'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('label_id');
 
@@ -192,9 +245,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_label_id_must_be_greater_that_zero()
     {
-        $response = $this->postJson($this->endpoint, [
-            'label_id' => 0
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'label_id' => 0
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('label_id');
 
@@ -207,9 +265,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_label_must_exist_in_the_database()
     {
-        $response = $this->postJson($this->endpoint, [
-            'label_id' => 9999
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'label_id' => 9999,
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('label_id');
 
@@ -223,9 +286,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function a_format_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'format_id' => null
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'format_id' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('format_id');
 
@@ -238,9 +306,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_format_id_must_be_numeric()
     {
-        $response = $this->postJson($this->endpoint, [
-            'format_id' => 'qoiwjreoi'
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'format_id' => 'oiewjroijew'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('format_id');
 
@@ -253,9 +326,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_format_id_must_be_greater_that_zero()
     {
-        $response = $this->postJson($this->endpoint, [
-            'format_id' => 0
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'format_id' => 0
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('format_id');
 
@@ -268,9 +346,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_format_must_exist_in_the_database()
     {
-        $response = $this->postJson($this->endpoint, [
-            'format_id' => 9999
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'format_id' => 9999,
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('format_id');
 
@@ -282,26 +365,36 @@ class RulesForTrackCreationTest extends TestCase
 
 
     /** @test  */
-    public function a_year_released_is_required()
+    public function a_year_of_released_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'year_released' => null
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track), 
+            [
+                'year_released' => null,
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('year_released'); 
 
         $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'A year released is required.',
+            expectedValidationMessage: 'The year of release is required.',
             actualValidationMessage: $response['errors']['year_released']
         );
     }
 
     /** @test  */
-    public function the_submitted_year_released_must_be_exactly_4_digits_in_length()
+    public function the_submitted_year_of_release_must_be_exactly_4_digits_in_length()
     {
-        $response = $this->postJson($this->endpoint, [
-            'year_released' => 19801
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [ 
+                'year_released' => 19801
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('year_released'); 
 
@@ -311,31 +404,40 @@ class RulesForTrackCreationTest extends TestCase
         );
     }
 
-
     /** @test  */
-    public function the_submitted_year_released_must_be_numeric()
+    public function the_submitted_year_of_release_must_be_numeric()
     {
-        $response = $this->postJson($this->endpoint, [
-            'year_released' => 'qoiwjreoi'
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [ 
+                'year_released' => 'ejwrewew'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('year_released'); 
 
         $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The year released must be numeric.',
+            expectedValidationMessage: 'The year of release must be numeric.',
             actualValidationMessage: $response['errors']['year_released']
         );
     }
 
     /** @test  */
-    public function the_submitted_year_released_can_not_be_before_1980()
+    public function the_submitted_year_of_release_must_be_after_1979()
     {
-        $response = $this->postJson($this->endpoint, [
-            'year_released' => 1979
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'year_released' => 1979
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('year_released'); 
-             
+            
         $this->assertValidationErrorMessage(
             expectedValidationMessage: 'The submitted year of release must be greater than 1979.',
             actualValidationMessage: $response['errors']['year_released']
@@ -345,9 +447,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_submitted_year_released_can_not_be_in_the_future()
     {
-        $response = $this->postJson($this->endpoint, [
-            'year_released' => 2022
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'year_released' => (date('Y')+1)
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('year_released'); 
 
@@ -361,9 +468,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function a_purchase_date_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_date' => null
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'purchase_date' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_date');
 
@@ -376,9 +488,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function a_purchase_date_must_be_a_valid_date()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_date' => '2019-21-21'
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'purchase_date' => '2019-21-21'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_date');
 
@@ -391,9 +508,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function the_purchase_date_must_be_formatted_correctly()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_date' => '01-01-2020'
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'purchase_date' => '01-01-2020'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_date');
 
@@ -407,9 +529,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function a_purchase_price_is_required()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_price' => null
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'purchase_price' => null
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_price');
 
@@ -418,13 +545,18 @@ class RulesForTrackCreationTest extends TestCase
             actualValidationMessage: $response['errors']['purchase_price']
         );
     }
-
+  
     /** @test  */
     public function the_purchase_price_field_must_be_numeric()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_price' => 'qoiwjreoi'
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'purchase_price' => 'qoiwjreoi'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_price');
 
@@ -437,9 +569,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function a_purchase_price_must_be_at_least_zero()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_price' => -1
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'purchase_price' => -1
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_price');
 
@@ -449,12 +586,18 @@ class RulesForTrackCreationTest extends TestCase
         );
     }
 
+
     /** @test  */
     public function a_purchase_price_can_not_be_greater_than_50()
     {
-        $response = $this->postJson($this->endpoint, [
-            'purchase_price' => 51
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'purchase_price' => 51
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('purchase_price');
 
@@ -474,9 +617,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function if_submitted_the_bpm_field_must_be_numeric()
     {
-        $response = $this->postJson($this->endpoint, [
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
             'bpm' => 'qoiwjreoi'
-        ])
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('bpm');
 
@@ -489,9 +637,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function if_submitted_the_bpm_field_must_be_at_least_100()
     {
-        $response = $this->postJson($this->endpoint, [
-            'bpm' => 99
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'bpm' => 99
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('bpm');
 
@@ -504,9 +657,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function if_submitted_the_bpm_field_must_not_be_greater_than_200()
     {
-        $response = $this->postJson($this->endpoint, [
-            'bpm' => 200.5
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'bpm' => 200.5
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('bpm');
 
@@ -520,9 +678,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function if_submitted_the_album_id_field_must_be_numeric()
     {
-        $response = $this->postJson($this->endpoint, [
-            'album_id' => 'qoiwjreoi'
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'album_id' => 'qoiwjreoi'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('album_id');
 
@@ -535,9 +698,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function if_submitted_the_selected_album_id_must_be_greater_that_zero()
     {
-        $response = $this->postJson($this->endpoint, [
-            'album_id' => 0
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'album_id' => 0
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('album_id');
 
@@ -550,9 +718,14 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function if_submitted_the_selected_album_id_must_exist_in_the_database()
     {
-        $response = $this->postJson($this->endpoint, [
-            'album_id' => 999999
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'album_id' => 999999
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('album_id');
 
@@ -566,14 +739,19 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function if_submitted_the_selected_tags_must_be_sent_as_an_array()
     {
-        $response = $this->postJson($this->endpoint, [
-            'tags' => 'ewrewr'
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'tags' => 'ewrewr'
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('tags');
 
         $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The selected tag(s) do not exist in the database.',
+            expectedValidationMessage: 'The submitted tag(s) do not exist in the database.',
             actualValidationMessage: $response['errors']['tags']
         );
     }
@@ -581,14 +759,19 @@ class RulesForTrackCreationTest extends TestCase
     /** @test  */
     public function if_submitted_the_selected_tags_must_exist_in_the_database()
     {
-        $response = $this->postJson($this->endpoint, [
-            'tags' => [9998,9999]
-        ])
+        $track = Track::factory()->createOne();
+
+        $response = $this->patchJson(
+            route('cms.tracks.update', $track),
+            [
+                'tags' => [9998,9999]
+            ]
+        )
         ->assertStatus(422)
         ->assertJsonValidationErrors('tags');
 
         $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The selected tag(s) do not exist in the database.',
+            expectedValidationMessage: 'The submitted tag(s) do not exist in the database.',
             actualValidationMessage: $response['errors']['tags']
         );
     }
