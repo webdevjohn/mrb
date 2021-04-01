@@ -97,8 +97,13 @@ class LabelsController extends Controller
      */
     public function update(UpdateLabel $request, Label $label)
     {
+        $this->labelImageResize->setUp($request->file('image'));
+
         $label->fill(
-            $request->validated()
+            array_merge($request->validated(), [
+                'label_image' => $this->labelImageResize->main(),
+                'label_thumbnail' => $this->labelImageResize->thumb()
+            ])
         )->save();
 
         return redirect()

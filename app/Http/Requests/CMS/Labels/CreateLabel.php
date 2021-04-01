@@ -41,10 +41,7 @@ class CreateLabel extends Request
         return [        
             'label.required' => 'A Label is required.',
             'label.max' => 'A Label must not exceed :max characters.',
-            'label.unique' => 'The Label specified is already in the database.',
-
-            'label_thumbnail.max' => 'A Label Thumbnail must not exceed :max characters.',
-            'label_image.max' => 'A Label Image must not exceed :max characters.'
+            'label.unique' => 'The Label specified is already in the database.'
         ];
     }
 }
