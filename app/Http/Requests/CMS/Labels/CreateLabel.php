@@ -26,11 +26,10 @@ class CreateLabel extends Request
     {
         return [
             'label' => 'required|max:50|unique:labels,label',
-            'label_thumbnail' => 'nullable|max:50',
-            'label_image' => 'nullable|max:50'
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif',
         ];
     }
-
+    
 
     /**
      * Get the custom error messages that apply to the request.

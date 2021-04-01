@@ -12,7 +12,7 @@
 	<h1 class="section-header">Create a New Track</h1>
 
 	<section id="form-con">		
-		<form method="POST" action="{{ route('cms.tracks.store') }}">
+		<form method="POST" action="{{ route('cms.tracks.store') }}" enctype="multipart/form-data">
 			@csrf
 	
 			<label for="artists[]">Artists:</label>	
@@ -78,6 +78,12 @@
 			<label for="tags[]">Tags:</label>	
 			{!! Form::select('tags[]', $selectBoxes['tagList'], null, ['id' => 'tags', 'multiple']) !!}
 			@error('tags')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
+
+			<label for="image">Image: </label>
+  			<input name="image" type="file">
+			@error('image')
     			<div class="form-input-error">{{ $message }}</div>
 			@enderror
 

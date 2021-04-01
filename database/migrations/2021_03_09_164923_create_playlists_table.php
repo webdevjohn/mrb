@@ -16,7 +16,7 @@ class CreatePlaylistsTable extends Migration
         Schema::create('playlists', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->string('slug', 100);
+            $table->string('slug', 100)->unique();
             $table->unsignedBigInteger('genre_id');
             $table->string('thumbnail')->nullable();
 			$table->string('image')->nullable();
