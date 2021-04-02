@@ -39,9 +39,9 @@ class CreateLabel extends Request
     public function messages()
     {
         return [        
-            'label.required' => 'A Label is required.',
-            'label.max' => 'A Label must not exceed :max characters.',
-            'label.unique' => 'The Label specified is already in the database.'
+            'label.required' => 'A label is required.',
+            'label.max' => 'A label must not exceed :max characters.',
+            'label.unique' => 'The label submitted is already in the database.'
         ];
     }
 }

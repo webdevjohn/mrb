@@ -96,45 +96,4 @@ class RulesForLabelUpdateTest extends TestCase
             actualValidationMessage: $response['errors']['label']
         );
     }
-
-
-    /** @test  */
-    public function if_submitted_a_label_thumbnail_must_not_exceed_50_characters_in_length()
-    {
-        $label = Label::factory()->createOne();
-
-        $response = $this->patchJson(
-            route('cms.labels.update', $label), 
-            [
-                'label_thumbnail' => str::random(51)               
-            ]
-        )
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('label_thumbnail');
-
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'A label thumbnail must not exceed 50 characters.',
-            actualValidationMessage: $response['errors']['label_thumbnail']
-        );
-    }
-
-    /** @test  */
-    public function if_submitted_a_label_image_must_not_exceed_50_characters_in_length()
-    {
-        $label = Label::factory()->createOne();
-
-        $response = $this->patchJson(
-            route('cms.labels.update', $label), 
-            [
-                'label_image' => str::random(51)               
-            ]
-        )
-        ->assertStatus(422)
-        ->assertJsonValidationErrors('label_image');
-
-        $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'A label image must not exceed 50 characters.',
-            actualValidationMessage: $response['errors']['label_image']
-        );
-    }
 }

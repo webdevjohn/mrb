@@ -48,17 +48,20 @@ class TracksController extends Controller
      */
     public function store(CreateTrack $request)
     {
-        $this->trackImageResize->setUp(
-            $request->file('image'), 
-            $request->label_id
-        );
+        if ($request->file('image')) {
 
-        $this->tracks->create(
-            array_merge($request->validated(), [
-                'track_image' => $this->trackImageResize->main(),
-                'track_thumbnail' => $this->trackImageResize->thumb()
-            ])
-        );
+            $this->trackImageResize->setUp($request->file('image'), $request->label_id);
+
+            $this->tracks->create(
+                array_merge($request->validated(), [
+                    'track_image' => $this->trackImageResize->main(),
+                    'track_thumbnail' => $this->trackImageResize->thumb()
+                ])
+            );
+
+        } else {
+            $this->tracks->create($request->validated());
+        }    
 
         return redirect()
             ->route('cms.tracks.create')
@@ -100,7 +103,20 @@ class TracksController extends Controller
      */
     public function update(UpdateTrack $request, Track $track)
     {
-		$track->fill($request->validated())->save();
+        if ($request->file('image')) {
+            
+            $this->trackImageResize->setUp($request->file('image'), $request->label_id);
+
+            $track->fill(
+                array_merge($request->validated(), [
+                    'label_image' => $this->trackImageResize->main(),
+                    'label_thumbnail' => $this->trackImageResize->thumb()
+                ])
+            )->save();
+
+        } else {
+		    $track->fill($request->validated())->save();
+        }
 
         // Need to fire the event manually, after every update, as the event will 
         // not fire automatically if only the pivot table changes (e.g. Artists, Tags).
