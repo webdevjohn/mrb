@@ -47,15 +47,21 @@ class LabelsController extends Controller
      * @return Illuminate\Http\RedirectResponse
      */
     public function store(CreateLabel $request)
-    {    
-        $this->labelImageResize->setUp($request->file('image'));
+    {            
+        if ($request->file('image')) {
+            
+            $this->labelImageResize->setUp($request->file('image'));
 
-        $this->labels->create(
-            array_merge($request->validated(), [
-                'label_image' => $this->labelImageResize->main(),
-                'label_thumbnail' => $this->labelImageResize->thumb()
-            ])
-        );
+            $this->labels->create(
+                array_merge($request->validated(), [
+                    'label_image' => $this->labelImageResize->main(),
+                    'label_thumbnail' => $this->labelImageResize->thumb()
+                ])
+            );
+
+        } else {
+            $this->labels->create($request->validated());
+        }
 
         return redirect()
             ->route('cms.labels.create')
@@ -97,14 +103,20 @@ class LabelsController extends Controller
      */
     public function update(UpdateLabel $request, Label $label)
     {
-        $this->labelImageResize->setUp($request->file('image'));
+        if ($request->file('image')) {
 
-        $label->fill(
-            array_merge($request->validated(), [
-                'label_image' => $this->labelImageResize->main(),
-                'label_thumbnail' => $this->labelImageResize->thumb()
-            ])
-        )->save();
+            $this->labelImageResize->setUp($request->file('image'));
+
+            $label->fill(
+                array_merge($request->validated(), [
+                    'label_image' => $this->labelImageResize->main(),
+                    'label_thumbnail' => $this->labelImageResize->thumb()
+                ])
+            )->save();
+
+        } else {            
+            $label->fill($request->validated())->save();
+        }
 
         return redirect()
             ->route('cms.labels.index')

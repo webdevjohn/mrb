@@ -28,8 +28,7 @@ class LabelCreationTest extends TestCase
             [
                 'label' => 'New Label'
             ]
-        )
-        ->assertStatus(302);
+        )->assertStatus(302);
 
         $response->assertRedirect('cms/labels/create');
 

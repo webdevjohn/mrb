@@ -31,7 +31,7 @@ class RulesForLabelCreationTest extends TestCase
         ->assertStatus(422);
         
         $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'A Label is required.',
+            expectedValidationMessage: 'A label is required.',
             actualValidationMessage: $response['errors']['label']
         );
     }
@@ -45,7 +45,7 @@ class RulesForLabelCreationTest extends TestCase
         ->assertStatus(422);
 
         $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'A Label must not exceed 50 characters.',
+            expectedValidationMessage: 'A label must not exceed 50 characters.',
             actualValidationMessage: $response['errors']['label']
         );
     }
@@ -61,7 +61,7 @@ class RulesForLabelCreationTest extends TestCase
         ->assertStatus(422);
 
         $this->assertValidationErrorMessage(
-            expectedValidationMessage: 'The Label specified is already in the database.',
+            expectedValidationMessage: 'The label submitted is already in the database.',
             actualValidationMessage: $response['errors']['label']
         );
     }   
