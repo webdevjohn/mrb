@@ -27,16 +27,6 @@ class Album extends Model
 	protected $fillable = ['title', 'slug', 'genre_id','label_id','format_id','year_released',
 							'purchase_date','purchase_price','album_thumbnail', 'album_image', 'use_track_artwork'];
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-	}
-
 	public static function boot()
 	{
 		parent::boot();

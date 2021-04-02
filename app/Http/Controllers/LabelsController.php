@@ -11,7 +11,7 @@ class LabelsController extends Controller
     ){}
 
     /**
-     * Display a listing of the resource.
+     * Display a paginated list of record labels.
      * GET /labels
      *
      * @return Response
@@ -19,7 +19,7 @@ class LabelsController extends Controller
     public function index()
     {       
         return View('labels.index', array(
-            'labels' => $this->labels->getPaginated()
+            'labels' => $this->labels->withFields()->orderBy('label')->paginate(48)
         ));
     }
 }

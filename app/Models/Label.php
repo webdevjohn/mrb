@@ -132,12 +132,4 @@ class Label extends Model
 	{
 		return $query->facetableByTracks($trackIds)->orderBy('label')->get();
 	} 
-
-	public function scopeGetPaginated()
-	{
-		return $this->has('tracks')
-			->WithFields()
-			->orderBy('label')
-			->paginate(48);
-	}
 }

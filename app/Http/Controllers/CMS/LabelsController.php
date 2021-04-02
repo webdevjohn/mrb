@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Labels\CreateLabel;
 use App\Http\Requests\CMS\Labels\UpdateLabel;
 use App\Models\Label;
+use App\Services\ImageResize\LabelImageResize;
 
 class LabelsController extends Controller
 {
     public function __construct(
-        protected Label $labels
+        protected Label $labels,
+        protected LabelImageResize $labelImageResize
     ){}
 
     /**
@@ -45,9 +47,14 @@ class LabelsController extends Controller
      * @return Illuminate\Http\RedirectResponse
      */
     public function store(CreateLabel $request)
-    {
+    {    
+        $this->labelImageResize->setUp($request->file('image'));
+
         $this->labels->create(
-            $request->validated()
+            array_merge($request->validated(), [
+                'label_image' => $this->labelImageResize->main(),
+                'label_thumbnail' => $this->labelImageResize->thumb()
+            ])
         );
 
         return redirect()
@@ -90,8 +97,13 @@ class LabelsController extends Controller
      */
     public function update(UpdateLabel $request, Label $label)
     {
+        $this->labelImageResize->setUp($request->file('image'));
+
         $label->fill(
-            $request->validated()
+            array_merge($request->validated(), [
+                'label_image' => $this->labelImageResize->main(),
+                'label_thumbnail' => $this->labelImageResize->thumb()
+            ])
         )->save();
 
         return redirect()

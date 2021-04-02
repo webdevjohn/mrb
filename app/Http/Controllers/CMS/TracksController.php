@@ -7,19 +7,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Tracks\CreateTrack;
 use App\Http\Requests\CMS\Tracks\UpdateTrack;
 use App\Models\Track;
+use App\Services\ImageResize\TrackImageResize;
 use App\Services\SelectBoxes\Pages\CMS\TracksCreateEdit;
 
 class TracksController extends Controller
 {
     public function __construct(
         protected Track $tracks, 
-        protected TracksCreateEdit $selectBoxes
+        protected TracksCreateEdit $selectBoxes,
+        protected TrackImageResize $trackImageResize
     ){}
 
     /**
      * Display a listing of the resource.
      *
-     * @return  \Illuminate\Http\Response     
+     * @return \Illuminate\Http\Response     
      */
     public function index(Request $request)
     {     
@@ -41,13 +43,21 @@ class TracksController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Track.
      *
      */
     public function store(CreateTrack $request)
     {
+        $this->trackImageResize->setUp(
+            $request->file('image'), 
+            $request->label_id
+        );
+
         $this->tracks->create(
-            $request->validated()
+            array_merge($request->validated(), [
+                'track_image' => $this->trackImageResize->main(),
+                'track_thumbnail' => $this->trackImageResize->thumb()
+            ])
         );
 
         return redirect()

@@ -13,7 +13,7 @@
 
 	<section id="form-con">		
 	
-		<form method="POST" action="{{ route('cms.labels.store') }}">
+		<form method="POST" action="{{ route('cms.labels.store') }}" enctype="multipart/form-data">
 			@csrf
 
 			<label for="label">Record Label: </label>
@@ -22,6 +22,12 @@
     			<div class="form-input-error">{{ $message }}</div>
 			@enderror
 			
+			<label for="image">Image: </label>
+  			<input name="image" type="file">
+			@error('image')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
+
 			<button type="submit">Create a new Record Label</button>			
 		</form>
 	</section>

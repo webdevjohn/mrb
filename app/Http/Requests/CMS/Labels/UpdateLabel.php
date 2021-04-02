@@ -30,8 +30,7 @@ class UpdateLabel extends Request
                 'max:50',
                 Rule::unique('labels')->ignore($this->route('label')->id)
             ],        
-            'label_thumbnail' => 'nullable|max:50',
-            'label_image' => 'nullable|max:50'
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif',
         ];
     }
 
@@ -45,10 +44,7 @@ class UpdateLabel extends Request
         return [        
             'label.required' => 'A label is required.',
             'label.max' => 'A label must not exceed :max characters.',
-            'label.unique' => 'The label submitted is already in the database.',
-
-            'label_thumbnail.max' => 'A label thumbnail must not exceed :max characters.',
-            'label_image.max' => 'A label image must not exceed :max characters.'
+            'label.unique' => 'The label submitted is already in the database.'
         ];
     }
 }

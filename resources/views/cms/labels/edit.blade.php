@@ -13,7 +13,7 @@
 
 	<section id="form-con">		
 
-		<form method="POST" action="{{ route('cms.labels.update', $label->slug) }}">
+		<form method="POST" action="{{ route('cms.labels.update', $label->slug) }}" enctype="multipart/form-data">
 			@method('PATCH')
 			@csrf
 
@@ -23,20 +23,13 @@
     			<div class="form-input-error">{{ $message }}</div>
 			@enderror
 
-			<label for="label_thumbnail">Thumbnail: </label>
-			<input name="label_thumbnail" type="text" id="label" value="{{ old('label_thumbnail') ?? $label->label_thumbnail }}">
-			@error('label_thumbnail')
-    			<div class="form-input-error">{{ $message }}</div>
-			@enderror
-
-			<label for="label_image">Main Image: </label>
-			<input name="label_image" type="text" id="label" value="{{ old('label_image') ?? $label->label_image }}">
-			@error('label_image')
+			<label for="image">Image: </label>
+  			<input name="image" type="file">
+			@error('image')
     			<div class="form-input-error">{{ $message }}</div>
 			@enderror
 			
-			<button type="submit">Update</button>	
-		
+			<button type="submit">Update</button>			
 		</form>
 	</section>
 @stop
