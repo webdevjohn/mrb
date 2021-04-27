@@ -2,7 +2,7 @@
 
 namespace App\Services\SelectBoxes\Pages\CMS;
 
-use App\Services\SelectBoxes\SelectBoxService;
+use Webdevjohn\SelectBoxes\SelectBoxService;
 
 class AlbumsCreateEdit extends SelectBoxService {
 

@@ -13,4 +13,3 @@ return [
     
     'cms.tracks' => TracksCreateEdit::class
 ];
-
