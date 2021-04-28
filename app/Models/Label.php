@@ -28,20 +28,6 @@ class Label extends Model
     */
 	protected $fillable = ['label', 'slug', 'label_thumbnail', 'label_image'];
 
-	public static function boot()
-	{
-		parent::boot();
-
-        static::creating(function($item) {            
-            $item->slug = Str::slug($item->label);
-        });
-
-		static::updating(function($item) {            
-        	$item->slug = Str::slug($item->label);
-        });
-	}
-
-
     /*
     |--------------------------------------------------------------------------
     | Relationships
