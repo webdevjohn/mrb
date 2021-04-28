@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Labels\CreateLabel;
 use App\Http\Requests\CMS\Labels\UpdateLabel;
 use App\Models\Label;
+use App\Services\CRUD\Label\LabelCreationService;
+use App\Services\CRUD\Label\LabelUpdateService;
 use App\Services\ImageResize\LabelImageResize;
 
 class LabelsController extends Controller
 {
     public function __construct(
         protected Label $labels,
-        protected LabelImageResize $labelImageResize
+        protected LabelImageResize $labelImageResize,
     ){}
 
     /**
@@ -46,23 +48,10 @@ class LabelsController extends Controller
      * 
      * @return Illuminate\Http\RedirectResponse
      */
-    public function store(CreateLabel $request)
-    {            
-        if ($request->file('image')) {
-            
-            $this->labelImageResize->setUp($request->file('image'));
-
-            $this->labels->create(
-                array_merge($request->validated(), [
-                    'label_image' => $this->labelImageResize->main(),
-                    'label_thumbnail' => $this->labelImageResize->thumb()
-                ])
-            );
-
-        } else {
-            $this->labels->create($request->validated());
-        }
-
+    public function store(CreateLabel $request, LabelCreationService $labelCreationService)
+    {               
+        $labelCreationService->create($request->validated());
+        
         return redirect()
             ->route('cms.labels.create')
             ->with('success','Label created successfully!');  
@@ -98,26 +87,14 @@ class LabelsController extends Controller
      *
      * @param UpdateLabel $request
      * @param Label $label
+     * @param LabelUpdateService $labelUpdateService
      * 
      * @return Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateLabel $request, Label $label)
+    public function update(UpdateLabel $request, Label $label, LabelUpdateService $labelUpdateService)
     {
-        if ($request->file('image')) {
-
-            $this->labelImageResize->setUp($request->file('image'));
-
-            $label->fill(
-                array_merge($request->validated(), [
-                    'label_image' => $this->labelImageResize->main(),
-                    'label_thumbnail' => $this->labelImageResize->thumb()
-                ])
-            )->save();
-
-        } else {            
-            $label->fill($request->validated())->save();
-        }
-
+        $labelUpdateService->update($request->validated(), $label);
+ 
         return redirect()
             ->route('cms.labels.index')
             ->with('success',"Label updated successfully!");   
