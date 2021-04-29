@@ -13,28 +13,46 @@ class LabelCreationService {
         protected LabelImageResize $labelImageResize
     ) {}
 
-    public function create(array $requestInput)
+
+    /**
+     *
+     * @param array $requestInput
+     * 
+     * @return Label
+     */
+    public function create(array $requestInput): Label
     {     
         if (isset($requestInput['image'])) {
-            
-            $this->labelImageResize->setUp(
-                $requestInput['image']
-            );
-
-            $this->labels->create(
-                array_merge($requestInput, [
-                    'slug' => Str::slug($requestInput['label']),
-                    'label_image' => $this->labelImageResize->main(),
-                    'label_thumbnail' => $this->labelImageResize->thumb()
-                ])
-            );
-
-        } else {
-            $this->labels->create(
-                array_merge($requestInput, [
-                    'slug' => Str::slug($requestInput['label']),
-                ])
-            );
+            return $this->createLabelWithImage($requestInput);
         }
+    
+        return $this->labels->create(
+            array_merge($requestInput, [
+                'slug' => Str::slug($requestInput['label']),
+            ])
+        );       
+    }
+
+
+    /**
+     * Create a new Label with uploaded image.
+     *
+     * @param array $requestInput
+     * 
+     * @return Label
+     */
+    protected function createLabelWithImage(array $requestInput): Label
+    {
+        $this->labelImageResize->setUp(
+            $requestInput['image']
+        );
+
+        return $this->labels->create(
+            array_merge($requestInput, [
+                'slug' => Str::slug($requestInput['label']),
+                'label_image' => $this->labelImageResize->main(),
+                'label_thumbnail' => $this->labelImageResize->thumb()
+            ])
+        );
     }
 }
