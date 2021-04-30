@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class Genre extends Model
 {
@@ -28,19 +27,6 @@ class Genre extends Model
     */
 	protected $fillable = ['genre', 'slug'];
 	
-	public static function boot()
-	{
-		parent::boot();
-
-        static::creating(function($genre) {            
-            $genre->slug = Str::slug($genre->genre);
-        });
-
-		static::updating(function($genre) {            
-        	$genre->slug = Str::slug($genre->genre);
-        });
-	}
-
 
     /*
     |--------------------------------------------------------------------------

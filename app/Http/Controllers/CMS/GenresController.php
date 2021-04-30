@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Genres\CreateGenre;
 use App\Http\Requests\CMS\Genres\UpdateGenre;
 use App\Models\Genre;
+use Illuminate\Support\Str;
 
 class GenresController extends Controller
 {
@@ -45,7 +46,9 @@ class GenresController extends Controller
     public function store(CreateGenre $request)
     {
         $this->genres->create(
-            $request->validated()
+            array_merge($request->validated(), [
+                'slug' => Str::slug($request->genre)
+            ])   
         );
 
         return redirect()
@@ -89,7 +92,9 @@ class GenresController extends Controller
     public function update(UpdateGenre $request, Genre $genre)
     {
         $genre->fill(
-            $request->validated()
+            array_merge($request->validated(), [
+                'slug' => Str::slug($request->genre)
+            ])   
         )->save();
         
         return redirect()
