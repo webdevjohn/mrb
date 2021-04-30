@@ -13,7 +13,7 @@
 
 	<section id="form-con">		
 
-		<form method="POST" action="{{ route('cms.tracks.update', $track->id) }}">
+		<form method="POST" action="{{ route('cms.tracks.update', $track->id) }}" enctype="multipart/form-data">
 			@method('PATCH')
 			@csrf
 
@@ -85,15 +85,9 @@
 
 			<hr />
 
-			<label for="track_thumbnail">Track Thumbnail: </label>
-			<input name="track_thumbnail" type="text" id="track_thumbnail" value="{{ old('track_thumbnail') ?? $track->track_thumbnail }}">
-			@error('track_thumbnail')
-    			<div class="form-input-error">{{ $message }}</div>
-			@enderror
-	
-			<label for="track_image">Track Main Image: </label>
-			<input name="track_image" type="text" id="track_image" value="{{ old('track_image') ?? $track->track_image }}">
-			@error('track_image')
+			<label for="image">Image: </label>
+  			<input name="image" type="file">
+			@error('image')
     			<div class="form-input-error">{{ $message }}</div>
 			@enderror
 

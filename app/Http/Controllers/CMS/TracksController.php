@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Tracks\CreateTrack;
 use App\Http\Requests\CMS\Tracks\UpdateTrack;
 use App\Models\Track;
+use App\Services\CRUD\Track\TrackCreationService;
 use App\Services\ImageResize\TrackImageResize;
 use App\Services\SelectBoxes\Pages\CMS\TracksCreateEdit;
 
@@ -46,28 +47,9 @@ class TracksController extends Controller
      * Store a newly created Track.
      *
      */
-    public function store(CreateTrack $request)
+    public function store(CreateTrack $request, TrackCreationService $trackCreationService)
     {
-        if ($request->file('image')) {
-
-            $this->trackImageResize->setUp($request->file('image'), $request->label_id);
-
-            $track = $this->tracks->create(
-                array_merge($request->validated(), [
-                    'track_image' => $this->trackImageResize->main(),
-                    'track_thumbnail' => $this->trackImageResize->thumb()
-                ])
-            );
-
-        } else {
-           $track = $this->tracks->create($request->validated());
-        }    
-
-        $track->artists()->attach($request->artists);
-				
-        if ($request->tags) {
-            $track->tags()->attach($request->tags);
-        }
+        $trackCreationService->create($request->validated());
 
         return redirect()
             ->route('cms.tracks.create')
