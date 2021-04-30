@@ -52,7 +52,7 @@ class TracksController extends Controller
 
             $this->trackImageResize->setUp($request->file('image'), $request->label_id);
 
-            $this->tracks->create(
+            $track = $this->tracks->create(
                 array_merge($request->validated(), [
                     'track_image' => $this->trackImageResize->main(),
                     'track_thumbnail' => $this->trackImageResize->thumb()
@@ -60,8 +60,14 @@ class TracksController extends Controller
             );
 
         } else {
-            $this->tracks->create($request->validated());
+           $track = $this->tracks->create($request->validated());
         }    
+
+        $track->artists()->attach($request->artists);
+				
+        if ($request->tags) {
+            $track->tags()->attach($request->tags);
+        }
 
         return redirect()
             ->route('cms.tracks.create')
@@ -118,10 +124,10 @@ class TracksController extends Controller
 		    $track->fill($request->validated())->save();
         }
 
-        // Need to fire the event manually, after every update, as the event will 
-        // not fire automatically if only the pivot table changes (e.g. Artists, Tags).
-        event('eloquent.updated: App\Models\Track', $track);
-        
+        $track->artists()->sync($request->artists);	
+
+        $track->tags()->sync($request->tags);
+      
         return redirect()
             ->route('cms.tracks.index')
             ->with('success','Track updated successfully!');  

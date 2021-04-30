@@ -39,31 +39,6 @@ class Track extends Model
 	 */							
 	protected $sortableFields = ['year_released', 'popularity'];
 
-	public static function boot()
-	{
-		parent::boot();
-
-		static::created(function($track) {            
-
-			$track->artists()->attach(Request()->artists);
-				
-			if (isset(Request()->tags) ) {
-				$track->tags()->attach(Request()->tags);
-			}
-		});
-
-		static::updated(function($track) {   
-
-        	$track->artists()->sync(Request()->artists);	
-		
-			$track->tags()->detach();
-		
-			if (isset(Request()->tags) ) {	
-				$track->tags()->attach(Request()->tags);
-			}
-        });
-	}
-
 
     /*
     |--------------------------------------------------------------------------
