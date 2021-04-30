@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Artists\CreateArtist;
 use App\Http\Requests\CMS\Artists\UpdateArtist;
 use App\Models\Artist;
+use Illuminate\Support\Str;
 
 class ArtistsController extends Controller
 {
@@ -47,7 +48,9 @@ class ArtistsController extends Controller
     public function store(CreateArtist $request)
     {
         $this->artists->create(
-            $request->validated()
+            array_merge($request->validated(), [
+                'slug' => Str::slug($request->artist_name)
+            ])   
         );
 
         return redirect()
@@ -91,7 +94,9 @@ class ArtistsController extends Controller
     public function update(UpdateArtist $request, Artist $artist)
     {
         $artist->fill(
-            $request->validated()
+            array_merge($request->validated(), [
+                'slug' => Str::slug($request->artist_name)
+            ])   
         )->save();
 
         return redirect()

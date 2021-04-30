@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class Artist extends Model
 {
@@ -27,19 +26,6 @@ class Artist extends Model
      * @var array
     */
 	protected $fillable = ['artist_name', 'slug'];
-
-	public static function boot()
-	{
-		parent::boot();
-
-        static::creating(function($artist) {            
-            $artist->slug = Str::slug($artist->artist_name);
-        });
-
-		static::updating(function($artist) {            
-        	$artist->slug = Str::slug($artist->artist_name);
-        });
-	}
 
 
     /*
