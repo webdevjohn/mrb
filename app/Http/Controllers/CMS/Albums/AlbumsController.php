@@ -7,6 +7,7 @@ use App\Http\Requests\CMS\Albums\CreateAlbum;
 use App\Http\Requests\CMS\Albums\UpdateAlbum;
 use App\Models\Album;
 use App\Services\SelectBoxes\Pages\CMS\AlbumsCreateEdit;
+use Illuminate\Support\Str;
 
 class AlbumsController extends Controller
 {
@@ -48,7 +49,9 @@ class AlbumsController extends Controller
     public function store(CreateAlbum $request)
     {
         $this->albums->create(
-            $request->validated()
+            array_merge($request->validated(), [
+                'slug' => Str::slug($request->title)
+            ])          
         );
         
         return redirect()
@@ -92,7 +95,11 @@ class AlbumsController extends Controller
      */
     public function update(UpdateAlbum $request, Album $album)
     {
-        $album->fill($request->validated())->save();
+        $album->fill(
+            array_merge($request->validated(), [
+                'slug' => Str::slug($request->title)
+            ])  
+        )->save();
 
         return redirect()
             ->route("cms.albums.index")

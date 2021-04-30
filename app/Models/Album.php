@@ -6,7 +6,6 @@ use App\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Webdevjohn\Filterable\Traits\Filterable;
-use Illuminate\Support\Str;
 
 class Album extends Model
 {
@@ -26,19 +25,6 @@ class Album extends Model
     */
 	protected $fillable = ['title', 'slug', 'genre_id','label_id','format_id','year_released',
 							'purchase_date','purchase_price','album_thumbnail', 'album_image', 'use_track_artwork'];
-
-	public static function boot()
-	{
-		parent::boot();
-
-        static::creating(function($album) {            
-            $album->slug = Str::slug($album->title);
-        });
-
-		static::updating(function($album) {            
-        	$album->slug = Str::slug($album->title);
-        });
-	}
 
 
     /*
