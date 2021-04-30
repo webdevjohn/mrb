@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Playlists\CreatePlaylist;
 use App\Http\Requests\CMS\Playlists\UpdatePlaylist;
 use App\Models\Playlist;
-use App\Services\SelectBoxes\SelectBoxService;
+use Illuminate\Support\Str;
+use Webdevjohn\SelectBoxes\SelectBoxService;
 
 class PlaylistsController extends Controller
 {
     public function __construct(
         protected Playlist $playlists, 
-        protected SelectBoxService $selectBox
+        protected SelectBoxService $selectBoxes
     ){}
 
     /**
@@ -35,7 +36,7 @@ class PlaylistsController extends Controller
     public function create()
     {
         return View('cms.playlists.create', [
-            'genreList' => $this->selectBox->createFrom('App\Models\Genre')
+            'genreList' => $this->selectBoxes->createFrom('App\Models\Genre')
                 ->orderBy('genre')
                 ->display('genre')
                 ->asArray()
@@ -52,7 +53,9 @@ class PlaylistsController extends Controller
     public function store(CreatePlaylist $request)
     {
         $this->playlists->create(
-            $request->validated()
+            array_merge($request->validated(), [
+                'slug' => Str::slug($request->name)
+            ])   
         );
 
         return redirect()
@@ -82,7 +85,7 @@ class PlaylistsController extends Controller
     {
         return View('cms.playlists.edit', [
             'playlist'  => $playlist,
-            'genreList' => $this->selectBox->createFrom('App\Models\Genre')
+            'genreList' => $this->selectBoxes->createFrom('App\Models\Genre')
                 ->orderBy('genre')
                 ->display('genre')
                 ->asArray()
@@ -100,7 +103,9 @@ class PlaylistsController extends Controller
     public function update(UpdatePlaylist $request, Playlist $playlist)
     {
         $playlist->fill(
-            $request->validated()
+            array_merge($request->validated(), [
+                'slug' => Str::slug($request->name)
+            ])   
         )->save();
 
         return redirect()
