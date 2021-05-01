@@ -25,7 +25,7 @@ class LabelUpdateService {
     public function update(array $requestInput, Label $label)
     {     
         if (isset($requestInput['image'])) {           
-           return $this->updateLabelImage($requestInput, $label);
+            return $this->updateLabelImage($requestInput, $label);
         }
   
         return $label->fill(

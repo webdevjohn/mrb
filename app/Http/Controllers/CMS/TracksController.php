@@ -8,6 +8,7 @@ use App\Http\Requests\CMS\Tracks\CreateTrack;
 use App\Http\Requests\CMS\Tracks\UpdateTrack;
 use App\Models\Track;
 use App\Services\CRUD\Track\TrackCreationService;
+use App\Services\CRUD\Track\TrackUpdateService;
 use App\Services\ImageResize\TrackImageResize;
 use App\Services\SelectBoxes\Pages\CMS\TracksCreateEdit;
 
@@ -89,26 +90,9 @@ class TracksController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTrack $request, Track $track)
+    public function update(UpdateTrack $request, Track $track, TrackUpdateService $trackUpdateService)
     {
-        if ($request->file('image')) {
-            
-            $this->trackImageResize->setUp($request->file('image'), $request->label_id);
-
-            $track->fill(
-                array_merge($request->validated(), [
-                    'label_image' => $this->trackImageResize->main(),
-                    'label_thumbnail' => $this->trackImageResize->thumb()
-                ])
-            )->save();
-
-        } else {
-		    $track->fill($request->validated())->save();
-        }
-
-        $track->artists()->sync($request->artists);	
-
-        $track->tags()->sync($request->tags);
+        $trackUpdateService->update($request->validated(), $track);
       
         return redirect()
             ->route('cms.tracks.index')
