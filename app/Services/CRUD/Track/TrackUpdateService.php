@@ -57,7 +57,7 @@ class TrackUpdateService {
 
     /**
      *
-     * @param Track $labelSlug
+     * @param Track $track
      * 
      * @return void
      */
@@ -65,7 +65,6 @@ class TrackUpdateService {
     {
         $main = "public/images/main/" . $track->label->slug . "/" . $track->track_image;
         $thumb = "public/images/thumbs/" . $track->label->slug . "/" . $track->track_thumbnail;
-
 
         if ($this->storage->exists($main)) {
             $this->storage->delete($main);
