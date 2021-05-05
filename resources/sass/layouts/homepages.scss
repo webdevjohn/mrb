@@ -119,12 +119,13 @@
 @media screen and (min-width: 1250px) {
     #homepage-layout {
         grid-template-columns: 1fr 1fr;
+        gap: 0px;
     }
     #homepage-layout #main .track-listings { 
         grid-template-columns: 230px 230px 230px 		
     } 
     #homepage-layout #popular-labels {
-        width: auto;
+        width: 480px;
     }
     #homepage-layout #popular-labels {
         grid-template-columns: 1fr
