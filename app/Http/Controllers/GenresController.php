@@ -21,7 +21,7 @@ class GenresController extends Controller
     public function index()
     {
         return View('genres.index', array(
-            'genres' => $this->genres->withTrackCount()
+            'genres' => $this->genres->withTrackCount()->orderBy('genre')->get()
         ));
     }
 

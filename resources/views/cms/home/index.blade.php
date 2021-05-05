@@ -41,6 +41,24 @@
 		</article>
 	</section>
 
+	<section class="pie-charts"> 
+		<article>		
+			<canvas id="genreSummaryThisYear"></canvas>
+		</article>
+		<article>
+			<canvas id="genreSummaryLastYear"></canvas>
+		</article>
+		<article>
+			<canvas id="genreSummary"></canvas>
+		</article>
+	</section>
+
+	<section class="main-chart">
+		<article>
+			<canvas id="chartTracksByYear" height="100"></canvas>
+		</article>
+	</section>
+
 	<section class="feature-list">
 		<article>
 			<div class="icon icon-database"><h1>Manage Base Database</h1></div>
@@ -74,21 +92,20 @@
 
 	@section('javascript')	
 		<script type="text/javascript">
-			
+	
 			Chart.defaults.global.elements.point.borderWidth = 2;
 			Chart.defaults.global.elements.point.hitRadius = 5;
 	
 			$.ajax({
-	            url: '{{ URL::route('cms.tracks.by-year-purchased', date("Y")) }}',
+	            url: '{{ route('cms.tracks.by-year-purchased', date("Y")) }}',
 	            type: 'GET',
 	            success: function(results)
-	            {
+	            {			
 	            	var labels = [], data = [];
 	            	var ctx = document.getElementById("chartTracksPurchasedThisYear");
 					var chartTitle = 'Tracks Purchased This Year ({{ date("Y")}})';
 			  		
-			  		for (var key in results) 
-					{
+			  		for (var key in results) {
 					    let value = results[key];					
 					    labels.push(value.month);
 					    data.push(value.track_count);
@@ -97,9 +114,9 @@
 					var chartData = {
 					        labels: labels,
 					        datasets: [{					
-					            fill: false,				
-      							backgroundColor: 'rgb(28, 128, 165)',
-      							borderColor: 'rgb(28, 128, 165)',
+					            fill: true,				
+      							backgroundColor: '#FD8B05',
+      							borderColor: '#FD8B05',
 					            data: data,					        
 					        }]
 					    };
@@ -109,9 +126,8 @@
 	        	}
         	});
 
-
         	$.ajax({
-	            url: '{{ URL::route('cms.tracks.by-year-purchased', $theDate = date("Y") -1) }}',
+	            url: '{{ route('cms.tracks.by-year-purchased', date("Y") -1) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {
@@ -119,8 +135,7 @@
 					var ctx = document.getElementById("chartTracksPurchasedLastYear");
 					var chartTitle = 'Tracks Purchased Last Year ({{ $theDate = date("Y") -1 }})';
 			  		
-			  		for (var key in results) 
-					{
+			  		for (var key in results) {
 					    let value = results[key];					
 					    labels.push(value.month);
 					    data.push(value.track_count);
@@ -129,16 +144,157 @@
 					var chartData = {
 					        labels: labels,
 					        datasets: [{
-					            fill: false,
-					        	backgroundColor: 'rgb(28, 128, 165)',
-      							borderColor: 'rgb(28, 128, 165)',
+					            fill: true,
+					        	backgroundColor: '#FD8B05',
+      							borderColor: '#FD8B05',
 					            data: data,					        
 					        }]
 					    };
 
-					var myChart = createLineChart(ctx, chartData, chartTitle);
+					var myChart = createLineChart(ctx, chartData, chartTitle);			
 	        	}
         	});
+
+    		$.ajax({
+	            url: '{{ route('cms.tracks.by-year') }}',
+	            type: 'GET',
+	            success: function(results)
+	            {
+					var labels = [], data = [];
+					var ctx = document.getElementById("chartTracksByYear");
+					var chartTitle = 'Tracks Purchased by Year';
+			  		
+			  		for (var key in results) {
+					    let value = results[key];					
+					    labels.push(value.year);
+					    data.push(value.track_count);
+					}
+					
+					var chartData = {
+					        labels: labels,
+					        datasets: [{
+					            fill: true,
+					        	backgroundColor: '#FD8B05',
+      							borderColor: '#FD8B05',
+					            data: data,					        
+					        }]
+					    };
+
+					var myChart = createLineChart(ctx, chartData, chartTitle);			
+	        	}
+        	});
+
+
+        	$.ajax({
+	            url: '{{ route('cms.genres.summary', date("Y")) }}',
+	            type: 'GET',
+	            success: function(results)
+	            {
+					var labels = [], data = [], bgColours = [];
+					var ctx = document.getElementById("genreSummaryThisYear");
+					var chartTitle = 'Tracks Purchased by Genre ({{ date("Y") }})';
+			  		
+			  		for (var key in results) {
+					    let value = results[key];					
+					    labels.push(value.genre + " (" + value.track_count + ")");
+					    data.push(value.track_count);
+						bgColours.push(value.colour_code);
+					}
+					
+					var chartData = {
+					        labels: labels,
+					        datasets: [{
+					            fill: true,
+					        	backgroundColor: bgColours,      					
+					            data: data,					        
+					        }]
+					    };
+
+					var myChart = createPieChart(ctx, chartData, chartTitle);			
+	        	}
+        	});
+
+			$.ajax({
+	            url: '{{ route('cms.genres.summary', date("Y")-1) }}',
+	            type: 'GET',
+	            success: function(results)
+	            {
+					var labels = [], data = [], bgColours = [];
+					var ctx = document.getElementById("genreSummaryLastYear");
+					var chartTitle = 'Tracks Purchased by Genre ({{ date("Y")-1 }})';
+			  		
+			  		for (var key in results) {
+					    let value = results[key];					
+					    labels.push(value.genre + " (" + value.track_count + ")");
+					    data.push(value.track_count);
+						bgColours.push(value.colour_code);
+					}
+					
+					var chartData = {
+					        labels: labels,
+					        datasets: [{
+					            fill: true,
+					        	backgroundColor: bgColours,      					
+					            data: data,					        
+					        }]
+					    };
+
+					var myChart = createPieChart(ctx, chartData, chartTitle);			
+	        	}
+        	});
+
+			$.ajax({
+	            url: '{{ route('cms.genres.summary', date("Y")-2) }}',
+	            type: 'GET',
+	            success: function(results)
+	            {
+					var labels = [], data = [], bgColours = [];
+					var ctx = document.getElementById("genreSummary");
+					var chartTitle = 'Tracks Purchased by Genre ({{ date("Y")-2 }})';
+			  		
+			  		for (var key in results) {
+					    let value = results[key];					
+					    labels.push(value.genre + " (" + value.track_count + ")");
+					    data.push(value.track_count);
+						bgColours.push(value.colour_code);
+					}
+					
+					var chartData = {
+					        labels: labels,
+					        datasets: [{
+					            fill: true,
+					        	backgroundColor: bgColours,      					
+					            data: data,					        
+					        }]
+					    };
+
+					var myChart = createPieChart(ctx, chartData, chartTitle);			
+	        	}
+        	});
+
+			function createPieChart(ctx, chartData, chartTitle)
+			{
+				new Chart(ctx, {
+					type: 'pie',
+					data: chartData,
+					options: {
+						responsive: true,
+						legend: {
+			           	 	display: true,	
+								position: "bottom",
+							labels: {
+                    			fontColor: '#DCDCDC',	                
+								fontSize: 12
+                			}									         
+			        	},
+						title: {
+							display: true,
+							text: chartTitle,
+							fontColor: '#DCDCDC'
+						}
+					}
+				});
+			}
 
 
         	function createLineChart(ctx, data, chartTitle)
@@ -150,13 +306,27 @@
 				    	legend: {
 			           	 	display: false,				         
 			        	},
+
 			        	title: {
 	    					display: true,
-	    					text: chartTitle
+	    					text: chartTitle,
+							fontColor: '#DCDCDC',
 						},
+
 				        scales: {
 				            yAxes: [{
+								gridLines: { 
+									zeroLineColor: '#212024',
+									color: "#212024", 
+								},
 				                ticks: {
+									fontColor: "#DCDCDC",									                         
+				                    beginAtZero:true
+				                },
+				            }],
+							xAxes: [{
+				                ticks: {
+									fontColor: "#DCDCDC",									                         
 				                    beginAtZero:true
 				                }
 				            }]
@@ -164,9 +334,6 @@
 					},		       
 		        });
         	}
-
-
 		</script>
 	@stop
-
 @stop

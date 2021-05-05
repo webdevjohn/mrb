@@ -2,8 +2,8 @@ body {
 	font-family: Arial, Helvetica, sans-serif;	
 	font-size: 100%; 
 	font-weight: normal;
-	background: #EEEEEE;
-	color: #222;
+	background: $bodyBGColour;
+	color: #DCDCDC;
 }
 body, html {
     height: 100%;
@@ -31,15 +31,14 @@ strong {
 #logo {
 	float: left;
 	display: block;
-	background: #1C80A5;
 	text-align: center;
 	color: #fff;
     font-family: 'montserratbold';
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-size: 100%;
-	border-right: 1px solid #1A7796;
-	padding: 32px 20px 27px 20px;
+	border-right: 1px solid $borderColour;
+	padding: 37px 20px 32px 20px;
 }
 #logo span {
 	color: #ccc;
@@ -47,46 +46,48 @@ strong {
 
 #appbar {
 	display: block;
-	background: #1C80A5;
-	min-height: 76px;
+	background: $appbarBG;
+	min-height: 86px;
+	border-bottom: 1px solid $borderColour;
 }
 #appbar ul li a {
 	display: block;
 	float: left;
-	border-right: 1px solid #1A7796;
-	padding: 30px 30px;
+	border-right: 1px solid $borderColour;
+	padding: 35px 35px;
 	color: #fff;
 }
 #appbar ul li a:hover {
-	background: #fff;
-	color: #000;
+	background: #000;
+	color: #fff;
 }
 
 #page-footer {
 	min-height: 125px;
-	background: #fff;
+	background: $pageFooterBg;
 	margin-top: 50px;
-	border-top: 1px solid #E6E6E6;
+	border-top: 1px solid $borderColour;
 }
 
 /************************/ 
 /*		Breadcrums		*/
 /************************/
 #breadcrums {	
-	background: #fff;
+	background: $breadcrumBgColor;
 	padding: 5px 20px 5px 20px;
 }
 #breadcrums ul li {
-	color: #444;
+	color: $baseFontColor;
 	font-size: 90%;
 	display: inline-block;
 }
 #breadcrums ul li a {
 	display: block;	
+	color: $baseFontColor;
 	padding: 10px 12px 10px 0px;
 }
 #breadcrums ul li.active-breadcrum {
-	color: #aaa;
+	color: $baseFontColor;
 	padding: 10px 12px 10px 11px;
 }
 
@@ -95,9 +96,9 @@ strong {
 /************************/
 
 .pagination {
-	background: #fff;
-	border: 1px solid #E6E6E6;
-	border-radius: 5px;
+	// background: #fff;
+	// border: 1px solid #E6E6E6;
+	// border-radius: 5px;
 	margin-top: 20px;	
 	margin-bottom: 20px;	
 	clear: both;
@@ -114,11 +115,11 @@ strong {
 }
 .pagination li a, .pagination .active {
 	padding: 18px 25px 18px 25px;
-	background: #fff;
-	color: #222;
+	background: $articleBg;
+	color: #fff;
 	display: inline-block;
 	border-radius: 5px;
-	border: 1px solid #ccc;
+	border: 1px solid $borderColour;
 }
 .pagination .active {
 	background: #1081CC;
@@ -136,62 +137,78 @@ strong {
 .table-con {
 	margin-top: 40px;
 	padding: 20px;
-	background: #fff;
-	border: 1px solid #E6E6E6;
-	border-radius: 5px;
+	// background: #fff;
+	// border: 1px solid #E6E6E6;
+	// border-radius: 5px;
+}
+
+.section-header {
+	font-size: 200%;
+	color: $baseFontColor;
+	// background: #000;
+	padding: 20px 0px;
+	margin-bottom: 40px;
 }
 
 table {
 	width: 100%;
-	border: 0px solid #fff;
 	font-size: 90%
 }
 
 table th {
 	font-weight: bold;
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
-	background: #ffffff; /* Old browsers */
-	background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	text-align: left;
-	border: 1px solid #ddd;
-	padding: 10px;
-	line-height: 2.0em;
-	color: #000;
+	// border: 1px solid #ddd;
+	background: $bodyBGColour;
+	padding: 0px 0px 0px 20px;
+	line-height: 1.0em;
+	color: $baseFontColor;
 }
 
 table tr td {
-	padding: 10px 10px;
-	border: 1px solid #ddd;
+	padding: 5px 10px 5px 20px;
+	border-top: 10px solid $bodyBGColour;
+	height: 60px;
 	vertical-align: middle;
+	border-radius: 20px;
+	color: $baseFontColor;
+
 }
 
 table tr {
-	border: 1px solid #ddd;
-	background: #fff url(images/table-cell-bg.gif) repeat-x;
+	border: 0px solid #ddd;
+	// background: #fff url(images/table-cell-bg.gif) repeat-x;
+	background: $articleBg;
+
 }
 
-table tr:nth-child(odd) {
-	background: #fff;
-}
+// table tr:nth-child(odd) {
+// 	background: #fff;
+// }
 
 table tfoot td {
 	text-align: right;
-	background: #f7f7f7;
+	background: darken($articleBg, 2);
+
 	padding: 20px;
+	border-radius: 0;
+	a {
+		color: #fff;
+	}
 }
 
 table th.access-level {
 	width: 125px;
 }
 
-table tr td.selectedId
-{
+table tr td.selectedId {
 	padding: 0px 15px;
 }
 
 table tbody tr:hover {
 	padding: 20px;
-	background: #eee;
+	background: darken($articleBg, 2);
+	box-shadow: $articleBoxShadow;
 	font-weight: bold;
 }
 
@@ -213,8 +230,7 @@ table tbody tr:hover {
 .logout-form button {	
 	padding: 15px 20px;
 	float: right;
-	margin: 10px 20px 10px 20px;
-
+	margin: 16px 20px 10px 20px;
 }
 
 /* form styles */

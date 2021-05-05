@@ -25,7 +25,7 @@ class Genre extends Model
      *
      * @var array
     */
-	protected $fillable = ['genre', 'slug'];
+	protected $fillable = ['genre', 'slug', 'colour_code'];
 	
 
     /*
@@ -51,18 +51,24 @@ class Genre extends Model
     |--------------------------------------------------------------------------   
     */
 
-    public function scopeWithTrackCount($query)
+    public function scopeWithTrackCount(Builder $query): Builder
 	{
 		return $query->join('tracks', 'tracks.genre_id', '=', 'genres.id')
-			->groupBy('genres.id', 'genres.genre', 'genres.slug')	
-			->orderBy('genres.genre')				
-			->get([
+			->groupBy('genres.id', 'genres.genre', 'genres.slug', 'genres.colour_code')			
+			->select([
 				'genres.id', 
 				'genres.genre', 
 				'genres.slug', 
+				'genres.colour_code',
 				DB::raw('count(*) as track_count'), 
 				DB::raw('sum(tracks.purchase_price) as genre_cost')
-			]);					
+			]);
+						
+	}
+
+	public function scopeByYearPurchased(Builder $query, int $year = 2018): Builder
+	{
+		return $query->where(DB::raw('YEAR(purchase_date)'), $year);	
 	}
 	
 	/**

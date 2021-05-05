@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CMS;
 use App\Http\Controllers\Controller;
 use App\Models\Album;
 use App\Models\Artist;
+use App\Models\Genre;
 use App\Models\Label;
 use App\Models\Track;
 
@@ -14,7 +15,8 @@ class HomeController extends Controller
         protected Track $tracks, 
         protected Artist $artists,
         protected Label $labels, 
-        protected Album $albums
+        protected Album $albums,
+        protected Genre $genres
     ){}
 
     /**
@@ -30,5 +32,13 @@ class HomeController extends Controller
             'labelCount' => $this->labels->getModelCount(),
             'albumCount' => $this->albums->getModelCount()
         ]);
+    }
+
+    public function getGenreSummary($year = 2021)
+    {
+        return $this->genres->withTrackCount()
+            ->byYearPurchased($year)
+            ->orderBy("track_count", 'desc')
+            ->get();	
     }
 }

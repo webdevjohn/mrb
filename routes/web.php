@@ -89,6 +89,14 @@ Route::prefix('cms')->name('cms.')->middleware(['auth', 'verified', 'roles.admin
         App\Http\Controllers\CMS\TracksController::class, 'getTracksByYearPurchased'
     ])->name('tracks.by-year-purchased');
 
+    Route::get('tracks/by-year', [
+        App\Http\Controllers\CMS\TracksController::class, 'getTracksByYear'
+    ])->name('tracks.by-year');
+
+    Route::get('genres/summary/{year}', [
+        App\Http\Controllers\CMS\HomeController::class, 'getGenreSummary'
+    ])->name('genres.summary');
+
     Route::resource('albums', App\Http\Controllers\CMS\Albums\AlbumsController::class)->scoped([
         'album' => 'slug',
     ]);

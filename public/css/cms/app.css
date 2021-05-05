@@ -105,17 +105,20 @@
 }
 
 .icon-database {
-  background: #1C80A5 url(images/bg/icons/database.png) no-repeat center;
+  border: 1px solid #232227;
+  background: #1e1c23 url(images/bg/icons/database.png) no-repeat center;
   text-align: center;
 }
 
 .icon-tools {
-  background: #1C80A5 url(images/bg/icons/tools.png) no-repeat center;
+  border: 1px solid #232227;
+  background: #1e1c23 url(images/bg/icons/tools.png) no-repeat center;
   text-align: center;
 }
 
 .icon-reports {
-  background: #1C80A5 url(images/bg/icons/reports.png) no-repeat center;
+  border: 1px solid #232227;
+  background: #1e1c23 url(images/bg/icons/reports.png) no-repeat center;
   text-align: center;
 }
 
@@ -168,8 +171,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 100%;
   font-weight: normal;
-  background: #EEEEEE;
-  color: #222;
+  background: #201f26;
+  color: #DCDCDC;
 }
 
 body, html {
@@ -199,15 +202,14 @@ strong {
 #logo {
   float: left;
   display: block;
-  background: #1C80A5;
   text-align: center;
   color: #fff;
   font-family: "montserratbold";
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-size: 100%;
-  border-right: 1px solid #1A7796;
-  padding: 32px 20px 27px 20px;
+  border-right: 1px solid #232227;
+  padding: 37px 20px 32px 20px;
 }
 
 #logo span {
@@ -216,51 +218,53 @@ strong {
 
 #appbar {
   display: block;
-  background: #1C80A5;
-  min-height: 76px;
+  background: #1c1a20;
+  min-height: 86px;
+  border-bottom: 1px solid #232227;
 }
 
 #appbar ul li a {
   display: block;
   float: left;
-  border-right: 1px solid #1A7796;
-  padding: 30px 30px;
+  border-right: 1px solid #232227;
+  padding: 35px 35px;
   color: #fff;
 }
 
 #appbar ul li a:hover {
-  background: #fff;
-  color: #000;
+  background: #000;
+  color: #fff;
 }
 
 #page-footer {
   min-height: 125px;
-  background: #fff;
+  background: #25232c;
   margin-top: 50px;
-  border-top: 1px solid #E6E6E6;
+  border-top: 1px solid #232227;
 }
 
 /************************/
 /*		Breadcrums		*/
 /************************/
 #breadcrums {
-  background: #fff;
+  background: #25232c;
   padding: 5px 20px 5px 20px;
 }
 
 #breadcrums ul li {
-  color: #444;
+  color: #DCDCDC;
   font-size: 90%;
   display: inline-block;
 }
 
 #breadcrums ul li a {
   display: block;
+  color: #DCDCDC;
   padding: 10px 12px 10px 0px;
 }
 
 #breadcrums ul li.active-breadcrum {
-  color: #aaa;
+  color: #DCDCDC;
   padding: 10px 12px 10px 11px;
 }
 
@@ -268,9 +272,6 @@ strong {
 /*		Pagination 		*/
 /************************/
 .pagination {
-  background: #fff;
-  border: 1px solid #E6E6E6;
-  border-radius: 5px;
   margin-top: 20px;
   margin-bottom: 20px;
   clear: both;
@@ -288,11 +289,11 @@ strong {
 
 .pagination li a, .pagination .active {
   padding: 18px 25px 18px 25px;
-  background: #fff;
-  color: #222;
+  background: #19181d;
+  color: #fff;
   display: inline-block;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #232227;
 }
 
 .pagination .active {
@@ -311,50 +312,51 @@ strong {
 .table-con {
   margin-top: 40px;
   padding: 20px;
-  background: #fff;
-  border: 1px solid #E6E6E6;
-  border-radius: 5px;
+}
+
+.section-header {
+  font-size: 200%;
+  color: #DCDCDC;
+  padding: 20px 0px;
+  margin-bottom: 40px;
 }
 
 table {
   width: 100%;
-  border: 0px solid #fff;
   font-size: 90%;
 }
 
 table th {
   font-weight: bold;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
-  background: #ffffff;
-  /* Old browsers */
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   text-align: left;
-  border: 1px solid #ddd;
-  padding: 10px;
-  line-height: 2em;
-  color: #000;
+  background: #201f26;
+  padding: 0px 0px 0px 20px;
+  line-height: 1em;
+  color: #DCDCDC;
 }
 
 table tr td {
-  padding: 10px 10px;
-  border: 1px solid #ddd;
+  padding: 5px 10px 5px 20px;
+  border-top: 10px solid #201f26;
+  height: 60px;
   vertical-align: middle;
+  border-radius: 20px;
+  color: #DCDCDC;
 }
 
 table tr {
-  border: 1px solid #ddd;
-  background: #fff url(images/table-cell-bg.gif) repeat-x;
-}
-
-table tr:nth-child(odd) {
-  background: #fff;
+  border: 0px solid #ddd;
+  background: #19181d;
 }
 
 table tfoot td {
   text-align: right;
-  background: #f7f7f7;
+  background: #141318;
   padding: 20px;
+  border-radius: 0;
+}
+table tfoot td a {
+  color: #fff;
 }
 
 table th.access-level {
@@ -367,7 +369,8 @@ table tr td.selectedId {
 
 table tbody tr:hover {
   padding: 20px;
-  background: #eee;
+  background: #141318;
+  box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.26);
   font-weight: bold;
 }
 
@@ -390,7 +393,7 @@ table tbody tr:hover {
 .logout-form button {
   padding: 15px 20px;
   float: right;
-  margin: 10px 20px 10px 20px;
+  margin: 16px 20px 10px 20px;
 }
 
 /* form styles */
@@ -481,9 +484,11 @@ input, textarea, select {
 
 .widget-list article {
   float: left;
-  border: 1px solid #E6E6E6;
+  border: 1px solid #232227;
+  box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.26);
   padding: 20px 20px;
-  background: #fff;
+  background: #19181d;
+  color: #DCDCDC;
   margin-right: 20px;
   margin-bottom: 30px;
   text-align: right;
@@ -492,7 +497,7 @@ input, textarea, select {
 
 .widget-list article h1 {
   font-size: 90%;
-  color: #777;
+  color: #aaa;
 }
 
 .widget-list article p {
@@ -514,15 +519,28 @@ input, textarea, select {
 
 .chart-list {
   clear: both;
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 10px;
 }
 
 .chart-list article {
-  float: left;
   padding: 20px;
-  background: #fff;
-  border: 1px solid #E6E6E6;
+  background: #19181d;
+  border: 1px solid #232227;
+  border-radius: 5px;
+  box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.26);
   margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.main-chart article {
+  padding: 20px;
+  background: #19181d;
+  border: 1px solid #232227;
+  border-radius: 5px;
+  box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.26);
+  margin-top: 30px;
   margin-bottom: 20px;
 }
 
@@ -530,12 +548,26 @@ input, textarea, select {
   margin-right: 0px;
 }
 
+.pie-charts {
+  clear: both;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+.pie-charts article {
+  padding: 20px;
+  background: #19181d;
+  border: 1px solid #232227;
+  border-radius: 5px;
+  box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.26);
+}
+
 .feature-list article {
   float: left;
-  border: 1px solid #E6E6E6;
+  border: 1px solid #232227;
   min-height: 600px;
   padding: 20px 20px;
-  background: #fff;
+  background: #19181d;
   margin-top: 30px;
   margin-right: 20px;
   margin-bottom: 20px;
@@ -549,7 +581,7 @@ input, textarea, select {
 .feature-list article .icon {
   float: left;
   width: 100%;
-  height: 200px;
+  min-height: 200px;
   margin-top: -35px;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -558,7 +590,7 @@ input, textarea, select {
 .feature-list article .icon h1 {
   display: block;
   padding-top: 170px;
-  color: #fff;
+  color: #DCDCDC;
 }
 
 .feature-list article ul {
@@ -567,8 +599,13 @@ input, textarea, select {
 
 .feature-list ul li a {
   display: block;
+  color: #DCDCDC;
   padding: 18px 10px;
-  border-bottom: 1px solid #F0F0F0;
+  border-bottom: 1px solid #232227;
+}
+
+.feature-list ul li a:hover {
+  background: #201f26;
 }
 
 /** default rwd styles **/
@@ -576,10 +613,6 @@ input, textarea, select {
   padding: 0px 10px 0px 10px;
   width: 1180px;
   /*	background: url(images/bg/grid/1200px.png) repeat-y;*/
-}
-
-.feature-list ul li a:hover {
-  background: #f7f7f7;
 }
 
 .widget-list article {
@@ -612,6 +645,16 @@ input, textarea, select {
 
   .feature-list article {
     width: 438px;
+    min-height: 670px;
+  }
+
+  .feature-list article .icon {
+    min-height: 260px;
+    border-radius: 7px;
+  }
+
+  .feature-list article .icon h1 {
+    padding-top: 210px;
   }
 }
 .table-col-albums-title {

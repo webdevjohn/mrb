@@ -115,4 +115,9 @@ class TracksController extends Controller
     {        
         return $this->tracks->getTracksByYearPurchased($year);
     }
+
+    public function getTracksByYear()
+    {        
+        return $this->tracks->getTracksByYear();
+    }
 }

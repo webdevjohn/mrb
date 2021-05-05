@@ -1,18 +1,27 @@
 /* colour Scheme */
-$appbarBG: #121519;
-$bodyBGColour: #21262B;
+//$appbarBG: #0C0C0C linear-gradient(180deg, rgba(12,12,12,1) 0%, rgba(25,24,28,1) 45%, rgba(12,12,12,1) 100%);  
+$appbarBG: lighten(#121115, 4);
+$bodyBGColour: lighten(#121115, 6);
+$bodyBGColourDarken: darken($bodyBGColour, 4);
 $accentDarker: #1A1F22;
-$borderColour: #121416;
-$borderColourLighten: lighten($borderColour, 5%);
+$borderColour: lighten(#212024, 1);
+$pageFooterBg: lighten($bodyBGColour, 2);
+$breadcrumBgColor: lighten($bodyBGColour, 2);
 $logoFontColor: #fff;
 $sectionHeaderFontColor: #ffffff;
 
-$trackBasketBGColor: #1d3557;
-$trackBasketBGColorDarken: darken($trackBasketBGColor, 5%);
-$recordLabelBasketBGColor: #e63946;
-$recordLabelBasketBGColorDarken: darken($recordLabelBasketBGColor, 5%);
-$artistBasketBGColor: #457b9d;
-$artistBasketBGColorDarken: darken($artistBasketBGColor, 5%);
+$articleBg: lighten(#121115, 3);
+$articleBoxShadow: 5px 5px 12px -2px rgba(0,0,0,0.26);
+$articleBgLighten: lighten($articleBg, 2);
+$articleBgDarken: darken($articleBg, 4);
+$articleFontColor: #DCDCDC;
+$baseFontColor: #DCDCDC;
+
+$iconBackgroundColour: darken($bodyBGColour, 1);
+
+$trackBasketBGColor: #000;
+$trackBasketBgHover: lighten($trackBasketBGColor, 4%);
+
 
 /* genre colour codes */
 $breakbeat: #624634;

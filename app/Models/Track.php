@@ -198,6 +198,17 @@ class Track extends Model
 			->where(DB::raw('YEAR(purchase_date)'), '=', $year)
 			->get();
 	}
+
+
+	// Admin CMS - Dashboard Homepage - Chart Data
+	public function getTracksByYear(): Collection
+	{
+		return $this->select(DB::raw('YEAR(purchase_date) as year'), DB::raw('COUNT(id) as track_count'))
+			->groupBy('year')
+			->whereNotNull(DB::raw('YEAR(purchase_date)'))
+			->whereNull('album_id')
+			->get();
+	}
 	
 
     /*

@@ -15,16 +15,19 @@
 }
 
 .icon-database {
-  background: #1C80A5 url(images/bg/icons/database.png) no-repeat center;
+  border: 1px solid $borderColour;
+  background: $iconBackgroundColour url(images/bg/icons/database.png) no-repeat center;
   text-align: center;
 }
 
 .icon-tools {
-  background: #1C80A5 url(images/bg/icons/tools.png) no-repeat center;
+  border: 1px solid $borderColour;
+  background: $iconBackgroundColour url(images/bg/icons/tools.png) no-repeat center;
   text-align: center;
 }
 
 .icon-reports {
-  background: #1C80A5 url(images/bg/icons/reports.png) no-repeat center;
+  border: 1px solid $borderColour;
+  background: $iconBackgroundColour url(images/bg/icons/reports.png) no-repeat center;
   text-align: center;
 }
