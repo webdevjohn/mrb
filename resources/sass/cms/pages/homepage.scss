@@ -149,15 +149,27 @@
 .feature-list article {
   width: 338px;
 }
+
+.pie-charts {
+	article {
+		width: 338px;
+	}
+}
 /** end default rwd styles **/
 
 @media screen and (min-width: 1500px) {
     .wrapper {
 		padding: 0px 10px 0px 10px;
 		width: 1480px;
-	/*	background: url(images/bg/grid/1500px.png) repeat-y;*/   
+		// background: url(images/bg/grid/1500px.png) repeat-y;
 	}
 	
+	.pie-charts {
+		article {
+			width: 438px
+		}
+	}
+
 	.widget-list article {
 		width: 313px;
 	}
