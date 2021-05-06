@@ -10,8 +10,8 @@
 .ui360-vis .sm2-360ui,
 .sm2-inline-list .ui360-vis {
  /* size of the container for the circle, etc. */
- width: 230px;
- height: 230px;
+ width: 216px;
+ height: 216px;
  position:relative;
 
 
@@ -54,7 +54,7 @@
  font:bold 16px "helvetica neue",helvetica,monaco,lucida,terminal,monospace;
  color:#000;
  text-align:center;
- line-height:235px;
+ line-height:220px;
  text-indent:0px;
 }
 

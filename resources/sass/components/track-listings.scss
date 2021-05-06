@@ -8,8 +8,7 @@
 .track-listings article {
     box-sizing: border-box;
 	border-radius: 5px;
-    width: 230px;
-	margin-right: 20px;
+    width: 216px;
 	min-height: 420px;	
 	position:relative; 
 	background-color: $articleBg;
@@ -17,7 +16,7 @@
 
 .track-listings article img {	
 	width: 100%;
-    height: 230px;
+    height: 216px;
 	border-bottom: 1px solid $borderColour;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -30,7 +29,7 @@
 	top:0px;
 	display:block;  
 	width: 100%;
-	height: 230px;
+	height: 216px;
 }
 .track-listings article .overlay:hover {
 	background: url(images/trans_fill94.png) repeat;
@@ -98,32 +97,32 @@
 }
 
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 494px) {
 	.track-listings {
-        grid-template-columns: 230px 230px;
+        grid-template-columns: 216px 216px;
     }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 728px) {
 	.track-listings {
-        grid-template-columns: 230px 230px 230px;
+        grid-template-columns: 216px 216px 216px;
     }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 964px) {
 	.track-listings {
-        grid-template-columns: 230px 230px 230px 230px; 
+        grid-template-columns: 216px 216px 216px 216px; 
     }
 }
 
-@media screen and (min-width: 1250px) {
+@media screen and (min-width: 1200px) {
 	.track-listings {
-        grid-template-columns: 230px 230px 230px 230px 230px;   
+        grid-template-columns: 216px 216px 216px 216px 216px;   
     }
 }
 
-@media screen and (min-width: 1500px) {
+@media screen and (min-width: 1436px) {
 	.track-listings {
-        grid-template-columns: 230px 230px 230px 230px 230px 230px;   
+        grid-template-columns: 216px 216px 216px 216px 216px 216px;   
     }
 }
