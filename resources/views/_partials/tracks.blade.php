@@ -8,7 +8,7 @@
 			</div>
 		</div>
 	</div>
-	<section class="track-details-con">
+	<section class="track-details">
 		<ul class="artist-list">
 			@foreach ($track->artists as $artist)
 			<li><a href="{{ route('artists.tracks.index', $artist->slug) }}">{{ $artist->artist_name }}</a></li>						

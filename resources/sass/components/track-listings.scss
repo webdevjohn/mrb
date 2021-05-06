@@ -3,99 +3,93 @@
     display: grid;
     margin-top: 20px;
     grid-gap: 20px;
-}
 
-.track-listings article {
-    box-sizing: border-box;
-	border-radius: 5px;
-    width: 216px;
-	min-height: 420px;	
-	position:relative; 
-	background-color: $articleBg;
-} 
+	article {
+		box-sizing: border-box;
+		border-radius: 5px;
+		width: 216px;
+		min-height: 420px;	
+		position:relative; 
+		background-color: $articleBg;				
 
-.track-listings article img {	
-	width: 100%;
-    height: 216px;
-	border-bottom: 1px solid $borderColour;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-	margin-bottom: -3px;
-}
+		img {	
+			width: 100%;
+			height: 216px;
+			border-bottom: 1px solid $borderColour;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+			margin-bottom: -3px;
+		}
 
-.track-listings article .overlay {
-	position:absolute;
-	left:0px;
-	top:0px;
-	display:block;  
-	width: 100%;
-	height: 216px;
-}
-.track-listings article .overlay:hover {
-	background: url(images/trans_fill94.png) repeat;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-}
+		.overlay {
+			position:absolute;
+			left:0px;
+			top:0px;
+			display:block;  
+			width: 100%;
+			height: 216px;
+		}
+		.overlay:hover {
+			background: url(images/trans_fill94.png) repeat;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+		}
 
-.track-listings article .track-details-con h1, .track-listings article .track-details-con h3 {	
-    font-family: 'robotolight';	
-	padding: 3px 0px;
-	font-size: 75%;
-	color: #fff;
-	line-height: 1.3em;
-}
+		.track-details {
+			padding: 12px 15px 2px 15px;
+			min-height: 140px;
+			border-right: 1px solid $borderColour;
+			border-left: 1px solid $borderColour;
 
-.track-listings article .track-details-con h2 {
-    font-family: 'robotobold';	
-	padding: 2px 0px 1px 0px;
-    font-size: 75%;  
-}
+			.artist-list li {	
+				display: inline-block;
+				font-size: 85%;
+				font-family: 'robotobold';	
+				padding: 2px 5px 3px 0px;
+				border-right: 1px solid #ccc
+			}
+			.artist-list li:last-child {
+				border: 0px
+			}
 
-.track-details-con {
-	padding: 12px 15px 2px 15px;
-	min-height: 140px;
-	border-right: 1px solid $borderColour;
-	border-left: 1px solid $borderColour;
-}
+			h1, h3 {
+				font-family: 'robotolight';	
+				padding: 3px 0px;
+				font-size: 75%;
+				color: #fff;
+				line-height: 1.3em;
+			}
+			h2 {
+				font-family: 'robotobold';	
+				padding: 2px 0px 1px 0px;
+				font-size: 75%;  
+			}
+		}
 
-
-.track-listings article .artist-list li {	
-	display: inline-block;
-    font-size: 85%;
-    font-family: 'robotobold';	
-	padding: 2px 5px 3px 0px;
-	border-right: 1px solid #ccc
+		footer {
+			font-size: 75%;
+			ul li {
+				text-align: center;
+				float: left;
+				width: 50%;
+				border-top: 1px solid $borderColour;
+				a {
+					box-sizing: border-box;
+					display: block;
+					padding: 20px 0px 20px 0px;
+					border-left: 1px solid $borderColour;	
+				}
+				a:hover {
+					background: $borderColour
+				}
+			}
+			ul li:nth-child(2) {
+				box-sizing: border-box;
+				border-right: 1px solid $borderColour;					
+			}
+		}
+	} 
 }
-.track-listings article .artist-list li:last-child {
-	border: 0px
-}
-
-
-.track-listings article footer {
-	font-size: 75%;
-}
-.track-listings article footer ul li {
-	text-align: center;
-	float: left;
-    width: 50%;
-	border-top: 1px solid $borderColour;
-
-}
-.track-listings article footer ul li a {
-	box-sizing: border-box;
-	display: block;
-	padding: 20px 0px 20px 0px;
-	border-left: 1px solid $borderColour;	
-}
-.track-listings article footer ul li:nth-child(2) {
-    box-sizing: border-box;
-	border-right: 1px solid $borderColour;	
-	
-}
-.track-listings article footer ul li a:hover {
-	background: $borderColour
-}
-
 
 @media screen and (min-width: 494px) {
 	.track-listings {

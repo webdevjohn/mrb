@@ -470,7 +470,6 @@ a {
   margin-top: 20px;
   grid-gap: 20px;
 }
-
 .track-listings article {
   box-sizing: border-box;
   border-radius: 5px;
@@ -479,7 +478,6 @@ a {
   position: relative;
   background-color: #18171B;
 }
-
 .track-listings article img {
   width: 100%;
   height: 216px;
@@ -488,7 +486,6 @@ a {
   border-top-right-radius: 3px;
   margin-bottom: -3px;
 }
-
 .track-listings article .overlay {
   position: absolute;
   left: 0px;
@@ -497,71 +494,60 @@ a {
   width: 100%;
   height: 216px;
 }
-
 .track-listings article .overlay:hover {
   background: url(images/trans_fill94.png) repeat;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
-
-.track-listings article .track-details-con h1, .track-listings article .track-details-con h3 {
-  font-family: "robotolight";
-  padding: 3px 0px;
-  font-size: 75%;
-  color: #fff;
-  line-height: 1.3em;
-}
-
-.track-listings article .track-details-con h2 {
-  font-family: "robotobold";
-  padding: 2px 0px 1px 0px;
-  font-size: 75%;
-}
-
-.track-details-con {
+.track-listings article .track-details {
   padding: 12px 15px 2px 15px;
   min-height: 140px;
   border-right: 1px solid #212024;
   border-left: 1px solid #212024;
 }
-
-.track-listings article .artist-list li {
+.track-listings article .track-details .artist-list li {
   display: inline-block;
   font-size: 85%;
   font-family: "robotobold";
   padding: 2px 5px 3px 0px;
   border-right: 1px solid #ccc;
 }
-
-.track-listings article .artist-list li:last-child {
+.track-listings article .track-details .artist-list li:last-child {
   border: 0px;
 }
-
+.track-listings article .track-details h1, .track-listings article .track-details h3 {
+  font-family: "robotolight";
+  padding: 3px 0px;
+  font-size: 75%;
+  color: #fff;
+  line-height: 1.3em;
+}
+.track-listings article .track-details h2 {
+  font-family: "robotobold";
+  padding: 2px 0px 1px 0px;
+  font-size: 75%;
+}
 .track-listings article footer {
   font-size: 75%;
 }
-
 .track-listings article footer ul li {
   text-align: center;
   float: left;
   width: 50%;
   border-top: 1px solid #212024;
 }
-
 .track-listings article footer ul li a {
   box-sizing: border-box;
   display: block;
   padding: 20px 0px 20px 0px;
   border-left: 1px solid #212024;
 }
-
+.track-listings article footer ul li a:hover {
+  background: #212024;
+}
 .track-listings article footer ul li:nth-child(2) {
   box-sizing: border-box;
   border-right: 1px solid #212024;
-}
-
-.track-listings article footer ul li a:hover {
-  background: #212024;
 }
 
 @media screen and (min-width: 494px) {
