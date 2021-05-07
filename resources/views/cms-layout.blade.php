@@ -7,6 +7,7 @@
         <title>@yield('title')</title>   
         <link media="all" type="text/css" rel="stylesheet" href="{{ asset('css/reset.css') }}">
         <link media="all" type="text/css" rel="stylesheet" href="{{ asset('css/cms/app.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
 
         <link media="all" type="text/css" rel="stylesheet" href="{{ asset('css/cms/select2.min.css') }}">
         <link media="all" type="text/css" rel="stylesheet" href="{{ asset('css/cms/select2-override.css') }}">
@@ -18,15 +19,15 @@
     <body>
 
         @if ($message = Session::get('success'))
-            <div class="alert alert-success alert-block">
+            <div id="alert-message">
                 <button type="button" class="close" data-dismiss="alert">×</button>    
                 <strong>{{ $message }}</strong>
             </div>
         @endif
 
-        <a href="{{ route('cms.homepage') }}" id="logo">MyRecordBox <span>CMS</span></a>
+        {{-- <a href="{{ route('cms.homepage') }}" id="logo">MyRecordBox <span>CMS</span></a> --}}
 
-        <section id="appbar">
+        {{-- <section id="appbar">
             <ul>
                 <li><a href="">Manage Base Data</a></li>
                 <li><a href="">Tools</a></li>
@@ -40,13 +41,47 @@
                     </button>
                 </form>
             @endif
-        </section>
+        </section> --}}
 
-        <section id="breadcrums">
+
+
+  
+        <div class="icon-bar">
+            <a href="{{ route('cms.homepage') }}" id="logo"><div>MyRecordBox <strong>CMS</strong></div></a>
+            <a href="{{ route('cms.homepage') }}" class="active">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>              
+            </a> 
+            <a href="#">
+                <i class="fa fa-database"></i>
+                <span>Base Data</span>
+            </a> 
+            <a href="#">
+                <i class="fas fa-chart-pie"></i>
+                <span>Reports</span>
+            </a> 
+            <a href="#">
+                <i class="fas fa-power-off"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+     
+
+
+        <section id="page-header">
+            <div class="wrapper">
+     
+
+
+
+                @yield('page-header')
+                        <section id="breadcrums">
             <ul>
                 @yield('breadcrums')
             </ul>
         </section>
+            </div>
+	    </section>
         
         <div class="wrapper">
             @yield('content')
@@ -55,7 +90,18 @@
         
         <footer id="page-footer">
             <div class="wrapper">  
-        
+                <section id="base-data">
+                    <ul>
+                        <li><a href="{{ route('cms.albums.index') }}">Albums</a></li>
+                        <li><a href="{{ route('cms.artists.index') }}">Artists</a></li>
+                        <li><a href="{{ route('cms.formats.index') }}">Formats</a></li>
+                        <li><a href="{{ route('cms.genres.index') }}">Genres</a></li>
+                        <li><a href="{{ route('cms.labels.index') }}">Labels</a></li>
+                        <li><a href="{{ route('cms.playlists.index') }}">Playlists</a></li>
+                        <li><a href="{{ route('cms.tags.index') }}">Tags</a></li>
+                        <li><a href="{{ route('cms.tracks.index') }}">Tracks</a></li>				
+                    </ul>
+                </section>
             </div>
         </footer>
 

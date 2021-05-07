@@ -324,4 +324,23 @@ class Track extends Model
 	{
 		return $query->fields()->relations()->latest()->take($take);
 	}
+
+
+	/**
+	 * admin cms dashboard - ajax query
+	 *
+	 * @param Builder $query
+	 * @param integer $year
+	 * 
+	 * @return Builder
+	 */
+	public function scopeTotalsByYear(Builder $query, int $year = 2021): Builder
+	{
+		return $query->groupBy(DB::raw('YEAR(purchase_date)'))		
+			->where(DB::raw('YEAR(purchase_date)'), $year)
+			->select([			
+				DB::raw('count(*) as yearly_count'), 
+				DB::raw('sum(purchase_price) as yearly_cost')
+			]);						
+	}
 }

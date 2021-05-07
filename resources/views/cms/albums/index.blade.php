@@ -1,6 +1,10 @@
 @extends('cms-layout')
 @section('title', 'Albums')
 
+@section('page-header')
+	<h1>Albums</h1>
+@stop
+
 @section('breadcrums')	
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li class="last">Albums</li>	
@@ -10,9 +14,9 @@
 
 	<section class="table-con">
 
-		<a href="{{ route('cms.albums.create') }}" class="btn btn-new-record float-right" title="New Record">New Record +</a>
+		{{-- <a href="{{ route('cms.albums.create') }}" class="btn btn-new-record float-right" title="New Record">New Record +</a> --}}
 
-		<h1 class="section-header">Albums</h1>
+
 
 		<table>
 			<thead>

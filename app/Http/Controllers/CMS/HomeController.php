@@ -30,10 +30,13 @@ class HomeController extends Controller
             'trackCount' => $this->tracks->getModelCount(),
             'artistCount' => $this->artists->getModelCount(),
             'labelCount' => $this->labels->getModelCount(),
-            'albumCount' => $this->albums->getModelCount()
+            'albumCount' => $this->albums->getModelCount(),
+            'thisYearsTotals' => $this->tracks->totalsByYear(2021)->first(),
+            'lastYearsTotals' => $this->tracks->totalsByYear(2020)->first()
         ]);
     }
 
+    // admin dashboard - ajax query for charts.
     public function getGenreSummary($year = 2021)
     {
         return $this->genres->withTrackCount()
