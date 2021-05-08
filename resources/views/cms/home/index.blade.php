@@ -43,6 +43,29 @@
 		</article>
 	</section>
 	
+	<section id="yearly-track-totals">
+		<section id="track-totals-this-year">		
+			<article>
+				<h1>{{ $totalsThisYear->yearly_count }}</h1>
+				<h2>Tracks Purchased This Year</h2>
+			</article>
+			<article>
+				<h1>£{{ $totalsThisYear->yearly_cost }}</h1>
+				<h2>Cost This Year</h2>
+			</article>
+		</section>
+		<section id="track-totals-last-year">
+			<article>
+				<h1>{{ $totalsLastYear->yearly_count }}</h1>
+				<h2>Tracks Purchased Last Year</h2>
+			</article>
+			<article>
+				<h1>£{{ $totalsLastYear->yearly_cost }}</h1>
+				<h2>Cost Last Year</h2>
+			</article>
+		</section>
+	</section>
+
 	<section id="chart-list">
 		<article>
 			<canvas id="chartTracksPurchasedThisYear"></canvas>

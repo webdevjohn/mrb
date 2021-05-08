@@ -1,16 +1,18 @@
 @extends('cms-layout')
 @section('title', 'Create a New Album')
 
+@section('page-header')
+	<h1>Edit Album</h1>
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li><a href="{{ route('cms.albums.index') }}">Albums</a></li>	
-	<li class="last">{{ $album->title }}</li>	
+	<li>{{ $album->title }}</li>	
 @stop
 
 @section('content')
 	
-	<h1 class="section-header">Edit Album</h1>
-
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.albums.update', $album->slug) }}">
 			@csrf

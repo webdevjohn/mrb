@@ -1,19 +1,23 @@
 @extends('cms-layout')
 @section('title', 'Tags')
 
+@section('page-header')
+	<h1>
+		Tags
+		<a href="{{ route('cms.tags.create') }}" 
+			class="btn btn-new-record float-right" 
+			title="New Tag">New Tag +</a>
+	</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li class="last">Tags</li>
+	<li>Tags</li>
 @stop
 
 @section('content')
 
-	<section class="table-con">
-		
-		<a href="{{ route('cms.tags.create') }}" class="btn btn-new-record float-right" title="New Record">New Record +</a>
-		
-		<h1 class="section-header">Tags</h1>
-
+	<section class="table-con">	
 		<table>
 			<thead>
 				<tr>

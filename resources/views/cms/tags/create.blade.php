@@ -1,16 +1,18 @@
 @extends('cms-layout')
 @section('title', 'Create a New Tag')
 
+@section('page-header')
+	<h1>Create a New Tag</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li><a href="{{ route('cms.tags.index') }}">Tags</a></li>	
-	<li class="last">Create a New Tag</li>
+	<li>Create a New Tag</li>
 @stop
 
 @section('content')
 	
-	<h1 class="section-header">Create a New Tag</h1>
-
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.tags.store') }}">
 			@csrf

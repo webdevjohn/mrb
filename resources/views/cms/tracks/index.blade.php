@@ -1,20 +1,23 @@
 @extends('cms-layout')
 @section('title', 'Tracks')
 
+@section('page-header')
+	<h1>
+		Tracks
+		<a href="{{ route('cms.tracks.create') }}" 
+			class="btn btn-new-record float-right" 
+			title="New Track">New Track +</a>
+	</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li>&gt;</li>
-	<li class="active-breadcrum">Tracks</li>
+	<li>Tracks</li>
 @stop
 
 @section('content')
 
 	<section class="table-con">
-
-		<a href="{{ route('cms.tracks.create') }}" class="btn btn-new-record float-right" title="New Record">New Record +</a>
-
-		<h1 class="section-header">Tracks</h1>
-
 		<table>
 			<thead>
 				<tr>

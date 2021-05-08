@@ -31,8 +31,8 @@ class HomeController extends Controller
             'artistCount' => $this->artists->getModelCount(),
             'labelCount' => $this->labels->getModelCount(),
             'albumCount' => $this->albums->getModelCount(),
-            'thisYearsTotals' => $this->tracks->totalsByYear(2021)->first(),
-            'lastYearsTotals' => $this->tracks->totalsByYear(2020)->first()
+            'totalsThisYear' => $this->tracks->totalsByYear(2021)->first(),
+            'totalsLastYear' => $this->tracks->totalsByYear(2020)->first()
         ]);
     }
 

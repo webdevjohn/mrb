@@ -28,13 +28,13 @@
 		}
 
 		h1 {
-			font-size: 90%;
 			color: #aaa;
 		}
 
 		p {
 			font-weight: bold;
 			line-height: 1.5em;
+			font-size: 175%;
 		}
 	}
 }
@@ -48,6 +48,38 @@
 		border-radius: 5px;
 		box-shadow: $articleBoxShadow;		
 		margin-bottom: 20px;
+	}
+}
+
+#yearly-track-totals {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	margin-bottom: 20px;
+	
+	section {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+		article {
+			text-align: center;
+			padding: 20px;
+			background: $articleBg;
+			border: 1px solid $borderColour;
+			border-radius: 5px;
+			box-shadow: $articleBoxShadow;
+			h1 {
+				font-size: 175%;
+				font-family: 'robotobold';
+				line-height: 1.2em;
+			}
+			h2 {
+				color: #aaa;
+			}
+		}
+		article:nth-child(even) {
+			background: darken($articleBg,2);
+		}
 	}
 }
 

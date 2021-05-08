@@ -1,18 +1,23 @@
 @extends('cms-layout')
 @section('title', 'Playlists')
 
+@section('page-header')
+	<h1>
+		Playlists
+		<a href="{{ route('cms.playlists.create') }}" 
+			class="btn btn-new-record float-right" 
+			title="New Playlist">New Playlist +</a>
+	</h1>	
+@stop
+
 @section('breadcrums')	
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li class="last">Playlists</li>	
+	<li>Playlists</li>	
 @stop
 
 @section('content')
 
 	<section class="table-con">
-
-		<a href="{{ route('cms.playlists.create') }}" class="btn btn-new-record float-right" title="New Record">New Record +</a>
-		
-		<h1 class="section-header">Playlists</h1>
 
 		<table>
 			<thead>
@@ -33,10 +38,14 @@
 					<td>
 						<ul class="frm-crud-buttons">
 							<li>
-								<a href="{{ route('cms.playlists.tracks.index', $playlist->slug) }}" class="btn btn-view-record" title="View Record">View</a>								
+								<a href="{{ route('cms.playlists.tracks.index', $playlist->slug) }}" 
+									class="btn btn-view-record" 
+									title="View Tracks">View Tracks</a>								
 							</li>
 							<li>
-								<a href="{{ route('cms.playlists.edit', $playlist->slug) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
+								<a href="{{ route('cms.playlists.edit', $playlist->slug) }}" 
+									class="btn btn-edit-record" 
+									title="Edit Record">Edit</a>
 							</li>
 						</ul>
 					</td>

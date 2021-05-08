@@ -1,16 +1,18 @@
 @extends('cms-layout')
 @section('title', 'Create a New Track')
 
+@section('page-header')
+	<h1>Create a New Track</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li><a href="{{ route('cms.tracks.index') }}">Tracks</a></li>	
-	<li class="last">Create a New Track</li>
+	<li>Create a New Track</li>
 @stop
 
 @section('content')
 	
-	<h1 class="section-header">Create a New Track</h1>
-
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.tracks.store') }}" enctype="multipart/form-data">
 			@csrf

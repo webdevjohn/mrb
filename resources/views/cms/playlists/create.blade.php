@@ -1,15 +1,17 @@
 @extends('cms-layout')
 @section('title', 'Create a New playlist')
 
+@section('page-header')
+	<h1>Create a New Playlist</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li><a href="{{ route('cms.playlists.index') }}">Playlists</a></li>	
-	<li class="last">Create a New Playlist</li>
+	<li>Create a New Playlist</li>
 @stop
 
 @section('content')
-	
-	<h1 class="section-header">Create a New Playlist</h1>
 
 	<section id="form-con">		
 		

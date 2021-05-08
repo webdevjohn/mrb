@@ -1,16 +1,18 @@
 @extends('cms-layout')
 @section('title', 'Edit Track: ' . $track->title)
 
+@section('page-header')
+	<h1>Edit Track: {{ $track->title }}</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li><a href="{{ route('cms.tracks.index') }}">Tracks</a></li>
-	<li class="active-breadcrum">{{ $track->title }}</li>
+	<li>{{ $track->title }}</li>
 @stop
 
 @section('content')
 	
-	<h1 class="section-header">Edit Track: {{ $track->title }}</h1>
-
 	<section id="form-con">		
 
 		<form method="POST" action="{{ route('cms.tracks.update', $track->id) }}" enctype="multipart/form-data">

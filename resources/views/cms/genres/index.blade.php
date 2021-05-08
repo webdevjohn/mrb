@@ -1,18 +1,23 @@
 @extends('cms-layout')
 @section('title', 'Genres')
 
+@section('page-header')
+	<h1>
+		Genres
+		<a href="{{ route('cms.genres.create') }}" 
+			class="btn btn-new-record float-right" 
+			title="New Genre">New Genre +</a>
+	</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li class="last">Genres</li>
+	<li>Genres</li>
 @stop
 
 @section('content')
 
 	<section class="table-con">
-
-		<a href="{{ route('cms.genres.create') }}" class="btn btn-new-record float-right" title="New Record">New Record +</a>
-		
-		<h1 class="section-header">Genres</h1>
 
 		<table>
 			<thead>

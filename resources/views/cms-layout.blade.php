@@ -70,16 +70,12 @@
 
         <section id="page-header">
             <div class="wrapper">
-     
-
-
-
                 @yield('page-header')
-                        <section id="breadcrums">
-            <ul>
-                @yield('breadcrums')
-            </ul>
-        </section>
+                <section id="breadcrumbs">                    
+                    <ul class="breadcrumb">
+                        @yield('breadcrums')
+                    </ul>
+                </section>
             </div>
 	    </section>
         

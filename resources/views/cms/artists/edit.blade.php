@@ -1,16 +1,18 @@
 @extends('cms-layout')
 @section('title', 'Edit Artist')
 
+@section('page-header')
+	<h1>Edit Artist</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li><a href="{{ route('cms.artists.index') }}">Artists</a></li>
-	<li class="last">Edit Artist: {{ $artist->artist_name }}</li>
+	<li>Edit Artist: {{ $artist->artist_name }}</li>
 @stop
 
 @section('content')
 	
-	<h1 class="section-header">Edit Artist</h1>
-
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.artists.update', $artist->slug) }}">
 			@method('PATCH')

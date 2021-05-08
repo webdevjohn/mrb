@@ -1,16 +1,18 @@
 @extends('cms-layout')
 @section('title', 'Create a New Artist')
 
+@section('page-header')
+	<h1>Create a New Artist</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li><a href="{{ route('cms.artists.index') }}">Artists</a></li>
-	<li class="last">Create a New Artist</li>
+	<li>Create a New Artist</li>
 @stop
 
 @section('content')
 	
-	<h1 class="section-header">Create a New Artist</h1>
-
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.artists.store') }}">
 			@csrf

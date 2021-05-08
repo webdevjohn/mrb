@@ -1,17 +1,19 @@
 @extends('cms-layout')
 @section('title', 'Create a New Track')
 
+@section('page-header')
+	<h1>Add a new track to: {{ $album->title }}</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li><a href="{{ route('cms.albums.index') }}">Albums</a></li>
 	<li><a href="{{ route('cms.albums.tracks.index', $album->slug) }}">{{ $album->title }}</a></li>
-	<li class="last">Create Track</li>
+	<li>Create Track</li>
 @stop
 
 @section('content')
 	
-	<h1 class="section-header">Add a new track to: {{ $album->title }}</h1>
-
 	<section id="form-con">		
 
 		<form method="POST" action="{{ route('cms.albums.tracks.store', $album->slug) }}">

@@ -28,6 +28,10 @@ strong {
 	margin: 0px auto;
 }
 
+.float-right {
+	float: right;
+}
+
 #alert-message {
 	min-height: 50px;
 	background: darken($bodyBGColour, 4);
@@ -78,31 +82,46 @@ strong {
 	border-bottom: 1px solid $borderColour;
 	h1 {
 		font-family: 'robotobold';
-		font-size: 350%;
+		font-size: 200%;
 		padding: 30px 0px 0px 0px;
+		a {
+			font-size: 50%;
+			font-family: 'robotolight';
+		}
 	}
 }
 
 /************************/ 
 /*		Breadcrums		*/
 /************************/
-#breadcrums {	
-	// background: $breadcrumBgColor;
-	padding: 5px 20px 5px 0px;
-}
-#breadcrums ul li {
-	color: $baseFontColor;
-	font-size: 90%;
-	display: inline-block;
-}
-#breadcrums ul li a {
-	display: block;	
-	color: $baseFontColor;
-	padding: 10px 12px 10px 0px;
-}
-#breadcrums ul li.active-breadcrum {
-	color: $baseFontColor;
-	padding: 10px 12px 10px 11px;
+
+#breadcrumbs {
+	box-sizing: border-box;
+	position: relative;
+	padding: 10px 0px;
+
+	ul {
+		list-style: none;
+
+		li {
+			display: inline;
+			color: darken($baseFontColor, 29);
+			a {
+				color: $baseFontColor;
+				text-decoration: none;
+			}
+			a:hover {
+				color: $baseFontColor;
+				text-decoration: underline;
+			} 
+		}
+
+		li+li:before {
+			padding: 8px;
+			color: $baseFontColor;
+			content: "/\00a0";
+		}
+	}
 }
 
 
@@ -121,7 +140,7 @@ strong {
 }
 
 
-  /************************/ 
+/************************/ 
 /*		Tables			*/
 /************************/
 
@@ -131,14 +150,6 @@ strong {
 	// background: $articleBg;
 	// border: 1px solid #E6E6E6;
 	// border-radius: 5px;
-}
-
-.section-header {
-	font-size: 200%;
-	color: $baseFontColor;
-	// background: #000;
-	padding: 20px 0px;
-	margin-bottom: 40px;
 }
 
 table {
@@ -226,6 +237,7 @@ table tbody tr:hover {
 
 /* form styles */
 #form-con {
+	margin-top: -200px;
 	border: 20px solid #fff;
 	background: #FAFAFA;
 	padding: 0px 20px 20px 20px;

@@ -1,16 +1,18 @@
 @extends('cms-layout')
 @section('title', 'Edit Label')
 
+@section('page-header')
+	<h1>Edit Label: {{ $label->label }}</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li><a href="{{ route('cms.labels.index') }}">Labels</a></li>
-	<li class="last">Edit Label: {{ $label->label }}</li>
+	<li>Edit Label: {{ $label->label }}</li>
 @stop
 
 @section('content')
 	
-	<h1 class="section-header">Edit Label: {{ $label->label }}</h1>
-
 	<section id="form-con">		
 
 		<form method="POST" action="{{ route('cms.labels.update', $label->slug) }}" enctype="multipart/form-data">

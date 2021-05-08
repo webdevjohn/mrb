@@ -1,10 +1,14 @@
 @extends('cms-layout')
 @section('title', 'Create a New Genre')
 
+@section('page-header')
+	<h1>Create a New Genre</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li><a href="{{ route('cms.genres.index') }}">Genres</a></li>
-	<li class="last">Create a New Genre</li>
+	<li>Create a New Genre</li>
 @stop
 
 @section('content')

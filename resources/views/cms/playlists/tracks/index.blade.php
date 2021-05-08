@@ -1,20 +1,25 @@
 @extends('cms-layout')
 @section('title', 'Albums')
 
+@section('page-header')
+	<h1>
+		{{ $playlist->name }}
+		<a href="{{ route('cms.playlists.tracks.create', $playlist->slug) }}" 
+			class="btn btn-new-record float-right" 
+			title="Add Track to Playlist">Add Track to Playlist +</a>
+	</h1>	
+@stop
+
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 	<li><a href="{{ route('cms.playlists.index') }}">Playlists</a></li>
-	<li class="last">{{ $playlist->name }}</li>
+	<li>{{ $playlist->name }}</li>
 @stop
 
 @section('content')
 
 	<section class="table-con">
-
-		<a href="{{ route('cms.playlists.tracks.create', $playlist->slug) }}" class="btn btn-new-record float-right" title="New Record">New Record +</a>
-
-		<h1 class="section-header">{{ $playlist->name }}</h1>
-
+	
 		<table>
 			<thead>
 				<tr>

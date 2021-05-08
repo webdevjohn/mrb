@@ -2,22 +2,22 @@
 @section('title', 'Albums')
 
 @section('page-header')
-	<h1>Albums</h1>
+	<h1>
+		Albums
+		<a href="{{ route('cms.albums.create') }}" 
+			class="btn btn-new-record float-right" 
+			title="New Album">New Album +</a> 
+	</h1>
 @stop
 
 @section('breadcrums')	
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li class="last">Albums</li>	
+	<li>Albums</li>	
 @stop
 
 @section('content')
 
 	<section class="table-con">
-
-		{{-- <a href="{{ route('cms.albums.create') }}" class="btn btn-new-record float-right" title="New Record">New Record +</a> --}}
-
-
-
 		<table>
 			<thead>
 				<tr>
@@ -43,7 +43,7 @@
 					<td>
 						<ul class="frm-crud-buttons">
 							<li>
-								<a href="{{ route('cms.albums.tracks.index', $album->slug) }}" class="btn btn-view-record" title="View Record">View</a>								
+								<a href="{{ route('cms.albums.tracks.index', $album->slug) }}" class="btn btn-view-record" title="View Record">View Tracks</a>								
 							</li>
 							<li>
 								<a href="{{ route('cms.albums.edit', $album->slug) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
