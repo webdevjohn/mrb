@@ -496,9 +496,7 @@ input, textarea, select {
 }
 
 .wrapper {
-  padding: 0px 10px 0px 10px;
-  width: 1180px;
-  /*	background: url(images/bg/grid/1200px.png) repeat-y;*/
+  padding: 0px 20px 0px 20px;
 }
 
 .widget-list {
@@ -557,7 +555,7 @@ input, textarea, select {
 }
 #yearly-track-totals section article {
   text-align: center;
-  padding: 20px;
+  padding: 30px 20px;
   background: #27343C;
   border: 1px solid #232227;
   border-radius: 5px;
@@ -605,10 +603,37 @@ input, textarea, select {
   box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.1);
 }
 
-@media screen and (min-width: 1500px) {
+@media screen and (max-width: 950px) {
   .wrapper {
-    padding: 0px 10px 0px 10px;
-    width: 1480px;
+    padding: 0px 20px;
+  }
+
+  .widget-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #yearly-track-totals {
+    grid-template-columns: 1fr;
+  }
+
+  #chart-list {
+    grid-template-columns: 1fr;
+  }
+
+  .pie-charts {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (min-width: 1450px) {
+  .wrapper {
+    max-width: 1450px;
+    padding: 0px 20px;
+  }
+}
+@media screen and (min-width: 1520px) {
+  .wrapper {
+    max-width: 1600px;
+    padding: 0px 20px;
   }
 }
 .table-col-albums-title {

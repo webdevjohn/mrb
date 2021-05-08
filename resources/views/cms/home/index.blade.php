@@ -26,7 +26,7 @@
 	
 		<article>
 			<div class="icon icon-record-label"></div>
-			<h1>Record Labels</h1>
+			<h1>Labels</h1>
 			<p>{{ $labelCount }}</p>		
 		</article>
 

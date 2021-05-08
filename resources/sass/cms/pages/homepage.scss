@@ -1,7 +1,8 @@
 .wrapper {
-	padding: 0px 10px 0px 10px;
-	width: 1180px;
-/*	background: url(images/bg/grid/1200px.png) repeat-y;*/
+	padding: 0px 20px 0px 20px;
+	// width: 1180px;
+	// max-width: 1800px;
+	// background: url(images/bg/grid/1200px.png) repeat-y;
 }
 
 .widget-list {
@@ -61,9 +62,10 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 20px;
-		article {
+
+		article {	
 			text-align: center;
-			padding: 20px;
+			padding: 30px 20px;
 			background: $articleBg;
 			border: 1px solid $borderColour;
 			border-radius: 5px;
@@ -71,7 +73,7 @@
 			h1 {
 				font-size: 175%;
 				font-family: 'robotobold';
-				line-height: 1.2em;
+				line-height: 1.2em;	
 			}
 			h2 {
 				color: #aaa;
@@ -106,7 +108,7 @@
 	width: 100%;
 	article {
 		min-width: 0;
-		padding: 20px;
+		padding: 20px;	
 		background: $articleBg;
 		border: 1px solid $borderColour;
 		border-radius: 5px;
@@ -114,11 +116,39 @@
 	}
 }
 
-
-@media screen and (min-width: 1500px) {
+@media screen and (max-width: 950px) {
     .wrapper {
-		padding: 0px 10px 0px 10px;
-		width: 1480px;
-		// background: url(images/bg/grid/1500px.png) repeat-y;
+        padding: 0px 20px;
+	}
+
+	.widget-list {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	#yearly-track-totals {		
+		grid-template-columns: 1fr;
+	}
+
+	#chart-list {
+		grid-template-columns: 1fr;
+	}
+
+	.pie-charts {	
+		grid-template-columns: 1fr;
+	}
+}
+
+
+@media screen and (min-width: 1450px) {
+    .wrapper {
+		max-width: 1450px;
+        padding: 0px 20px;
+	}
+}
+
+@media screen and (min-width: 1520px) {
+    .wrapper {
+		max-width: 1600px;
+        padding: 0px 20px;
 	}
 }
