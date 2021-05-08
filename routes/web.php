@@ -82,49 +82,47 @@ Route::prefix('basket')->group(function () {
 */
 Route::prefix('cms')->name('cms.')->middleware(['auth', 'verified', 'roles.administrator'])->group(function () {
 
-    Route::get('/home', [App\Http\Controllers\CMS\HomeController::class, 'index'])
-        ->name('homepage');
+    Route::get('/home', [App\Http\Controllers\CMS\HomeController::class, 'index'])->name('homepage');
 
+    Route::prefix('basedata')->name('basedata.')->group(function() {
 
-        Route::prefix('basedata')->name('basedata.')->group(function() {
+        Route::get('tracks/by-year-purchased/{year}', [
+            App\Http\Controllers\CMS\Basedata\TracksController::class, 'getTracksByYearPurchased'
+        ])->name('tracks.by-year-purchased');
 
-            Route::get('tracks/by-year-purchased/{year}', [
-                App\Http\Controllers\CMS\TracksController::class, 'getTracksByYearPurchased'
-            ])->name('tracks.by-year-purchased');
+        Route::get('tracks/by-year', [
+            App\Http\Controllers\CMS\Basedata\TracksController::class, 'getTracksByYear'
+        ])->name('tracks.by-year');
 
-            Route::get('tracks/by-year', [
-                App\Http\Controllers\CMS\TracksController::class, 'getTracksByYear'
-            ])->name('tracks.by-year');
+        Route::get('genres/summary/{year}', [
+            App\Http\Controllers\CMS\HomeController::class, 'getGenreSummary'
+        ])->name('genres.summary');
 
-            Route::get('genres/summary/{year}', [
-                App\Http\Controllers\CMS\HomeController::class, 'getGenreSummary'
-            ])->name('genres.summary');
-
-            Route::resource('albums', App\Http\Controllers\CMS\Albums\AlbumsController::class)->scoped([
-                'album' => 'slug',
-            ]);
-            Route::resource('albums.tracks', App\Http\Controllers\CMS\Albums\Tracks\TracksController::class)->scoped([
-                'album' => 'slug',
-            ]);
-            Route::resource('artists', App\Http\Controllers\CMS\ArtistsController::class)->scoped([
-                'artist' => 'slug',
-            ]);
-            Route::resource('formats', App\Http\Controllers\CMS\FormatsController::class);
-            Route::resource('genres', App\Http\Controllers\CMS\GenresController::class)->scoped([
-                'genre' => 'slug',
-            ]);
-            Route::resource('key-codes', App\Http\Controllers\CMS\KeyCodesController::class);
-            Route::resource('labels', App\Http\Controllers\CMS\LabelsController::class)->scoped([
-                'label' => 'slug',
-            ]);
-            Route::resource('playlists', App\Http\Controllers\CMS\Playlists\PlaylistsController::class)->scoped([
-                'playlist' => 'slug',
-            ]);
-            Route::resource('playlists.tracks', App\Http\Controllers\CMS\Playlists\Tracks\TracksController::class)->scoped([
-                'playlist' => 'slug',
-            ]);
-            Route::resource('roles', App\Http\Controllers\CMS\RolesController::class);
-            Route::resource('tags', App\Http\Controllers\CMS\TagsController::class);
-            Route::resource('tracks', App\Http\Controllers\CMS\TracksController::class);
-        });
+        Route::resource('albums', App\Http\Controllers\CMS\Basedata\Albums\AlbumsController::class)->scoped([
+            'album' => 'slug',
+        ]);
+        Route::resource('albums.tracks', App\Http\Controllers\CMS\Basedata\Albums\Tracks\TracksController::class)->scoped([
+            'album' => 'slug',
+        ]);
+        Route::resource('artists', App\Http\Controllers\CMS\Basedata\ArtistsController::class)->scoped([
+            'artist' => 'slug',
+        ]);
+        Route::resource('formats', App\Http\Controllers\CMS\Basedata\FormatsController::class);
+        Route::resource('genres', App\Http\Controllers\CMS\Basedata\GenresController::class)->scoped([
+            'genre' => 'slug',
+        ]);
+        Route::resource('key-codes', App\Http\Controllers\CMS\Basedata\KeyCodesController::class);
+        Route::resource('labels', App\Http\Controllers\CMS\Basedata\LabelsController::class)->scoped([
+            'label' => 'slug',
+        ]);
+        Route::resource('playlists', App\Http\Controllers\CMS\Basedata\Playlists\PlaylistsController::class)->scoped([
+            'playlist' => 'slug',
+        ]);
+        Route::resource('playlists.tracks', App\Http\Controllers\CMS\Basedata\Playlists\Tracks\TracksController::class)->scoped([
+            'playlist' => 'slug',
+        ]);
+        Route::resource('roles', App\Http\Controllers\CMS\Basedata\RolesController::class);
+        Route::resource('tags', App\Http\Controllers\CMS\Basedata\TagsController::class);
+        Route::resource('tracks', App\Http\Controllers\CMS\Basedata\TracksController::class);
+    });
 });

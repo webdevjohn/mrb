@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\CMS;
+namespace App\Http\Controllers\CMS\Basedata;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Roles\CreateRole;

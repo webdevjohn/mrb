@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\CMS;
+namespace App\Http\Controllers\CMS\Basedata;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

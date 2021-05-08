@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\CMS\Albums\Tracks;
+namespace App\Http\Controllers\CMS\Basedata\Albums\Tracks;
  
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Albums\Tracks\CreateAlbumTrack;

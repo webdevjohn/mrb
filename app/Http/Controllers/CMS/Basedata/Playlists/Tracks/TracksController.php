@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\CMS\Playlists\Tracks;
+namespace App\Http\Controllers\CMS\Basedata\Playlists\Tracks;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,7 +23,7 @@ class TracksController extends Controller
      */
     public function index(Playlist $playlist)
     {
-        return View('cms.playlists.tracks.index', [
+        return View('cms.basedata.playlists.tracks.index', [
             'playlist' => $playlist->with('tracks.label')
                 ->where('slug', $playlist->slug)
                 ->firstOrFail()
@@ -41,7 +41,7 @@ class TracksController extends Controller
      */
     public function create(Playlist $playlist, Request $request)
     {    
-        return View('cms.playlists.tracks.create', [
+        return View('cms.basedata.playlists.tracks.create', [
             'playlist' => $playlist,
             'tracks' => $this->tracks->relations()
                 ->whereNotIn('id', $playlist->getTrackIds())

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\CMS\Playlists;
+namespace App\Http\Controllers\CMS\Basedata\Playlists;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Playlists\CreatePlaylist;

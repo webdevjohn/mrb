@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\CMS\Albums;
+namespace App\Http\Controllers\CMS\Basedata\Albums;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Albums\CreateAlbum;
