@@ -493,7 +493,6 @@ input, textarea, select {
   gap: 20px;
 }
 .widget-list article {
-  float: left;
   border: 1px solid #232227;
   box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.1);
   padding: 20px 20px;
