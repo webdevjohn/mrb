@@ -20,7 +20,7 @@ class FormatsController extends Controller
      */
     public function index()
     {
-        return View('cms.formats.index', [
+        return View('cms.basedata.formats.index', [
             'formats' => $this->formats->paginate(48)
         ]);
     }
@@ -32,7 +32,7 @@ class FormatsController extends Controller
      */
     public function create()
     {
-        return View('cms.formats.create');
+        return View('cms.basedata.formats.create');
     }
 
     /**
@@ -73,7 +73,7 @@ class FormatsController extends Controller
      */
     public function edit(Format $format)
     {
-        return View('cms.formats.edit', [     
+        return View('cms.basedata.formats.edit', [     
             'format' => $format
         ]);
     }

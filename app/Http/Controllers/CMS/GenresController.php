@@ -21,7 +21,7 @@ class GenresController extends Controller
      */
     public function index()
     {
-        return View('cms.genres.index', [
+        return View('cms.basedata.genres.index', [
             'genres' => $this->genres->paginate(48)
         ]);
     }
@@ -33,7 +33,7 @@ class GenresController extends Controller
      */
     public function create()
     {
-        return View('cms.genres.create');
+        return View('cms.basedata.genres.create');
     }
 
     /**
@@ -76,7 +76,7 @@ class GenresController extends Controller
      */
     public function edit(Genre $genre)
     {
-        return View('cms.genres.edit', [     
+        return View('cms.basedata.genres.edit', [     
             'genre' => $genre
         ]);
     }

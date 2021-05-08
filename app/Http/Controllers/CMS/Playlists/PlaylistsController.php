@@ -23,7 +23,7 @@ class PlaylistsController extends Controller
      */
     public function index()
     {
-        return View('cms.playlists.index', [
+        return View('cms.basedata.playlists.index', [
             'playlists' => $this->playlists->paginate(48)
         ]);
     }
@@ -35,7 +35,7 @@ class PlaylistsController extends Controller
      */
     public function create()
     {
-        return View('cms.playlists.create', [
+        return View('cms.basedata.playlists.create', [
             'genreList' => $this->selectBoxes->createFrom('App\Models\Genre')
                 ->orderBy('genre')
                 ->display('genre')
@@ -83,7 +83,7 @@ class PlaylistsController extends Controller
      */
     public function edit(Playlist $playlist)
     {
-        return View('cms.playlists.edit', [
+        return View('cms.basedata.playlists.edit', [
             'playlist'  => $playlist,
             'genreList' => $this->selectBoxes->createFrom('App\Models\Genre')
                 ->orderBy('genre')

@@ -24,7 +24,7 @@ class AlbumsController extends Controller
      */
     public function index()
     {
-        return View('cms.albums.index', [
+        return View('cms.basedata.albums.index', [
             'albums' => $this->albums->orderBy('purchase_date', 'DESC')->paginate(48)
         ]);
     }
@@ -36,7 +36,7 @@ class AlbumsController extends Controller
      */
     public function create()
     {
-       return View('cms.albums.create', [                
+       return View('cms.basedata.albums.create', [                
            'selectBoxes' => $this->selectBoxes->get(),
        ]);
     }
@@ -79,7 +79,7 @@ class AlbumsController extends Controller
      */
     public function edit(Album $album)
     {
-        return View('cms.albums.edit', [
+        return View('cms.basedata.albums.edit', [
             'album' => $album,
             'selectBoxes' => $this->selectBoxes->get(),
         ]);

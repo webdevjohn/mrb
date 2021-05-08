@@ -27,7 +27,7 @@ class TracksController extends Controller
      */
     public function index(Request $request)
     {     
-        return View('cms.tracks.index', [
+        return View('cms.basedata.tracks.index', [
             'tracks' => $this->tracks->withFilters($request->input())->paginate(48)
         ]);
     }
@@ -39,7 +39,7 @@ class TracksController extends Controller
      */
     public function create()
     {
-        return View('cms.tracks.create', [
+        return View('cms.basedata.tracks.create', [
             'selectBoxes' => $this->selectBoxes->get(),
         ]);
     }
@@ -76,7 +76,7 @@ class TracksController extends Controller
      */
     public function edit(Track $track)
     {
-        return View('cms.tracks.edit', [
+        return View('cms.basedata.tracks.edit', [
             'track' => $track,
             'selectBoxes' => $this->selectBoxes->get(),
         ]);

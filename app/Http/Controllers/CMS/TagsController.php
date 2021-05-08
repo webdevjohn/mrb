@@ -21,7 +21,7 @@ class TagsController extends Controller
      */
     public function index()
     {
-        return View('cms.tags.index', [
+        return View('cms.basedata.tags.index', [
             'tags' => $this->tags->orderBy('tag')->paginate(25)
         ]);
     }
@@ -33,9 +33,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        return View('cms.tags.create', [
-            'page' => 'Tags'
-        ]);
+        return View('cms.basedata.tags.create');
     }
 
     /**
@@ -76,7 +74,7 @@ class TagsController extends Controller
      */
     public function edit(Tag $tag)
     {        
-        return View('cms.tags.edit', [
+        return View('cms.basedata.tags.edit', [
             'tag' => $tag
         ]);
     }

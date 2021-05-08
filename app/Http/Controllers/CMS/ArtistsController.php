@@ -21,7 +21,7 @@ class ArtistsController extends Controller
      */
     public function index()
     {
-        return View('cms.artists.index', [
+        return View('cms.basedata.artists.index', [
             'artists' => $this->artists->orderBy('artist_name')->paginate(48)
         ]);
     }
@@ -33,7 +33,7 @@ class ArtistsController extends Controller
      */
     public function create()
     {
-        return View('cms.artists.create', [
+        return View('cms.basedata.artists.create', [
             'page' => 'Artists'
         ]);
     }
@@ -78,7 +78,7 @@ class ArtistsController extends Controller
      */
     public function edit(Artist $artist)
     {
-        return View('cms.artists.edit', [
+        return View('cms.basedata.artists.edit', [
             'artist' => $artist
         ]);
     }

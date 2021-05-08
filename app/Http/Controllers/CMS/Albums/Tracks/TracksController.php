@@ -26,7 +26,7 @@ class TracksController extends Controller
      */
     public function index(Album $album, Request $request)
     {
-        return View('cms.albums.tracks.index', [
+        return View('cms.basedata.albums.tracks.index', [
             'album' => $album,
             'tracks' => $album->tracks()->withFilters($request->input())->get()
         ]);
@@ -42,7 +42,7 @@ class TracksController extends Controller
      */
     public function create(Album $album)
     {        
-        return View('cms.albums.tracks.create', [            
+        return View('cms.basedata.albums.tracks.create', [            
             'album' => $album,
             'selectBoxes' => $this->selectBoxes->get()
         ]);
@@ -90,7 +90,7 @@ class TracksController extends Controller
      */
     public function edit(Album $album, Track $track)
     {     
-        return View('cms.albums.tracks.edit', [
+        return View('cms.basedata.albums.tracks.edit', [
             'album' => $album,
             'track' => $track,
             'selectBoxes' => $this->selectBoxes->get()

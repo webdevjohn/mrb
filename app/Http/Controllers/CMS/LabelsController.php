@@ -24,7 +24,7 @@ class LabelsController extends Controller
      */
     public function index()
     {
-        return View('cms.labels.index', [     
+        return View('cms.basedata.labels.index', [     
             'labels' => $this->labels->WithFields()
                 ->orderBy('label')
                 ->paginate(48)
@@ -38,7 +38,7 @@ class LabelsController extends Controller
      */
     public function create()
     {
-        return View('cms.labels.create');
+        return View('cms.basedata.labels.create');
     }
 
     /**
@@ -77,7 +77,7 @@ class LabelsController extends Controller
      */
     public function edit(Label $label)
     {
-        return View('cms.labels.edit', [   
+        return View('cms.basedata.labels.edit', [   
             'label' => $label
         ]);
     }
