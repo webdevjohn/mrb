@@ -42,10 +42,6 @@
                 </form>
             @endif
         </section> --}}
-
-
-
-
   
         <div class="icon-bar">
             <a href="{{ route('cms.homepage') }}" id="logo"><div>MyRecordBox <strong>CMS</strong></div></a>
@@ -55,7 +51,7 @@
                 <span>Dashboard</span>              
             </a> 
 
-            <a href="#">
+            <a href="#" class="{{ (request()->segments()['1'] == 'basedata') ? 'active' : '' }}">
                 <i class="fa fa-database"></i>
                 <span>Base Data</span>
             </a> 
