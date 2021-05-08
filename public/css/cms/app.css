@@ -163,7 +163,6 @@ body {
   font-size: 100%;
   font-weight: normal;
   background: #23313A;
-  color: #DCDCDC;
 }
 
 body, html {
@@ -172,6 +171,10 @@ body, html {
 
 .clear {
   clear: both;
+}
+
+h1 {
+  color: #DCDCDC;
 }
 
 a {
@@ -448,6 +451,10 @@ input, textarea, select {
   border-top: 1px solid #bbb;
   margin-top: 50px;
   padding: 0;
+}
+
+.select2-results .select2-highlighted {
+  background: #3ea211;
 }
 
 /************************/

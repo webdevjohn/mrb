@@ -7,13 +7,16 @@ body {
 	font-size: 100%; 
 	font-weight: normal;
 	background: $bodyBGColour;
-	color: #DCDCDC;
 }
 body, html {
     height: 100%;
 }
 .clear {
 	clear: both;
+}
+
+h1 {
+	color: $baseFontColor;
 }
 
 a {
@@ -320,7 +323,9 @@ input, textarea, select {
 }
   
  
-
+.select2-results .select2-highlighted {
+    background: #3ea211;
+}
 
 /************************/ 
 /*		Pagination 		*/
