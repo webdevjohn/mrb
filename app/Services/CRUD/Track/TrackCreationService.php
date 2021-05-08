@@ -27,7 +27,7 @@ class TrackCreationService {
 
         $track->artists()->attach($requestInput['artists']);
         
-        if ($requestInput['tags']) {
+        if (isset($requestInput['tags'])) {
             $track->tags()->attach($requestInput['tags']);
         }
     }

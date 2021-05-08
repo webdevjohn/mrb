@@ -4,7 +4,7 @@
 @section('page-header')
 	<h1>
 		Genres
-		<a href="{{ route('cms.genres.create') }}" 
+		<a href="{{ route('cms.basedata.genres.create') }}" 
 			class="btn btn-new-record float-right" 
 			title="New Genre">New Genre +</a>
 	</h1>	
@@ -28,7 +28,7 @@
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="2"><a href="{{ route('cms.genres.create') }}">Create a New Genre</a></td>
+					<td colspan="2"><a href="{{ route('cms.basedata.genres.create') }}">Create a New Genre</a></td>
 				</tr>
 			</tfoot>
 			<tbody>
@@ -38,7 +38,8 @@
 					<td>
 						<ul class="frm-crud-buttons">
 							<li>
-								<a href="{{ route('cms.genres.edit', $genre->slug) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
+								<a href="{{ route('cms.basedata.genres.edit', $genre->slug) }}" 
+									class="btn btn-edit-record" title="Edit Record">Edit</a>
 							</li>
 						</ul>
 					</td>

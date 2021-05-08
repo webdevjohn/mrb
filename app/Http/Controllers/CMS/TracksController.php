@@ -53,7 +53,7 @@ class TracksController extends Controller
         $trackCreationService->create($request->validated());
 
         return redirect()
-            ->route('cms.tracks.create')
+            ->route('cms.basedata.tracks.create')
             ->with('success','Track created successfully!');  
     }
 
@@ -95,7 +95,7 @@ class TracksController extends Controller
         $trackUpdateService->update($request->validated(), $track);
       
         return redirect()
-            ->route('cms.tracks.index')
+            ->route('cms.basedata.tracks.index')
             ->with('success','Track updated successfully!');  
     }
 

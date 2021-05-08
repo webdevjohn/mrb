@@ -12,7 +12,7 @@ class RulesForTrackCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
 
-    protected $endpoint = '/cms/tracks';
+    protected $endpoint = '/cms/basedata/tracks';
 
     function setUp(): void
     {

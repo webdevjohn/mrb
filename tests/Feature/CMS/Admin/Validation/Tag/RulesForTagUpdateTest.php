@@ -26,7 +26,7 @@ class RulesForTagUpdateTest extends TestCase
        $tag = Tag::factory()->createOne();
 
        $response = $this->patchJson(
-            route('cms.tags.update', $tag), 
+            route('cms.basedata.tags.update', $tag), 
             [
                 'tag' => null
             ]
@@ -46,7 +46,7 @@ class RulesForTagUpdateTest extends TestCase
         $tag = Tag::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tags.update', $tag), 
+            route('cms.basedata.tags.update', $tag), 
             [
                 'tag' => str::random(51)
             ]
@@ -66,7 +66,7 @@ class RulesForTagUpdateTest extends TestCase
         $tag = Tag::factory()->createOne();
         
         $this->patchJson(
-            route('cms.tags.update', $tag), 
+            route('cms.basedata.tags.update', $tag), 
             [
                 'tag' => $tag->tag
             ]
@@ -83,7 +83,7 @@ class RulesForTagUpdateTest extends TestCase
         // attempt to update $tag2 with a tag that 
         // already exists in the database.
         $response = $this->patchJson(
-            route('cms.tags.update', $tag2), 
+            route('cms.basedata.tags.update', $tag2), 
             [
                 'tag' => $tag->tag
             ]

@@ -52,7 +52,7 @@ class GenresController extends Controller
         );
 
         return redirect()
-            ->route('cms.genres.create')
+            ->route('cms.basedata.genres.create')
             ->with('success','Genre created successfully!');   
     }
 
@@ -98,7 +98,7 @@ class GenresController extends Controller
         )->save();
         
         return redirect()
-            ->route('cms.genres.index')
+            ->route('cms.basedata.genres.index')
             ->with('success',"Genre updated successfully!");   
     }
 

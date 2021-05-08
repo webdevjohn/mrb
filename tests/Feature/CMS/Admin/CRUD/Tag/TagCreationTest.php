@@ -10,7 +10,7 @@ class TagCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser;
 
-    protected $endpoint = '/cms/tags';
+    protected $endpoint = '/cms/basedata/tags';
 
     function setUp(): void
     {
@@ -30,7 +30,7 @@ class TagCreationTest extends TestCase
         )
         ->assertStatus(302);
 
-        $response->assertRedirect('cms/tags/create');
+        $response->assertRedirect('cms/basedata/tags/create');
 
         $flashMessage = session('success');
         $this->assertEquals('Tag created successfully!', $flashMessage);

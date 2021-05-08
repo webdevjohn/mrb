@@ -10,7 +10,7 @@ class FormatCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser;
 
-    protected $endpoint = '/cms/formats';
+    protected $endpoint = '/cms/basedata/formats';
 
     function setUp(): void
     {
@@ -30,7 +30,7 @@ class FormatCreationTest extends TestCase
         )
         ->assertStatus(302);
 
-        $response->assertRedirect('cms/formats/create');
+        $response->assertRedirect('cms/basedata/formats/create');
 
         $flashMessage = session('success');
         $this->assertEquals('Format created successfully!', $flashMessage);

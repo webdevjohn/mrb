@@ -11,7 +11,7 @@ class LabelCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser;
 
-    protected $endpoint = '/cms/labels';
+    protected $endpoint = '/cms/basedata/labels';
 
     function setUp(): void
     {
@@ -30,7 +30,7 @@ class LabelCreationTest extends TestCase
             ]
         )->assertStatus(302);
 
-        $response->assertRedirect('cms/labels/create');
+        $response->assertRedirect('cms/basedata/labels/create');
 
         $flashMessage = session('success');
         $this->assertEquals('Label created successfully!', $flashMessage);

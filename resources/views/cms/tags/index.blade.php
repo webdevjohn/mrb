@@ -4,7 +4,7 @@
 @section('page-header')
 	<h1>
 		Tags
-		<a href="{{ route('cms.tags.create') }}" 
+		<a href="{{ route('cms.basedata.tags.create') }}" 
 			class="btn btn-new-record float-right" 
 			title="New Tag">New Tag +</a>
 	</h1>	
@@ -27,7 +27,7 @@
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="4"><a href="{{ route('cms.tags.create') }}">Create a New Tag</a></td>
+					<td colspan="4"><a href="{{ route('cms.basedata.tags.create') }}">Create a New Tag</a></td>
 				</tr>
 			</tfoot>
 			<tbody>
@@ -37,7 +37,7 @@
 					<td>
 						<ul class="frm-crud-buttons">
 							<li>
-								<a href="{{ route('cms.tags.edit', $tag->id) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
+								<a href="{{ route('cms.basedata.tags.edit', $tag->id) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
 							</li>
 						</ul>
 					</td>

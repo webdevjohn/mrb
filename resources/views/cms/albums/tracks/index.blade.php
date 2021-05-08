@@ -4,7 +4,7 @@
 @section('page-header')
 	<h1>
 		{{ $album->title }}
-		<a href="{{ route('cms.albums.tracks.create', $album->slug) }}" 
+		<a href="{{ route('cms.basedata.albums.tracks.create', $album->slug) }}" 
 			class="btn btn-new-record float-right" 
 			title="New Track to Album">Add track to Album +</a>
 	</h1>	
@@ -12,7 +12,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.albums.index') }}">Albums</a></li>	
+	<li><a href="{{ route('cms.basedata.albums.index') }}">Albums</a></li>	
 	<li>{{ $album->title }}</li>
 @stop
 
@@ -30,7 +30,7 @@
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="4"><a href="{{ route('cms.albums.tracks.create', $album->slug) }}">Add Track to Album</a></td>
+					<td colspan="4"><a href="{{ route('cms.basedata.albums.tracks.create', $album->slug) }}">Add Track to Album</a></td>
 				</tr>
 			</tfoot>
 			<tbody>
@@ -42,7 +42,8 @@
 				<td>
 					<ul class="frm-crud-buttons">
 						<li>
-							<a href="{{ route('cms.albums.tracks.edit', [$album->slug, $track->id]) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
+							<a href="{{ route('cms.basedata.albums.tracks.edit', [$album->slug, $track->id]) }}" 
+								class="btn btn-edit-record" title="Edit Record">Edit</a>
 						</li>
 					</ul>
 				</td>

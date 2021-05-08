@@ -27,7 +27,7 @@ class RulesForPlaylistUpdateTest extends TestCase
        $playlist = Playlist::factory()->createOne();
 
        $response = $this->patchJson(
-            route('cms.playlists.update', $playlist), 
+            route('cms.basedata.playlists.update', $playlist), 
             [
                 'name' => null
             ]
@@ -47,7 +47,7 @@ class RulesForPlaylistUpdateTest extends TestCase
         $playlist = Playlist::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.playlists.update', $playlist), 
+            route('cms.basedata.playlists.update', $playlist), 
             [
                 'name' => str::random(101)
             ]
@@ -68,7 +68,7 @@ class RulesForPlaylistUpdateTest extends TestCase
         $genre = Genre::factory()->createOne();
         
         $this->patchJson(
-            route('cms.playlists.update', $playlist), 
+            route('cms.basedata.playlists.update', $playlist), 
             [
                 'name' => $playlist->name,
                 'genre_id' => $genre->id
@@ -86,7 +86,7 @@ class RulesForPlaylistUpdateTest extends TestCase
         // attempt to update the playlist name with a name that 
         // already exists in the database.
         $response = $this->patchJson(
-            route('cms.playlists.update', $playlist2), 
+            route('cms.basedata.playlists.update', $playlist2), 
             [
                 'name' => $playlist->name
             ]
@@ -107,7 +107,7 @@ class RulesForPlaylistUpdateTest extends TestCase
         $playlist = Playlist::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.playlists.update', $playlist), 
+            route('cms.basedata.playlists.update', $playlist), 
             [
                 'genre_id' => null
             ]
@@ -127,7 +127,7 @@ class RulesForPlaylistUpdateTest extends TestCase
         $playlist = Playlist::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.playlists.update', $playlist), 
+            route('cms.basedata.playlists.update', $playlist), 
             [
                 'genre_id' => 'oiewjroijew'
             ]
@@ -147,7 +147,7 @@ class RulesForPlaylistUpdateTest extends TestCase
         $playlist = Playlist::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.playlists.update', $playlist), 
+            route('cms.basedata.playlists.update', $playlist), 
             [
                 'genre_id' => 0
             ]
@@ -167,7 +167,7 @@ class RulesForPlaylistUpdateTest extends TestCase
         $playlist = Playlist::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.playlists.update', $playlist), 
+            route('cms.basedata.playlists.update', $playlist), 
             [
                 'genre_id' => 9999
             ]

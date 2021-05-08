@@ -14,7 +14,7 @@ class AlbumCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser;
 
-    protected $endpoint = '/cms/albums';
+    protected $endpoint = '/cms/basedata/albums';
 
     function setUp(): void
     {
@@ -41,7 +41,7 @@ class AlbumCreationTest extends TestCase
         )
         ->assertStatus(302);
 
-        $response->assertRedirect('cms/albums/create');
+        $response->assertRedirect('cms/basedata/albums/create');
 
         $flashMessage = session('success');
         $this->assertEquals('Album created successfully!', $flashMessage);

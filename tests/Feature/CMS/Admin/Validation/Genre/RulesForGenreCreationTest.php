@@ -13,7 +13,7 @@ class RulesForGenreCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
 
-    protected $endpoint = '/cms/genres';
+    protected $endpoint = '/cms/basedata/genres';
 
     function setUp(): void
     {

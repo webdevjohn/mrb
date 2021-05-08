@@ -55,7 +55,7 @@ class AlbumsController extends Controller
         );
         
         return redirect()
-            ->route('cms.albums.create')
+            ->route('cms.basedata.albums.create')
             ->with('success','Album created successfully!');  
     }
 
@@ -102,7 +102,7 @@ class AlbumsController extends Controller
         )->save();
 
         return redirect()
-            ->route("cms.albums.index")
+            ->route("cms.basedata.albums.index")
             ->with("success", "Updated successfully!");          
     }
 

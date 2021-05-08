@@ -26,7 +26,7 @@ class RulesForGenreUpdateTest extends TestCase
        $genre = Genre::factory()->createOne();
 
        $response = $this->patchJson(
-            route('cms.genres.update', $genre), 
+            route('cms.basedata.genres.update', $genre), 
             [
                 'genre' => null
             ]
@@ -46,7 +46,7 @@ class RulesForGenreUpdateTest extends TestCase
         $tag = Genre::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.genres.update', $tag), 
+            route('cms.basedata.genres.update', $tag), 
             [
                 'genre' => str::random(51)
             ]
@@ -66,7 +66,7 @@ class RulesForGenreUpdateTest extends TestCase
         $genre = Genre::factory()->createOne();
         
         $this->patchJson(
-            route('cms.genres.update', $genre), 
+            route('cms.basedata.genres.update', $genre), 
             [
                 'genre' => $genre->genre
             ]
@@ -83,7 +83,7 @@ class RulesForGenreUpdateTest extends TestCase
         // attempt to update $genre2 with a genre that 
         // already exists in the database.
         $response = $this->patchJson(
-            route('cms.genres.update', $genre2), 
+            route('cms.basedata.genres.update', $genre2), 
             [
                 'genre' => $genre->genre
             ]

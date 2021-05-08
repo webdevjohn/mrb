@@ -51,7 +51,7 @@ class RolesController extends Controller
         );
 
         return redirect()
-            ->route('cms.roles.create')
+            ->route('cms.basedata.roles.create')
             ->with('success','Role created successfully!');  
     }
 
@@ -93,7 +93,7 @@ class RolesController extends Controller
         $role->fill($request->validated())->save();
 
         return redirect()
-            ->route('cms.roles.index')
+            ->route('cms.basedata.roles.index')
             ->with('success',"Role updated successfully!");   
     }
 

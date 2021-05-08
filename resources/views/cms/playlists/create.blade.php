@@ -7,7 +7,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.playlists.index') }}">Playlists</a></li>	
+	<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>	
 	<li>Create a New Playlist</li>
 @stop
 
@@ -15,7 +15,7 @@
 
 	<section id="form-con">		
 		
-		<form method="POST" action="{{ route('cms.playlists.store') }}">
+		<form method="POST" action="{{ route('cms.basedata.playlists.store') }}">
 			@csrf
 
 			<label for="name">Name:</label>

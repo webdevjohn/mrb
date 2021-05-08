@@ -26,7 +26,7 @@ class RulesForRoleUpdateTest extends TestCase
        $role = Role::factory()->createOne();
 
        $response = $this->patchJson(
-            route('cms.roles.update', $role), 
+            route('cms.basedata.roles.update', $role), 
             [
                 'role' => null
             ]
@@ -46,7 +46,7 @@ class RulesForRoleUpdateTest extends TestCase
         $role = Role::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.roles.update', $role), 
+            route('cms.basedata.roles.update', $role), 
             [
                 'role' => str::random(51)
             ]
@@ -66,7 +66,7 @@ class RulesForRoleUpdateTest extends TestCase
         $role = Role::factory()->createOne();
         
         $this->patchJson(
-            route('cms.roles.update', $role), 
+            route('cms.basedata.roles.update', $role), 
             [
                 'role' => $role->role
             ]
@@ -83,7 +83,7 @@ class RulesForRoleUpdateTest extends TestCase
         // attempt to update $role2 with a role that 
         // already exists in the database.
         $response = $this->patchJson(
-            route('cms.roles.update', $role2), 
+            route('cms.basedata.roles.update', $role2), 
             [
                 'role' => $role->role
             ]

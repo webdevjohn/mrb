@@ -7,7 +7,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.genres.index') }}">Genres</a></li>
+	<li><a href="{{ route('cms.basedata.genres.index') }}">Genres</a></li>
 	<li>Edit Genre: {{ $genre->genre }}</li>
 @stop
 
@@ -16,7 +16,7 @@
 	<h1 class="section-header">Edit Genre: {{ $genre->genre }}</h1>
 
 	<section id="form-con">		
-		<form method="POST" action="{{ route('cms.genres.update', $genre->slug) }}">
+		<form method="POST" action="{{ route('cms.basedata.genres.update', $genre->slug) }}">
 			@method('PATCH')
 			@csrf
 

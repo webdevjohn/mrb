@@ -45,21 +45,26 @@
 
 
 
+
   
         <div class="icon-bar">
             <a href="{{ route('cms.homepage') }}" id="logo"><div>MyRecordBox <strong>CMS</strong></div></a>
-            <a href="{{ route('cms.homepage') }}" class="active">
+            
+            <a href="{{ route('cms.homepage') }}" class="{{ (request()->segments()['1'] == 'home') ? 'active' : '' }}">
                 <i class="fas fa-tachometer-alt"></i>
                 <span>Dashboard</span>              
             </a> 
+
             <a href="#">
                 <i class="fa fa-database"></i>
                 <span>Base Data</span>
             </a> 
+
             <a href="#">
                 <i class="fas fa-chart-pie"></i>
                 <span>Reports</span>
             </a> 
+
             <a href="#">
                 <i class="fas fa-power-off"></i>
                 <span>Logout</span>
@@ -88,14 +93,14 @@
             <div class="wrapper">  
                 <section id="base-data">
                     <ul>
-                        <li><a href="{{ route('cms.albums.index') }}">Albums</a></li>
-                        <li><a href="{{ route('cms.artists.index') }}">Artists</a></li>
-                        <li><a href="{{ route('cms.formats.index') }}">Formats</a></li>
-                        <li><a href="{{ route('cms.genres.index') }}">Genres</a></li>
-                        <li><a href="{{ route('cms.labels.index') }}">Labels</a></li>
-                        <li><a href="{{ route('cms.playlists.index') }}">Playlists</a></li>
-                        <li><a href="{{ route('cms.tags.index') }}">Tags</a></li>
-                        <li><a href="{{ route('cms.tracks.index') }}">Tracks</a></li>				
+                        <li><a href="{{ route('cms.basedata.albums.index') }}">Albums</a></li>
+                        <li><a href="{{ route('cms.basedata.artists.index') }}">Artists</a></li>
+                        <li><a href="{{ route('cms.basedata.formats.index') }}">Formats</a></li>
+                        <li><a href="{{ route('cms.basedata.genres.index') }}">Genres</a></li>
+                        <li><a href="{{ route('cms.basedata.labels.index') }}">Labels</a></li>
+                        <li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>
+                        <li><a href="{{ route('cms.basedata.tags.index') }}">Tags</a></li>
+                        <li><a href="{{ route('cms.basedata.tracks.index') }}">Tracks</a></li>				
                     </ul>
                 </section>
             </div>

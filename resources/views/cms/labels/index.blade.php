@@ -4,7 +4,7 @@
 @section('page-header')
 	<h1>
 		Labels
-		<a href="{{ route('cms.labels.create') }}" 
+		<a href="{{ route('cms.basedata.labels.create') }}" 
 			class="btn btn-new-record float-right" 
 			title="New Label">New Label +</a>
 	</h1>	
@@ -30,7 +30,7 @@
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="4"><a href="{{ route('cms.labels.create') }}">Create a New Label</a></td>
+					<td colspan="4"><a href="{{ route('cms.basedata.labels.create') }}">Create a New Label</a></td>
 				</tr>
 			</tfoot>
 			<tbody>
@@ -42,7 +42,8 @@
 					<td>
 						<ul class="frm-crud-buttons">
 							<li>
-								<a href="{{ route('cms.labels.edit', $label->slug) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
+								<a href="{{ route('cms.basedata.labels.edit', $label->slug) }}" 
+									class="btn btn-edit-record" title="Edit Record">Edit</a>
 							</li>
 						</ul>
 					</td>

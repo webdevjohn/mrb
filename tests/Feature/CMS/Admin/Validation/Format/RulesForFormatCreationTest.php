@@ -13,7 +13,7 @@ class RulesForFormatCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
 
-    protected $endpoint = '/cms/formats';
+    protected $endpoint = '/cms/basedata/formats';
     
     function setUp(): void
     {

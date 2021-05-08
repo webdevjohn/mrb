@@ -7,14 +7,14 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.artists.index') }}">Artists</a></li>
+	<li><a href="{{ route('cms.basedata.artists.index') }}">Artists</a></li>
 	<li>Create a New Artist</li>
 @stop
 
 @section('content')
 	
 	<section id="form-con">		
-		<form method="POST" action="{{ route('cms.artists.store') }}">
+		<form method="POST" action="{{ route('cms.basedata.artists.store') }}">
 			@csrf
 
 			<label for="artist_name">Artist: </label>

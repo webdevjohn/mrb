@@ -7,8 +7,8 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.playlists.index') }}">Playlists</a></li>	
-	<li><a href="{{ route('cms.playlists.tracks.index', $playlist->slug) }}">{{ $playlist->name }}</a></li>
+	<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>	
+	<li><a href="{{ route('cms.basedata.playlists.tracks.index', $playlist->slug) }}">{{ $playlist->name }}</a></li>
 	<li>Add track to playlist</li>
 @stop
 
@@ -42,7 +42,7 @@
 				<td>{{ $track->label->label }}</td>		
 				<td>{{ $track->year_released }}</td>						
 				<td>					
-					<form method="POST" action="{{ route('cms.playlists.tracks.store', $playlist->slug) }}">
+					<form method="POST" action="{{ route('cms.basedata.playlists.tracks.store', $playlist->slug) }}">
 						@csrf
 						
 						<input name="id" type="hidden" id="id" value="{{ $track->id }}">

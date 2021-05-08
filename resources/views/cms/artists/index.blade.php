@@ -4,7 +4,7 @@
 @section('page-header')
 	<h1>
 		Artists
-		<a href="{{ route('cms.artists.create') }}" 
+		<a href="{{ route('cms.basedata.artists.create') }}" 
 			class="btn btn-new-record float-right" 
 			title="New Artist">New Artist +</a>
 	</h1>	
@@ -27,7 +27,7 @@
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="2"><a href="{{ route('cms.artists.create') }}">Create a New Artist</a></td>
+					<td colspan="2"><a href="{{ route('cms.basedata.artists.create') }}">Create a New Artist</a></td>
 				</tr>
 			</tfoot>
 			<tbody>
@@ -37,7 +37,7 @@
 					<td>						
 						<ul class="frm-crud-buttons">
 							<li>
-								<a href="{{ route('cms.artists.edit', $artist->slug) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
+								<a href="{{ route('cms.basedata.artists.edit', $artist->slug) }}" class="btn btn-edit-record" title="Edit Record">Edit</a>
 							</li>
 						</ul>
 					</td>

@@ -49,7 +49,7 @@ class FormatsController extends Controller
         );
 
         return redirect()
-            ->route('cms.formats.create')
+            ->route('cms.basedata.formats.create')
             ->with('success','Format created successfully!');  
     }
 
@@ -93,7 +93,7 @@ class FormatsController extends Controller
         )->save();
 
         return redirect()
-            ->route('cms.formats.index')
+            ->route('cms.basedata.formats.index')
             ->with('success',"Format updated successfully!");   
     }
 

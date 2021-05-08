@@ -52,7 +52,7 @@ class TagsController extends Controller
         );
         
         return redirect()
-            ->route('cms.tags.create')
+            ->route('cms.basedata.tags.create')
             ->with('success','Tag created successfully!');  
     }
 
@@ -94,7 +94,7 @@ class TagsController extends Controller
         $tag->fill($request->validated())->save();
         
         return redirect()
-            ->route('cms.tags.index')
+            ->route('cms.basedata.tags.index')
             ->with('success',"Tag updated successfully!");   
     }
 

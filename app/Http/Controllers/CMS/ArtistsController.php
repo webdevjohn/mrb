@@ -54,7 +54,7 @@ class ArtistsController extends Controller
         );
 
         return redirect()
-            ->route('cms.artists.create')
+            ->route('cms.basedata.artists.create')
             ->with('success','Artist created successfully!');  
     }
 
@@ -100,7 +100,7 @@ class ArtistsController extends Controller
         )->save();
 
         return redirect()
-            ->route('cms.artists.index')
+            ->route('cms.basedata.artists.index')
             ->with('success',"Artist updated successfully!");   
     }
 

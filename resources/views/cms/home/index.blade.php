@@ -92,7 +92,7 @@
 			Chart.defaults.global.elements.point.hitRadius = 5;
 	
 			$.ajax({
-	            url: '{{ route('cms.tracks.by-year-purchased', date("Y")) }}',
+	            url: '{{ route('cms.basedata.tracks.by-year-purchased', date("Y")) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {			
@@ -122,7 +122,7 @@
         	});
 
         	$.ajax({
-	            url: '{{ route('cms.tracks.by-year-purchased', date("Y") -1) }}',
+	            url: '{{ route('cms.basedata.tracks.by-year-purchased', date("Y") -1) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {
@@ -151,7 +151,7 @@
         	});
 
     		$.ajax({
-	            url: '{{ route('cms.tracks.by-year') }}',
+	            url: '{{ route('cms.basedata.tracks.by-year') }}',
 	            type: 'GET',
 	            success: function(results)
 	            {
@@ -181,7 +181,7 @@
 
 
         	$.ajax({
-	            url: '{{ route('cms.genres.summary', date("Y")) }}',
+	            url: '{{ route('cms.basedata.genres.summary', date("Y")) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {
@@ -210,7 +210,7 @@
         	});
 
 			$.ajax({
-	            url: '{{ route('cms.genres.summary', date("Y")-1) }}',
+	            url: '{{ route('cms.basedata.genres.summary', date("Y")-1) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {

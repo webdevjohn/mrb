@@ -7,7 +7,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.tracks.index') }}">Tracks</a></li>
+	<li><a href="{{ route('cms.basedata.tracks.index') }}">Tracks</a></li>
 	<li>{{ $track->title }}</li>
 @stop
 
@@ -15,7 +15,7 @@
 	
 	<section id="form-con">		
 
-		<form method="POST" action="{{ route('cms.tracks.update', $track->id) }}" enctype="multipart/form-data">
+		<form method="POST" action="{{ route('cms.basedata.tracks.update', $track->id) }}" enctype="multipart/form-data">
 			@method('PATCH')
 			@csrf
 

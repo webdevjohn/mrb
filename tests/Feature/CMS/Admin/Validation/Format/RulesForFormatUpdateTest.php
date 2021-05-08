@@ -26,7 +26,7 @@ class RulesForFormatUpdateTest extends TestCase
        $format = Format::factory()->createOne();
 
        $response = $this->patchJson(
-            route('cms.formats.update', $format), 
+            route('cms.basedata.formats.update', $format), 
             [
                 'format' => null
             ]
@@ -46,7 +46,7 @@ class RulesForFormatUpdateTest extends TestCase
         $format = Format::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.formats.update', $format), 
+            route('cms.basedata.formats.update', $format), 
             [
                 'format' => str::random(26)
             ]
@@ -66,7 +66,7 @@ class RulesForFormatUpdateTest extends TestCase
         $format = Format::factory()->createOne();
         
         $this->patchJson(
-            route('cms.formats.update', $format), 
+            route('cms.basedata.formats.update', $format), 
             [
                 'format' => $format->format
             ]
@@ -83,7 +83,7 @@ class RulesForFormatUpdateTest extends TestCase
         // attempt to update $format2 with a format that 
         // already exists in the database.
         $response = $this->patchJson(
-            route('cms.formats.update', $format2), 
+            route('cms.basedata.formats.update', $format2), 
             [
                 'format' => $format->format
             ]

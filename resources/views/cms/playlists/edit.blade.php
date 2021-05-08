@@ -7,7 +7,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.playlists.index') }}">Playlists</a></li>
+	<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>
 	<li>Edit Playlist</li>
 @stop
 
@@ -15,7 +15,7 @@
 	
 	<section id="form-con">		
 		
-		<form method="POST" action="{{ route('cms.playlists.update', $playlist->slug) }}">
+		<form method="POST" action="{{ route('cms.basedata.playlists.update', $playlist->slug) }}">
             @method('PATCH')
 			@csrf
 

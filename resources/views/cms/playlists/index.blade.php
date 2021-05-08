@@ -4,7 +4,7 @@
 @section('page-header')
 	<h1>
 		Playlists
-		<a href="{{ route('cms.playlists.create') }}" 
+		<a href="{{ route('cms.basedata.playlists.create') }}" 
 			class="btn btn-new-record float-right" 
 			title="New Playlist">New Playlist +</a>
 	</h1>	
@@ -28,7 +28,7 @@
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="5"><a href="{{ route('cms.playlists.create') }}">Create a New Playlist</a></td>
+					<td colspan="5"><a href="{{ route('cms.basedata.playlists.create') }}">Create a New Playlist</a></td>
 				</tr>
 			</tfoot>
 			<tbody>
@@ -38,12 +38,12 @@
 					<td>
 						<ul class="frm-crud-buttons">
 							<li>
-								<a href="{{ route('cms.playlists.tracks.index', $playlist->slug) }}" 
+								<a href="{{ route('cms.basedata.playlists.tracks.index', $playlist->slug) }}" 
 									class="btn btn-view-record" 
 									title="View Tracks">View Tracks</a>								
 							</li>
 							<li>
-								<a href="{{ route('cms.playlists.edit', $playlist->slug) }}" 
+								<a href="{{ route('cms.basedata.playlists.edit', $playlist->slug) }}" 
 									class="btn btn-edit-record" 
 									title="Edit Record">Edit</a>
 							</li>

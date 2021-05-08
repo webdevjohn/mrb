@@ -53,7 +53,7 @@ class LabelsController extends Controller
         $labelCreationService->create($request->validated());
         
         return redirect()
-            ->route('cms.labels.create')
+            ->route('cms.basedata.labels.create')
             ->with('success','Label created successfully!');  
     }
 
@@ -96,7 +96,7 @@ class LabelsController extends Controller
         $labelUpdateService->update($request->validated(), $label);
  
         return redirect()
-            ->route('cms.labels.index')
+            ->route('cms.basedata.labels.index')
             ->with('success',"Label updated successfully!");   
     }
 

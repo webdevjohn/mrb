@@ -7,7 +7,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.genres.index') }}">Genres</a></li>
+	<li><a href="{{ route('cms.basedata.genres.index') }}">Genres</a></li>
 	<li>Create a New Genre</li>
 @stop
 
@@ -16,7 +16,7 @@
 	<h1 class="section-header">Create a New Genre</h1>
 
 	<section id="form-con">		
-		<form method="POST" action="{{ route('cms.genres.store') }}">
+		<form method="POST" action="{{ route('cms.basedata.genres.store') }}">
 			@csrf
 
 			<label for="genre">Genre: </label>

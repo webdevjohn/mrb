@@ -13,7 +13,7 @@ class RulesForAlbumCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
 
-    protected $endpoint = '/cms/albums';
+    protected $endpoint = '/cms/basedata/albums';
 
     function setUp(): void
     {

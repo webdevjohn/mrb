@@ -7,7 +7,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.albums.index') }}">Albums</a></li>
+	<li><a href="{{ route('cms.basedata.albums.index') }}">Albums</a></li>
 	<li>Create a New Album</li>
 @stop
 
@@ -15,7 +15,7 @@
 	
 	<section id="form-con">		
 
-		<form method="POST" action="{{ route('cms.albums.store') }}">
+		<form method="POST" action="{{ route('cms.basedata.albums.store') }}">
 			@csrf
 
 			<label for="title">Title: </label>

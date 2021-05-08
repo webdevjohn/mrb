@@ -7,7 +7,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.formats.index') }}">Formats</a></li>	
+	<li><a href="{{ route('cms.basedata.formats.index') }}">Formats</a></li>	
 	<li>Create a New Format</li>
 @stop
 
@@ -15,7 +15,7 @@
 	
 	<section id="form-con">		
 
-		<form method="POST" action="{{ route('cms.formats.store') }}">
+		<form method="POST" action="{{ route('cms.basedata.formats.store') }}">
 			@csrf
 
 			<label for="format">Format: </label>

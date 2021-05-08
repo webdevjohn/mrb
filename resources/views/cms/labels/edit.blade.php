@@ -7,7 +7,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.labels.index') }}">Labels</a></li>
+	<li><a href="{{ route('cms.basedata.labels.index') }}">Labels</a></li>
 	<li>Edit Label: {{ $label->label }}</li>
 @stop
 
@@ -15,7 +15,7 @@
 	
 	<section id="form-con">		
 
-		<form method="POST" action="{{ route('cms.labels.update', $label->slug) }}" enctype="multipart/form-data">
+		<form method="POST" action="{{ route('cms.basedata.labels.update', $label->slug) }}" enctype="multipart/form-data">
 			@method('PATCH')
 			@csrf
 

@@ -26,7 +26,7 @@ class RulesForLabelUpdateTest extends TestCase
         $label = Label::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.labels.update', $label), 
+            route('cms.basedata.labels.update', $label), 
             [
                 'label' => null
             ]
@@ -46,7 +46,7 @@ class RulesForLabelUpdateTest extends TestCase
         $label = Label::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.labels.update', $label), 
+            route('cms.basedata.labels.update', $label), 
             [
                 'label' => str::random(51)
             ]
@@ -66,7 +66,7 @@ class RulesForLabelUpdateTest extends TestCase
         $label = Label::factory()->createOne();
     
         $this->patchJson(
-            route('cms.labels.update', $label), 
+            route('cms.basedata.labels.update', $label), 
             [
                 'label' => $label->label
             ]
@@ -83,7 +83,7 @@ class RulesForLabelUpdateTest extends TestCase
         // attempt to update $label2 with a label that 
         // already exists in the database.
         $response = $this->patchJson(
-            route('cms.labels.update', $label2), 
+            route('cms.basedata.labels.update', $label2), 
             [
                 'label' => $label->label
             ]

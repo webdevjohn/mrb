@@ -64,7 +64,7 @@ class TracksController extends Controller
         );
 
         return redirect()
-            ->route('cms.albums.tracks.index', $album->slug)
+            ->route('cms.basedata.albums.tracks.index', $album->slug)
             ->with('success',"Successfully added a new track to: $album->title !");   
     }
 
@@ -112,7 +112,7 @@ class TracksController extends Controller
         $track->fill($request->validated())->save();
 
         return redirect()
-            ->route("cms.albums.tracks.index", [$album->slug])
+            ->route("cms.basedata.albums.tracks.index", [$album->slug])
             ->with("success", "The track has been updated successfully on the album: $album->title");              
     }
 

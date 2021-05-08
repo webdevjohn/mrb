@@ -59,7 +59,7 @@ class PlaylistsController extends Controller
         );
 
         return redirect()
-            ->route('cms.playlists.create')
+            ->route('cms.basedata.playlists.create')
             ->with('success','Playlist created successfully!');   
     }
 
@@ -109,7 +109,7 @@ class PlaylistsController extends Controller
         )->save();
 
         return redirect()
-            ->route('cms.playlists.index')
+            ->route('cms.basedata.playlists.index')
             ->with('success',"Playlist updated successfully!");   
     }
 

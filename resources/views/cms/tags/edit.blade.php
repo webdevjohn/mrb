@@ -7,14 +7,14 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.tags.index') }}">Tags</a></li>	
+	<li><a href="{{ route('cms.basedata.tags.index') }}">Tags</a></li>	
 	<li>Edit Tag: {{ $tag->tag }}</li>
 @stop
 
 @section('content')
 	
 	<section id="form-con">		
-		<form method="POST" action="{{ route('cms.tags.update', $tag->id) }}">
+		<form method="POST" action="{{ route('cms.basedata.tags.update', $tag->id) }}">
 		  	@method('PATCH')
 			@csrf
 		

@@ -7,14 +7,14 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.artists.index') }}">Artists</a></li>
+	<li><a href="{{ route('cms.basedata.artists.index') }}">Artists</a></li>
 	<li>Edit Artist: {{ $artist->artist_name }}</li>
 @stop
 
 @section('content')
 	
 	<section id="form-con">		
-		<form method="POST" action="{{ route('cms.artists.update', $artist->slug) }}">
+		<form method="POST" action="{{ route('cms.basedata.artists.update', $artist->slug) }}">
 			@method('PATCH')
 			@csrf
 
