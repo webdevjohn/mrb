@@ -241,8 +241,8 @@ table tbody tr:hover {
 /* form styles */
 #form-con {
 	margin-top: -200px;
-	border: 20px solid #fff;
-	background: #FAFAFA;
+	border: 1px solid $borderColour;
+	background: $articleBg;
 	padding: 0px 20px 20px 20px;
 	width: 860px;
 	margin-bottom: 40px;
@@ -261,22 +261,23 @@ table tbody tr:hover {
 #form-con label {
 	display: block;
 	font-size: 100%;
-	color: #222;
+	color: $baseFontColor;
 	margin-bottom: 10px;
 	margin-top: 40px;
 }
 
 input, textarea, select {
-	color: #555;
+	color: $baseFontColor;
+	background: lighten($articleBg, 2);
 	padding: 10px 10px;
 	font-size: 100%;
-	border: 1px solid #ccc;
+	border: 1px solid $borderColour;
 	border-radius:4px;
 /*	margin-bottom: 40px; */
 }
 
 #form-con input, textarea, select {
-	width: 840px
+	width: 840px;
 }
 
 #form-con input.selectedId {
@@ -322,10 +323,30 @@ input, textarea, select {
     padding: 0; 
 }
   
- 
-.select2-results .select2-highlighted {
-    background: #3ea211;
+.select2-results ul li  {
+    background-color: $articleBg;
+	color: $baseFontColor;
 }
+
+.select2-selection {
+	background-color: lighten($articleBg, 2) !important;
+	border: 1px solid $borderColour !important;
+	// padding-top: 2px;
+}
+
+.select2-selection__rendered {
+	padding-top: 5px !important;
+}
+.select2-selection__choice {
+	color:$baseFontColor !important;
+	background-color: darken($articleBg, 5) !important;
+	border: 1px solid $borderColour !important;
+}
+.select2-search, .select2-search--inline {
+	margin-left: 10px;
+	font-size: 80%;
+}
+
 
 /************************/ 
 /*		Pagination 		*/

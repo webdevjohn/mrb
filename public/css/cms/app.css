@@ -374,8 +374,8 @@ table tbody tr:hover {
 /* form styles */
 #form-con {
   margin-top: -200px;
-  border: 20px solid #fff;
-  background: #FAFAFA;
+  border: 1px solid #232227;
+  background: #27343C;
   padding: 0px 20px 20px 20px;
   width: 860px;
   margin-bottom: 40px;
@@ -392,16 +392,17 @@ table tbody tr:hover {
 #form-con label {
   display: block;
   font-size: 100%;
-  color: #222;
+  color: #DCDCDC;
   margin-bottom: 10px;
   margin-top: 40px;
 }
 
 input, textarea, select {
-  color: #555;
+  color: #DCDCDC;
+  background: #2b3942;
   padding: 10px 10px;
   font-size: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #232227;
   border-radius: 4px;
   /*	margin-bottom: 40px; */
 }
@@ -453,8 +454,29 @@ input, textarea, select {
   padding: 0;
 }
 
-.select2-results .select2-highlighted {
-  background: #3ea211;
+.select2-results ul li {
+  background-color: #27343C;
+  color: #DCDCDC;
+}
+
+.select2-selection {
+  background-color: #2b3942 !important;
+  border: 1px solid #232227 !important;
+}
+
+.select2-selection__rendered {
+  padding-top: 5px !important;
+}
+
+.select2-selection__choice {
+  color: #DCDCDC !important;
+  background-color: #1d272d !important;
+  border: 1px solid #232227 !important;
+}
+
+.select2-search, .select2-search--inline {
+  margin-left: 10px;
+  font-size: 80%;
 }
 
 /************************/
