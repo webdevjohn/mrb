@@ -12,6 +12,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
 	<li>Formats</li>
 @stop
 

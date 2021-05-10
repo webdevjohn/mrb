@@ -7,6 +7,7 @@
 
 @section('breadcrums')
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
 	<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>	
 	<li><a href="{{ route('cms.basedata.playlists.tracks.index', $playlist->slug) }}">{{ $playlist->name }}</a></li>
 	<li>Add track to playlist</li>

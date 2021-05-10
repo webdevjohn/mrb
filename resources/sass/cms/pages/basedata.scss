@@ -1,0 +1,46 @@
+#basedata-list {
+    margin-top: -200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+
+    article {
+        background: $articleBg;
+        border: 1px solid $borderColour;
+        text-align: center;
+        h1 {
+            padding: 20px;
+            font-size: 125%;
+            span {
+                font-size: 80%;
+                color: darken($baseFontColor, 20);
+            }
+        }
+        footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid $borderColour;
+            a {
+                display: block;            
+                padding: 20px 10px;
+                color: $baseFontColor;
+            }
+            a:first-child {
+                border-right: 1px solid $borderColour;
+            }
+        }
+    }
+
+    div {
+        background: #2A52FA;
+        background: linear-gradient(180deg, rgba(42,82,250,1) 0%, rgba(41,76,219,1) 35%, rgba(26,47,135,1) 100%);    
+        padding: 40px 40px 40px 40px;
+    }
+    div:before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;  
+        font-size: 200px;
+        color: darken($baseFontColor, 5);
+        content: "\f0ce";
+    }
+}

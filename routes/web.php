@@ -86,6 +86,10 @@ Route::prefix('cms')->name('cms.')->middleware(['auth', 'verified', 'roles.admin
 
     Route::prefix('basedata')->name('basedata.')->group(function() {
 
+        Route::get('/', [            
+            App\Http\Controllers\CMS\Basedata\BaseDataController::class, 'index'
+        ])->name('index');
+
         Route::get('tracks/by-year-purchased/{year}', [
             App\Http\Controllers\CMS\Basedata\TracksController::class, 'getTracksByYearPurchased'
         ])->name('tracks.by-year-purchased');

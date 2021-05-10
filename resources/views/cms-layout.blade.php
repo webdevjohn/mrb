@@ -51,7 +51,7 @@
                 <span>Dashboard</span>              
             </a> 
 
-            <a href="#" class="{{ (request()->segments()['1'] == 'basedata') ? 'active' : '' }}">
+            <a href="{{ route('cms.basedata.index') }}" class="{{ (request()->segments()['1'] == 'basedata') ? 'active' : '' }}">
                 <i class="fa fa-database"></i>
                 <span>Base Data</span>
             </a> 
