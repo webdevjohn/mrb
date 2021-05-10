@@ -10,7 +10,7 @@ class RoleCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser;
 
-    protected $endpoint = '/cms/roles';
+    protected $endpoint = '/cms/basedata/roles';
 
     function setUp(): void
     {
@@ -30,7 +30,7 @@ class RoleCreationTest extends TestCase
         )
         ->assertStatus(302);
 
-        $response->assertRedirect('cms/roles/create');
+        $response->assertRedirect('cms/basedata/roles/create');
 
         $flashMessage = session('success');
         $this->assertEquals('Role created successfully!', $flashMessage);

@@ -26,7 +26,7 @@ class RulesForAlbumUpdateTest extends TestCase
        $album = Album::factory()->createOne();
 
        $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'title' => null
             ]
@@ -46,7 +46,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'title' => str::random(126)
             ]
@@ -66,7 +66,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
   
         $this->patchJson(
-            route('cms.albums.update', $album), array_merge(
+            route('cms.basedata.albums.update', $album), array_merge(
                 $album->toArray(),
                 [
                     'title' => $album->title
@@ -84,7 +84,7 @@ class RulesForAlbumUpdateTest extends TestCase
         // attempt to update the title with a title that 
         // already exists in the database.
         $response = $this->patchJson(
-            route('cms.albums.update', $album2), 
+            route('cms.basedata.albums.update', $album2), 
             [
                 'title' => $album->title
             ]
@@ -105,7 +105,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'genre_id' => null
             ]
@@ -125,7 +125,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'genre_id' => 'oiewjroijew'
             ]
@@ -145,7 +145,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'genre_id' => 0
             ]
@@ -165,7 +165,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'genre_id' => 9999
             ]
@@ -186,7 +186,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'label_id' => null
             ]
@@ -206,7 +206,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'label_id' => 'oiewjroijew'
             ]
@@ -226,7 +226,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'label_id' => 0
             ]
@@ -246,7 +246,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'label_id' => 9999,
             ]
@@ -267,7 +267,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'format_id' => null
             ]
@@ -287,7 +287,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'format_id' => 'oiewjroijew'
             ]
@@ -307,7 +307,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'format_id' => 0
             ]
@@ -327,7 +327,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'format_id' => 9999,
             ]
@@ -348,7 +348,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album), 
+            route('cms.basedata.albums.update', $album), 
             [
                 'year_released' => null,
             ]
@@ -368,7 +368,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album),
+            route('cms.basedata.albums.update', $album),
             [ 
                 'year_released' => 19801
             ]
@@ -388,7 +388,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album),
+            route('cms.basedata.albums.update', $album),
             [ 
                 'year_released' => 'ejwrewew'
             ]
@@ -408,7 +408,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album),
+            route('cms.basedata.albums.update', $album),
             [
                 'year_released' => 1979
             ]
@@ -428,7 +428,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album),
+            route('cms.basedata.albums.update', $album),
             [
                 'year_released' => (date('Y')+1)
             ]
@@ -449,7 +449,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album),
+            route('cms.basedata.albums.update', $album),
             [
                 'purchase_date' => null
             ]
@@ -469,7 +469,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album),
+            route('cms.basedata.albums.update', $album),
             [
                 'purchase_date' => '2019-21-21'
             ]
@@ -489,7 +489,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album),
+            route('cms.basedata.albums.update', $album),
             [
                 'purchase_date' => '01-01-2020'
             ]
@@ -510,7 +510,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album),
+            route('cms.basedata.albums.update', $album),
             [
                 'purchase_price' => null
             ]
@@ -530,7 +530,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album),
+            route('cms.basedata.albums.update', $album),
             [
                 'purchase_price' => 'qoiwjreoi'
             ]
@@ -550,7 +550,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album),
+            route('cms.basedata.albums.update', $album),
             [
                 'purchase_price' => -1
             ]
@@ -571,7 +571,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album),
+            route('cms.basedata.albums.update', $album),
             [
                 'purchase_price' => 51
             ]
@@ -592,7 +592,7 @@ class RulesForAlbumUpdateTest extends TestCase
         $album = Album::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.albums.update', $album),
+            route('cms.basedata.albums.update', $album),
             [
                 'use_track_artwork' => 'ewropew'
             ]

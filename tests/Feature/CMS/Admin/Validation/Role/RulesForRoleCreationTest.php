@@ -13,7 +13,7 @@ class RulesForRoleCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
 
-    protected $endpoint = '/cms/roles';
+    protected $endpoint = '/cms/basedata/roles';
 
     function setUp(): void
     {

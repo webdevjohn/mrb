@@ -1,0 +1,30 @@
+@extends('cms-layout')
+@section('title', 'Create a New Genre')
+
+@section('page-header')
+	<h1>Create a New Genre</h1>	
+@stop
+
+@section('breadcrums')
+	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+	<li><a href="{{ route('cms.basedata.genres.index') }}">Genres</a></li>
+	<li>Create a New Genre</li>
+@stop
+
+@section('content')
+	
+	<section id="form-con">		
+		<form method="POST" action="{{ route('cms.basedata.genres.store') }}">
+			@csrf
+
+			<label for="genre">Genre: </label>
+			<input name="genre" type="text" id="genre" value="{{ old('genre') }}">
+			@error('genre')
+    			<div class="form-input-error">{{ $message }}</div>
+			@enderror
+			
+			<button type="submit">Create a new Genre</button>			
+		</form>
+	</section>
+@stop

@@ -1,11 +1,16 @@
 @extends('cms-layout')
 @section('title', 'Home Page')
 
+@section('page-header')
+	<h1>Dashboard</h1>
+@stop
+
 @section('breadcrums')	
 	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
 @stop
 
 @section('content')
+
 	<section class="widget-list">	
 		<article>
 			<div class="icon icon-track"></div>
@@ -21,7 +26,7 @@
 	
 		<article>
 			<div class="icon icon-record-label"></div>
-			<h1>Record Labels</h1>
+			<h1>Labels</h1>
 			<p>{{ $labelCount }}</p>		
 		</article>
 
@@ -32,7 +37,36 @@
 		</article>		
 	</section>
 
-	<section class="chart-list">
+	<section id="main-chart">
+		<article>
+			<canvas id="chartTracksByYear" height="100"></canvas>
+		</article>
+	</section>
+	
+	<section id="yearly-track-totals">
+		<section id="track-totals-this-year">		
+			<article>
+				<h1>{{ $totalsThisYear->yearly_count }}</h1>
+				<h2>Tracks Purchased This Year</h2>
+			</article>
+			<article>
+				<h1>£{{ $totalsThisYear->yearly_cost }}</h1>
+				<h2>Cost This Year</h2>
+			</article>
+		</section>
+		<section id="track-totals-last-year">
+			<article>
+				<h1>{{ $totalsLastYear->yearly_count }}</h1>
+				<h2>Tracks Purchased Last Year</h2>
+			</article>
+			<article>
+				<h1>£{{ $totalsLastYear->yearly_cost }}</h1>
+				<h2>Cost Last Year</h2>
+			</article>
+		</section>
+	</section>
+
+	<section id="chart-list">
 		<article>
 			<canvas id="chartTracksPurchasedThisYear"></canvas>
 		</article>
@@ -48,46 +82,7 @@
 		<article>
 			<canvas id="genreSummaryLastYear"></canvas>
 		</article>
-		<article>
-			<canvas id="genreSummary"></canvas>
-		</article>
 	</section>
-
-	<section class="main-chart">
-		<article>
-			<canvas id="chartTracksByYear" height="100"></canvas>
-		</article>
-	</section>
-
-	<section class="feature-list">
-		<article>
-			<div class="icon icon-database"><h1>Manage Base Database</h1></div>
-			<ul>
-				<li><a href="{{ route('cms.albums.index') }}">Albums</a></li>
-				<li><a href="{{ route('cms.artists.index') }}">Artists</a></li>
-				<li><a href="{{ route('cms.formats.index') }}">Formats</a></li>
-				<li><a href="{{ route('cms.genres.index') }}">Genres</a></li>
-				<li><a href="{{ route('cms.labels.index') }}">Labels</a></li>
-				<li><a href="{{ route('cms.playlists.index') }}">Playlists</a></li>
-				<li><a href="{{ route('cms.tags.index') }}">Tags</a></li>
-				<li><a href="{{ route('cms.tracks.index') }}">Tracks</a></li>				
-			</ul>
-		</article>
-
-		<article>
-			<div class="icon icon-tools"><h1>Tools</h1></div>
-			<ul>
-				<li></li>
-			</ul>
-		</article>
-
-		<article>
-			<div class="icon icon-reports"><h1>Reports</h1></div>
-			<ul>
-				<li></li>
-			</ul>
-		</article>
-</section>
 
 
 	@section('javascript')	
@@ -97,7 +92,7 @@
 			Chart.defaults.global.elements.point.hitRadius = 5;
 	
 			$.ajax({
-	            url: '{{ route('cms.tracks.by-year-purchased', date("Y")) }}',
+	            url: '{{ route('cms.basedata.tracks.by-year-purchased', date("Y")) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {			
@@ -127,7 +122,7 @@
         	});
 
         	$.ajax({
-	            url: '{{ route('cms.tracks.by-year-purchased', date("Y") -1) }}',
+	            url: '{{ route('cms.basedata.tracks.by-year-purchased', date("Y") -1) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {
@@ -156,7 +151,7 @@
         	});
 
     		$.ajax({
-	            url: '{{ route('cms.tracks.by-year') }}',
+	            url: '{{ route('cms.basedata.tracks.by-year') }}',
 	            type: 'GET',
 	            success: function(results)
 	            {
@@ -186,7 +181,7 @@
 
 
         	$.ajax({
-	            url: '{{ route('cms.genres.summary', date("Y")) }}',
+	            url: '{{ route('cms.basedata.genres.summary', date("Y")) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {
@@ -215,7 +210,7 @@
         	});
 
 			$.ajax({
-	            url: '{{ route('cms.genres.summary', date("Y")-1) }}',
+	            url: '{{ route('cms.basedata.genres.summary', date("Y")-1) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {
@@ -243,34 +238,7 @@
 	        	}
         	});
 
-			$.ajax({
-	            url: '{{ route('cms.genres.summary', date("Y")-2) }}',
-	            type: 'GET',
-	            success: function(results)
-	            {
-					var labels = [], data = [], bgColours = [];
-					var ctx = document.getElementById("genreSummary");
-					var chartTitle = 'Tracks Purchased by Genre ({{ date("Y")-2 }})';
-			  		
-			  		for (var key in results) {
-					    let value = results[key];					
-					    labels.push(value.genre + " (" + value.track_count + ")");
-					    data.push(value.track_count);
-						bgColours.push(value.colour_code);
-					}
-					
-					var chartData = {
-					        labels: labels,
-					        datasets: [{
-					            fill: true,
-					        	backgroundColor: bgColours,      					
-					            data: data,					        
-					        }]
-					    };
-
-					var myChart = createPieChart(ctx, chartData, chartTitle);			
-	        	}
-        	});
+		
 
 			function createPieChart(ctx, chartData, chartTitle)
 			{
@@ -290,7 +258,8 @@
 						title: {
 							display: true,
 							text: chartTitle,
-							fontColor: '#DCDCDC'
+							fontColor: '#DCDCDC',
+							fontSize: 16,
 						}
 					}
 				});
@@ -302,7 +271,8 @@
 				return myLineChart = new Chart(ctx, {
 		            type: 'line',
 		            data: data,
-		            options: {				 					   
+		            options: {	
+						responsive: true,			 					   
 				    	legend: {
 			           	 	display: false,				         
 			        	},
@@ -311,6 +281,7 @@
 	    					display: true,
 	    					text: chartTitle,
 							fontColor: '#DCDCDC',
+							fontSize: 16,
 						},
 
 				        scales: {

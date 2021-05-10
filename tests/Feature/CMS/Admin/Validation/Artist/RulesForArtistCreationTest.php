@@ -13,7 +13,7 @@ class RulesForArtistCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
 
-    protected $endpoint = '/cms/artists';
+    protected $endpoint = '/cms/basedata/artists';
 
     function setUp(): void
     {

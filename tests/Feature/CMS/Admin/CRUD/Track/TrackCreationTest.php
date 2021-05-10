@@ -16,7 +16,7 @@ class TrackCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser;
 
-    protected $endpoint = '/cms/tracks';
+    protected $endpoint = '/cms/basedata/tracks';
 
     function setUp(): void
     {
@@ -40,9 +40,9 @@ class TrackCreationTest extends TestCase
                 'purchase_date' => "2021-12-20",
                 'purchase_price' => 1.66,
             ]
-        )->assertStatus(302);
+            )->assertStatus(302);
 
-        $response->assertRedirect('cms/tracks/create');
+        $response->assertRedirect('cms/basedata/tracks/create');
 
         $flashMessage = session('success');
         $this->assertEquals('Track created successfully!', $flashMessage);
@@ -68,7 +68,7 @@ class TrackCreationTest extends TestCase
             ]
         )->assertStatus(302);
 
-        $response->assertRedirect('cms/tracks/create');
+        $response->assertRedirect('cms/basedata/tracks/create');
 
         $flashMessage = session('success');
         $this->assertEquals('Track created successfully!', $flashMessage);

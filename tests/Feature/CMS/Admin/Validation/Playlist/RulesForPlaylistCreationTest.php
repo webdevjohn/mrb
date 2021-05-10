@@ -13,7 +13,7 @@ class RulesForPlaylistCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
 
-    protected $endpoint = '/cms/playlists';
+    protected $endpoint = '/cms/basedata/playlists';
 
     function setUp(): void
     {

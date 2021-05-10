@@ -26,7 +26,7 @@ class RulesForArtistUpdateTest extends TestCase
        $artist = Artist::factory()->createOne();
 
        $response = $this->patchJson(
-            route('cms.artists.update', $artist), 
+            route('cms.basedata.artists.update', $artist), 
             [
                 'artist_name' => null
             ]
@@ -46,7 +46,7 @@ class RulesForArtistUpdateTest extends TestCase
         $artist = Artist::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.artists.update', $artist), 
+            route('cms.basedata.artists.update', $artist), 
             [
                 'artist_name' => str::random(51)
             ]
@@ -66,7 +66,7 @@ class RulesForArtistUpdateTest extends TestCase
         $artist = Artist::factory()->createOne();
         
         $this->patchJson(
-            route('cms.artists.update', $artist), 
+            route('cms.basedata.artists.update', $artist), 
             [
                 'artist_name' => $artist->artist_name
             ]
@@ -83,7 +83,7 @@ class RulesForArtistUpdateTest extends TestCase
         // attempt to update $artist2 with an artist name that 
         // already exists in the database.
         $response = $this->patchJson(
-            route('cms.artists.update', $artist2), 
+            route('cms.basedata.artists.update', $artist2), 
             [
                 'artist_name' => $artist->artist_name
             ]

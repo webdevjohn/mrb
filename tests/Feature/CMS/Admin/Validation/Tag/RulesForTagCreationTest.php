@@ -13,7 +13,7 @@ class RulesForTagCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
 
-    protected $endpoint = '/cms/tags';
+    protected $endpoint = '/cms/basedata/tags';
 
     function setUp(): void
     {

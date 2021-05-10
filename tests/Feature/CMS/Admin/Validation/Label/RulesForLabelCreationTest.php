@@ -13,7 +13,7 @@ class RulesForLabelCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser, AssertValidationErrorMessages;
 
-    protected $endpoint = '/cms/labels';
+    protected $endpoint = '/cms/basedata/labels';
 
     function setUp(): void
     {

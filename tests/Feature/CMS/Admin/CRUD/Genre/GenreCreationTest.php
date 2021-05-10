@@ -11,7 +11,7 @@ class GenreCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser;
 
-    protected $endpoint = '/cms/genres';
+    protected $endpoint = '/cms/basedata/genres';
 
     function setUp(): void
     {
@@ -31,7 +31,7 @@ class GenreCreationTest extends TestCase
         )
         ->assertStatus(302);
 
-        $response->assertRedirect('cms/genres/create');
+        $response->assertRedirect('cms/basedata/genres/create');
 
         $flashMessage = session('success');
         $this->assertEquals('Genre created successfully!', $flashMessage);

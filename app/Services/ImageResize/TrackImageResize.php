@@ -60,7 +60,7 @@ class TrackImageResize {
     }
 
 
-    public Function thumb(int $width = 230, int $height = 230, int $quality = 80): string
+    public Function thumb(int $width = 240, int $height = 240, int $quality = 80): string
     {
         $thumb = $this->image->make($this->uploadedImage->getPathname())
             ->resize($width, $height)

@@ -11,7 +11,7 @@ class ArtistCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser;
 
-    protected $endpoint = '/cms/artists';
+    protected $endpoint = '/cms/basedata/artists';
 
     function setUp(): void
     {
@@ -31,7 +31,7 @@ class ArtistCreationTest extends TestCase
         )
         ->assertStatus(302);
 
-        $response->assertRedirect('cms/artists/create');
+        $response->assertRedirect('cms/basedata/artists/create');
 
         $flashMessage = session('success');
         $this->assertEquals('Artist created successfully!', $flashMessage);

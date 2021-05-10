@@ -26,7 +26,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'artists' => null
             ]
@@ -46,7 +46,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(            
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'artists' => 'ewrewr'
             ]
@@ -66,7 +66,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(            
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'artists' => [99999, 99998]
             ]
@@ -87,7 +87,7 @@ class RulesForTrackUpdateTest extends TestCase
        $track = Track::factory()->createOne();
 
        $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'title' => null
             ]
@@ -107,7 +107,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'title' => str::random(126)
             ]
@@ -127,7 +127,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'genre_id' => null
             ]
@@ -147,7 +147,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'genre_id' => 'oiewjroijew'
             ]
@@ -167,7 +167,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'genre_id' => 0
             ]
@@ -187,7 +187,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'genre_id' => 9999
             ]
@@ -208,7 +208,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'label_id' => null
             ]
@@ -228,7 +228,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'label_id' => 'oiewjroijew'
             ]
@@ -248,7 +248,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'label_id' => 0
             ]
@@ -268,7 +268,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'label_id' => 9999,
             ]
@@ -289,7 +289,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'format_id' => null
             ]
@@ -309,7 +309,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'format_id' => 'oiewjroijew'
             ]
@@ -329,7 +329,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'format_id' => 0
             ]
@@ -349,7 +349,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'format_id' => 9999,
             ]
@@ -370,7 +370,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track), 
+            route('cms.basedata.tracks.update', $track), 
             [
                 'year_released' => null,
             ]
@@ -390,7 +390,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [ 
                 'year_released' => 19801
             ]
@@ -410,7 +410,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [ 
                 'year_released' => 'ejwrewew'
             ]
@@ -430,7 +430,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'year_released' => 1979
             ]
@@ -450,7 +450,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'year_released' => (date('Y')+1)
             ]
@@ -471,7 +471,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'purchase_date' => null
             ]
@@ -491,7 +491,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'purchase_date' => '2019-21-21'
             ]
@@ -511,7 +511,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'purchase_date' => '01-01-2020'
             ]
@@ -532,7 +532,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'purchase_price' => null
             ]
@@ -552,7 +552,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'purchase_price' => 'qoiwjreoi'
             ]
@@ -572,7 +572,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'purchase_price' => -1
             ]
@@ -593,7 +593,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'purchase_price' => 51
             ]
@@ -620,7 +620,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
             'bpm' => 'qoiwjreoi'
             ]
@@ -640,7 +640,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'bpm' => 99
             ]
@@ -660,7 +660,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'bpm' => 200.5
             ]
@@ -681,7 +681,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'album_id' => 'qoiwjreoi'
             ]
@@ -701,7 +701,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'album_id' => 0
             ]
@@ -721,7 +721,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'album_id' => 999999
             ]
@@ -742,7 +742,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'tags' => 'ewrewr'
             ]
@@ -762,7 +762,7 @@ class RulesForTrackUpdateTest extends TestCase
         $track = Track::factory()->createOne();
 
         $response = $this->patchJson(
-            route('cms.tracks.update', $track),
+            route('cms.basedata.tracks.update', $track),
             [
                 'tags' => [9998,9999]
             ]

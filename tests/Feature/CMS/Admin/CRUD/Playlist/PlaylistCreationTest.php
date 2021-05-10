@@ -12,7 +12,7 @@ class PlaylistCreationTest extends TestCase
 {
     use RefreshDatabase, AuthUser;
 
-    protected $endpoint = '/cms/playlists';
+    protected $endpoint = '/cms/basedata/playlists';
 
     function setUp(): void
     {
@@ -33,7 +33,7 @@ class PlaylistCreationTest extends TestCase
         )
         ->assertStatus(302);
 
-        $response->assertRedirect('cms/playlists/create');
+        $response->assertRedirect('cms/basedata/playlists/create');
 
         $flashMessage = session('success');
         $this->assertEquals('Playlist created successfully!', $flashMessage);

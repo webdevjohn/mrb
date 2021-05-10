@@ -1,10 +1,396 @@
 @import "colour-scheme";
 @import "icons";
 @import "buttons";
-@import "global";
+
+body {
+	font-family: Arial, Helvetica, sans-serif;	
+	font-size: 100%; 
+	font-weight: normal;
+	background: $bodyBGColour;
+}
+body, html {
+    height: 100%;
+}
+.clear {
+	clear: both;
+}
+
+h1 {
+	font-family: 'robotobold';
+	color: $baseFontColor;
+}
+
+a {
+	 text-decoration: none
+}
+
+strong {
+	font-weight: bold
+}
+
+.wrapper {
+	margin: 0px auto;
+}
+
+.float-right {
+	float: right;
+}
+
+#alert-message {
+	min-height: 50px;
+	background: darken($bodyBGColour, 4);
+}
+
+.icon-bar {
+	width: 100%;
+	position: relative;
+	background-color: #162026;
+	// box-shadow: 5px 5px 12px -2px rgba(0,0,0,0.46);	
+	overflow: auto;
+
+	#logo  {
+		font-size: 100%;
+		background: #2A52FA;
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
+		padding: 28px 0px;	
+	}
+
+	a {
+		float: left;
+		width: 20%;
+		text-align: center;
+		padding: 12px 0;
+		transition: all 0.3s ease;
+		color: $baseFontColor;
+		font-size: 28px;
+		span {
+			font-size: 50%;
+			padding-top: 5px;
+			display: block;
+		}
+	}
+	a:hover {
+		background-color: lighten(#1D2A32, 2);
+	}
+	.active {
+		background-color: #1D2A32;
+	}
+}
+
+
+#page-header {
+	padding-top: 20px;
+	background: #1D2A32;
+	min-height: 360px;
+	border-bottom: 1px solid $borderColour;
+	h1 {
+		font-family: 'robotobold';
+		font-size: 200%;
+		padding: 30px 0px 0px 0px;
+		a {
+			font-size: 50%;
+			font-family: 'robotolight';
+		}
+	}
+}
+
+/************************/ 
+/*		Breadcrums		*/
+/************************/
+
+#breadcrumbs {
+	box-sizing: border-box;
+	position: relative;
+	padding: 10px 0px;
+
+	ul {
+		list-style: none;
+
+		li {
+			display: inline;
+			color: darken($baseFontColor, 29);
+			a {
+				color: $baseFontColor;
+				text-decoration: none;
+			}
+			a:hover {
+				color: $baseFontColor;
+				text-decoration: underline;
+			} 
+		}
+
+		li+li:before {
+			padding: 8px;
+			color: $baseFontColor;
+			content: "/\00a0";
+		}
+	}
+}
+
+
+#page-footer {
+	min-height: 125px;
+	background: $pageFooterBg;
+	margin-top: 50px;
+	border-top: 1px solid $borderColour;
+	#base-data {
+		a {
+			display: block;
+			padding: 10px;
+			color: #fff;			
+		}
+	}
+}
+
+
+/************************/ 
+/*		Tables			*/
+/************************/
+
+.table-con {
+	margin-top: -200px;
+	// padding: 20px;
+	// background: $articleBg;
+	// border: 1px solid #E6E6E6;
+	// border-radius: 5px;
+}
+
+table {
+	width: 100%;
+	font-size: 90%
+}
+
+table th {
+	font-weight: bold;
+	text-align: left;
+	// border: 1px solid #ddd;
+	// background: $articleBg;
+	padding: 0px 0px 10px 20px;
+	line-height: 1.0em;
+	color: $baseFontColor;
+}
+
+table tr td {
+	padding: 5px 10px 5px 20px;
+	// border-top: 10px solid $articleBg;
+	height: 60px;
+	vertical-align: middle;
+	border-radius: 20px;
+	color: $baseFontColor;
+
+}
+
+table tbody tr {
+	margin-bottom: 10px;
+	border: 1px solid $borderColour;
+	// background: #fff url(images/table-cell-bg.gif) repeat-x;
+	background: lighten($articleBg, 2);
+	box-shadow: $articleBoxShadow;
+
+}
+
+table tfoot td {
+	text-align: right;
+	background: darken($articleBg, 2);
+	padding: 20px;
+	border-radius: 0;
+	a {
+		color: #fff;
+	}
+}
+
+table th.access-level {
+	width: 125px;
+}
+
+table tr td.selectedId {
+	padding: 0px 15px;
+}
+
+table tbody tr:hover {
+	padding: 20px;
+	background: $articleBg;
+	box-shadow: $articleBoxShadow;
+	font-weight: bold;
+}
+
+.table-col-title {
+	width: 40%;
+}
+.table-col-record-label {
+	width: 22%;
+}
+.table-col-purchase-date {
+	width: 15%;
+}
+
+
+  
+
+/************************/ 
+/*		  Form	 		*/
+/************************/
+
+/* logout form */
+.logout-form button {	
+	padding: 15px 20px;
+	float: right;
+	margin: 16px 20px 10px 20px;
+}
+
+/* form styles */
+#form-con {
+	margin-top: -200px;
+	border: 1px solid $borderColour;
+	background: $articleBg;
+	padding: 0px 20px 20px 20px;
+	width: 860px;
+	margin-bottom: 40px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+  	box-shadow: 0 4px 4px -4px #bbb;
+}
+
+#form-con h2 {
+	font-size: 125%;
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+#form-con label {
+	display: block;
+	font-size: 100%;
+	color: $baseFontColor;
+	margin-bottom: 10px;
+	margin-top: 40px;
+}
+
+input, textarea, select {
+	color: $baseFontColor;
+	background: lighten($articleBg, 2);
+	padding: 10px 10px;
+	font-size: 100%;
+	border: 1px solid $borderColour;
+	border-radius:4px;
+/*	margin-bottom: 40px; */
+}
+
+#form-con input, textarea, select {
+	width: 840px;
+}
+
+#form-con input.selectedId {
+	height: 20px;
+	width: 20px;
+	padding: 0px;
+}
+
+#form-con select {
+	width: 100%;
+}
+
+#form-con .input-field-bpm {
+	width: 75px;
+}
+
+#form-con .input-field-filename {
+	width: 400px;
+}
+
+#form-con button {	
+	display: block;	
+	padding: 20px 70px;
+	margin: 40px auto 0px auto
+}
+
+#form-con .form-input-error {
+	display: block;
+	font-size: 100%;
+	padding: 10px;
+	color: red;
+	margin-top: 0px;
+	margin-bottom: 35px;
+	width: 880px;
+}
+
+#form-con hr {
+	display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid $borderColour;
+    margin-top: 50px;
+    padding: 0; 
+}
+  
+.select2-results ul li  {
+    background-color: $articleBg;
+	color: $baseFontColor;
+}
+
+.select2-selection {
+	background-color: lighten($articleBg, 2) !important;
+	border: 1px solid $borderColour !important;
+	// padding-top: 2px;
+}
+
+.select2-selection__rendered {
+	padding-top: 5px !important;
+}
+.select2-selection__choice {
+	color:$baseFontColor !important;
+	background-color: darken($articleBg, 5) !important;
+	border: 1px solid $borderColour !important;
+}
+.select2-search, .select2-search--inline {
+	margin-left: 10px;
+	font-size: 80%;
+}
+
+
+/************************/ 
+/*		Pagination 		*/
+/************************/
+
+.pagination {
+	// background: #fff;
+	// border: 1px solid #E6E6E6;
+	// border-radius: 5px;
+	margin-top: 20px;	
+	margin-bottom: 20px;	
+	clear: both;
+	padding: 20px 20px 10px 20px;
+	text-align: center;
+}
+.pagination li {
+	font-size: 100%;
+	letter-spacing: 1px;
+	display: inline-block;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	
+}
+.pagination li a, .pagination .active {
+	padding: 18px 25px 18px 25px;
+	background: $articleBg;
+	color: #fff;
+	display: inline-block;
+	border-radius: 5px;
+	border: 1px solid $borderColour;
+}
+.pagination .active {
+	background: #1081CC;
+	border: 1px solid #1081CC;
+	color: #fff;
+}
+.pagination .disabled {
+	display:none
+}
 
 
 @import "pages/homepage";
+@import "pages/basedata";
 @import "pages/albums/index";
 @import "pages/albums-tracks/index";
 @import "pages/artists/index";
