@@ -110,8 +110,8 @@
 					        labels: labels,
 					        datasets: [{					
 					            fill: true,				
-      							backgroundColor: '#FD8B05',
-      							borderColor: '#FD8B05',
+      							backgroundColor: '#DCDCDC',
+      							borderColor: '#101518',
 					            data: data,					        
 					        }]
 					    };
@@ -140,8 +140,8 @@
 					        labels: labels,
 					        datasets: [{
 					            fill: true,
-					        	backgroundColor: '#FD8B05',
-      							borderColor: '#FD8B05',
+								backgroundColor: '#DCDCDC',
+      							borderColor: '#101518',
 					            data: data,					        
 					        }]
 					    };
@@ -169,8 +169,8 @@
 					        labels: labels,
 					        datasets: [{
 					            fill: true,
-					        	backgroundColor: '#FD8B05',
-      							borderColor: '#FD8B05',
+								backgroundColor: '#DCDCDC',
+      							borderColor: '#101518',
 					            data: data,					        
 					        }]
 					    };

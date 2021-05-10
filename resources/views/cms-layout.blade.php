@@ -24,24 +24,6 @@
                 <strong>{{ $message }}</strong>
             </div>
         @endif
-
-        {{-- <a href="{{ route('cms.homepage') }}" id="logo">MyRecordBox <span>CMS</span></a> --}}
-
-        {{-- <section id="appbar">
-            <ul>
-                <li><a href="">Manage Base Data</a></li>
-                <li><a href="">Tools</a></li>
-                <li><a href="">Reports</a></li>
-            </ul>
-            @if (Auth::check()) 
-                <form role="form" method="POST" action="{{ route('logout') }}" class="logout-form">
-                   {{ csrf_field() }}
-                    <button type="submit">
-                        Logout: <strong>{{ Auth::user()->name }}</strong>
-                    </button>
-                </form>
-            @endif
-        </section> --}}
   
         <div class="icon-bar">
             <a href="{{ route('cms.homepage') }}" id="logo"><div>MyRecordBox <strong>CMS</strong></div></a>
@@ -61,14 +43,12 @@
                 <span>Reports</span>
             </a> 
 
-            <a href="#">
+            <a href="javascript:{}" onclick="document.getElementById('logout-form').submit();">
                 <i class="fas fa-power-off"></i>
                 <span>Logout</span>
             </a>
         </div>
      
-
-
         <section id="page-header">
             <div class="wrapper">
                 @yield('page-header')
@@ -87,20 +67,16 @@
         
         <footer id="page-footer">
             <div class="wrapper">  
-                <section id="base-data">
-                    <ul>
-                        <li><a href="{{ route('cms.basedata.albums.index') }}">Albums</a></li>
-                        <li><a href="{{ route('cms.basedata.artists.index') }}">Artists</a></li>
-                        <li><a href="{{ route('cms.basedata.formats.index') }}">Formats</a></li>
-                        <li><a href="{{ route('cms.basedata.genres.index') }}">Genres</a></li>
-                        <li><a href="{{ route('cms.basedata.labels.index') }}">Labels</a></li>
-                        <li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>
-                        <li><a href="{{ route('cms.basedata.tags.index') }}">Tags</a></li>
-                        <li><a href="{{ route('cms.basedata.tracks.index') }}">Tracks</a></li>				
-                    </ul>
-                </section>
+                <a href="{{ route('cms.homepage') }}" class="logo"><div>MyRecordBox <strong>CMS (Admin)</strong></div></a>
             </div>
         </footer>
+
+        <form role="form" method="POST" action="{{ route('logout') }}" id="logout-form">
+            {{ csrf_field() }}
+            <button type="submit">
+                Logout: <strong>{{ Auth::user()->name }}</strong>
+            </button>
+        </form>
 
         @yield('javascript')                 
     </body>

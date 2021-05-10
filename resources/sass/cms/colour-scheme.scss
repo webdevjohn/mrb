@@ -4,7 +4,7 @@ $appbarBG: lighten(#121115, 4);
 $bodyBGColour: #23313A;
 
 $borderColour: lighten(#212024, 1);
-$pageFooterBg: lighten($bodyBGColour, 2);
+$pageFooterBg: darken($bodyBGColour, 4);
 $breadcrumBgColor: lighten($bodyBGColour, 2);
 $logoFontColor: #fff;
 

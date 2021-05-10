@@ -19,6 +19,12 @@
 @section('content')
 
 	<section class="table-con">
+		{{-- <section id="table-actions">
+			<ul>
+				<li><a href="#">Filters</a></li>
+				<li><a href="{{ route('cms.basedata.labels.create') }}" class="btn btn-new-record" title="New Label">New Label +</a></li>
+			</ul>
+		</section> --}}
 
 		<table>
 			<thead>
