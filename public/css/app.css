@@ -101,6 +101,7 @@ body {
   font-size: 100%;
   font-weight: normal;
   background: #1D2A32;
+  color: #F0F0F0;
 }
 
 @media screen and (min-width: 494px) {
@@ -146,11 +147,6 @@ body {
 
 h1 {
   font-family: "robotobold";
-  color: #F0F0F0;
-}
-
-h2 {
-  color: #F0F0F0;
 }
 
 p {
@@ -160,15 +156,27 @@ p {
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: #F0F0F0;
 }
 
 #page-footer {
-  clear: both;
   background: #172228;
-  min-height: 200px;
-  margin-top: 100px;
-  border-top: 1px solid #262529;
+  margin-top: 50px;
+}
+#page-footer a {
+  padding: 20px 0px 20px 0px;
+  display: block;
+}
+#page-footer a.logo {
+  float: left;
+  font-size: 100%;
+  font-family: "montserratbold";
+  color: #F0F0F0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+#page-footer a.cms-login {
+  float: right;
 }
 
 #page-header, .section-header {
@@ -505,8 +513,6 @@ a {
 .track-listings article .track-details {
   padding: 12px 15px 2px 15px;
   min-height: 140px;
-  border-right: 1px solid #262529;
-  border-left: 1px solid #262529;
 }
 .track-listings article .track-details .artist-list li {
   display: inline-block;
@@ -549,13 +555,12 @@ a {
   box-sizing: border-box;
   display: block;
   padding: 20px 0px 20px 0px;
-  border-left: 1px solid #262529;
   color: #F0F0F0;
 }
 .track-listings article footer ul li a:hover {
   background: #212c33;
 }
-.track-listings article footer ul li:nth-child(2) {
+.track-listings article footer ul li:first-child {
   box-sizing: border-box;
   border-right: 1px solid #262529;
 }
@@ -885,12 +890,12 @@ a {
 
 #sortable-fields ul li a {
   padding: 7px 12px;
-  background: #1A1F22;
+  background: #27343C;
   border: 1px solid #262529;
 }
 
 #sortable-fields ul li a:hover {
-  background-color: #000;
+  background-color: #2b3942;
 }
 
 #sortable-fields ul li span {
@@ -998,14 +1003,15 @@ a {
 
 .pagination li a, .pagination .active {
   padding: 15px 20px 15px 20px;
-  background: #1A1F22;
+  background: #27343C;
   color: #fff;
   display: inline-block;
   border-radius: 5px;
 }
 
 .pagination .active {
-  background: #000;
+  background: #50A6B6;
+  border: 1px solid #50A6B6;
 }
 
 .pagination .disabled {

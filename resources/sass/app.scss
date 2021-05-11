@@ -5,6 +5,7 @@ body {
 	font-size: 100%; 
     font-weight: normal;
     background: $bodyBGColour;  
+    color: $baseFontColor;
 }
 
 @import "rwd-wrappers";
@@ -16,12 +17,8 @@ body {
 
 h1 {
     font-family: 'robotobold';	
-	color: $baseFontColor;
-}	
 
-h2 {
-    color: $baseFontColor;
-}
+}	
 
 p {
 	line-height: 1.4em;
@@ -30,15 +27,27 @@ p {
 
 a {
     text-decoration: none;
-    color: #fff;
+	color: $baseFontColor;
 }
 
 #page-footer {
-    clear: both;
-    background: $pageFooterBg;
-    min-height: 200px;
-    margin-top: 100px;
-    border-top: 1px solid $borderColour;
+	background: $pageFooterBg;
+	margin-top: 50px;
+    a {
+        padding: 20px 0px 20px 0px;
+        display: block;
+    }
+	a.logo {
+        float: left;
+        font-size: 100%;
+        font-family: 'montserratbold';
+        color: $logoFontColor;
+        text-transform: uppercase;
+        letter-spacing: 2px;		
+	}
+    a.cms-login {
+        float: right;
+    }
 }
 
 #page-header, .section-header {
@@ -201,13 +210,14 @@ a {
 }
 .pagination li a, .pagination .active {
 	padding: 15px 20px 15px 20px;
-	background: $accentDarker;
+	background: $articleBg;
 	color: #fff;
 	display: inline-block;
     border-radius: 5px;
 }
 .pagination .active {
-	background: #000;
+    background: #50A6B6;
+	border: 1px solid #50A6B6;
 }
 .pagination .disabled {
 	display:none

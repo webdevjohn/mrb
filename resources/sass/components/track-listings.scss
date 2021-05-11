@@ -39,8 +39,6 @@
 		.track-details {
 			padding: 12px 15px 2px 15px;
 			min-height: 140px;
-			border-right: 1px solid $borderColour;
-			border-left: 1px solid $borderColour;
 
 			.artist-list li {	
 				display: inline-block;
@@ -75,26 +73,27 @@
 
 		footer {
 			font-size: 75%;
-			ul li {
-				text-align: center;
-				float: left;
-				width: 50%;
-				border-top: 1px solid $borderColour;
-				a {
+			ul {
+				li {
+					text-align: center;
+					float: left;
+					width: 50%;
+					border-top: 1px solid $borderColour;
+					a {
+						box-sizing: border-box;
+						display: block;
+						padding: 20px 0px 20px 0px;
+						color: $baseFontColor; 
+					}
+					a:hover {
+						background: darken($articleBg, 3);
+					}
+				}
+				li:first-child {
 					box-sizing: border-box;
-					display: block;
-					padding: 20px 0px 20px 0px;
-					border-left: 1px solid $borderColour;	
-					color: $baseFontColor; 
+					border-right: 1px solid $borderColour;					
 				}
-				a:hover {
-					background: darken($articleBg, 3);
-				}
-			}
-			ul li:nth-child(2) {
-				box-sizing: border-box;
-				border-right: 1px solid $borderColour;					
-			}
+			}		
 		}
 	} 
 }

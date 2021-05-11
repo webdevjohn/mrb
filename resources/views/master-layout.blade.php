@@ -27,7 +27,10 @@
      
         <footer id="page-footer">
             <div class="wrapper">  
+                <a href="{{ route('homepage') }}" class="logo">MyRecordBox</a>
+                <a href="{{ route('login') }}" class="cms-login">Admin CMS Login</a>
             </div>
+            <br class="clear" />
         </footer>
 
         <div id="basket-con">

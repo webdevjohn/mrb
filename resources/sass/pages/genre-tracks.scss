@@ -70,11 +70,11 @@
 }
 #sortable-fields ul li a {
     padding: 7px 12px;
-    background: $accentDarker;
+    background: $articleBg;
     border: 1px solid $borderColour;
 }
 #sortable-fields ul li a:hover {
-    background-color: #000;
+    background-color: lighten($articleBg, 2);
 }
 #sortable-fields ul li span {
     margin-right: 4px;

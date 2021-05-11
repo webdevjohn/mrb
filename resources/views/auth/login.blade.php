@@ -1,6 +1,7 @@
 <x-app-layout>
 
     <!-- Validation Errors -->
+    
     <x-auth-validation-errors :errors="$errors" />
 
     <form method="POST" action="{{ route('login') }}">
