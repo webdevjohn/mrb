@@ -102,7 +102,7 @@
 }
 
 .icon-artist {
-  background: #916B75 url(images/bg/icons/artist_64x64.png) no-repeat center;
+  background: #9D5F6F url(images/bg/icons/artist_64x64.png) no-repeat center;
 }
 
 .icon-record-label {
@@ -110,7 +110,7 @@
 }
 
 .icon-album {
-  background: #5E9BA8 url(images/bg/icons/album_64x64.png) no-repeat center;
+  background: #50A6B6 url(images/bg/icons/album_64x64.png) no-repeat center;
 }
 
 .btn {
@@ -118,23 +118,23 @@
   font-weight: bold;
   display: block;
   border-radius: 5px;
-  padding: 10px 12px;
+  padding: 10px 14px;
 }
 
 .btn-new-record {
-  background: #28A745;
+  background: #719F7B;
 }
 
 .btn-new-record:hover {
-  background: #1e7e34;
+  background: #598462;
 }
 
 .btn-view-record {
-  background: #007BFF;
+  background: #50A6B6;
 }
 
 .btn-view-record:hover {
-  background: #0062cc;
+  background: #3e8795;
 }
 
 .btn-edit-record {
@@ -146,11 +146,11 @@
 }
 
 .btn-delete-record {
-  background: #DC3545;
+  background: #9D5F6F;
 }
 
 .btn-delete-record:hover {
-  background: #bd2130;
+  background: #7d4c59;
 }
 
 .frm-crud-buttons li {
@@ -250,6 +250,17 @@ strong {
   font-family: "robotolight";
 }
 
+#page-footer {
+  background: #1b262d;
+  margin-top: 50px;
+}
+#page-footer a {
+  display: block;
+  padding: 20px 0px;
+  color: #fff;
+  width: 250px;
+}
+
 /************************/
 /*		Breadcrums		*/
 /************************/
@@ -279,17 +290,6 @@ strong {
   content: "/ ";
 }
 
-#page-footer {
-  background: #1b262d;
-  margin-top: 50px;
-}
-#page-footer a {
-  display: block;
-  padding: 20px 0px;
-  color: #fff;
-  width: 250px;
-}
-
 /************************/
 /*		Tables			*/
 /************************/
@@ -297,59 +297,46 @@ strong {
   margin-top: -220px;
   min-height: 595px;
 }
-.table-con #table-actions {
-  margin: 10px 0px;
-  float: right;
-}
-.table-con #table-actions ul li {
-  float: left;
-}
-.table-con #table-actions a {
-  display: inline-block;
-  color: #DCDCDC;
-  padding: 15px 20px;
-}
-
-table {
+.table-con table {
   width: 100%;
   font-size: 90%;
 }
-table thead tr {
+.table-con table thead tr {
   background: #27343C;
   border: 1px solid #232227;
 }
-table th {
+.table-con table th {
   font-weight: bold;
   text-align: left;
   padding: 10px 0px 10px 20px;
   line-height: 1em;
   color: #DCDCDC;
 }
-table tr td {
+.table-con table tr td {
   padding: 5px 10px 5px 20px;
   height: 60px;
   vertical-align: middle;
   border-radius: 20px;
   color: #DCDCDC;
 }
-table tbody tr {
+.table-con table tbody tr {
   margin-bottom: 10px;
   border: 1px solid #232227;
   background: #2b3942;
 }
-table tbody tr:hover {
+.table-con table tbody tr:hover {
   padding: 20px;
   background: #27343C;
   box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.1);
   font-weight: bold;
 }
-table tfoot td {
+.table-con table tfoot td {
   text-align: right;
   background: #232f36;
-  padding: 20px;
-  border-radius: 0;
+  padding: 10px 20px;
+  border: 1px solid #232227;
 }
-table tfoot td a {
+.table-con table tfoot td a {
   color: #fff;
 }
 
@@ -361,7 +348,7 @@ table tr td.selectedId {
   padding: 0px 15px;
 }
 
-table tbody .table-col-title {
+.table-col-title {
   width: 40%;
 }
 
@@ -662,49 +649,12 @@ input, textarea, select {
     padding: 0px 20px;
   }
 }
-#basedata-list {
-  margin-top: -200px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 20px;
+.basedata {
+  text-transform: capitalize;
 }
-#basedata-list article {
-  background: #27343C;
-  border: 1px solid #232227;
-  text-align: center;
-}
-#basedata-list article h1 {
-  padding: 20px;
-  font-size: 125%;
-}
-#basedata-list article h1 span {
-  font-size: 80%;
-  color: darkgray;
-}
-#basedata-list article footer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-top: 1px solid #232227;
-}
-#basedata-list article footer a {
-  display: block;
-  padding: 20px 10px;
-  color: #DCDCDC;
-}
-#basedata-list article footer a:first-child {
-  border-right: 1px solid #232227;
-}
-#basedata-list div {
-  background: #2A52FA;
-  background: linear-gradient(180deg, #2a52fa 0%, #294cdb 35%, #1a2f87 100%);
-  padding: 40px 40px 40px 40px;
-}
-#basedata-list div:before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  font-size: 200px;
-  color: #cfcfcf;
-  content: "";
+
+.table-col-model {
+  width: 40%;
 }
 
 .table-col-albums-title {

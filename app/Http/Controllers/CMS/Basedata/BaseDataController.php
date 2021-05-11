@@ -9,7 +9,7 @@ class BaseDataController extends Controller
 {    
     public function index()
     {
-        $result = DB::select(
+        $results = DB::select(
             "SELECT (SELECT COUNT(*) FROM albums) as albums, 
             (SELECT COUNT(*) FROM artists) as artists, 
             (SELECT COUNT(*) FROM formats) as formats,
@@ -22,7 +22,7 @@ class BaseDataController extends Controller
         );
 
         return View('cms.basedata.index', [
-            'recordCount' => $result['0']
+            'recordCount' => $results['0']
         ]);
     }
 }

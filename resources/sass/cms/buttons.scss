@@ -1,7 +1,7 @@
-$btnNewRecord: #28A745;
-$btnViewRecord: #007BFF;
+$btnNewRecord: #719F7B;
+$btnViewRecord: #50A6B6;
 $btnEditRecord: #6C757D;
-$btnDeleteRecord: #DC3545;
+$btnDeleteRecord: #9D5F6F;
 
 $btnNewRecordDarken: darken($btnNewRecord, 10%);
 $btnViewRecordDarken: darken($btnViewRecord, 10%);
@@ -13,7 +13,7 @@ $btnDeleteRecordDarken: darken($btnDeleteRecord, 10%);
     font-weight: bold;
     display: block;
     border-radius: 5px;
-    padding: 10px 12px;
+    padding: 10px 14px;
 }
 
 .btn-new-record {

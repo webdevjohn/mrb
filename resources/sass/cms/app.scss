@@ -95,6 +95,18 @@ strong {
 	}
 }
 
+#page-footer {
+	background: $pageFooterBg;
+	margin-top: 50px;
+
+	a {
+		display: block;
+		padding: 20px 0px;
+		color: #fff;
+		width: 250px;			
+	}
+}
+
 /************************/ 
 /*		Breadcrums		*/
 /************************/
@@ -128,21 +140,6 @@ strong {
 	}
 }
 
-
-#page-footer {
-	background: $pageFooterBg;
-	margin-top: 50px;
-
-	a {
-		display: block;
-		padding: 20px 0px;
-		color: #fff;
-		width: 250px;			
-	}
-	
-}
-
-
 /************************/ 
 /*		Tables			*/
 /************************/
@@ -150,71 +147,52 @@ strong {
 .table-con {
 	margin-top: -220px;
 	min-height: 595px;
-	// background: $articleBg;
-	// box-shadow: $articleBoxShadow;
-	// border: 1px solid $borderColour;
-	// padding: 10px 20px;
-	#table-actions {
-		margin: 10px 0px;
-		float: right;
-		ul {
-			li {
-				float: left;
+
+	table {
+		width: 100%;
+		font-size: 90%;
+		thead {
+			tr {
+				background: $articleBg;
+				border: 1px solid $borderColour;
 			}
 		}
-		a {
-			display: inline-block;
-			// background: darken($articleBg, 4);
-			color: $baseFontColor;
-			padding: 15px 20px;
-		}
-	}
-}
-
-table {
-	width: 100%;
-	font-size: 90%;
-	thead {
-		tr {
-			background: $articleBg;
-			border: 1px solid $borderColour;
-		}
-	}
-	th {
-		font-weight: bold;
-		text-align: left;
-		padding: 10px 0px 10px 20px;
-		line-height: 1.0em;
-		color: $baseFontColor;	
-	}
-	tr td {
-		padding: 5px 10px 5px 20px;
-		height: 60px;
-		vertical-align: middle;
-		border-radius: 20px;
-		color: $baseFontColor;
-	}
-	tbody {
-		tr {
-			margin-bottom: 10px;
-			border: 1px solid $borderColour;
-			background: lighten($articleBg, 2);
-	
-		}
-		tr:hover {
-			padding: 20px;
-			background: $articleBg;
-			box-shadow: $articleBoxShadow;
+		th {
 			font-weight: bold;
+			text-align: left;
+			padding: 10px 0px 10px 20px;
+			line-height: 1.0em;
+			color: $baseFontColor;	
 		}
-	}
-	tfoot td {
-		text-align: right;
-		background: darken($articleBg, 2);
-		padding: 20px;
-		border-radius: 0;
-		a {
-			color: #fff;
+		tr td {
+			padding: 5px 10px 5px 20px;
+			height: 60px;
+			vertical-align: middle;
+			border-radius: 20px;
+			color: $baseFontColor;
+		}
+		tbody {
+			tr {
+				margin-bottom: 10px;
+				border: 1px solid $borderColour;
+				background: lighten($articleBg, 2);
+		
+			}
+			tr:hover {
+				padding: 20px;
+				background: $articleBg;
+				box-shadow: $articleBoxShadow;
+				font-weight: bold;
+			}
+		}
+		tfoot td {
+			text-align: right;
+			background: darken($articleBg, 2);
+			padding: 10px 20px;
+			border: 1px solid $borderColour;
+			a {
+				color: #fff;
+			}
 		}
 	}
 }
@@ -227,8 +205,6 @@ table tr td.selectedId {
 	padding: 0px 15px;
 }
 
-table tbody 
-
 .table-col-title {
 	width: 40%;
 }
@@ -239,8 +215,6 @@ table tbody
 	width: 15%;
 }
 
-
-  
 
 /************************/ 
 /*		  Form	 		*/
