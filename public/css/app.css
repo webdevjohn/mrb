@@ -5,23 +5,23 @@
 }
 
 .drum-and-bass-bg {
-  background: #000000;
+  background: #141414;
 }
 
 .hard-house-bg {
-  background: #FF3F9E;
+  background: #C3558B;
 }
 
 .hard-trance-bg {
-  background: #0B7F83;
+  background: #227E7D;
 }
 
 .house-bg {
-  background: #0091C0;
+  background: #2E91AE;
 }
 
 .nrg-bg {
-  background: #fd1d1d;
+  background: #BE3232;
 }
 
 .tech-house-bg {
@@ -29,15 +29,15 @@
 }
 
 .tech-trance-bg {
-  background: #872FFF;
+  background: #8B59D5;
 }
 
 .techno-bg {
-  background: #FF6600;
+  background: #CB7135;
 }
 
 .trance-bg {
-  background: #D0BA00;
+  background: #A5982B;
 }
 
 .default-bg {
@@ -45,7 +45,7 @@
 }
 
 .progressive-trance-bg {
-  background: #B0004B;
+  background: #AD2F67;
 }
 
 .breakbeat {
@@ -53,23 +53,23 @@
 }
 
 .drum-and-bass {
-  border-bottom: 4px solid #000000;
+  border-bottom: 4px solid #141414;
 }
 
 .hard-house {
-  border-bottom: 4px solid #FF3F9E;
+  border-bottom: 4px solid #C3558B;
 }
 
 .hard-trance {
-  border-bottom: 4px solid #0B7F83;
+  border-bottom: 4px solid #227E7D;
 }
 
 .house {
-  border-bottom: 4px solid #0091C0;
+  border-bottom: 4px solid #2E91AE;
 }
 
 .nrg {
-  border-bottom: 4px solid #fd1d1d;
+  border-bottom: 4px solid #BE3232;
 }
 
 .tech-house {
@@ -77,15 +77,15 @@
 }
 
 .tech-trance {
-  border-bottom: 4px solid #872FFF;
+  border-bottom: 4px solid #8B59D5;
 }
 
 .techno {
-  border-bottom: 4px solid #FF6600;
+  border-bottom: 4px solid #CB7135;
 }
 
 .trance {
-  border-bottom: 4px solid #D0BA00;
+  border-bottom: 4px solid #A5982B;
 }
 
 .default {
@@ -93,7 +93,7 @@
 }
 
 .progressive-trance {
-  border-bottom: 4px solid #B0004B;
+  border-bottom: 4px solid #AD2F67;
 }
 
 body {
