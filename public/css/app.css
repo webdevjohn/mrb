@@ -100,8 +100,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 100%;
   font-weight: normal;
-  color: #fff;
-  background: #121115;
+  background: #1D2A32;
 }
 
 @media screen and (min-width: 494px) {
@@ -141,17 +140,17 @@ body {
   }
 }
 .track-added {
-  background-color: #212024;
+  background-color: #262529;
   color: #aaa;
 }
 
 h1 {
   font-family: "robotobold";
-  color: #fff;
+  color: #F0F0F0;
 }
 
 h2 {
-  color: #fff;
+  color: #F0F0F0;
 }
 
 p {
@@ -166,16 +165,16 @@ a {
 
 #page-footer {
   clear: both;
-  background: #0C0C0C;
+  background: #172228;
   min-height: 200px;
   margin-top: 100px;
-  border-top: 1px solid #212024;
+  border-top: 1px solid #262529;
 }
 
 #page-header, .section-header {
   font-size: 100%;
   letter-spacing: 1.5px;
-  color: #fff;
+  color: #F0F0F0;
   box-sizing: border-box;
   padding: 40px 0px 0px 0px;
   text-transform: uppercase;
@@ -205,8 +204,7 @@ a {
   padding: 20px 0px;
   border-bottom: 1px solid #212024;
   box-sizing: border-box;
-  background: #0C0C0C linear-gradient(180deg, #0c0c0c 0%, #19181c 45%, #0c0c0c 100%);
-  color: #fff;
+  background: linear-gradient(0deg, #1a262e 0%, #24343d 46%, #18232a 100%);
 }
 
 #logo-con {
@@ -218,7 +216,7 @@ a {
   display: block;
   font-size: 125%;
   font-family: "montserratbold";
-  color: #fff;
+  color: #F0F0F0;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -236,7 +234,7 @@ a {
 #main-nav nav ul li a {
   font-family: "robotobold";
   text-transform: uppercase;
-  color: #fff;
+  color: #F0F0F0;
   padding-right: 25px;
 }
 
@@ -259,7 +257,7 @@ a {
 #auth-links button {
   border: none;
   background: none;
-  color: #fff;
+  color: #F0F0F0;
   margin-right: 15px;
   padding: 25px;
   font-size: 100%;
@@ -277,7 +275,7 @@ a {
   bottom: 0;
   right: 0;
   width: 100%;
-  border-top: 1px solid #212024;
+  border-top: 1px solid #262529;
 }
 
 #basket-link {
@@ -331,13 +329,16 @@ a {
 #homepage-layout #main #playlists article {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  background-color: #18171B;
+  background-color: #27343C;
+  border: 1px solid #262529;
+  box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.1);
 }
 
 #homepage-layout #main #playlists footer a {
   display: block;
   padding: 20px;
   font-size: 90%;
+  color: #F0F0F0;
 }
 
 #homepage-layout #main #playlists article img {
@@ -373,8 +374,9 @@ a {
 #popular-labels article {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  background-color: #18171B;
-  border: 1px solid #212024;
+  background-color: #27343C;
+  border: 1px solid #262529;
+  box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.1);
 }
 
 #popular-labels article h2 {
@@ -476,12 +478,13 @@ a {
   width: 216px;
   min-height: 420px;
   position: relative;
-  background-color: #18171B;
+  background-color: #27343C;
+  box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.1);
 }
 .track-listings article img {
   width: 100%;
   height: 216px;
-  border-bottom: 1px solid #212024;
+  border-bottom: 1px solid #262529;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   margin-bottom: -3px;
@@ -502,8 +505,8 @@ a {
 .track-listings article .track-details {
   padding: 12px 15px 2px 15px;
   min-height: 140px;
-  border-right: 1px solid #212024;
-  border-left: 1px solid #212024;
+  border-right: 1px solid #262529;
+  border-left: 1px solid #262529;
 }
 .track-listings article .track-details .artist-list li {
   display: inline-block;
@@ -512,6 +515,9 @@ a {
   padding: 2px 5px 3px 0px;
   border-right: 1px solid #ccc;
 }
+.track-listings article .track-details .artist-list li a {
+  color: #F0F0F0;
+}
 .track-listings article .track-details .artist-list li:last-child {
   border: 0px;
 }
@@ -519,13 +525,16 @@ a {
   font-family: "robotolight";
   padding: 3px 0px;
   font-size: 75%;
-  color: #fff;
+  color: #F0F0F0;
   line-height: 1.3em;
 }
 .track-listings article .track-details h2 {
   font-family: "robotobold";
   padding: 2px 0px 1px 0px;
   font-size: 75%;
+}
+.track-listings article .track-details h2 a {
+  color: #F0F0F0;
 }
 .track-listings article footer {
   font-size: 75%;
@@ -534,20 +543,21 @@ a {
   text-align: center;
   float: left;
   width: 50%;
-  border-top: 1px solid #212024;
+  border-top: 1px solid #262529;
 }
 .track-listings article footer ul li a {
   box-sizing: border-box;
   display: block;
   padding: 20px 0px 20px 0px;
-  border-left: 1px solid #212024;
+  border-left: 1px solid #262529;
+  color: #F0F0F0;
 }
 .track-listings article footer ul li a:hover {
-  background: #212024;
+  background: #212c33;
 }
 .track-listings article footer ul li:nth-child(2) {
   box-sizing: border-box;
-  border-right: 1px solid #212024;
+  border-right: 1px solid #262529;
 }
 
 @media screen and (min-width: 494px) {
@@ -587,7 +597,7 @@ a {
 #album-list-gird article img {
   width: 100%;
   height: auto;
-  border-bottom: 1px solid #212024;
+  border-bottom: 1px solid #262529;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
@@ -595,8 +605,8 @@ a {
 #album-list-gird article {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  background-color: #18171B;
-  border: 1px solid #212024;
+  background-color: #27343C;
+  border: 1px solid #262529;
 }
 
 #album-list-gird article footer a {
@@ -627,7 +637,7 @@ a {
 #artist-list-gird article {
   padding-right: 20px;
   min-height: 45px;
-  border-right: 1px solid #212024;
+  border-right: 1px solid #262529;
 }
 
 #artist-list-gird article a {
@@ -636,9 +646,9 @@ a {
 }
 
 #artist-list-gird article a:hover {
-  background-color: #18171B;
+  background-color: #27343C;
   border-radius: 5px;
-  border: 1px solid #212024;
+  border: 1px solid #262529;
   padding: 12px 20px 12px 15px;
   transition: background-color, font-size, padding 0.3s;
   font-weight: bold;
@@ -699,19 +709,19 @@ a {
   padding: 28px 25px;
   padding-left: 70px;
   color: #fff;
-  background: #0C0C0C linear-gradient(180deg, #0c0c0c 0%, #19181c 45%, #0c0c0c 100%);
+  background: linear-gradient(0deg, #1a262e 0%, #24343d 46%, #18232a 100%);
 }
 
 #basket-options ul li a.empty-basket {
-  background: #0C0C0C linear-gradient(180deg, #0c0c0c 0%, #19181c 45%, #0c0c0c 100%) url(images/icons/empty_basket.png) no-repeat 10px;
+  background: linear-gradient(0deg, #1a262e 0%, #24343d 46%, #18232a 100%) url(images/icons/empty_basket.png) no-repeat 10px;
 }
 
 #basket-options ul li a.add-to-favourites {
-  background: #0C0C0C linear-gradient(180deg, #0c0c0c 0%, #19181c 45%, #0c0c0c 100%) url(images/icons/favorites.png) no-repeat 10px;
+  background: linear-gradient(0deg, #1a262e 0%, #24343d 46%, #18232a 100%) url(images/icons/favorites.png) no-repeat 10px;
 }
 
 #basket-options ul li a.purchase {
-  background: #0C0C0C linear-gradient(180deg, #0c0c0c 0%, #19181c 45%, #0c0c0c 100%) url(images/icons/basket.png) no-repeat 10px;
+  background: linear-gradient(0deg, #1a262e 0%, #24343d 46%, #18232a 100%) url(images/icons/basket.png) no-repeat 10px;
 }
 
 /* genre list */
@@ -728,15 +738,15 @@ a {
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  background-color: #18171B;
-  box-shadow: 6px 6px 12px -3px rgba(0, 0, 0, 0.15);
+  background-color: #27343C;
+  box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.1);
 }
 
 #genre-list-gird article h1 {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   padding: 35px 20px;
-  background-color: #1F1E22;
+  background-color: #2d3c45;
 }
 
 #genre-list-gird article ul {
@@ -749,8 +759,7 @@ a {
   font-size: 90%;
   margin-bottom: 10px;
   border-radius: 5px;
-  border-top: 1px solid #212024;
-  border-bottom: 1px solid #212024;
+  border: 1px solid #262529;
 }
 
 #genre-list-gird article ul li a span {
@@ -758,19 +767,19 @@ a {
 }
 
 #genre-list-gird article ul li a.icon-home {
-  background: #121115 url(images/icons/20x20/home.png) no-repeat 20px center;
+  background: #212c33 url(images/icons/20x20/home.png) no-repeat 20px center;
 }
 
 #genre-list-gird article ul li a.icon-home:hover {
-  background-color: #212024;
+  background-color: #27343C;
 }
 
 #genre-list-gird article ul li a.icon-music {
-  background: #121115 url(images/icons/24x24/music.png) no-repeat 20px center;
+  background: #212c33 url(images/icons/24x24/music.png) no-repeat 20px center;
 }
 
 #genre-list-gird article ul li a.icon-music:hover {
-  background-color: #212024;
+  background-color: #27343C;
 }
 
 @media screen and (max-width: 500px) {
@@ -803,7 +812,7 @@ a {
 .filter-group {
   padding: 10px;
   background: #1A1F22;
-  border: 1px solid #212024;
+  border: 1px solid #262529;
   border-radius: 5px;
 }
 
@@ -877,7 +886,7 @@ a {
 #sortable-fields ul li a {
   padding: 7px 12px;
   background: #1A1F22;
-  border: 1px solid #212024;
+  border: 1px solid #262529;
 }
 
 #sortable-fields ul li a:hover {
@@ -900,7 +909,7 @@ a {
 #label-list-gird article img {
   width: 100%;
   height: auto;
-  border-bottom: 1px solid #212024;
+  border-bottom: 1px solid #262529;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
@@ -908,8 +917,8 @@ a {
 #label-list-gird article {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  background-color: #18171B;
-  border: 1px solid #212024;
+  background-color: #27343C;
+  border: 1px solid #262529;
 }
 
 #label-list-gird article footer a {
@@ -947,7 +956,8 @@ a {
 #playlist-grid article {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  background-color: #18171B;
+  background-color: #27343C;
+  border: 1px solid #262529;
 }
 
 #playlist-grid article footer a {

@@ -27,11 +27,14 @@
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     background-color: $articleBg;
+    border: 1px solid $borderColour;
+    box-shadow: $articleBoxShadow;
 }
 #homepage-layout #main #playlists footer a {
     display: block;
     padding: 20px;
     font-size: 90%;
+    color: $baseFontColor;
 }
 
 #homepage-layout #main #playlists article img {
@@ -67,6 +70,7 @@
     border-top-right-radius: 3px;
     background-color: $articleBg;
     border: 1px solid $borderColour;
+    box-shadow: $articleBoxShadow;
 }
 #popular-labels article h2 {
     padding: 15px;

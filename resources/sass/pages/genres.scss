@@ -14,14 +14,14 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     background-color: $articleBg;
-    box-shadow: 6px 6px 12px -3px rgba(0,0,0,0.15);
+    box-shadow: $articleBoxShadow;
 }
 
 #genre-list-gird article h1 {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     padding: 35px 20px;
-    background-color: #1F1E22;
+    background-color: lighten($articleBg, 3);
 }
 
 #genre-list-gird article ul {
@@ -35,23 +35,22 @@
     margin-bottom: 10px;
     
     border-radius: 5px;
-    border-top: 1px solid $borderColour;
-    border-bottom: 1px solid $borderColour;
+    border: 1px solid $borderColour;
 }
 #genre-list-gird article ul li a span {
     color: #bbb;
 }
 #genre-list-gird article ul li a.icon-home {
-    background: #121115 url(images/icons/20x20/home.png) no-repeat 20px center; 
+    background: darken($articleBg, 3) url(images/icons/20x20/home.png) no-repeat 20px center; 
 }
 #genre-list-gird article ul li a.icon-home:hover {
-    background-color: $borderColour; 
+    background-color: $articleBg; 
 }
 #genre-list-gird article ul li a.icon-music {
-    background: #121115 url(images/icons/24x24/music.png) no-repeat 20px center; 
+    background: darken($articleBg, 3) url(images/icons/24x24/music.png) no-repeat 20px center; 
 }
 #genre-list-gird article ul li a.icon-music:hover {
-    background-color: $borderColour; 
+    background-color: $articleBg;
 }
 
 @media screen and (max-width: 500px) {

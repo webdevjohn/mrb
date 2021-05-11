@@ -10,7 +10,8 @@
 		width: 216px;
 		min-height: 420px;	
 		position:relative; 
-		background-color: $articleBg;				
+		background-color: $articleBg;	
+		box-shadow: $articleBoxShadow;			
 
 		img {	
 			width: 100%;
@@ -46,7 +47,10 @@
 				font-size: 85%;
 				font-family: 'robotobold';	
 				padding: 2px 5px 3px 0px;
-				border-right: 1px solid #ccc
+				border-right: 1px solid #ccc;
+				a {
+					color: $baseFontColor; 
+				}
 			}
 			.artist-list li:last-child {
 				border: 0px
@@ -56,13 +60,16 @@
 				font-family: 'robotolight';	
 				padding: 3px 0px;
 				font-size: 75%;
-				color: #fff;
+				color: $baseFontColor; 
 				line-height: 1.3em;
 			}
 			h2 {
 				font-family: 'robotobold';	
 				padding: 2px 0px 1px 0px;
 				font-size: 75%;  
+				a {
+					color: $baseFontColor;
+				} 
 			}
 		}
 
@@ -78,9 +85,10 @@
 					display: block;
 					padding: 20px 0px 20px 0px;
 					border-left: 1px solid $borderColour;	
+					color: $baseFontColor; 
 				}
 				a:hover {
-					background: $borderColour
+					background: darken($articleBg, 3);
 				}
 			}
 			ul li:nth-child(2) {

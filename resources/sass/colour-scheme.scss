@@ -1,21 +1,27 @@
 /* colour Scheme */
-$appbarBG: #0C0C0C linear-gradient(180deg, rgba(12,12,12,1) 0%, rgba(25,24,28,1) 45%, rgba(12,12,12,1) 100%);  
-$pageHeaderBg: #19181C;
-$pageFooterBg: #0C0C0C;
-$bodyBGColour: #121115;
-$accentDarker: #1A1F22;
-$borderColour: #212024;
-$borderColourLighten: lighten($borderColour, 5%);
-$logoFontColor: #fff;
-$sectionHeaderFontColor: #fff;
+$appbarBG: rgb(23,34,40);
+$appbarBG: linear-gradient(0deg, rgba(26,38,46,1) 0%, rgba(36,52,61,1) 46%, rgba(24,35,42,1) 100%);
 
-$articleBg: #18171B;
+$baseFontColor: #F0F0F0;
+
+$bodyBGColour: #1D2A32;
+$pageFooterBg: darken($bodyBGColour, 3);
+$accentDarker: #1A1F22;
+$borderColour: lighten(#212024, 2);
+$borderColourLighten: lighten($borderColour, 5%);
+$logoFontColor: $baseFontColor;
+$sectionHeaderFontColor: $baseFontColor;
+
+$articleBg: #27343C;
+$articleBoxShadow: 5px 5px 12px -2px rgba(0,0,0,0.10);
+
 
 $trackBasketBGColor: #000;
 $trackBasketBgHover: lighten($trackBasketBGColor, 4%);
 
 
 /* genre colour codes */
+
 $breakbeat: #624634;
 $drumAndBass: #000000;
 $hardHouse: #FF3F9E;
