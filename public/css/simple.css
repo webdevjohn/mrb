@@ -1,0 +1,154 @@
+/* colour Scheme */
+/* genre colour codes */
+.breakbeat-bg {
+  background: #624634;
+}
+
+.drum-and-bass-bg {
+  background: #141414;
+}
+
+.hard-house-bg {
+  background: #C3558B;
+}
+
+.hard-trance-bg {
+  background: #227E7D;
+}
+
+.house-bg {
+  background: #2E91AE;
+}
+
+.nrg-bg {
+  background: #BE3232;
+}
+
+.tech-house-bg {
+  background: #3C883C;
+}
+
+.tech-trance-bg {
+  background: #8B59D5;
+}
+
+.techno-bg {
+  background: #CB7135;
+}
+
+.trance-bg {
+  background: #A5982B;
+}
+
+.default-bg {
+  background: #222;
+}
+
+.progressive-trance-bg {
+  background: #AD2F67;
+}
+
+.breakbeat {
+  border-bottom: 4px solid #624634;
+}
+
+.drum-and-bass {
+  border-bottom: 4px solid #141414;
+}
+
+.hard-house {
+  border-bottom: 4px solid #C3558B;
+}
+
+.hard-trance {
+  border-bottom: 4px solid #227E7D;
+}
+
+.house {
+  border-bottom: 4px solid #2E91AE;
+}
+
+.nrg {
+  border-bottom: 4px solid #BE3232;
+}
+
+.tech-house {
+  border-bottom: 4px solid #3C883C;
+}
+
+.tech-trance {
+  border-bottom: 4px solid #8B59D5;
+}
+
+.techno {
+  border-bottom: 4px solid #CB7135;
+}
+
+.trance {
+  border-bottom: 4px solid #A5982B;
+}
+
+.default {
+  border-bottom: 4px solid #222;
+}
+
+.progressive-trance {
+  border-bottom: 4px solid #AD2F67;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  background: #1D2A32;
+  color: #F0F0F0;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#form-con a {
+  display: block;
+  text-decoration: none;
+  font-size: 125%;
+  font-family: "montserratbold";
+  color: #F0F0F0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+#form-con form {
+  background: #27343C;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid #262529;
+  box-shadow: 5px 5px 12px -2px rgba(0, 0, 0, 0.1);
+  padding: 50px;
+  width: 500px;
+}
+#form-con form label {
+  display: block;
+  padding-bottom: 7px;
+}
+#form-con form input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+}
+#form-con form button {
+  padding: 10px;
+  width: 100px;
+}
+#form-con form span {
+  display: block;
+  color: red;
+  padding-top: 4px;
+}
+#form-con form label, #form-con button {
+  margin-top: 20px;
+}
