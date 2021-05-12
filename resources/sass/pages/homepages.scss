@@ -1,0 +1,180 @@
+/***
+    Layout used on the following pages:
+        Home Page 
+        Genre Homepages
+***/
+
+#homepage-layout {
+    box-sizing: border-box;
+    display: grid;
+    gap: 10px;
+    grid-template-rows: 1fr; 
+    #main {
+        box-sizing: border-box;
+        margin-right: 20px;
+
+        .track-listings {
+            padding: 0px 0px 20px 0px;
+        }
+
+        #playlists {
+            box-sizing: border-box;
+            display: grid; 
+            grid-gap: 20px;
+            padding-top: 20px;
+            padding-bottom: 18px; 
+
+            article {
+                
+                img {
+                    width: 100%;
+                    height: auto; 
+                    border-top-left-radius: 3px;
+                    border-top-right-radius: 3px
+                }
+
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+                background-color: $articleBg;
+                border: 1px solid $borderColour;
+                box-shadow: $articleBoxShadow;
+
+                footer a {
+                    display: block;
+                    padding: 20px;
+                    font-size: 90%;
+                    color: $baseFontColor;
+                }
+            }
+        }
+
+        #popular-tracks {
+            box-sizing: border-box;
+            min-height: 600px;
+        }
+    } 
+
+    #popular-labels {
+        box-sizing: border-box;
+        padding: 20px 0px;
+        display: grid; 
+        gap: 20px; 
+
+        article {
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            background-color: $articleBg;
+            border: 1px solid $borderColour;
+            box-shadow: $articleBoxShadow;
+
+            img {
+                width: 100%;
+                height: auto;
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px
+            }
+
+            h2 {
+                padding: 15px;
+                font-size: 90%;
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: 494px) {
+    #homepage-layout {
+        grid-template-columns: 1fr;
+
+        #main {
+
+            .track-listings { 
+                grid-template-columns: 216px 216px  		
+            } 
+        }
+
+        #popular-labels {
+            width: 452px;
+            grid-template-columns: 1fr 1fr;       
+        }
+    }
+}
+
+@media screen and (min-width: 728px) {
+    #homepage-layout {
+        #main {
+
+            .track-listings { 
+                grid-template-columns: 216px 216px 216px;  		
+            } 
+
+            #playlists {
+                grid-template-columns: 334px 334px
+            }
+        }
+        #popular-labels {
+            width: 728px;
+            grid-template-columns: 334px 334px	
+        }
+    }
+}
+
+
+@media screen and (min-width: 964px) {
+    #homepage-layout {
+        #main {
+
+            .track-listings { 
+                grid-template-columns: 216px 216px 216px 216px ''		
+            } 
+
+            #playlists {
+                grid-template-columns: 452px 452px;
+            }
+        }
+
+        #popular-labels {
+            width: 964px;
+            grid-template-columns: 452px 452px;
+        }  
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #homepage-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 0px;
+  
+        #main { 
+                    
+            .track-listings { 
+                grid-template-columns: 216px 216px 216px		
+            }
+
+            #playlists {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+        #popular-labels {
+            width: 480px;
+            grid-template-columns: 452px;   
+        }
+    }
+}
+
+
+@media screen and (min-width: 1436px) {
+    #homepage-layout {
+        
+        #main {
+            .track-listings { 
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            } 
+        }
+
+        #popular-labels {
+            grid-template-columns: 452px;
+        }
+    }
+}
