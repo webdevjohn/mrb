@@ -11,13 +11,12 @@ body {
 @import "rwd-wrappers";
 	
 .track-added {
-    background-color: $borderColour;
-    color: #aaa;
+    background-color: darken($articleBg, 3);
+    color: $baseFontColor;
 }
 
 h1 {
     font-family: 'robotobold';	
-
 }	
 
 p {
@@ -34,7 +33,7 @@ a {
 	background: $pageFooterBg;
 	margin-top: 50px;
     a {
-        padding: 20px 0px 20px 0px;
+        padding: 20px 0px 50px 0px;
         display: block;
     }
 	a.logo {

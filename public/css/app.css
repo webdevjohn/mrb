@@ -141,8 +141,8 @@ body {
   }
 }
 .track-added {
-  background-color: #262529;
-  color: #aaa;
+  background-color: #212c33;
+  color: #F0F0F0;
 }
 
 h1 {
@@ -164,7 +164,7 @@ a {
   margin-top: 50px;
 }
 #page-footer a {
-  padding: 20px 0px 20px 0px;
+  padding: 20px 0px 50px 0px;
   display: block;
 }
 #page-footer a.logo {
