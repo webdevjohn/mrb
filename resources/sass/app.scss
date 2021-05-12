@@ -79,7 +79,7 @@ a {
 
 #app-bar {
     padding: 20px 0px;
-    border-bottom: 1px solid darken($borderColour, 2);
+    border-bottom: 1px solid lighten($borderColour, 6);
     box-sizing: border-box;
     background: $appbarBG;
 }
