@@ -2,15 +2,14 @@
     <x-slot name="title">Login</x-slot>
 
     <div id="form-con" class="center">
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors :errors="$errors" />
-  
+ 
         <form method="POST" action="{{ route('login') }}">
             @csrf
      
             <a href="{{ route('homepage') }}">MyRecordBox</a>
-            
+
+            <x-auth-validation-errors :errors="$errors" />
+
             <!-- Email -->            
             <label for="email">{{ __('Email') }}</label>
             <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus />
