@@ -3,8 +3,10 @@
 	           
 	<x-page-header>{{ $album->title }}</x-page-header>
 
-	<section class="track-listings wrapper">						
-		@include('_partials.tracks', ['tracks' => $tracks])		
-	</section>
+	<div class="wrapper">
+		<section class="track-listings">						
+			@include('_partials.tracks', ['tracks' => $tracks])		
+		</section>
+	</div>
 
 </x-app-layout>

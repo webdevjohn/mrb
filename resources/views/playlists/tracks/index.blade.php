@@ -3,9 +3,11 @@
 
 	<x-page-header>{{ $playlist->name }}</x-page-header>
 
-	<section class="track-listings wrapper">
-		@include('_partials.tracks', ['tracks' => $tracks])				
-	</section> 						
+	<div class="wrapper">
+		<section class="track-listings">
+			@include('_partials.tracks', ['tracks' => $tracks])				
+		</section> 			
+	</div>			
 	 
 	<x-pagination :model="$tracks" />
 	
