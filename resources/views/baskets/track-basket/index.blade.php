@@ -15,10 +15,8 @@
 	</section> --}}
 
 	@if($items)
-		<div class="wrapper">
-			<section class="track-listings">	
-				@include('_partials.tracks', ['tracks' => $items])					
-			</section> 			
-		</div>
+	<div class="wrapper">
+		<x-track-listings :tracks="$items" /> 	
+	</div>
 	@endif
 </x-app-layout>

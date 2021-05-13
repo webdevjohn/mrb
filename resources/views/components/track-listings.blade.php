@@ -1,3 +1,5 @@
+@props(['tracks'])
+		<section class="track-listings">	
 @foreach($tracks as $track)
 <article class="{{ $track->genre->slug }}">		
 	<img src="{{ asset($track->getTrackThumbnail()) }}" alt="{{ $track->title }}">
@@ -34,3 +36,4 @@
 	</footer>
 </article>
 @endforeach	
+		</section> 

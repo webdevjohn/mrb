@@ -28,7 +28,7 @@ class GenresTracksController extends Controller
 
 		$pageData = [
 			'genre' => $genre,
-			'genreTracks' => $this->paginator->paginate($tracks),
+			'tracks' => $this->paginator->paginate($tracks),
         ];
 
 		return View('genres.tracks.index', array_merge($pageData, $facets));

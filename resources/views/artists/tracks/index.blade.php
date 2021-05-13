@@ -3,12 +3,10 @@
 
 	<x-page-header>{{ $artist->artist_name }}</x-page-header>
 
-	<div class="wrapper">
-		<section class="track-listings">				
-			@include('_partials.tracks', ['tracks' => $artistTracks])				
-		</section> 					
- 	</div>
+ 	<div class="wrapper">
+		<x-track-listings :tracks="$tracks" /> 
+	</div>
 
-	<x-pagination :model="$artistTracks" />
+	<x-pagination :model="$tracks" />
 
 </x-app-layout>

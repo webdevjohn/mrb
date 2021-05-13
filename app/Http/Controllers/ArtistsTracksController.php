@@ -18,7 +18,7 @@ class ArtistsTracksController extends Controller
 
         return View('artists.tracks.index', array(
             'artist' => $artist,
-            'artistTracks' => $tracks
+            'tracks' => $tracks
         ));
     }
 }

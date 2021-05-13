@@ -15,7 +15,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     protected $trackBasketPages = [
         'home.index', 'artists.tracks.index', 'albums.tracks.index', 'genres.show', 'genres.tracks.index', 
-            'playlists.tracks.index', 'labels.tracks.index', 'baskets.track-basket.index'
+            'playlists.tracks.index', 'labels.tracks.index', 'baskets.track-basket.index', 'components.track-listings'
     ];
 
 

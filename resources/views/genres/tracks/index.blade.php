@@ -18,12 +18,11 @@
 				</li>
 			</ul>								
 		</section>
-		<section class="track-listings">
-			@include('_partials.tracks', ['tracks' => $genreTracks])				
-		</section> 
+
+		<x-track-listings :tracks="$tracks" /> 
  	</div>
 
-	<x-pagination :model="$genreTracks" />
+	<x-pagination :model="$tracks" />
 
 	<div id="myNav" class="modal-overlay">
 

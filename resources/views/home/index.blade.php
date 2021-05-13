@@ -21,17 +21,13 @@
 			</section>
 	
 			<section id="latest-tracks">	
-				<h1 class="section-header">Latest Tracks</h1> 
-				<section class="track-listings">		
-					@include('_partials.tracks', ['tracks' => $latestTracks])				
-				</section>
+				<h1 class="section-header">Latest Tracks</h1>
+				<x-track-listings :tracks="$latestTracks" /> 	
 			</section> 		
 
 			<section id="popular-tracks">	
 				<h1 class="section-header">Popular Tracks</h1>	
-				<div class="track-listings">	
-					@include('_partials.tracks', ['tracks' => $popularTracks])		
-				</div>
+				<x-track-listings :tracks="$popularTracks" /> 	
 			</section>	
 			
 		</section>

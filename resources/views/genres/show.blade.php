@@ -10,9 +10,7 @@
 						{{ $genre->genre }}
 				</a>
 			</h1> 
-			<section class="track-listings">
-				@include('_partials.tracks', ['tracks' => $popularTracks])				
-			</section> 
+			<x-track-listings :tracks="$popularTracks" /> 	
 		</section>
 		<section>
 			<h1 class="section-header">Popular Labels</h1>
