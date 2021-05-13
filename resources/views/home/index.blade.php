@@ -1,7 +1,5 @@
-@extends('master-layout')
-@section('title', 'My Record Box - Homepage')
-@section('page-header', 'Home Page')
-@section('content')
+<x-app-layout>
+    <x-slot name="title">Homepage</x-slot>
 
 	<section id="homepage-layout" class="wrapper">
 		<section id="main">
@@ -53,4 +51,4 @@
 		</section>
 
 	</section>
-@stop
+</x-app-layout>

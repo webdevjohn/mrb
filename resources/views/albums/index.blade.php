@@ -1,6 +1,5 @@
-@extends('master-layout')
-@section('title', 'My Record Box - Albums')
-@section('content')
+<x-app-layout>
+    <x-slot name="title">Albums</x-slot>
 	           
 	<h1 id="page-header">
 		<div class="wrapper">Albums</div>
@@ -25,4 +24,4 @@
 
 	{!! $albums->appends(request()->input())->render() !!}	
 
-@stop
+</x-app-layout>

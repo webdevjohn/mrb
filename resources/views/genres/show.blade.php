@@ -1,6 +1,5 @@
-@extends('master-layout')
-@section('title', 'My Record Box -' . $genre->genre)
-@section('content')
+<x-app-layout>
+	<x-slot name="title">{{ $genre->genre }}</x-slot>
  
 	<div id="homepage-layout" class="wrapper">
 		<section id="main">
@@ -29,4 +28,4 @@
 			</section>
 		</section>
  	</div>
-@stop
+</x-app-layout>

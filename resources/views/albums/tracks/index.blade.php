@@ -1,6 +1,5 @@
-@extends('master-layout')
-@section('title', 'My Record Box - ' . $album->title)
-@section('content')
+<x-app-layout>
+    <x-slot name="title">{{ $album->title }}</x-slot>
 	           
 	<h1 id="page-header">
 		<div class="wrapper">{{ $album->title }}</div>
@@ -9,4 +8,4 @@
 	<section class="track-listings wrapper">						
 		@include('_partials.tracks', ['tracks' => $tracks])		
 	</section>
-@stop
+</x-app-layout>

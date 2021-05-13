@@ -1,6 +1,5 @@
-@extends('master-layout')
-@section('title', 'My Record Box - Labels')
-@section('content')
+<x-app-layout>
+	<x-slot name="title">Labels</x-slot>
 	
 	<h1 id="page-header">
 		<div class="wrapper">Labels</div>
@@ -14,6 +13,10 @@
 		</section>
 	</div>
 	
-	{!! $labels->links() !!}  
+	<section>
+		<div class="wrapper">
+			{!! $labels->appends(request()->input())->render() !!}	
+		</div>
+	</section>
 	
-@stop
+</x-app-layout>

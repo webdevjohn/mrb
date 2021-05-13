@@ -1,6 +1,5 @@
-@extends('master-layout')
-@section('title', 'My Record Box -' . $playlist->name)
-@section('content')
+<x-app-layout>
+	<x-slot name="title">{{ $playlist->name }}</x-slot>
 
 	<h1 id="page-header">
 		<div class="wrapper">{{ $playlist->name }}</div>
@@ -14,4 +13,4 @@
 		{!! $tracks->appends(request()->input())->render() !!}	
 	</section>
 	
-@stop
+</x-app-layout>

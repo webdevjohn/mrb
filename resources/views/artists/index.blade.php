@@ -1,6 +1,5 @@
-@extends('master-layout')
-@section('title', 'My Record Box - Artists')
-@section('content')
+<x-app-layout>
+	<x-slot name="title">Artists</x-slot>
 
 	<h1 id="page-header">
 		<div class="wrapper">Artists</div>
@@ -20,4 +19,4 @@
 
 	{!! $artists->appends(request()->input())->render() !!}	
 	
- @stop
+</x-app-layout>

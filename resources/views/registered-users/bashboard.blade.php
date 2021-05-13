@@ -1,10 +1,7 @@
-@extends('master-layout')
-@section('title', 'My Record Box - Dashboard')
-@section('page-header', 'Dashboard')
-@section('content')
+<x-cms-registerd-layout>
+	<x-slot name="title">Dashboard</x-slot>
 
 	<div class="wrapper">
-
 		<section id="dashboard-options">
 			<ul>
 				<li>
@@ -12,7 +9,6 @@
 				</li>
 			</ul>
 		</section>
-
 	</div>
 
-@stop
+</x-cms-registerd-layout>

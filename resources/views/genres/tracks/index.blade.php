@@ -1,6 +1,5 @@
-@extends('master-layout')
-@section('title', 'My Record Box -' . $genre->genre)
-@section('content')
+<x-app-layout>
+	<x-slot name="title">{{ $genre->genre }}</x-slot>
  
  	<h1 id="page-header">
 		<div class="wrapper">
@@ -76,4 +75,4 @@
 			document.getElementById("myNav").style.height = "0%";
 		}
 	</script>
-@stop
+</x-app-layout>

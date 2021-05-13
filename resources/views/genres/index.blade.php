@@ -1,6 +1,5 @@
-@extends('master-layout')
-@section('title', 'My Record Box - Genres')
-@section('content')
+<x-app-layout>
+	<x-slot name="title">Genres</x-slot>
 
   	<h1 id="page-header">
 		<div class="wrapper">Genres</div>
@@ -25,4 +24,4 @@
 			@endforeach
 		</section>
 	</div>
-@stop
+</x-app-layout>

@@ -1,7 +1,5 @@
-@extends('master-layout')
-@section('title', 'My Record Box - Basket')
-@section('page-header', 'Basket')
-@section('content')
+<x-app-layout>
+	<x-slot name="title">Basket</x-slot>
 
 	<h1 id="page-header">
 		<div class="wrapper">Basket</div>
@@ -25,4 +23,4 @@
 			</section> 			
 		</div>
 	@endif
-@stop
+</x-app-layout>
