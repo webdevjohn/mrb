@@ -6,4 +6,5 @@
 	<section class="track-listings wrapper">						
 		@include('_partials.tracks', ['tracks' => $tracks])		
 	</section>
+
 </x-app-layout>

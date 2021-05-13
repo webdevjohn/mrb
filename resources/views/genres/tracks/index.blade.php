@@ -23,12 +23,7 @@
 		</section> 
  	</div>
 
-	<section>
-		<div class="wrapper">
-			{!! $genreTracks->appends(request()->input())->render() !!}	
-		</div>
-	</section>
-
+	<x-pagination :model="$genreTracks" />
 
 	<div id="myNav" class="modal-overlay">
 

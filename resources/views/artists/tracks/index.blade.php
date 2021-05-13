@@ -9,8 +9,6 @@
 		</section> 					
  	</div>
 
-	<section>
-		{!! $artistTracks->appends(request()->input())->render() !!}	
-	</section>
+	<x-pagination :model="$artistTracks" />
 
 </x-app-layout>

@@ -7,8 +7,6 @@
 		@include('_partials.tracks', ['tracks' => $tracks])				
 	</section> 						
 	 
-	<section>
-		{!! $tracks->appends(request()->input())->render() !!}	
-	</section>
+	<x-pagination :model="$tracks" />
 	
 </x-app-layout>

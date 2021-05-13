@@ -20,8 +20,6 @@
 		</section>
 	</div>
 	
-	<section>
-		{!! $playlists->appends(request()->input())->render() !!}	
-	</section>
+	<x-pagination :model="$playlists" />
 
 </x-app-layout>

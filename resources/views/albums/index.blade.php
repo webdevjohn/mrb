@@ -20,6 +20,6 @@
 		</section>
 	</div>
 
-	{!! $albums->appends(request()->input())->render() !!}	
+	<x-pagination :model="$albums" />
 
 </x-app-layout>

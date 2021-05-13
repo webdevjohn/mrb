@@ -11,10 +11,6 @@
 		</section>
 	</div>
 	
-	<section>
-		<div class="wrapper">
-			{!! $labels->appends(request()->input())->render() !!}	
-		</div>
-	</section>
+	<x-pagination :model="$labels" />
 	
 </x-app-layout>

@@ -15,6 +15,6 @@
 		</section>
 	</div>
 
-	{!! $artists->appends(request()->input())->render() !!}	
+	<x-pagination :model="$artists" />
 	
 </x-app-layout>
