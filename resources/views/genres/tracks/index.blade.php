@@ -1,11 +1,7 @@
 <x-app-layout>
 	<x-slot name="title">{{ $genre->genre }}</x-slot>
- 
- 	<h1 id="page-header">
-		<div class="wrapper">
-	 		{{ $genre->genre }} <span onclick="openNav()">&#9776; Filters</span>
-		</div>
-	</h1>
+	
+ 	<x-page-header>{{ $genre->genre }} <span onclick="openNav()">&#9776; Filters</span></x-page-header>
 
 	<div class="wrapper">
 		<section id="sortable-fields">

@@ -1,9 +1,7 @@
 <x-app-layout>
 	<x-slot name="title">Genres</x-slot>
 
-  	<h1 id="page-header">
-		<div class="wrapper">Genres</div>
-	</h1>
+	<x-page-header>Genres</x-page-header>
 	
 	<div class="wrapper">
 		<section id="genre-list-gird">

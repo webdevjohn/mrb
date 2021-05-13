@@ -1,9 +1,7 @@
 <x-app-layout>
 	<x-slot name="title">{{ $label->label }}</x-slot>
 
-	<h1 id="page-header">
-		<div class="wrapper">{{ $label->label }}</div>
-	</h1>
+	<x-page-header>{{ $label->label }}</x-page-header>
 
 	<div class="wrapper">
 		<section class="track-listings">

@@ -1,9 +1,7 @@
 <x-app-layout>
 	<x-slot name="title">Playlists</x-slot>
 	           
-	<h1 id="page-header">
-		<div class="wrapper">Playlists</div>
-	</h1>
+	<x-page-header>Playlists</x-page-header>
 
 	<div class="wrapper">
 		<section id="playlist-grid">

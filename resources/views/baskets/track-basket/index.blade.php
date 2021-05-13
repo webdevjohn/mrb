@@ -1,9 +1,7 @@
 <x-app-layout>
 	<x-slot name="title">Basket</x-slot>
 
-	<h1 id="page-header">
-		<div class="wrapper">Basket</div>
-	</h1>
+	<x-page-header>Basket</x-page-header>
 
 {{-- <section id="basket-options">
 		<ul>					

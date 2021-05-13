@@ -1,9 +1,7 @@
 <x-app-layout>
 	<x-slot name="title">{{ $artist->artist_name }}</x-slot>
 
-	<h1 id="page-header">
-		<div class="wrapper">{{ $artist->artist_name }}</div>
-	</h1>
+	<x-page-header>{{ $artist->artist_name }}</x-page-header>
 
 	<div class="wrapper">
 		<section class="track-listings">				

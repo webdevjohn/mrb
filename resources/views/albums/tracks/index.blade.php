@@ -1,9 +1,7 @@
 <x-app-layout>
     <x-slot name="title">{{ $album->title }}</x-slot>
 	           
-	<h1 id="page-header">
-		<div class="wrapper">{{ $album->title }}</div>
-	</h1>
+	<x-page-header>{{ $album->title }}</x-page-header>
 
 	<section class="track-listings wrapper">						
 		@include('_partials.tracks', ['tracks' => $tracks])		

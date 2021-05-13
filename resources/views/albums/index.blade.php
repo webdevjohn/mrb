@@ -1,9 +1,7 @@
 <x-app-layout>
     <x-slot name="title">Albums</x-slot>
 	           
-	<h1 id="page-header">
-		<div class="wrapper">Albums</div>
-	</h1>
+	<x-page-header>Albums</x-page-header>
 
 	<div class="wrapper">
 		<section id="album-list-gird">

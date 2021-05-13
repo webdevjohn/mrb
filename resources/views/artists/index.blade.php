@@ -1,9 +1,7 @@
 <x-app-layout>
 	<x-slot name="title">Artists</x-slot>
 
-	<h1 id="page-header">
-		<div class="wrapper">Artists</div>
-	</h1>
+	<x-page-header>Artists</x-page-header>
 
 	<div class="wrapper">
 		<section id="artist-list-gird">	
