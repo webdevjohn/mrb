@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="title">Homepage</x-slot>
 
-	<section id="homepage-layout" class="wrapper">
+	<section id="homepage-layout">
 		<section id="main">
 
 			<h1 class="section-header">Playlists</h1> 
@@ -28,8 +28,7 @@
 			<section id="popular-tracks">	
 				<h1 class="section-header">Popular Tracks</h1>	
 				<x-track-listings :tracks="$popularTracks" /> 	
-			</section>	
-			
+			</section>				
 		</section>
 
 		<section>

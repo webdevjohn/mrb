@@ -1,7 +1,7 @@
 <x-app-layout>
 	<x-slot name="title">{{ $genre->genre }}</x-slot>
  
-	<div id="homepage-layout" class="wrapper">
+	<div id="homepage-layout">
 		<section id="main">
 			<h1 class="section-header">Popular Tracks 
 				<a href="{{ route('genres.tracks.index', $genre->slug) }}" 

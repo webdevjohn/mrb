@@ -3,23 +3,20 @@
 	           
 	<x-page-header>Playlists</x-page-header>
 
-	<div class="wrapper">
-		<section id="playlist-grid">
+	<section id="playlist-grid">
 		@foreach ($playlists as $playlist) 
-			<article>
+		<article>
+			<a href="{{ route('playlists.tracks.index', $playlist->slug) }}" title="View {{ $playlist->name }} Tracks">			
+				<img src="{{ asset($playlist->getThumbnail()) }}" alt="{{ $playlist->name }}">
+			</a>
+			<footer>
 				<a href="{{ route('playlists.tracks.index', $playlist->slug) }}" title="View {{ $playlist->name }} Tracks">			
-					<img src="{{ asset($playlist->getThumbnail()) }}" alt="{{ $playlist->name }}">
+					{{ $playlist->name }}
 				</a>
-				<footer>
-					<a href="{{ route('playlists.tracks.index', $playlist->slug) }}" title="View {{ $playlist->name }} Tracks">			
-						{{ $playlist->name }}
-					</a>
-				</footer>
-			</article>
+			</footer>
+		</article>
 		@endforeach
-		</section>
-	</div>
-	
-	<x-pagination :model="$playlists" />
+	</section>
 
+	<x-pagination :model="$playlists" />
 </x-app-layout>

@@ -3,24 +3,22 @@
 	
  	<x-page-header>{{ $genre->genre }} <span onclick="openNav()">&#9776; Filters</span></x-page-header>
 
-	<div class="wrapper">
-		<section id="sortable-fields">
-			<ul>
-				<li>
-					<span>Year Released</span>
-					<a href="{{ request()->fullUrlWithQuery(['field' => 'year_released', 'order' => 'desc']) }}" title="Sort Year Released 9-0">Desc</a>
-					<a href="{{ request()->fullUrlWithQuery(['field' => 'year_released', 'order' => 'asc']) }}" title="Sort Year Released 0-9">Asc</a>
-				</li>
-				<li>
-					<span>Popularity</span>
-					<a href="{{ request()->fullUrlWithQuery(['field' => 'popularity', 'order' => 'desc'])}}" title="Sort Popularity 9-0">Desc</a>
-					<a href="{{ request()->fullUrlWithQuery(['field' => 'popularity', 'order' => 'asc'])}}" title="Sort Popularity 0-9">Asc</a>
-				</li>
-			</ul>								
-		</section>
+	<section id="sortable-fields">
+		<ul>
+			<li>
+				<span>Year Released</span>
+				<a href="{{ request()->fullUrlWithQuery(['field' => 'year_released', 'order' => 'desc']) }}" title="Sort Year Released 9-0">Desc</a>
+				<a href="{{ request()->fullUrlWithQuery(['field' => 'year_released', 'order' => 'asc']) }}" title="Sort Year Released 0-9">Asc</a>
+			</li>
+			<li>
+				<span>Popularity</span>
+				<a href="{{ request()->fullUrlWithQuery(['field' => 'popularity', 'order' => 'desc'])}}" title="Sort Popularity 9-0">Desc</a>
+				<a href="{{ request()->fullUrlWithQuery(['field' => 'popularity', 'order' => 'asc'])}}" title="Sort Popularity 0-9">Asc</a>
+			</li>
+		</ul>								
+	</section>
 
-		<x-track-listings :tracks="$tracks" /> 
- 	</div>
+	<x-track-listings :tracks="$tracks" /> 
 
 	<x-pagination :model="$tracks" />
 

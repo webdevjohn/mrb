@@ -15,8 +15,6 @@
 	</section> --}}
 
 	@if($items)
-	<div class="wrapper">
-		<x-track-listings :tracks="$items" /> 	
-	</div>
+	<x-track-listings :tracks="$items" /> 		
 	@endif
 </x-app-layout>

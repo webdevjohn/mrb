@@ -3,10 +3,7 @@
 
 	<x-page-header>{{ $playlist->name }}</x-page-header>
 
-	<div class="wrapper">
-		<x-track-listings :tracks="$tracks" /> 				
-	</div>			
-	 
+	<x-track-listings :tracks="$tracks" /> 				
+		 
 	<x-pagination :model="$tracks" />
-	
 </x-app-layout>

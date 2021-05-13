@@ -49,9 +49,11 @@
             <br class="clear" />
         </section>
 
-        {{ $slot }}
-
-         <footer id="page-footer">
+        <div class="wrapper">
+            {{ $slot }}
+        </div>
+        
+        <footer id="page-footer">
             <div class="wrapper">  
                 <a href="{{ route('homepage') }}" class="logo">MyRecordBox</a>
                 <a href="{{ route('login') }}" class="cms-login">Admin CMS Login</a>
@@ -63,7 +65,6 @@
             <a href="{{ route('basket.index') }}" id="basket-link" class="icon-tracks">
                 <strong id="basket-counter"></strong>Tracks</a>
         </div>
-
 
         <script>
             (function() {
