@@ -11,15 +11,15 @@
 	</x-slot>
 	
 	<section id="form-con">		
+		
+		<x-cms.form-validation-errors :errors="$errors" />
+
 		<form method="POST" action="{{ route('cms.basedata.artists.store') }}">
 			@csrf
 
 			<label for="artist_name">Artist: </label>
 			<input name="artist_name" type="text" id="artist_name" value="{{ old('artist_name') }}">
-			@error('artist_name')
-    			<div class="form-input-error">{{ $message }}</div>
-			@enderror
-		
+			
 			<button type="submit">Create Artist</button>	
 		</form>
 	</section>

@@ -13,20 +13,16 @@
 	
 	<section id="form-con">		
 
+		<x-cms.form-validation-errors :errors="$errors" />
+
 		<form method="POST" action="{{ route('cms.basedata.albums.tracks.store', $album->slug) }}">
-			@csrf
+			@csrf			
 
 			<label for="artists[]">Artists:</label>	
-			{!! Form::select('artists[]', $selectBoxes['artistList'], null, ['id' => 'artists', 'multiple']) !!}
-			@error('artists')
-    			<div class="form-input-error">{{ $message }}</div>
-			@enderror
+		 	{!! Form::select('artists[]', $selectBoxes['artistList'], null, ['id' => 'artists', 'multiple']) !!} 
 
 			<label for="title">Title: </label>
 			<input name="title" type="text" id="title">
-			@error('title')
-    			<div class="form-input-error">{{ $message }}</div>
-			@enderror
 
 			<label for="genre_id">Genre: </label>	
 			<select name="genre_id">				
@@ -34,9 +30,6 @@
 					<option value="{{$key}}" {{ (old('genre_id') == $key) ? "selected='selected" : ""}}>{{ $value }}</option>
 				@endforeach
 			</select>
-			@error('genre_id')
-    			<div class="form-input-error">{{ $message }}</div>
-			@enderror
 
 			<label for="label_id">Label:</label>	
 			<select name="label_id">				
@@ -44,15 +37,9 @@
 					<option value="{{$key}}" {{ ($album->label_id === $key) ? "selected='selected" : ""}}>{{ $value }}</option>
 				@endforeach
 			</select>
-			@error('label_id')
-    			<div class="form-input-error">{{ $message }}</div>
-			@enderror
 
 			<label for="tags[]">Tags:</label>	
 			{!! Form::select('tags[]', $selectBoxes['tagList'], null, ['id' => 'tags', 'multiple']) !!}
-			@error('tags')
-    			<div class="form-input-error">{{ $message }}</div>
-			@enderror
 
 			<input name="format_id" type="hidden" value="{{ $album->format_id }}">			
 			<input name="year_released" type="hidden" value="{{ $album->year_released }}">					

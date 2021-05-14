@@ -11,14 +11,14 @@
 	</x-slot>
 
 	<section id="form-con">		
+		
+		<x-cms.form-validation-errors :errors="$errors" />
+
 		<form method="POST" action="{{ route('cms.basedata.tags.store') }}">
 			@csrf
 
 			<label for="tag">Tag: </label>
 			<input name="tag" type="text" id="tag" value="{{ old('tag') }}">
-			@error('tag')
-    			<div class="form-input-error">{{ $message }}</div>
-			@enderror
 			
 			<button type="submit">Create a new Tag</button>		
 		</form>

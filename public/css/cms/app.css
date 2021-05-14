@@ -1,102 +1,5 @@
 @charset "UTF-8";
 /* colour Scheme */
-/* genre colour codes */
-.breakbeat-bg {
-  background: #624634;
-}
-
-.drum-and-bass-bg {
-  background: #000000;
-}
-
-.hard-house-bg {
-  background: #FF3F9E;
-}
-
-.hard-trance-bg {
-  background: #0B7F83;
-}
-
-.house-bg {
-  background: #0091C0;
-}
-
-.nrg-bg {
-  background: #fd1d1d;
-}
-
-.tech-house-bg {
-  background: #3C883C;
-}
-
-.tech-trance-bg {
-  background: #872FFF;
-}
-
-.techno-bg {
-  background: #FF6600;
-}
-
-.trance-bg {
-  background: #D0BA00;
-}
-
-.default-bg {
-  background: #222;
-}
-
-.progressive-trance-bg {
-  background: #B0004B;
-}
-
-.breakbeat {
-  border-bottom: 4px solid #624634;
-}
-
-.drum-and-bass {
-  border-bottom: 4px solid #000000;
-}
-
-.hard-house {
-  border-bottom: 4px solid #FF3F9E;
-}
-
-.hard-trance {
-  border-bottom: 4px solid #0B7F83;
-}
-
-.house {
-  border-bottom: 4px solid #0091C0;
-}
-
-.nrg {
-  border-bottom: 4px solid #fd1d1d;
-}
-
-.tech-house {
-  border-bottom: 4px solid #3C883C;
-}
-
-.tech-trance {
-  border-bottom: 4px solid #872FFF;
-}
-
-.techno {
-  border-bottom: 4px solid #FF6600;
-}
-
-.trance {
-  border-bottom: 4px solid #D0BA00;
-}
-
-.default {
-  border-bottom: 4px solid #222;
-}
-
-.progressive-trance {
-  border-bottom: 4px solid #B0004B;
-}
-
 .icon-track {
   background: #DCDCDC url(images/bg/icons/dark/track_64x64.png) no-repeat center;
 }
@@ -723,4 +626,15 @@ input, textarea, select {
 
 .table-col-tags-tag {
   width: 50%;
+}
+
+#form-validation-errors {
+  color: #DCDCDC;
+}
+#form-validation-errors h2 {
+  padding-top: 20px;
+  font-size: 125%;
+}
+#form-validation-errors ul li {
+  margin-bottom: 5px;
 }

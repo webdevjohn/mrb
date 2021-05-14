@@ -11,14 +11,14 @@
 	</x-slot>
 	
 	<section id="form-con">		
+
+		<x-cms.form-validation-errors :errors="$errors" />
+
 		<form method="POST" action="{{ route('cms.basedata.genres.store') }}">
 			@csrf
 
 			<label for="genre">Genre: </label>
 			<input name="genre" type="text" id="genre" value="{{ old('genre') }}">
-			@error('genre')
-    			<div class="form-input-error">{{ $message }}</div>
-			@enderror
 			
 			<button type="submit">Create a new Genre</button>			
 		</form>
