@@ -1,25 +1,20 @@
-@extends('cms-layout')
-@section('title', 'Genres')
+<x-cms.admin-layout>
+	<x-slot name="title">Genres</x-slot>
 
-@section('page-header')
-	<h1>
+	<x-slot name="pageHeader">
 		Genres
 		<a href="{{ route('cms.basedata.genres.create') }}" 
 			class="btn btn-new-record float-right" 
 			title="New Genre">New Genre +</a>
-	</h1>	
-@stop
+	</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li>Genres</li>
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li>Genres</li>
+	</x-slot>
 
 	<section class="table-con">
-
 		<table>
 			<thead>
 				<tr>
@@ -49,5 +44,7 @@
 			</tbody>
 		</table>
 	</section>
+
 	{!! $genres->appends(request()->input())->render() !!}	
-@stop
+
+</x-cms.admin-layout>

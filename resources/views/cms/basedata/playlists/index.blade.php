@@ -1,25 +1,20 @@
-@extends('cms-layout')
-@section('title', 'Playlists')
+<x-cms.admin-layout>
+	<x-slot name="title">Playlists</x-slot>
 
-@section('page-header')
-	<h1>
+	<x-slot name="pageHeader">
 		Playlists
 		<a href="{{ route('cms.basedata.playlists.create') }}" 
 			class="btn btn-new-record float-right" 
 			title="New Playlist">New Playlist +</a>
-	</h1>	
-@stop
+	</x-slot>
 
-@section('breadcrums')	
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li>Playlists</li>	
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li>Playlists</li>	
+	</x-slot>
 
 	<section class="table-con">
-
 		<table>
 			<thead>
 				<tr>
@@ -55,5 +50,7 @@
 			</tbody>
 		</table>
 	</section>
+
 	{!! $playlists->appends(request()->input())->render() !!}	
-@stop
+	
+</x-cms.admin-layout>

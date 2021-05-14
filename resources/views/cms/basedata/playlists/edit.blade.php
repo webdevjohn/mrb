@@ -1,21 +1,16 @@
-@extends('cms-layout')
-@section('title', 'Create a New playlist')
+<x-cms.admin-layout>
+	<x-slot name="title">Edit Playlist: {{ $playlist->name }}</x-slot>
 
-@section('page-header')
-	<h1>{{ $playlist->name }}</h1>	
-@stop
+	<x-slot name="pageHeader">Edit Playlist: {{ $playlist->name }}</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>
-	<li>Edit Playlist</li>
-@stop
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>
+		<li>Edit Playlist</li>
+	</x-slot>
 
-@section('content')
-	
-	<section id="form-con">		
-		
+	<section id="form-con">				
 		<form method="POST" action="{{ route('cms.basedata.playlists.update', $playlist->slug) }}">
             @method('PATCH')
 			@csrf
@@ -52,4 +47,4 @@
 		
 		</form>
 	</section>
-@stop
+</x-cms.admin-layout>

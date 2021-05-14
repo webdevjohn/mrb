@@ -1,22 +1,18 @@
-@extends('cms-layout')
-@section('title', 'Tags')
+<x-cms.admin-layout>
+	<x-slot name="title">Tags</x-slot>
 
-@section('page-header')
-	<h1>
+	<x-slot name="pageHeader">
 		Tags
 		<a href="{{ route('cms.basedata.tags.create') }}" 
 			class="btn btn-new-record float-right" 
-			title="New Tag">New Tag +</a>
-	</h1>	
-@stop
+			title="New Tag">New Tag +</a>	
+	</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li>Tags</li>
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li>Tags</li>
+	</x-slot>
 
 	<section class="table-con">	
 		<table>
@@ -47,5 +43,6 @@
 			</tbody>
 		</table>
 	</section>
+
 	{!! $tags->appends(request()->input())->render() !!}	
-@stop
+</x-cms.admin-layout>

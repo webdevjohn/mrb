@@ -1,26 +1,21 @@
-@extends('cms-layout')
-@section('title', 'Albums')
+<x-cms.admin-layout>
+	<x-slot name="title">Tracks for: {{ $playlist->name }}</x-slot>
 
-@section('page-header')
-	<h1>
+	<x-slot name="pageHeader">
 		{{ $playlist->name }}
 		<a href="{{ route('cms.basedata.playlists.tracks.create', $playlist->slug) }}" 
 			class="btn btn-new-record float-right" 
-			title="Add Track to Playlist">Add Track to Playlist +</a>
-	</h1>	
-@stop
+			title="Add Track to Playlist">Add track to playlist +</a>
+	</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>
-	<li>{{ $playlist->name }}</li>
-@stop
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>
+		<li>{{ $playlist->name }}</li>
+	</x-slot>
 
-@section('content')
-
-	<section class="table-con">
-	
+	<section class="table-con">	
 		<table>
 			<thead>
 				<tr>
@@ -43,4 +38,4 @@
 			</tbody>
 		</table>
 	</section>
-@stop
+</x-cms.admin-layout>

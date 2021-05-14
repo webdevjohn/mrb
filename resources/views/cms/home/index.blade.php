@@ -1,15 +1,11 @@
-@extends('cms-layout')
-@section('title', 'Home Page')
+<x-cms.admin-layout>
+	<x-slot name="title">Dashboard</x-slot>
 
-@section('page-header')
-	<h1>Dashboard</h1>
-@stop
+	<x-slot name="pageHeader">Dashboard</x-slot>
 
-@section('breadcrums')	
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+	</x-slot>
 
 	<section class="widget-list">	
 		<article>
@@ -84,8 +80,7 @@
 		</article>
 	</section>
 
-
-	@section('javascript')	
+	<x-slot name="javascript">
 		<script type="text/javascript">
 	
 			Chart.defaults.global.elements.point.borderWidth = 2;
@@ -306,5 +301,6 @@
 		        });
         	}
 		</script>
-	@stop
-@stop
+	</x-slot>
+
+</x-cms.admin-layout>

@@ -1,22 +1,18 @@
-@extends('cms-layout')
-@section('title', 'Artists')
+<x-cms.admin-layout>
+	<x-slot name="title">Artists</x-slot>
 
-@section('page-header')
-	<h1>
+	<x-slot name="pageHeader">
 		Artists
 		<a href="{{ route('cms.basedata.artists.create') }}" 
 			class="btn btn-new-record float-right" 
 			title="New Artist">New Artist +</a>
-	</h1>	
-@stop
+	</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li>Artists</li>
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li>Artists</li>
+	</x-slot>
 	
 	<section class="table-con">
 		<table>
@@ -47,5 +43,7 @@
 			</tbody>
 		</table>
 	</section>
+
 	{!! $artists->appends(request()->input())->render() !!}	
-@stop
+
+</x-cms.admin-layout>

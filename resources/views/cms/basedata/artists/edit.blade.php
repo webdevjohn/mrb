@@ -1,19 +1,15 @@
-@extends('cms-layout')
-@section('title', 'Edit Artist')
+<x-cms.admin-layout>
+	<x-slot name="title">Edit Artist</x-slot>
 
-@section('page-header')
-	<h1>Edit Artist</h1>	
-@stop
+	<x-slot name="pageHeader">Edit Artist</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li><a href="{{ route('cms.basedata.artists.index') }}">Artists</a></li>
-	<li>Edit Artist: {{ $artist->artist_name }}</li>
-@stop
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.artists.index') }}">Artists</a></li>
+		<li>Edit Artist: {{ $artist->artist_name }}</li>
+	</x-slot>
 
-@section('content')
-	
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.basedata.artists.update', $artist->slug) }}">
 			@method('PATCH')
@@ -28,4 +24,4 @@
 			<button type="submit">Update Artist</button>	
 		</form>
 	</section>
-@stop
+</x-cms.admin-layout>

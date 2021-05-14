@@ -1,19 +1,15 @@
-@extends('cms-layout')
-@section('title', 'Create a New Track')
+<x-cms.admin-layout>
+	<x-slot name="title">Add track to: {{ $playlist->name }}</x-slot>
 
-@section('page-header')
-	<h1>{{ $playlist->name }}</h1>	
-@stop
+	<x-slot name="pageHeader">{{ $playlist->name }}</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>	
-	<li><a href="{{ route('cms.basedata.playlists.tracks.index', $playlist->slug) }}">{{ $playlist->name }}</a></li>
-	<li>Add track to playlist</li>
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>	
+		<li><a href="{{ route('cms.basedata.playlists.tracks.index', $playlist->slug) }}">{{ $playlist->name }}</a></li>
+		<li>Add track to playlist</li>
+	</x-slot>
 	
 	<section class="table-con">
 		<table>
@@ -57,10 +53,5 @@
 	</section>
 
 	{!! $tracks->appends(request()->input())->render() !!}	
-@stop
 
-@section('javascript')
-	<script>
-
-	</script>
-@stop
+</x-cms.admin-layout>

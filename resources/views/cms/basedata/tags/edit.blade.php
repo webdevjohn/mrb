@@ -1,18 +1,14 @@
-@extends('cms-layout')
-@section('title', 'Edit Tag: ' . $tag->tag)
+<x-cms.admin-layout>
+	<x-slot name="title">Edit Tag: {{ $tag->tag }}</x-slot>
 
-@section('page-header')
-	<h1>Edit Tag: {{ $tag->tag }}</h1>	
-@stop
+	<x-slot name="pageHeader">Edit Tag: {{ $tag->tag }}</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li><a href="{{ route('cms.basedata.tags.index') }}">Tags</a></li>	
-	<li>Edit Tag: {{ $tag->tag }}</li>
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.tags.index') }}">Tags</a></li>	
+		<li>Edit Tag: {{ $tag->tag }}</li>
+	</x-slot>
 	
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.basedata.tags.update', $tag->id) }}">
@@ -29,4 +25,4 @@
 			<button type="submit">Update</button>			
 		</form>
 	</section>
-@stop
+</x-cms.admin-layout>

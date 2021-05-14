@@ -1,22 +1,18 @@
-@extends('cms-layout')
-@section('title', 'Tracks')
+<x-cms.admin-layout>
+	<x-slot name="title">Tracks</x-slot>
 
-@section('page-header')
-	<h1>
+	<x-slot name="pageHeader">
 		Tracks
 		<a href="{{ route('cms.basedata.tracks.create') }}" 
 			class="btn btn-new-record float-right" 
 			title="New Track">New Track +</a>
-	</h1>	
-@stop
+	</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li>Tracks</li>
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li>Tracks</li>
+	</x-slot>
 
 	<section class="table-con">
 		<table>
@@ -51,5 +47,6 @@
 			</tbody>
 		</table>
 	</section>
+
 	{!! $tracks->appends(request()->input())->render() !!}	
-@stop
+</x-cms.admin-layout>

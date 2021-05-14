@@ -1,23 +1,19 @@
-@extends('cms-layout')
-@section('title', 'Albums')
+<x-cms.admin-layout>
+	<x-slot name="title">Albums - {{ $album->title }}</x-slot>
 
-@section('page-header')
-	<h1>
+	<x-slot name="pageHeader">
 		{{ $album->title }}
 		<a href="{{ route('cms.basedata.albums.tracks.create', $album->slug) }}" 
 			class="btn btn-new-record float-right" 
 			title="New Track to Album">Add track to Album +</a>
-	</h1>	
-@stop
+	</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li><a href="{{ route('cms.basedata.albums.index') }}">Albums</a></li>	
-	<li>{{ $album->title }}</li>
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.albums.index') }}">Albums</a></li>	
+		<li>{{ $album->title }}</li>
+	</x-slot>
 
 	<section class="table-con">
 		<table>
@@ -53,4 +49,4 @@
 			</tbody>
 		</table>
 	</section>
-@stop
+</x-cms.admin-layout>

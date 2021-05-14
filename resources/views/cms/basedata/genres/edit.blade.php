@@ -1,19 +1,15 @@
-@extends('cms-layout')
-@section('title', 'Edit Genre')
+<x-cms.admin-layout>
+	<x-slot name="title">Edit Genre: {{ $genre->genre }}</x-slot>
 
-@section('page-header')
-	<h1>Edit Genre: {{ $genre->genre }}</h1>	
-@stop
+	<x-slot name="pageHeader">Edit Genre: {{ $genre->genre }}</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li><a href="{{ route('cms.basedata.genres.index') }}">Genres</a></li>
-	<li>Edit Genre: {{ $genre->genre }}</li>
-@stop
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.genres.index') }}">Genres</a></li>
+		<li>Edit Genre: {{ $genre->genre }}</li>
+	</x-slot>
 
-@section('content')
-	
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.basedata.genres.update', $genre->slug) }}">
 			@method('PATCH')
@@ -28,4 +24,4 @@
 			<button type="submit">Update Genre</button>			
 		</form>
 	</section>
-@stop
+</x-cms.admin-layout>

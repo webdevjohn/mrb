@@ -1,18 +1,14 @@
-@extends('cms-layout')
-@section('title', 'Create a New Track')
+<x-cms.admin-layout>
+	<x-slot name="title">Create a New Track</x-slot>
 
-@section('page-header')
-	<h1>Create a New Track</h1>	
-@stop
+	<x-slot name="pageHeader">Create a New Track</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li><a href="{{ route('cms.basedata.tracks.index') }}">Tracks</a></li>	
-	<li>Create a New Track</li>
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.tracks.index') }}">Tracks</a></li>	
+		<li>Create a New Track</li>
+	</x-slot>
 	
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.basedata.tracks.store') }}" enctype="multipart/form-data">
@@ -93,16 +89,16 @@
 			<button type="submit">Create Track</button>				
 		</form>
 	</section>
-@stop
 
-@section('javascript')
-	<script>
-		$('#artists').select2({
-			 placeholder: "Select Artists"
-		});
+	<x-slot name="javascript">
+		<script>
+			$('#artists').select2({
+				placeholder: "Select Artists"
+			});
 
-		$('#tags').select2({
-			 placeholder: "Select Tags"
-		});
-	</script>
-@stop
+			$('#tags').select2({
+				placeholder: "Select Tags"
+			});
+		</script>
+	</x-slot>
+</x-cms.admin-layout>

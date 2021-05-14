@@ -1,21 +1,16 @@
-@extends('cms-layout')
-@section('title', 'Create a New playlist')
+<x-cms.admin-layout>
+	<x-slot name="title">Create a New Playlis</x-slot>
 
-@section('page-header')
-	<h1>Create a New Playlist</h1>	
-@stop
+	<x-slot name="pageHeader">Create a New Playlist</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>	
-	<li>Create a New Playlist</li>
-@stop
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>	
+		<li>Create a New Playlist</li>
+	</x-slot>
 
-@section('content')
-
-	<section id="form-con">		
-		
+	<section id="form-con">
 		<form method="POST" action="{{ route('cms.basedata.playlists.store') }}">
 			@csrf
 
@@ -50,4 +45,4 @@
 			<button type="submit">Create Playlist</button>		
 		</form>
 	</section>
-@stop
+</x-cms.admin-layout>

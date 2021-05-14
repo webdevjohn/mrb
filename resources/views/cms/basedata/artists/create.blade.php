@@ -1,18 +1,14 @@
-@extends('cms-layout')
-@section('title', 'Create a New Artist')
+<x-cms.admin-layout>
+	<x-slot name="title">Create a New Artist</x-slot>
 
-@section('page-header')
-	<h1>Create a New Artist</h1>	
-@stop
+	<x-slot name="pageHeader">Create a New Artist</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li><a href="{{ route('cms.basedata.artists.index') }}">Artists</a></li>
-	<li>Create a New Artist</li>
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.artists.index') }}">Artists</a></li>
+		<li>Create a New Artist</li>
+	</x-slot>
 	
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.basedata.artists.store') }}">
@@ -27,4 +23,4 @@
 			<button type="submit">Create Artist</button>	
 		</form>
 	</section>
-@stop
+</x-cms.admin-layout>

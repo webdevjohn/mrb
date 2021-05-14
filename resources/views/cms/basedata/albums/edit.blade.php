@@ -1,19 +1,15 @@
-@extends('cms-layout')
-@section('title', 'Create a New Album')
+<x-cms.admin-layout>
+	<x-slot name="title">Edit Albums - {{ $album->title }}</x-slot>
 
-@section('page-header')
-	<h1>Edit Album</h1>
-@stop
+	<x-slot name="pageHeader">Edit Album - {{ $album->title }}</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li><a href="{{ route('cms.basedata.albums.index') }}">Albums</a></li>	
-	<li>{{ $album->title }}</li>	
-@stop
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.albums.index') }}">Albums</a></li>	
+		<li>{{ $album->title }}</li>
+	</x-slot>
 
-@section('content')
-	
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.basedata.albums.update', $album->slug) }}">
 			@csrf
@@ -95,4 +91,4 @@
 		
 		</form>
 	</section>
-@stop
+</x-cms.admin-layout>

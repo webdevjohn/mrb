@@ -1,22 +1,18 @@
-@extends('cms-layout')
-@section('title', 'Labels')
+<x-cms.admin-layout>
+	<x-slot name="title">Labels</x-slot>
 
-@section('page-header')
-	<h1>
+	<x-slot name="pageHeader">
 		Labels
 		<a href="{{ route('cms.basedata.labels.create') }}" 
 			class="btn btn-new-record float-right" 
 			title="New Label">New Label +</a>
-	</h1>	
-@stop
+	</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li>Labels</li>
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li>Labels</li>
+	</x-slot>
 
 	<section class="table-con">
 		{{-- <section id="table-actions">
@@ -59,5 +55,7 @@
 			</tbody>
 		</table>
 	</section>
+
 	{!! $labels->appends(request()->input())->render() !!}	
-@stop
+
+</x-cms.admin-layout>

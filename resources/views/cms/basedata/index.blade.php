@@ -1,16 +1,12 @@
-@extends('cms-layout')
-@section('title', 'Base Data')
+<x-cms.admin-layout>
+	<x-slot name="title">Base Data</x-slot>
 
-@section('page-header')
-	<h1>Base Data</h1>	
-@stop
+	<x-slot name="pageHeader">Base Data</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li>Base Data</li>
-@stop
-
-@section('content')
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li>Base Data</li>
+	</x-slot>
 
 	@php
 		$models = ['albums', 'artists', 'formats', 'genres', 'labels', 'playlists', 'tags', 'tracks'];
@@ -50,4 +46,4 @@
 			</tbody>
 		</table>
 	</section>
-@stop
+</x-cms.admin-layout>

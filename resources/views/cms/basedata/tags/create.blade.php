@@ -1,19 +1,15 @@
-@extends('cms-layout')
-@section('title', 'Create a New Tag')
+<x-cms.admin-layout>
+	<x-slot name="title">Create a New Tag</x-slot>
 
-@section('page-header')
-	<h1>Create a New Tag</h1>	
-@stop
+	<x-slot name="pageHeader">Create a New Tag</x-slot>
 
-@section('breadcrums')
-	<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-	<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-	<li><a href="{{ route('cms.basedata.tags.index') }}">Tags</a></li>	
-	<li>Create a New Tag</li>
-@stop
+	<x-slot name="breadcrumbs">
+		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.tags.index') }}">Tags</a></li>	
+		<li>Create a New Tag</li>
+	</x-slot>
 
-@section('content')
-	
 	<section id="form-con">		
 		<form method="POST" action="{{ route('cms.basedata.tags.store') }}">
 			@csrf
@@ -27,4 +23,4 @@
 			<button type="submit">Create a new Tag</button>		
 		</form>
 	</section>
-@stop
+</x-cms.admin-layout>
