@@ -4,9 +4,9 @@
 	<x-slot name="pageHeader">Create a New Tag</x-slot>
 
 	<x-slot name="breadcrumbs">
-		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-		<li><a href="{{ route('cms.basedata.tags.index') }}">Tags</a></li>	
+		<li><a href="{{ route('cms.dashboard') }}" title="Dashboard">Dashboard</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}" title="Base Data">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.tags.index') }}" title="tags">Tags</a></li>	
 		<li>Create a New Tag</li>
 	</x-slot>
 

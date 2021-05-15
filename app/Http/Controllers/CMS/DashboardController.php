@@ -9,7 +9,7 @@ use App\Models\Genre;
 use App\Models\Label;
 use App\Models\Track;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     public function __construct(
         protected Track $tracks, 
@@ -24,9 +24,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function dashboard()
     {    
-        return View('cms.home.index', [
+        return View('cms.dashboard', [
             'trackCount' => $this->tracks->getModelCount(),
             'artistCount' => $this->artists->getModelCount(),
             'labelCount' => $this->labels->getModelCount(),

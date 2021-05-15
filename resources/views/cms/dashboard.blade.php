@@ -4,7 +4,7 @@
 	<x-slot name="pageHeader">Dashboard</x-slot>
 
 	<x-slot name="breadcrumbs">
-		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li>Dashboard</li>
 	</x-slot>
 
 	<section class="widget-list">	
@@ -174,7 +174,6 @@
 	        	}
         	});
 
-
         	$.ajax({
 	            url: '{{ route('cms.basedata.genres.summary', date("Y")) }}',
 	            type: 'GET',
@@ -233,8 +232,6 @@
 	        	}
         	});
 
-		
-
 			function createPieChart(ctx, chartData, chartTitle)
 			{
 				new Chart(ctx, {
@@ -259,7 +256,6 @@
 					}
 				});
 			}
-
 
         	function createLineChart(ctx, data, chartTitle)
         	{      		

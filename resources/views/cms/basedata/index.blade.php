@@ -4,7 +4,7 @@
 	<x-slot name="pageHeader">Base Data</x-slot>
 
 	<x-slot name="breadcrumbs">
-		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
+		<li><a href="{{ route('cms.dashboard') }}" title="Dashboard">Dashboard</a></li>
 		<li>Base Data</li>
 	</x-slot>
 

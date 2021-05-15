@@ -17,7 +17,7 @@ class DashboardRedirector
      */
     public function handle(Request $request, Closure $next)
     {     
-        if (Auth::user()->hasRoleOf('Admin')) return redirect()->route('cms.homepage');
+        if (Auth::user()->hasRoleOf('Admin')) return redirect()->route('cms.dashboard');
 
         return $next($request);
     }

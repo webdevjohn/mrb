@@ -28,9 +28,9 @@
         @endif
   
         <div class="icon-bar">
-            <a href="{{ route('cms.homepage') }}" id="logo"><div>MyRecordBox <strong>CMS</strong></div></a>
+            <a href="{{ route('cms.dashboard') }}" id="logo"><div>MyRecordBox <strong>CMS</strong></div></a>
             
-            <a href="{{ route('cms.homepage') }}" class="{{ (request()->segments()['1'] == 'home') ? 'active' : '' }}">
+            <a href="{{ route('cms.dashboard') }}" class="{{ (request()->segments()['1'] == 'dashboard') ? 'active' : '' }}">
                 <i class="fas fa-tachometer-alt"></i>
                 <span>Dashboard</span>              
             </a> 
@@ -71,7 +71,7 @@
         
         <footer id="page-footer">
             <div class="wrapper">  
-                <a href="{{ route('cms.homepage') }}" class="logo"><div>MyRecordBox <strong>CMS (Admin)</strong></div></a>
+                <a href="{{ route('cms.dashboard') }}" class="logo"><div>MyRecordBox <strong>CMS (Admin)</strong></div></a>
             </div>
         </footer>
 

@@ -4,9 +4,9 @@
 	<x-slot name="pageHeader">Edit Track: {{ $track->title }}</x-slot>
 
 	<x-slot name="breadcrumbs">
-		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-		<li><a href="{{ route('cms.basedata.tracks.index') }}">Tracks</a></li>
+		<li><a href="{{ route('cms.dashboard') }}" title="Dashboard">Dashboard</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}" title="Base Data">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.tracks.index') }}" title="Tracks">Tracks</a></li>
 		<li>{{ $track->title }}</li>
 	</x-slot>
 

@@ -4,9 +4,9 @@
 	<x-slot name="pageHeader">Edit Label: {{ $label->label }}</x-slot>
 
 	<x-slot name="breadcrumbs">
-		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-		<li><a href="{{ route('cms.basedata.labels.index') }}">Labels</a></li>
+		<li><a href="{{ route('cms.dashboard') }}" title="Dashboard">Dashboard</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}" title="Base Data">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.labels.index') }}" title="Labels">Labels</a></li>
 		<li>Edit Label: {{ $label->label }}</li>
 	</x-slot>
 	

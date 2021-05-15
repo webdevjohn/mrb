@@ -9,9 +9,9 @@
 	</x-slot>
 
 	<x-slot name="breadcrumbs">
-		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-		<li><a href="{{ route('cms.basedata.albums.index') }}">Albums</a></li>	
+		<li><a href="{{ route('cms.dashboard') }}" title="Dashboard">Dashboard</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}" title="Base Data">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.albums.index') }}" title="Albums">Albums</a></li>	
 		<li>{{ $album->title }}</li>
 	</x-slot>
 

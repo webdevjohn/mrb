@@ -4,10 +4,10 @@
 	<x-slot name="pageHeader">{{ $playlist->name }}</x-slot>
 
 	<x-slot name="breadcrumbs">
-		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-		<li><a href="{{ route('cms.basedata.playlists.index') }}">Playlists</a></li>	
-		<li><a href="{{ route('cms.basedata.playlists.tracks.index', $playlist->slug) }}">{{ $playlist->name }}</a></li>
+		<li><a href="{{ route('cms.dashboard') }}" title="Dashboard">Dashboard</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}" title="Base Data">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.playlists.index') }}" title="Playlists">Playlists</a></li>	
+		<li><a href="{{ route('cms.basedata.playlists.tracks.index', $playlist->slug) }}" title="{{ $playlist->name }}">{{ $playlist->name }}</a></li>
 		<li>Add track to playlist</li>
 	</x-slot>
 	

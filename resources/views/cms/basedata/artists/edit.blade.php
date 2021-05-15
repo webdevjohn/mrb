@@ -4,9 +4,9 @@
 	<x-slot name="pageHeader">Edit Artist</x-slot>
 
 	<x-slot name="breadcrumbs">
-		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-		<li><a href="{{ route('cms.basedata.artists.index') }}">Artists</a></li>
+		<li><a href="{{ route('cms.dashboard') }}" title="Dashboard">Dashboard</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}" title="Base Data">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.artists.index') }}" title="Artists">Artists</a></li>
 		<li>Edit Artist: {{ $artist->artist_name }}</li>
 	</x-slot>
 

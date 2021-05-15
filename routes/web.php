@@ -82,7 +82,7 @@ Route::prefix('basket')->group(function () {
 */
 Route::prefix('cms')->name('cms.')->middleware(['auth', 'verified', 'roles.administrator'])->group(function () {
 
-    Route::get('/home', [App\Http\Controllers\CMS\HomeController::class, 'index'])->name('homepage');
+    Route::get('/dashboard', [App\Http\Controllers\CMS\DashboardController::class, 'dashboard'])->name('dashboard');
 
     Route::prefix('basedata')->name('basedata.')->group(function() {
 
@@ -99,7 +99,7 @@ Route::prefix('cms')->name('cms.')->middleware(['auth', 'verified', 'roles.admin
         ])->name('tracks.by-year');
 
         Route::get('genres/summary/{year}', [
-            App\Http\Controllers\CMS\HomeController::class, 'getGenreSummary'
+            App\Http\Controllers\CMS\DashboardController::class, 'getGenreSummary'
         ])->name('genres.summary');
 
         Route::resource('albums', App\Http\Controllers\CMS\Basedata\Albums\AlbumsController::class)->scoped([

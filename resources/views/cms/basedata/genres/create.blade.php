@@ -4,9 +4,9 @@
 	<x-slot name="pageHeader">Create a New Genre</x-slot>
 
 	<x-slot name="breadcrumbs">
-		<li><a href="{{ route('cms.homepage') }}">Home</a></li>
-		<li><a href="{{ route('cms.basedata.index') }}">Base Data</a></li>
-		<li><a href="{{ route('cms.basedata.genres.index') }}">Genres</a></li>
+		<li><a href="{{ route('cms.dashboard') }}" title="Dashboard">Dashboard</a></li>
+		<li><a href="{{ route('cms.basedata.index') }}" title="Base Data">Base Data</a></li>
+		<li><a href="{{ route('cms.basedata.genres.index') }}" title="Genres">Genres</a></li>
 		<li>Create a New Genre</li>
 	</x-slot>
 	
