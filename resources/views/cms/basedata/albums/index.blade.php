@@ -55,6 +55,6 @@
 		</table>
 	</section>
 
-	{!! $albums->appends(request()->input())->render() !!}	
-	
+	<x-cms.pagination :model="$albums" />
+
 </x-cms.admin-layout>

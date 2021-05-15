@@ -51,6 +51,6 @@
 		</table>
 	</section>
 
-	{!! $playlists->appends(request()->input())->render() !!}	
+	<x-cms.pagination :model="$playlists" />
 	
 </x-cms.admin-layout>

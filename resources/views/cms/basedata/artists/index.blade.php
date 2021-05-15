@@ -44,6 +44,6 @@
 		</table>
 	</section>
 
-	{!! $artists->appends(request()->input())->render() !!}	
-
+	<x-cms.pagination :model="$artists" />
+	
 </x-cms.admin-layout>

@@ -45,6 +45,6 @@
 		</table>
 	</section>
 
-	{!! $genres->appends(request()->input())->render() !!}	
-
+	<x-cms.pagination :model="$genres" />
+	
 </x-cms.admin-layout>

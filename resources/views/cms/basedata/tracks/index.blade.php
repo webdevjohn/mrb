@@ -48,5 +48,6 @@
 		</table>
 	</section>
 
-	{!! $tracks->appends(request()->input())->render() !!}	
+	<x-cms.pagination :model="$tracks" />
+	
 </x-cms.admin-layout>

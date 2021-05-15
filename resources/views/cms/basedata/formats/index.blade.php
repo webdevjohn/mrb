@@ -43,6 +43,7 @@
 			</tbody>
 		</table>
 	</section>
+	
+	<x-cms.pagination :model="$formats" />
 
-	{!! $formats->appends(request()->input())->render() !!}	
 </x-cms.admin-layout>

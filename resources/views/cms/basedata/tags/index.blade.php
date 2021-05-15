@@ -44,5 +44,6 @@
 		</table>
 	</section>
 
-	{!! $tags->appends(request()->input())->render() !!}	
+	<x-cms.pagination :model="$tags" />
+
 </x-cms.admin-layout>

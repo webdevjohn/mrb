@@ -56,6 +56,6 @@
 		</table>
 	</section>
 
-	{!! $labels->appends(request()->input())->render() !!}	
-
+	<x-cms.pagination :model="$labels" />
+	
 </x-cms.admin-layout>
