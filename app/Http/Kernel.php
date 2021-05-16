@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'dashboard.redirector' => \App\Http\Middleware\DashboardRedirector::class,
         'roles.administrator' => \App\Http\Middleware\Roles\Administrator::class,
+        'request.must-be-ajax' => \App\Http\Middleware\MustBeAnAjaxRequest::class,
     ];
 }

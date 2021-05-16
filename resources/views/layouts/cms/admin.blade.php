@@ -40,7 +40,7 @@
                 <span>Base Data</span>
             </a> 
 
-            <a href="#">
+            <a href="{{ route('cms.reports.index') }}" class="{{ (request()->segments()['1'] == 'reports') ? 'active' : '' }}">
                 <i class="fas fa-chart-pie"></i>
                 <span>Reports</span>
             </a> 

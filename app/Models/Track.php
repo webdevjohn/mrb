@@ -189,7 +189,7 @@ class Track extends Model
 	 * 
 	 * @return Collection
 	 */
-	public function getTracksByYearPurchased(int $year): Collection
+	public function byYearPurchased(int $year): Collection
 	{
 		return $this->select(DB::raw('DATE_FORMAT(purchase_date,"%M") as month'), DB::raw('COUNT(id) as track_count'))
 			->groupBy('month')
@@ -201,7 +201,7 @@ class Track extends Model
 
 
 	// Admin CMS - Dashboard Homepage - Chart Data
-	public function getTracksByYear(): Collection
+	public function breakdownByYearPurchased(): Collection
 	{
 		return $this->select(DB::raw('YEAR(purchase_date) as year'), DB::raw('COUNT(id) as track_count'))
 			->groupBy('year')

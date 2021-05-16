@@ -87,7 +87,36 @@
 			Chart.defaults.global.elements.point.hitRadius = 5;
 	
 			$.ajax({
-	            url: '{{ route('cms.basedata.tracks.by-year-purchased', date("Y")) }}',
+	            url: '{{ route('cms.reports.tracks.breakdown-by-year-purchased') }}',
+	            type: 'GET',
+	            success: function(results)
+	            {
+					var labels = [], data = [];
+					var ctx = document.getElementById("chartTracksByYear");
+					var chartTitle = 'Tracks Purchased by Year';
+			  		
+			  		for (var key in results) {
+					    let value = results[key];					
+					    labels.push(value.year);
+					    data.push(value.track_count);
+					}
+					
+					var chartData = {
+					        labels: labels,
+					        datasets: [{
+					            fill: true,
+								backgroundColor: '#DCDCDC',
+      							borderColor: '#101518',
+					            data: data,					        
+					        }]
+					    };
+
+					var myChart = createLineChart(ctx, chartData, chartTitle);			
+	        	}
+        	});
+
+			$.ajax({
+	            url: '{{ route('cms.reports.tracks.by-year-purchased', date("Y")) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {			
@@ -117,7 +146,7 @@
         	});
 
         	$.ajax({
-	            url: '{{ route('cms.basedata.tracks.by-year-purchased', date("Y") -1) }}',
+	            url: '{{ route('cms.reports.tracks.by-year-purchased', date("Y") -1) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {
@@ -145,37 +174,8 @@
 	        	}
         	});
 
-    		$.ajax({
-	            url: '{{ route('cms.basedata.tracks.by-year') }}',
-	            type: 'GET',
-	            success: function(results)
-	            {
-					var labels = [], data = [];
-					var ctx = document.getElementById("chartTracksByYear");
-					var chartTitle = 'Tracks Purchased by Year';
-			  		
-			  		for (var key in results) {
-					    let value = results[key];					
-					    labels.push(value.year);
-					    data.push(value.track_count);
-					}
-					
-					var chartData = {
-					        labels: labels,
-					        datasets: [{
-					            fill: true,
-								backgroundColor: '#DCDCDC',
-      							borderColor: '#101518',
-					            data: data,					        
-					        }]
-					    };
-
-					var myChart = createLineChart(ctx, chartData, chartTitle);			
-	        	}
-        	});
-
         	$.ajax({
-	            url: '{{ route('cms.basedata.genres.summary', date("Y")) }}',
+	            url: '{{ route('cms.reports.genres.breakdown-by-track-purchase-year', date("Y")) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {
@@ -204,7 +204,7 @@
         	});
 
 			$.ajax({
-	            url: '{{ route('cms.basedata.genres.summary', date("Y")-1) }}',
+	            url: '{{ route('cms.reports.genres.breakdown-by-track-purchase-year', date("Y")-1) }}',
 	            type: 'GET',
 	            success: function(results)
 	            {
