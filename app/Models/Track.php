@@ -163,7 +163,8 @@ class Track extends Model
 	}
 
 	/**
-	 * Get the artist ids for use with the select2 plugin, on the Admin CMS.
+	 * Get the artist ids for the Track. 
+	 * Used with the select2 plugin on the Admin CMS.
 	 *
 	 * @return array
 	 */
@@ -173,7 +174,8 @@ class Track extends Model
 	}
 
 	/**
-	 * Get the tag ids for use with the select2 plugin, on the Admin CMS.
+	 * Get the tag ids for the Track.  
+	 * Used with the select2 plugin on the Admin CMS.
 	 *
 	 * @return array
 	 */
