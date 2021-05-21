@@ -45,7 +45,7 @@
 }
 
 .progressive-trance-bg {
-  background: #AD2F67;
+  background: #7B949F;
 }
 
 .breakbeat {
@@ -93,7 +93,7 @@
 }
 
 .progressive-trance {
-  border-bottom: 4px solid #AD2F67;
+  border-bottom: 4px solid #7B949F;
 }
 
 body {
@@ -642,73 +642,6 @@ a {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
-#filters-overlay h1 {
-  font-size: 150%;
-  box-sizing: border-box;
-  padding: 12px 15px;
-  text-transform: uppercase;
-}
-
-.filter-group {
-  padding: 10px;
-  background: #1A1F22;
-  border: 1px solid #262529;
-  border-radius: 5px;
-}
-
-#filters-overlay ul {
-  -moz-column-count: 6;
-       column-count: 6;
-}
-
-#filters-overlay ul li {
-  padding: 5px 5px;
-}
-
-#filters-overlay label {
-  padding: 7px 5px;
-}
-
-.modal-overlay {
-  height: 0%;
-  width: 100%;
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  background: url(images/bg/model-trans-bg-98.png) repeat;
-  overflow-y: scroll;
-  transition: 0.5s;
-}
-
-.overlay-content {
-  position: relative;
-  top: 25%;
-  width: 100%;
-  text-align: center;
-  margin-top: 30px;
-}
-
-.modal-overlay a {
-  padding: 8px;
-  text-decoration: none;
-  font-size: 36px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.modal-overlay a:hover, .modal-overlay a:focus {
-  color: #f1f1f1;
-}
-
-.modal-overlay .closebtn {
-  position: absolute;
-  top: 5px;
-  right: 15px;
-  font-size: 60px;
-}
-
 #sortable-fields {
   font-size: 90%;
   margin-top: 20px;
@@ -716,25 +649,150 @@ a {
   padding: 25px 0px 10px 0px;
   border-radius: 5px;
 }
-
 #sortable-fields ul {
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 216px 216px;
 }
-
 #sortable-fields ul li a {
   padding: 7px 12px;
   background: #27343C;
   border: 1px solid #262529;
 }
-
 #sortable-fields ul li a:hover {
   background-color: #2b3942;
 }
-
 #sortable-fields ul li span {
   margin-right: 4px;
+}
+
+#modal {
+  box-sizing: border-box;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  display: none;
+  z-index: 999;
+  box-shadow: 10px 11px 3px 500px rgba(0, 0, 0, 0.58);
+  width: 1100px;
+  max-width: 100%;
+  height: 80%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#modal #filter-tracks {
+  padding: 40px;
+}
+#modal #filter-tracks .filter-group {
+  padding: 10px;
+  background: #232f36;
+}
+#modal #filter-tracks #labelsSearchInput, #modal #filter-tracks #artistSearchInput, #modal #filter-tracks #yearsReleasedSearchInput {
+  box-sizing: border-box;
+  background: #1D2A32;
+  color: #fff;
+  border: 1px solid #212024;
+  width: 100%;
+  padding: 12px;
+}
+#modal #filter-tracks ul {
+  -moz-column-count: 3;
+       column-count: 3;
+}
+#modal #filter-tracks ul li {
+  padding: 5px 5px;
+}
+#modal #filter-tracks label {
+  padding: 7px 5px;
+}
+#modal .closebtn {
+  position: absolute;
+  top: 4px;
+  right: 15px;
+  font-size: 60px;
+  color: #F0F0F0;
+}
+#modal article {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  /* can use left: 0; right: 0; as well */
+  background: #27343C;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+#modal article header {
+  width: 100%;
+  height: 4em;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#modal article header h1 {
+  font-family: robotolight;
+  font-size: 150%;
+  color: #F0F0F0;
+  padding: 15px 20px;
+}
+#modal article header h1 span {
+  font-family: robotobold;
+}
+#modal article .content {
+  position: absolute;
+  top: 4em;
+  bottom: 4em;
+  width: 100%;
+  /* can use left: 0; right: 0; as well */
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+#modal article .content .icon-bar {
+  width: 100%;
+  position: relative;
+  background-color: #1D2A32;
+  overflow: auto;
+}
+#modal article .content .icon-bar .active-tab {
+  background: #27343C;
+  color: #fff;
+}
+#modal article .content .icon-bar a {
+  box-sizing: border-box;
+  float: left;
+  width: 33.3%;
+  text-align: center;
+  padding: 16px 0;
+  transition: all 0.3s ease;
+  color: #F0F0F0;
+  font-size: 125%;
+}
+#modal article .content .icon-bar a:hover {
+  background-color: #212f38;
+}
+#modal article .content .icon-bar .active {
+  background-color: #1D2A32;
+}
+#modal article footer {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* can use left: 0; right: 0; as well */
+  height: 4em;
+  background: #31414b;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#modal article footer a {
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-family: robotobold;
 }
 
 /***

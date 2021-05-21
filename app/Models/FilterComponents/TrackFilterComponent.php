@@ -32,7 +32,7 @@ class TrackFilterComponent implements FilterComponentInterface {
 	 */
 	public function getInstantiableFilters(): array
 	{
-		return ['artist', 'artists', 'bpm', 'keycode', 'playlist'];
+		return ['artists'];
 	}
 
 
@@ -54,8 +54,7 @@ class TrackFilterComponent implements FilterComponentInterface {
 	 */
 	public function getInstantiableCommonFilters(): array
 	{
-		return ['format', 'genre', 'label', 'labels', 'purchase_date', 
-					'year_released', 'years_released'];
+		return ['genre', 'labels', 'years_released'];
 	}
 
 	

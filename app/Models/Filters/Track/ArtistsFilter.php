@@ -14,11 +14,26 @@ class ArtistsFilter implements FilterableInterface
 	 * 
 	 * @return void
 	 */
-	public function filter($query, $artistIds)
+	public function filter($query, $artists)
 	{
-		 return $query->whereHas('artists', function($query) use ($artistIds) 
-		 {
-        	$query->whereIn('artist_id', $artistIds); 
-         });
+		$artistIds = $this->removePrefix($artists);
+
+		return $query->whereHas('artists', function($query) use ($artistIds) 
+		{
+			$query->whereIn('artist_id', $artistIds); 
+		});
+	}
+
+
+	/**	 
+	 * @param array $artists
+	 * 
+	 * @return array
+	 */
+	public function removePrefix(array $artists): array
+	{
+		return collect($artists)->map(function ($artist) {
+			return str_replace("artist-","", $artist);
+		})->toArray();
 	}
 }

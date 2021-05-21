@@ -14,8 +14,21 @@ class LabelsFilter implements FilterableInterface
 	 * 
 	 * @return void
 	 */
-	public function filter($query, $labels = [])
-    {        	
-    	$query->whereIn('label_id', $labels);      
+	public function filter($query, $labels)
+    {       
+    	$query->whereIn('label_id', $this->removePrefix($labels));      
     }
+
+
+	/**	 
+	 * @param array $artists
+	 * 
+	 * @return array
+	 */
+	public function removePrefix(array $labels): array
+	{
+		return collect($labels)->map(function ($labels) {
+			return str_replace("label-","", $labels);
+		})->toArray();
+	}
 }

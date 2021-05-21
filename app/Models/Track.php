@@ -286,21 +286,7 @@ class Track extends Model
 		return $query->with('artists', 'label', 'genre', 'tags', 'album.label');
 	}
 
-	/**
-	 *
-	 * @param Builder $query
-	 * @param array $trackIds
-	 * 
-	 * @return Collection
-	 */
-	public function scopeReleaseYears(Builder $query, array $trackIds): Collection
-	{
-		return $query->groupBy('year_released')
-            ->whereIn('id', $trackIds)
-            ->orderBy('year_released', 'desc')
-            ->get(['year_released']);       
-	}
-
+	
 	/**
 	 *
 	 * @param Builder $query

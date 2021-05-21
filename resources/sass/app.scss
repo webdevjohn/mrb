@@ -8,6 +8,10 @@ body {
     color: $baseFontColor;
 }
 
+.hide-scrollbars {
+    // overflow: hidden;
+}
+
 @import "rwd-wrappers";
 	
 .track-added {

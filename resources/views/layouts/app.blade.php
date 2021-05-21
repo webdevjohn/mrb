@@ -66,6 +66,8 @@
                 <strong id="basket-counter"></strong>Tracks</a>
         </div>
 
+        {{ $javascript ?? '' }}     
+
         <script>
             (function() {
        

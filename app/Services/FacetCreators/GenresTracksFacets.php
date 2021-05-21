@@ -2,6 +2,9 @@
 
 namespace App\Services\FacetCreators;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+
 class GenresTracksFacets extends FacetCreator {
 
     /**
@@ -9,21 +12,39 @@ class GenresTracksFacets extends FacetCreator {
      *
      * @return array
      */
-    protected function getFacetableEntities()
+    protected function getFacetableEntities(): array
     {
-        return ['artist', 'format', 'genre', 'label', 'tag'];
+        return ['artist', 'label'];
     }
+
+    
+    /**
+     * Specify the properties that can be facetable.
+     * e.g. Model => ['property' => ['options' => 'option value']
+     *
+     * @return array
+     */
+    protected function getFacetableProperties(): array
+    {
+        return ['Track' => [                           
+                'year_released' => [
+                    'sortOrder' => 'desc',
+                    'propertyNameOverride' => "release_year"
+                ]
+            ]
+        ];
+    } 	
 
 
     /**
      * Apply a filter to the entity (Model)
      * Returns a filtered entity.
      * 
-     * @param \Illuminate\Database\Eloquent\Model $entity
+     * @param Model $entity
      * 
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return Collection
      */
-    protected function applyFilter(\Illuminate\Database\Eloquent\Model $entity)
+    protected function applyFilter(Model $entity): Collection
     { 
         if ($this->hasMethod($entity, 'scopeTrackFacet')) {
             return $entity->trackFacet($this->pluckIdsFromCollection());

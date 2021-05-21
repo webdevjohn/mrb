@@ -7,32 +7,34 @@ use Illuminate\Database\Eloquent\Model;
 use App\Exceptions\MethodNotFoundException;
 use App\Services\Factories\ModelFactory;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 abstract class FacetCreator {
 
+    protected $entityNamespace = "App\\Models\\";
+
     /**
-     * Define the facet entities - an array of Models names (as string). 
+     * Define the facet entities - an array of Model names (as string). 
      *
      * @return array
      */
-    abstract protected function getFacetableEntities();
+    abstract protected function getFacetableEntities(): array;
+
+    /**
+     * Define the properties that can be facetable.
+     *
+     * @return array
+     */
+    abstract protected function getFacetableProperties(): array;
 
     /**
      * Apply a filter to the entity (Model).
      *
-     * @param \Illuminate\Database\Eloquent\Model $entity
+     * @param Model $entity
      * 
-     * @return \Illuminate\Database\Eloquent\Collection 
+     * @return Collection 
      */
-    abstract protected function applyFilter(\Illuminate\Database\Eloquent\Model $entity);
-
-
-    /**
-     * ModelFactory
-     *
-     * @var App\Services\Factories\ModelFactory;
-     */
-    protected $factory;
+    abstract protected function applyFilter(Model $entity): Collection;
 
     /**
      * Holds an array of collections.
@@ -51,12 +53,11 @@ abstract class FacetCreator {
     /**
      * Create a new FacetCreator.
      *
-     * @param ModelFactory $factory
+     * @param App\Services\Factories\ModelFactory $factory
      */
-    public function __construct(ModelFactory $factory)
-    {
-        $this->factory = $factory;
-    }
+    public function __construct(
+        protected ModelFactory $factory
+    ) {}
 
     
     /**
@@ -64,15 +65,13 @@ abstract class FacetCreator {
      *
      * @param Collection $collection
      * 
-     * @return array
+     * @return FacetCreator
      */
-    public function filterBy(Collection $collection) :array
+    public function filterBy(Collection $collection): FacetCreator
     {
         $this->collection = $collection;        
-
-        $this->create();
-
-        return $this->getFacets();
+        
+        return $this;
     }
 
 
@@ -81,27 +80,61 @@ abstract class FacetCreator {
      *
      * @return void
      */
-    public function create()
-    {
+    protected function createEntityFacets()
+    {    
         foreach ($this->getFacetableEntities() as $entity) {
-            $this->pushToArray($entity, $this->createEntity($entity));
+            $this->pushToArray($entity, $this->applyFilter($this->createEntity($entity)));
         }       
     }
 
 
     /**
-     * Factory method that creates and filters the entity.
-     * Returns the filtered collection.  
+     * @return void
+     */
+    protected function createPropertyFacets()
+    {
+        foreach ($this->getFacetableProperties() as $model => $properties) {            
+            
+            foreach($properties as $property => $options) {     
+            
+                $filterdProperty = $this->filterProperty(
+                    $this->createEntity($model), 
+                    $property, 
+                    $options['sortOrder'] ?? 'asc' 
+                );
+                
+                $this->pushToArray($options['propertyNameOverride'] ?? $property, $filterdProperty);                
+            }
+        }            
+    }
+
+
+    /**     
+     * @param Model $entity
+     * @param string $property
+     * 
+     * @return Collection
+     */
+    protected function filterProperty(Model $entity, string $property, string $sortOrder): Collection
+    {
+        return $entity->select([$property, DB::raw('COUNT(id) as count')])
+            ->groupBy([$property])            
+            ->whereIn('id', $this->pluckIdsFromCollection())
+            ->orderBy($property, $sortOrder)
+            ->get();
+    }
+
+
+    /**
+     * Factory method that creates the entity.
      * 
      * @param string $entity
      * 
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Model 
      */
-    protected function createEntity(string $entity)
+    protected function createEntity(string $entity): Model
     {
-        $entity = $this->factory->make('App\\Models\\'. Str::studly($entity));
-
-        return $this->applyFilter($entity);    
+        return $this->factory->make($this->entityNamespace . Str::studly($entity));
     }
 
 
@@ -126,21 +159,31 @@ abstract class FacetCreator {
      *
      * @return array
      */
-    protected function pluckIdsFromCollection()
+    protected function pluckIdsFromCollection(): array
     {
         return $this->collection->pluck('id')->toArray();
     }
 
 
     /**
-     * Return an array of collections.
+     * Return all facets as an array of collections.
      *
-     * @return array 
+     * @param boolean $wrapper
+     * @param string $wrapperName
+     * 
+     * @return array
      */
-    protected function getFacets()
+    public function get(bool $wrapper = null, string $wrapperName = "facets"): array
     {
-         return $this->facets;
-        return ['facets' => $this->facets];
+        $this->createPropertyFacets();
+        
+        $this->createEntityFacets();
+
+        if(! $wrapper) {
+            return $this->facets;
+        }
+
+        return [$wrapperName => $this->facets];
     }
 
 
@@ -150,13 +193,11 @@ abstract class FacetCreator {
      * @param Model $entity
      * @param string $method
      * 
-     * @return mixed boolean|exception
+     * @return boolean
      */
-    protected function hasMethod(Model $entity, string $method)
+    protected function hasMethod(Model $entity, string $method): bool
     {     
         if (method_exists($entity, $method)) return true;
         throw new MethodNotFoundException($entity, $method);
     }
-    
-    
 }

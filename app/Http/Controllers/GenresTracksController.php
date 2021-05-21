@@ -24,7 +24,7 @@ class GenresTracksController extends Controller
 	{
 		$tracks = $genre->tracks()->withFilters($request->input())->get();
 	
-		$facets = $this->facets->filterBy($tracks); 
+		$facets = $this->facets->filterBy($tracks)->get(); 
 
 		$pageData = [
 			'genre' => $genre,

@@ -1,60 +1,4 @@
-#filters-overlay h1 {
-    font-size: 150%;   
-    box-sizing: border-box;
-    padding: 12px 15px;
-    text-transform: uppercase;
-}
-.filter-group {
-    padding: 10px;
-    background: $accentDarker;
-    border: 1px solid $borderColour;
-    border-radius: 5px;
-}
-#filters-overlay ul {
-    column-count: 6;
-}
-#filters-overlay ul li {
-    padding: 5px 5px;
-}
-#filters-overlay label {
-    padding: 7px 5px;
-}
 
-.modal-overlay {
-    height: 0%;
-    width: 100%;
-    position: fixed;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    background: url(images/bg/model-trans-bg-98.png) repeat;     
-    overflow-y: scroll;
-    transition: 0.5s;
-}
-.overlay-content {
-    position: relative;
-    top: 25%;
-    width: 100%;
-    text-align: center;
-    margin-top: 30px;
-}
-.modal-overlay a {
-    padding: 8px;
-    text-decoration: none;
-    font-size: 36px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-.modal-overlay a:hover, .modal-overlay a:focus {
-    color: #f1f1f1;
-}
-.modal-overlay .closebtn {
-    position: absolute;
-    top: 5px;
-    right: 15px;
-    font-size: 60px;
-}
 
 #sortable-fields {
     font-size: 90%;
@@ -62,20 +6,161 @@
     box-sizing: border-box;
     padding: 25px 0px 10px 0px;
     border-radius: 5px;
+    ul {
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 216px 216px;
+        li {
+            a {
+                padding: 7px 12px;
+                background: $articleBg;
+                border: 1px solid $borderColour;
+            }
+            a:hover {
+                background-color: lighten($articleBg, 2);
+            }
+            span {
+                margin-right: 4px;
+            }
+        }
+    }
 }
-#sortable-fields ul {
+
+
+
+#modal {
     box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 216px 216px
-}
-#sortable-fields ul li a {
-    padding: 7px 12px;
-    background: $articleBg;
-    border: 1px solid $borderColour;
-}
-#sortable-fields ul li a:hover {
-    background-color: lighten($articleBg, 2);
-}
-#sortable-fields ul li span {
-    margin-right: 4px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    display: none;
+    z-index: 999;
+    box-shadow: 10px 11px 3px 500px rgba(0,0,0,0.58);
+    width: 1100px;
+    max-width: 100%;
+    height: 80%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    #filter-tracks {
+        padding: 40px;
+        
+        .filter-group {
+            padding: 10px;
+            background: darken($articleBg, 2);        
+        }
+
+        #labelsSearchInput, #artistSearchInput, #yearsReleasedSearchInput {
+            box-sizing: border-box;
+            background: $bodyBGColour;
+            color: #fff;
+            border: 1px solid darken($borderColour, 2);
+            width: 100%;
+            padding: 12px;
+        }
+        ul {
+            column-count: 3;
+            li {
+                padding: 5px 5px;
+            }
+        }
+        label {
+            padding: 7px 5px;
+        }
+    }
+
+    .closebtn {
+        position: absolute;
+        top: 4px;
+        right: 15px;
+        font-size: 60px;
+        color: $baseFontColor;
+    }
+
+    article {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%; /* can use left: 0; right: 0; as well */
+        background: $articleBg;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+
+        header {
+            width: 100%; 
+            height: 4em;
+            // background: lighten($articleBg, 5);
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            h1 {
+                font-family: robotolight;
+                font-size: 150%;
+                color: $baseFontColor;
+                padding: 15px 20px;
+                span {
+                    font-family: robotobold;
+                }
+            }
+        }
+
+        .content {    
+            position: absolute;
+            top: 4em;
+            bottom: 4em;
+            width: 100%; /* can use left: 0; right: 0; as well */
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch; 
+
+            .icon-bar {
+                width: 100%;
+                position: relative;
+                background-color: $bodyBGColour;
+                overflow: auto;
+            
+                .active-tab {
+                    background: $articleBg;
+                    color: #fff;
+                }
+
+                a {
+                    box-sizing: border-box;
+                    float: left;
+                    width: 33.3%;
+                    text-align: center;
+                    padding: 16px 0;
+                    transition: all 0.3s ease;
+                    color: $baseFontColor;
+                    font-size: 125%;
+                }
+                a:hover {
+                    background-color: lighten(#1D2A32, 2);
+                }
+                .active {
+                    background-color: #1D2A32;
+                }
+            }
+        }
+
+        footer {
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 0;
+            width: 100%; /* can use left: 0; right: 0; as well */
+            height: 4em;
+            background: lighten($articleBg, 5);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            a {
+                padding: 12px 20px;
+                border-radius: 5px;
+                font-family: robotobold; 
+            }
+        }
+    }
 }
