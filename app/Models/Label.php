@@ -115,6 +115,8 @@ class Label extends Model
 	 */
 	public function scopeTrackFacet(Builder $query, array $trackIds): Collection
 	{
-		return $query->facetableByTracks($trackIds)->orderBy('label')->get();
+		return $query->facetableByTracks($trackIds)
+			->orderBy('label')
+			->get(['id','label']);
 	} 
 }

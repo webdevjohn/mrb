@@ -54,6 +54,8 @@ class Tag extends Model
 	 */
 	public function scopeTrackFacet(Builder $query, array $trackIds): Collection
 	{
-		return $query->facetableByTracks($trackIds)->orderBy('tag')->get();
+		return $query->facetableByTracks($trackIds)
+            ->orderBy('tag')
+            ->get(['id','tag']);
 	} 
 }

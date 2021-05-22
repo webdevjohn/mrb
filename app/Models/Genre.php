@@ -80,6 +80,8 @@ class Genre extends Model
 	 */
 	public function scopeTrackFacet(Builder $query, array $trackIds): Collection
 	{
-		return $query->facetableByTracks($trackIds)->orderBy('genre')->get();
+		return $query->facetableByTracks($trackIds)
+			->orderBy('genre')
+			->get(['id', 'genre']);
 	} 
 }

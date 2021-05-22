@@ -84,6 +84,8 @@ class Artist extends Model
      */
 	public function scopeTrackFacet(Builder $query, array $trackIds): Collection
 	{
-        return $query->facetableByTracks($trackIds)->orderBy('artist_name')->get();
+        return $query->facetableByTracks($trackIds)
+            ->orderBy('artist_name')
+            ->get(['id', 'artist_name']);
 	} 
 }

@@ -271,7 +271,7 @@ class Track extends Model
 	 */
 	public function scopeFields(Builder $query): Builder
 	{
-		return $query->select('tracks.id', 'title', 'genre_id', 'label_id', 'format_id', 'year_released', 
+		return $query->select('tracks.id', 'title', 'genre_id', 'label_id', 'year_released', 
 								'purchase_date', 'album_id', 'mp3_sample_filename', 'track_thumbnail');
 	}
 
@@ -283,7 +283,10 @@ class Track extends Model
 	 */
 	public function scopeRelations(Builder $query): Builder
 	{
-		return $query->with('artists', 'label', 'genre', 'tags', 'album.label');
+		return $query->with('artists:id,slug,artist_name', 
+			'label:id,slug,label,label_thumbnail,label_image', 
+			'genre', 
+			'album.label');
 	}
 
 	

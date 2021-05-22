@@ -59,6 +59,8 @@ class Format extends Model
      */
     public function scopeTrackFacet(Builder $query, array $trackIds): Collection
 	{
-        return $query->facetableByTracks($trackIds)->orderBy('format')->get();
+        return $query->facetableByTracks($trackIds)
+            ->orderBy('format')
+            ->get(['id', 'format']);
 	}
 }
