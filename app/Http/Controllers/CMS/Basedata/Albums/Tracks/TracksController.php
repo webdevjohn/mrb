@@ -60,7 +60,12 @@ class TracksController extends Controller
     public function store(CreateAlbumTrack $request, Album $album)
     {
         $this->tracks->create(
-            $request->validated()
+            array_merge($request->validated(), [
+                'format_id' => $album->format_id,
+                'year_released' => $album->year_released,
+                'purchase_date' => $album->purchase_date,
+                'purchase_price' => 0.00
+            ])
         );
 
         return redirect()

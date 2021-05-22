@@ -29,11 +29,6 @@ class CreateAlbumTrack extends Request
             'title' => 'required|max:50',
             'genre_id' => 'required|numeric|min:1|exists:genres,id',  
             'label_id' => 'required|numeric|min:1|exists:labels,id',    
-            'format_id' => 'required|numeric|min:1|exists:formats,id', 
-            'year_released' => 'required|numeric|between:1980,2080', 
-            'purchase_date' => 'required|date|date_format: "Y-m-d"',
-            'purchase_price' => 'required|numeric|between:0,300',
-            'album_id' => 'required|numeric|min:1|exists:albums,id',
 
             // nullable fields.
             'key_code_id' => 'nullable|numeric|min:1|exists:key_codes,id',
