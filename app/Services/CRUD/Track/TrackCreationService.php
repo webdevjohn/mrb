@@ -48,8 +48,8 @@ class TrackCreationService {
 
         return $this->tracks->create(
             array_merge($requestInput, [   
-                'track_image' => $this->trackImageResize->main(),
-                'track_thumbnail' => $this->trackImageResize->thumb()
+                'image' => $this->trackImageResize->main(),
+                'thumbnail' => $this->trackImageResize->thumb()
             ])
         );
     }

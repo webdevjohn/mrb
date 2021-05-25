@@ -24,10 +24,10 @@ class CreateTracksTable extends Migration
 			$table->decimal('purchase_price', 5, 2)->nullable();
 			$table->unsignedBigInteger('key_code_id')->nullable();
 			$table->decimal('bpm', 5, 2)->nullable();
-			$table->string('track_thumbnail', 225)->nullable();
-			$table->string('track_image', 225)->nullable();
-			$table->string('mp3_sample_filename', 200)->nullable();
-			$table->string('full_track_filename', 200)->nullable();
+			$table->string('thumbnail', 255)->nullable();
+			$table->string('image', 255)->nullable();
+			$table->string('mp3_sample_filename', 255)->nullable();
+			$table->string('full_track_filename', 255)->nullable();
 			$table->unsignedBigInteger('album_id')->nullable();
 			$table->integer('played_counter')->nullable();
 			$table->integer('viewed_counter')->nullable();

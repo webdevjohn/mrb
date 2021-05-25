@@ -54,8 +54,8 @@ class LabelUpdateService {
         $label->fill(
             array_merge($requestInput, [
                 'slug' => Str::slug($requestInput['label']),
-                'label_image' => $this->labelImageResize->main(),
-                'label_thumbnail' => $this->labelImageResize->thumb()
+                'image' => $this->labelImageResize->main(),
+                'thumbnail' => $this->labelImageResize->thumb()
             ])
         )->save();
     }
@@ -69,8 +69,8 @@ class LabelUpdateService {
      */
     protected function deleteExistingImages(Label $label)
     {
-        $main = 'public/images/main/_record-labels/' . $label->label_image;
-        $thumb = 'public/images/thumbs/_record-labels/' . $label->label_thumbnail;
+        $main = 'public/images/main/_record-labels/' . $label->image;
+        $thumb = 'public/images/thumbs/_record-labels/' . $label->thumbnail;
 
         if ($this->storage->exists($main)) {
             $this->storage->delete($main);

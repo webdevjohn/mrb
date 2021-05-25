@@ -40,8 +40,8 @@
 				@foreach($labels as $label)
 				<tr>
 					<td>{{ $label->label }}</td>	
-					<td>{{ $label->label_thumbnail }}</td>		
-					<td>{{ $label->label_image }}</td>	
+					<td>{{ $label->thumbnail }}</td>		
+					<td>{{ $label->image }}</td>	
 					<td>
 						<ul class="frm-crud-buttons">
 							<li>

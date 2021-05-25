@@ -3,7 +3,7 @@
 -- Dumping data for table `albums`
 --
 
-INSERT INTO `albums` (`id`, `title`, `slug`, `genre_id`, `label_id`, `format_id`, `year_released`, `purchase_date`, `purchase_price`, `album_thumbnail`, `album_image`, `use_track_artwork`, `created_at`, `updated_at`) VALUES
+INSERT INTO `albums` (`id`, `title`, `slug`, `genre_id`, `label_id`, `format_id`, `year_released`, `purchase_date`, `purchase_price`, `thumbnail`, `image`, `use_track_artwork`, `created_at`, `updated_at`) VALUES
 (1, 'Ft303 Studio Sessions', 'ft303-studio-sessions', 7, 303, 1, 2012, '2014-04-09', '10.83', 'Ft303_Studio_Sessions.jpg', 'Ft303_Studio_Sessions.jpg', 0, '2016-10-11 02:35:32', '2017-03-13 18:06:07'),
 (2, 'Producer Showcase (Vol 3) - Cupra and Matt Clarkson', 'producer-showcase-vol-3-cupra-and-matt-clarkson', 2, 300, 1, 2017, '2017-02-18', '12.49', 'Producer_Showcase_(Vol_3)__Cupra_and_Matt_Clarkson.jpg', 'Producer_Showcase_(Vol_3)__Cupra_and_Matt_Clarkson.jpg', 0, '2017-03-01 23:12:57', '2017-03-17 20:52:44'),
 (3, 'Vicious Circle Classics (Vol 1)', 'vicious-circle-classics-vol-1', 2, 134, 1, 2010, '2010-12-19', '10.99', NULL, NULL, 0, '2017-03-05 18:19:28', '2017-03-13 01:19:31'),

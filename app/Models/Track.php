@@ -29,8 +29,8 @@ class Track extends Model
      * @var array
     */
 	protected $fillable = ['title','genre_id','label_id','format_id','year_released',
-							'purchase_date','purchase_price','key_code_id','bpm','album_id','track_thumbnail',
-								'track_image','mp3_sample_filename','full_track_filename'];
+							'purchase_date','purchase_price','key_code_id','bpm','album_id','thumbnail',
+								'image','mp3_sample_filename','full_track_filename'];
 
 	/**
 	 * The fields that can be dynamically sorted.
@@ -106,8 +106,8 @@ class Track extends Model
 	 */
 	protected function getTrackArtwork()
 	{
-		if ($this->track_thumbnail) {
-			return 'storage/images/thumbs/' . $this->label->slug . "/" . $this->track_thumbnail;
+		if ($this->thumbnail) {
+			return 'storage/images/thumbs/' . $this->label->slug . "/" . $this->thumbnail;
 		}
 		return $this->label->getLabelThumbnail(); 
 	}
@@ -272,7 +272,7 @@ class Track extends Model
 	public function scopeFields(Builder $query): Builder
 	{
 		return $query->select('tracks.id', 'title', 'genre_id', 'label_id', 'year_released', 
-								'purchase_date', 'album_id', 'mp3_sample_filename', 'track_thumbnail');
+								'purchase_date', 'album_id', 'mp3_sample_filename', 'thumbnail');
 	}
 
 	/**
@@ -284,7 +284,7 @@ class Track extends Model
 	public function scopeRelations(Builder $query): Builder
 	{
 		return $query->with('artists:id,slug,artist_name', 
-			'label:id,slug,label,label_thumbnail,label_image', 
+			'label:id,slug,label,thumbnail,image', 
 			'genre', 
 			'album.label');
 	}

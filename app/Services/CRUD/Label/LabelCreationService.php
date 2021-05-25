@@ -50,8 +50,8 @@ class LabelCreationService {
         return $this->labels->create(
             array_merge($requestInput, [
                 'slug' => Str::slug($requestInput['label']),
-                'label_image' => $this->labelImageResize->main(),
-                'label_thumbnail' => $this->labelImageResize->thumb()
+                'image' => $this->labelImageResize->main(),
+                'thumbnail' => $this->labelImageResize->thumb()
             ])
         );
     }

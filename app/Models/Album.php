@@ -24,7 +24,7 @@ class Album extends Model
      * @var array
     */
 	protected $fillable = ['title', 'slug', 'genre_id','label_id','format_id','year_released',
-							'purchase_date','purchase_price','album_thumbnail', 'album_image', 'use_track_artwork'];
+							'purchase_date','purchase_price','thumbnail', 'image', 'use_track_artwork'];
 
 
     /*
@@ -62,16 +62,16 @@ class Album extends Model
 
     public function getThumbnail()
 	{
-		if ($this->album_thumbnail) {
-			return 'storage/images/thumbs/_albums/' . $this->album_thumbnail;
+		if ($this->thumbnail) {
+			return 'storage/images/thumbs/_albums/' . $this->thumbnail;
 		}
 		return $this->label->getLabelThumbnail(); 
 	}
 
 	public function getAlbumImage()
 	{
-		if ($this->album_image) {
-			return 'storage/images/main/_albums/' . $this->album_image;
+		if ($this->image) {
+			return 'storage/images/main/_albums/' . $this->image;
 		}	
 		return $this->label->getLabelImage(); 
 	}

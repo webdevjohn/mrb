@@ -50,11 +50,11 @@
 			<label for="purchase_price">Purchase Price: </label>
 			<input name="purchase_price" type="text" id="purchase_price" value="{{ old('purchase_price') }}">
 
-			<label for="album_thumbnail">Album Thumbnail: </label>
-			<input name="album_thumbnail" type="text" id="album_thumbnail" value="{{ old('album_thumbnail') }}">
+			<label for="thumbnail">Album Thumbnail: </label>
+			<input name="thumbnail" type="text" id="thumbnail" value="{{ old('thumbnail') }}">
 
-			<label for="album_image">Album Image: </label>
-			<input name="album_image" type="text" id="album_image" value="{{ old('album_image') }}">
+			<label for="image">Album Image: </label>
+			<input name="image" type="text" id="image" value="{{ old('image') }}">
 
 			<label for="use_track_artwork">Use track artwork: </label>
 			<input name="use_track_artwork" type="checkbox" value="1" id="use_track_artwork" value="{{ old('use_track_artwork') }}">

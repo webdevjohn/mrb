@@ -3,7 +3,7 @@
 -- Dumping data for table `labels`
 --
 
-INSERT INTO `labels` (`id`, `label`, `slug`, `label_thumbnail`, `label_image`, `created_at`, `updated_at`) VALUES
+INSERT INTO `labels` (`id`, `label`, `slug`, `thumbnail`, `image`, `created_at`, `updated_at`) VALUES
 (1, 'Execute Records', 'execute-records', NULL, NULL, '2017-04-02 01:43:11', '2017-11-02 14:37:41'),
 (2, 'Tunnel Records', 'tunnel-records', 'tunnel_records.gif', 'tunnel_records.jpg', '2017-04-02 01:43:11', '2017-11-02 14:37:41'),
 (3, 'Species Records', 'species-records', 'species_records.png', NULL, '2017-04-02 01:43:11', '2017-11-02 14:37:41'),

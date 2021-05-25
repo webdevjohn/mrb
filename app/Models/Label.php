@@ -25,7 +25,7 @@ class Label extends Model
      *
      * @var array
     */
-	protected $fillable = ['label', 'slug', 'label_thumbnail', 'label_image'];
+	protected $fillable = ['label', 'slug', 'thumbnail', 'image'];
 
     /*
     |--------------------------------------------------------------------------
@@ -57,16 +57,16 @@ class Label extends Model
 
     public function getLabelThumbnail()
 	{
-		if ($this->label_thumbnail) {
-			return 'storage/images/thumbs/_record-labels/' . $this->label_thumbnail;
+		if ($this->thumbnail) {
+			return 'storage/images/thumbs/_record-labels/' . $this->thumbnail;
 		}		
 		return 'storage/images/thumbs/coming-soon.gif';
 	}
 
 	public function getLabelImage()
 	{
-		if ($this->label_image) {
-			return 'storage/images/main/_record-labels/' . $this->label_image;
+		if ($this->image) {
+			return 'storage/images/main/_record-labels/' . $this->image;
 		}
 		return "storage/images/main/ics-600.gif";	
 	}
@@ -90,7 +90,7 @@ class Label extends Model
 
     public function scopeWithFields($query)
 	{
-		return $query->select('id', 'label', 'slug', 'label_thumbnail', 'label_image');
+		return $query->select('id', 'label', 'slug', 'thumbnail', 'image');
 	}
 
 	public function scopeWithTrackCount($query, int $genre = null)
@@ -99,10 +99,10 @@ class Label extends Model
 			->when($genre, function ($query) use ($genre) {
 				return $query->where('tracks.genre_id', $genre);
 			})
-			->groupBy('labels.label', 'labels.slug', 'labels.id', 'labels.label_image')					
+			->groupBy('labels.label', 'labels.slug', 'labels.id', 'labels.image')					
 			->orderBy('track_count', 'DESC')	
 			->take(6)				
-			->get(['labels.id', 'labels.label', 'labels.slug', 'labels.label_image', DB::raw('count(*) as track_count')]);						 				
+			->get(['labels.id', 'labels.label', 'labels.slug', 'labels.image', DB::raw('count(*) as track_count')]);						 				
 	}
 
 

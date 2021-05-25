@@ -23,8 +23,8 @@ class CreateAlbumsTable extends Migration
             $table->integer('year_released');
             $table->date('purchase_date');      
             $table->decimal('purchase_price', 5, 2);
-            $table->string('album_thumbnail', 255)->nullable();
-            $table->string('album_image', 255)->nullable();
+            $table->string('thumbnail', 255)->nullable();
+            $table->string('image', 255)->nullable();
             $table->boolean('use_track_artwork')->default(false);
             $table->timestamps();
 

@@ -3,7 +3,7 @@
 -- Dumping data for table `tracks`
 --
 
-INSERT INTO `tracks` (`id`, `title`, `genre_id`, `label_id`, `format_id`, `year_released`, `purchase_date`, `purchase_price`, `key_code_id`, `bpm`, `track_thumbnail`, `track_image`, `mp3_sample_filename`, `full_track_filename`, `album_id`, `played_counter`, `viewed_counter`, `created_at`, `updated_at`) VALUES
+INSERT INTO `tracks` (`id`, `title`, `genre_id`, `label_id`, `format_id`, `year_released`, `purchase_date`, `purchase_price`, `key_code_id`, `bpm`, `thumbnail`, `image`, `mp3_sample_filename`, `full_track_filename`, `album_id`, `played_counter`, `viewed_counter`, `created_at`, `updated_at`) VALUES
 (2, 'Punk', 5, 50, 1, 2008, '2008-09-27', '1.75', NULL, NULL, NULL, NULL, 'Adz_Fearnie-punk-Twisted_Traxx.mp3', '', NULL, 2, NULL, '2017-03-18 11:33:48', '2017-03-18 11:33:48'),
 (3, 'Deformed', 5, 52, 2, 2007, '2007-08-10', NULL, NULL, NULL, NULL, NULL, 'Daley-Deformed-Flashpoint_Records.mp3', '', NULL, 1, NULL, '2017-03-18 11:33:48', '2017-03-16 16:58:07'),
 (4, 'While The Record Spins', 5, 54, 2, 2006, '2008-02-14', NULL, NULL, NULL, NULL, NULL, 'Dan_Dyson-While_the_Record_Spins-Titan_Traxx_Digital.mp3', '', NULL, 1, NULL, '2017-03-18 11:33:48', '2017-03-16 16:54:03'),

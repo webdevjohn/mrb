@@ -33,8 +33,8 @@ class UpdateAlbumTrack extends Request
             // nullable fields.
             'key_code_id' => 'nullable|numeric|min:1|exists:key_codes,id',
             'bpm' => 'nullable|numeric|between:100.0,200.0',        
-            'track_thumbnail' => 'nullable',
-            'track_image' => 'nullable',
+            'thumbnail' => 'nullable',
+            'image' => 'nullable',
             'mp3_sample_filename' => 'nullable',
             'full_track_filename' => 'nullable',
             'tags' => 'nullable|array|exists:tags,id'

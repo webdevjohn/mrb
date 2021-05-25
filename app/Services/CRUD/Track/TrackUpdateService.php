@@ -49,8 +49,8 @@ class TrackUpdateService {
 
         $track->fill(
             array_merge($requestInput, [   
-                'track_image' => $this->trackImageResize->main(),
-                'track_thumbnail' => $this->trackImageResize->thumb()
+                'image' => $this->trackImageResize->main(),
+                'thumbnail' => $this->trackImageResize->thumb()
             ])
         )->save();
     }
@@ -63,8 +63,8 @@ class TrackUpdateService {
      */
     protected function deleteExistingImages(Track $track)
     {
-        $main = "public/images/main/" . $track->label->slug . "/" . $track->track_image;
-        $thumb = "public/images/thumbs/" . $track->label->slug . "/" . $track->track_thumbnail;
+        $main = "public/images/main/" . $track->label->slug . "/" . $track->image;
+        $thumb = "public/images/thumbs/" . $track->label->slug . "/" . $track->thumbnail;
 
         if ($this->storage->exists($main)) {
             $this->storage->delete($main);

@@ -17,8 +17,8 @@ class CreateLabelsTable extends Migration
             $table->id();
             $table->string('label', 50);
 			$table->string('slug', 50)->unique()->index();
-			$table->string('label_thumbnail', 225)->nullable();
-			$table->string('label_image', 225)->nullable();
+			$table->string('thumbnail', 225)->nullable();
+			$table->string('image', 225)->nullable();
             $table->timestamps();
         });
     }
