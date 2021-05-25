@@ -16,7 +16,7 @@ class CreateAlbumsTable extends Migration
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
             $table->string('title', 125);   
-            $table->string('slug', 125)->unique();    
+            $table->string('slug', 125)->unique()->index();    
             $table->unsignedBigInteger('genre_id');
             $table->unsignedBigInteger('label_id');
             $table->unsignedBigInteger('format_id');        
