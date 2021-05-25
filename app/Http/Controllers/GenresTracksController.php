@@ -23,14 +23,18 @@ class GenresTracksController extends Controller
 	public function index(Request $request, Genre $genre)
 	{
 		$tracks = $genre->tracks()->withFilters($request->input())->get();
-	
-		$facets = $this->facets->filterBy($tracks)->get(); 
+		
+		if ( $request->ajax() ) {
+			return View('genres.tracks.modals.facets', array_merge([
+				'genre' => $genre, 
+				'trackCount' => count($tracks)], 
+				$this->facets->filterBy($tracks)->get()
+			));
+		}
 
-		$pageData = [
+		return View('genres.tracks.index', [
 			'genre' => $genre,
 			'tracks' => $this->paginator->paginate($tracks),
-        ];
-
-		return View('genres.tracks.index', array_merge($pageData, $facets));
+        ]);
 	}
 }

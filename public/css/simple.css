@@ -5,7 +5,7 @@
 }
 
 .drum-and-bass-bg {
-  background: #141414;
+  background: #3C3C3C;
 }
 
 .hard-house-bg {
@@ -45,7 +45,7 @@
 }
 
 .progressive-trance-bg {
-  background: #7B949F;
+  background: #45758B;
 }
 
 .breakbeat {
@@ -53,7 +53,7 @@
 }
 
 .drum-and-bass {
-  border-bottom: 4px solid #141414;
+  border-bottom: 4px solid #3C3C3C;
 }
 
 .hard-house {
@@ -93,7 +93,7 @@
 }
 
 .progressive-trance {
-  border-bottom: 4px solid #7B949F;
+  border-bottom: 4px solid #45758B;
 }
 
 body {

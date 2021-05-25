@@ -5,7 +5,7 @@
 }
 
 .drum-and-bass-bg {
-  background: #141414;
+  background: #3C3C3C;
 }
 
 .hard-house-bg {
@@ -45,7 +45,7 @@
 }
 
 .progressive-trance-bg {
-  background: #7B949F;
+  background: #45758B;
 }
 
 .breakbeat {
@@ -53,7 +53,7 @@
 }
 
 .drum-and-bass {
-  border-bottom: 4px solid #141414;
+  border-bottom: 4px solid #3C3C3C;
 }
 
 .hard-house {
@@ -93,7 +93,7 @@
 }
 
 .progressive-trance {
-  border-bottom: 4px solid #7B949F;
+  border-bottom: 4px solid #45758B;
 }
 
 body {
@@ -793,6 +793,59 @@ a {
   padding: 12px 20px;
   border-radius: 5px;
   font-family: robotobold;
+}
+
+.lds-dual-ring.hidden {
+  display: none;
+}
+
+.lds-dual-ring {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin: 5% auto;
+  border-radius: 50%;
+  border: 18px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  -webkit-animation: lds-dual-ring 1.2s linear infinite;
+          animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@-webkit-keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.page-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+  opacity: 1;
+  transition: all 0.5s;
 }
 
 /***

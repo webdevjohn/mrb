@@ -70,7 +70,7 @@ abstract class FacetCreator {
     public function filterBy(Collection $collection): FacetCreator
     {
         $this->collection = $collection;        
-        
+
         return $this;
     }
 

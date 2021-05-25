@@ -177,6 +177,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Providers\FilterServiceProvider::class,
+        App\Providers\MacroServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
     ],
 
