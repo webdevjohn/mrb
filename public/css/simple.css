@@ -1,11 +1,11 @@
 /* colour Scheme */
 /* genre colour codes */
 .breakbeat-bg {
-  background: #624634;
+  background: #9A6324;
 }
 
 .drum-and-bass-bg {
-  background: #3C3C3C;
+  background: #555555;
 }
 
 .hard-house-bg {
@@ -45,15 +45,15 @@
 }
 
 .progressive-trance-bg {
-  background: #45758B;
+  background: #4B67D1;
 }
 
 .breakbeat {
-  border-bottom: 4px solid #624634;
+  border-bottom: 4px solid #9A6324;
 }
 
 .drum-and-bass {
-  border-bottom: 4px solid #3C3C3C;
+  border-bottom: 4px solid #555555;
 }
 
 .hard-house {
@@ -93,7 +93,7 @@
 }
 
 .progressive-trance {
-  border-bottom: 4px solid #45758B;
+  border-bottom: 4px solid #4B67D1;
 }
 
 body {
