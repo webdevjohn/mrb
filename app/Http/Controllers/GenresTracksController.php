@@ -21,10 +21,11 @@ class GenresTracksController extends Controller
      * @return Illuminate\View\View 
 	 */
 	public function index(Request $request, Genre $genre)
-	{
-		$tracks = $genre->tracks()->withFilters($request->input())->get();
-		
+	{	
 		if ( $request->ajax() ) {
+			
+			$tracks = $genre->tracks()->withFilters($request->input())->get();
+
 			return View('genres.tracks.modals.facets', array_merge([
 				'genre' => $genre, 
 				'trackCount' => count($tracks)], 
@@ -34,7 +35,7 @@ class GenresTracksController extends Controller
 
 		return View('genres.tracks.index', [
 			'genre' => $genre,
-			'tracks' => $this->paginator->paginate($tracks),
+			'tracks' => $genre->tracks()->withFilters($request->input())->paginate(48)
         ]);
 	}
 }
