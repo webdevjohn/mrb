@@ -26,10 +26,12 @@
                 <strong>{{ $message }}</strong>
             </div>
         @endif
-  
-        <div class="icon-bar">
+
+        <div id="logo-con">
             <a href="{{ route('cms.dashboard') }}" id="logo"><div>MyRecordBox <strong>CMS</strong></div></a>
-            
+        </div>
+        
+        <div class="icon-bar">                    
             <a href="{{ route('cms.dashboard') }}" class="{{ (request()->segments()['1'] == 'dashboard') ? 'active' : '' }}">
                 <i class="fas fa-tachometer-alt"></i>
                 <span>Dashboard</span>              
