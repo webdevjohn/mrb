@@ -1,16 +1,16 @@
 <?php 
 
-namespace App\Services\CRUD\Label;
+namespace App\Services\CRUD\Playlist;
 
-use App\Models\Label;
-use App\Services\ImageResize\ResizeLabelImage;
+use App\Models\Playlist;
+use App\Services\ImageResize\ResizePlaylistImage;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Support\Str;
 
-class LabelUpdateService {
+class PlaylistUpdateService {
 
     public function __construct(
-        protected ResizeLabelImage $resizeImage,
+        protected ResizePlaylistImage $resizeImage,
         protected FilesystemManager $storage
     ) {}
 
@@ -18,19 +18,19 @@ class LabelUpdateService {
     /**
      *
      * @param array $requestInput
-     * @param Label $label
+     * @param Playlist $playlist
      * 
      * @return void
      */
-    public function update(array $requestInput, Label $label)
+    public function update(array $requestInput, Playlist $playlist)
     {     
         if (isset($requestInput['image'])) {           
-            return $this->updateLabelImage($requestInput, $label);
+            return $this->updatePlaylistImage($requestInput, $playlist);
         }
   
-        return $label->fill(
+        return $playlist->fill(
             array_merge($requestInput, [
-                'slug' => Str::slug($requestInput['label'])
+                'slug' => Str::slug($requestInput['name'])
             ])
         )->save();     
     }
@@ -39,20 +39,19 @@ class LabelUpdateService {
     /**
      *
      * @param array $requestInput
-     * @param Label $label
+     * @param Playlist $playlist
      * 
      * @return void
      */
-    protected function updateLabelImage(array $requestInput, Label $label)
+    protected function updatePlaylistImage(array $requestInput, Playlist $playlist)
     {
-        $this->deleteExistingImages($label);
+        $this->deleteExistingImages($playlist);
    
         $this->resizeImage->setUploadDirectory()->uploadImage($requestInput['image']);
 
-        $label->fill(
+        $playlist->fill(
             array_merge($requestInput, [
-                'slug' => Str::slug($requestInput['label']),
-                'image' => $this->resizeImage->toMain()->create(),
+                'slug' => Str::slug($requestInput['name']),
                 'thumbnail' => $this->resizeImage->toThumbnail()->create()
             ])
         )->save();
@@ -61,14 +60,14 @@ class LabelUpdateService {
 
     /**
      *
-     * @param Label $label
+     * @param Playlist $playlist
      * 
      * @return void
      */
-    protected function deleteExistingImages(Label $label)
+    protected function deleteExistingImages(Playlist $playlist)
     {
-        $main = 'public/images/main/_record-labels/' . $label->image;
-        $thumb = 'public/images/thumbs/_record-labels/' . $label->thumbnail;
+        $main = 'public/images/main/_playlists/' . $playlist->image;
+        $thumb = 'public/images/thumbs/_playlists/' . $playlist->thumbnail;
 
         if ($this->storage->exists($main)) {
             $this->storage->delete($main);

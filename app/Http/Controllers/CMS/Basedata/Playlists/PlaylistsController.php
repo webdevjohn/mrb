@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Playlists\CreatePlaylist;
 use App\Http\Requests\CMS\Playlists\UpdatePlaylist;
 use App\Models\Playlist;
-use Illuminate\Support\Str;
+use App\Services\CRUD\Playlist\PlaylistCreationService;
+use App\Services\CRUD\Playlist\PlaylistUpdateService;
 use Webdevjohn\SelectBoxes\SelectBoxService;
 
 class PlaylistsController extends Controller
@@ -50,13 +51,9 @@ class PlaylistsController extends Controller
      * 
      * @return Illuminate\Http\RedirectResponse
      */
-    public function store(CreatePlaylist $request)
+    public function store(CreatePlaylist $request, PlaylistCreationService $playlistCreationService)
     {
-        $this->playlists->create(
-            array_merge($request->validated(), [
-                'slug' => Str::slug($request->name)
-            ])   
-        );
+        $playlistCreationService->create($request->validated());
 
         return redirect()
             ->route('cms.basedata.playlists.create')
@@ -100,13 +97,9 @@ class PlaylistsController extends Controller
      * 
      * @return Illuminate\Http\RedirectResponse
      */
-    public function update(UpdatePlaylist $request, Playlist $playlist)
+    public function update(UpdatePlaylist $request, Playlist $playlist, PlaylistUpdateService $playlistUpdateService)
     {
-        $playlist->fill(
-            array_merge($request->validated(), [
-                'slug' => Str::slug($request->name)
-            ])   
-        )->save();
+        $playlistUpdateService->update($request->validated(), $playlist);
 
         return redirect()
             ->route('cms.basedata.playlists.index')

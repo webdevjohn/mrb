@@ -14,7 +14,7 @@
 
 		<x-cms.form-validation-errors :errors="$errors" />
 
-		<form method="POST" action="{{ route('cms.basedata.playlists.store') }}">
+		<form method="POST" action="{{ route('cms.basedata.playlists.store') }}" enctype="multipart/form-data">
 			@csrf
 
 			<label for="name">Name:</label>
@@ -27,11 +27,8 @@
 				@endforeach
 			</select>
 
-		    <label for="thumbnail">Thumbnail:</label>
-			<input name="thumbnail" type="text" id="thumbnail">
-
-	        <label for="image">Image:</label>
-			<input name="image" type="text" id="image">
+			<label for="image">Image:</label>
+  			<input name="image" type="file">
 
 			<button type="submit">Create Playlist</button>		
 		</form>

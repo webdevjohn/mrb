@@ -2,14 +2,16 @@
 
 namespace App\Services\CRUD\Track;
 
+use App\Models\Label;
 use App\Models\Track;
-use App\Services\ImageResize\TrackImageResize;
+use App\Services\ImageResize\ResizeTrackImage;
 use Illuminate\Filesystem\FilesystemManager;
 
 class TrackUpdateService {
 
     public function __construct(
-        protected TrackImageResize $trackImageResize,
+        protected Label $labels,
+        protected ResizeTrackImage $resizeImage,
         protected FilesystemManager $storage
     ) {}
 
@@ -43,14 +45,13 @@ class TrackUpdateService {
     {    
         $this->deleteExistingImages($track);
 
-        $this->trackImageResize->setUp(
-            $requestInput['image'], $requestInput['label_id']
-        );
+        $labelSlug = $this->labels->find($requestInput['label_id'])->slug;
+        $this->resizeImage->setUploadDirectory($labelSlug)->uploadImage($requestInput['image']);
 
         $track->fill(
             array_merge($requestInput, [   
-                'image' => $this->trackImageResize->main(),
-                'thumbnail' => $this->trackImageResize->thumb()
+                'image' => $this->resizeImage->toMain()->create(),
+                'thumbnail' => $this->resizeImage->toThumbnail()->create()
             ])
         )->save();
     }

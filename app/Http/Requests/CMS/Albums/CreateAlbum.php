@@ -34,8 +34,7 @@ class CreateAlbum extends Request
             'purchase_price' => 'required|numeric|between:0,50',            
 
             // nullable fields.
-            'thumbnail' => 'nullable',
-            'image' => 'nullable',
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif|dimensions:ratio=1/1',
             'use_track_artwork' => 'nullable|boolean'            
         ];
     }

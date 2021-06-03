@@ -2,14 +2,16 @@
 
 namespace App\Services\CRUD\Track;
 
+use App\Models\Label;
 use App\Models\Track;
-use App\Services\ImageResize\TrackImageResize;
+use App\Services\ImageResize\ResizeTrackImage;
 
 class TrackCreationService {
 
     public function __construct(
         protected Track $tracks,
-        protected TrackImageResize $trackImageResize
+        protected Label $labels,
+        protected ResizeTrackImage $resizeImage
     ) {}
 
 
@@ -42,14 +44,13 @@ class TrackCreationService {
      */
     protected function createTrackWithImage(array $requestInput): Track
     {
-        $this->trackImageResize->setUp(
-            $requestInput['image'], $requestInput['label_id']
-        );
+        $labelSlug = $this->labels->find($requestInput['label_id'])->slug;
+        $this->resizeImage->setUploadDirectory($labelSlug)->uploadImage($requestInput['image']);
 
         return $this->tracks->create(
             array_merge($requestInput, [   
-                'image' => $this->trackImageResize->main(),
-                'thumbnail' => $this->trackImageResize->thumb()
+                'image' => $this->resizeImage->toMain()->create(),
+                'thumbnail' => $this->resizeImage->toThumbnail()->create()
             ])
         );
     }

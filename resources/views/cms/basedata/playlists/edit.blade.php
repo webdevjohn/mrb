@@ -14,7 +14,7 @@
 		
 		<x-cms.form-validation-errors :errors="$errors" />		
 
-		<form method="POST" action="{{ route('cms.basedata.playlists.update', $playlist->slug) }}">
+		<form method="POST" action="{{ route('cms.basedata.playlists.update', $playlist->slug) }}" enctype="multipart/form-data">
             @method('PATCH')
 			@csrf
 
@@ -26,13 +26,10 @@
 				@foreach($genreList as $key => $value)		
 					<option value="{{$key}}" {{ ($playlist->genre_id == $key) ? "selected='selected" : ""}}>{{ $value }}</option>					
 				@endforeach
-			</select>
+			</select>	
 
-		    <label for="thumbnail">Thumbnail:</label>
-			<input name="thumbnail" type="text" id="thumbnail" value="{{ $playlist->thumbnail }}">			
-
-	        <label for="image">Image:</label>
-			<input name="image" type="text" id="image" value="{{ $playlist->image }}">
+			<label for="image">Image:</label>
+  			<input name="image" type="file">
 
 			<button type="submit">Update Playlist</button>
 		

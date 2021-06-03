@@ -98,8 +98,9 @@ class CreateTrack extends Request
             'album_id.exists' => 'The submitted album does not exist in the database.',    
             
             'tags.array' => 'The selected tag(s) do not exist in the database.',
-            'tags.exists' => 'The selected tag(s) do not exist in the database.'
-    
+            'tags.exists' => 'The selected tag(s) do not exist in the database.',
+
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif|dimensions:ratio=1/1'
         ];
     }
 }

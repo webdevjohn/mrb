@@ -24,14 +24,7 @@ class Playlist extends Model
     */
 	protected $fillable = ['name', 'slug', 'genre_id', 'thumbnail', 'image'];
 
-    /**
-     * Path of the playlist artwork.
-     *
-     * @var string
-     */
-    protected $imagePath = "images/playlists/";
-
-
+  
     /*
     |--------------------------------------------------------------------------
     | Relationships
@@ -56,15 +49,20 @@ class Playlist extends Model
     */
 
     public function getThumbnail()
-    {
-        if ($this->thumbnail) return $this->imagePath . "thumb/" . $this->thumbnail;
-        return $this->imagePath . "thumb/image_coming_soon.gif";
-    }
-    
-    public function getImage()
-    {
-        return $this->imagePath . "main/" . $this->image;
-    }
+	{
+		if ($this->thumbnail) {
+			return 'storage/images/thumbs/_playlists/' . $this->thumbnail;
+		}		
+		return 'storage/images/thumbs/coming-soon.gif';
+	}
+
+	public function getImage()
+	{
+		if ($this->image) {
+			return 'storage/images/main/_playlists/' . $this->image;
+		}
+		return "storage/images/main/ics-600.gif";	
+	}
 
     public function getTrackIds()
 	{

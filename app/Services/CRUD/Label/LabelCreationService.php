@@ -3,14 +3,14 @@
 namespace App\Services\CRUD\Label;
 
 use App\Models\Label;
-use App\Services\ImageResize\LabelImageResize;
+use App\Services\ImageResize\ResizeLabelImage;
 use Illuminate\Support\Str;
 
 class LabelCreationService {
 
     public function __construct(
         protected Label $labels,
-        protected LabelImageResize $labelImageResize
+        protected ResizeLabelImage $resizeImage
     ) {}
 
 
@@ -43,15 +43,13 @@ class LabelCreationService {
      */
     protected function createLabelWithImage(array $requestInput): Label
     {
-        $this->labelImageResize->setUp(
-            $requestInput['image']
-        );
+        $this->resizeImage->setUploadDirectory()->uploadImage($requestInput['image']);
 
         return $this->labels->create(
             array_merge($requestInput, [
                 'slug' => Str::slug($requestInput['label']),
-                'image' => $this->labelImageResize->main(),
-                'thumbnail' => $this->labelImageResize->thumb()
+                'image' => $this->resizeImage->toMain()->create(),
+                'thumbnail' => $this->resizeImage->toThumbnail()->create()
             ])
         );
     }

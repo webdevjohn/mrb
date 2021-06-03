@@ -9,15 +9,13 @@ use App\Http\Requests\CMS\Tracks\UpdateTrack;
 use App\Models\Track;
 use App\Services\CRUD\Track\TrackCreationService;
 use App\Services\CRUD\Track\TrackUpdateService;
-use App\Services\ImageResize\TrackImageResize;
 use App\Services\SelectBoxes\Pages\CMS\TracksCreateEdit;
 
 class TracksController extends Controller
 {
     public function __construct(
         protected Track $tracks, 
-        protected TracksCreateEdit $selectBoxes,
-        protected TrackImageResize $trackImageResize
+        protected TracksCreateEdit $selectBoxes
     ){}
 
     /**

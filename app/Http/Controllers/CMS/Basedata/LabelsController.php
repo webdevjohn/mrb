@@ -8,13 +8,11 @@ use App\Http\Requests\CMS\Labels\UpdateLabel;
 use App\Models\Label;
 use App\Services\CRUD\Label\LabelCreationService;
 use App\Services\CRUD\Label\LabelUpdateService;
-use App\Services\ImageResize\LabelImageResize;
 
 class LabelsController extends Controller
 {
     public function __construct(
         protected Label $labels,
-        protected LabelImageResize $labelImageResize,
     ){}
 
     /**
