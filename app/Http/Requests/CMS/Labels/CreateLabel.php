@@ -26,7 +26,7 @@ class CreateLabel extends Request
     {
         return [
             'label' => 'required|max:50|unique:labels,label',
-            'image' => 'nullable|mimes:jpeg,jpg,png,gif|dimensions:ratio=1/1',
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif|dimensions:ratio=1/1|max:255',
         ];
     }
     

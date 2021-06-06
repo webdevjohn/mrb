@@ -18,8 +18,8 @@ class CreatePlaylistsTable extends Migration
             $table->string('name', 100);
             $table->string('slug', 100)->unique()->index();
             $table->unsignedBigInteger('genre_id');
-            $table->string('thumbnail')->nullable();
-			$table->string('image')->nullable();
+            $table->string('thumbnail', 255)->nullable();
+			$table->string('image', 255)->nullable();
             $table->integer('viewed_counter')->nullable();
             $table->timestamps();
 

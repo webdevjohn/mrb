@@ -26,7 +26,7 @@ class CreatePlaylist extends Request
         return [
             'name' => 'required|max:100|unique:playlists,name' ,
             'genre_id' => 'required|numeric|min:1|exists:genres,id',  
-            'image' => 'nullable|mimes:jpeg,jpg,png,gif|dimensions:ratio=16/9',
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif|dimensions:ratio=16/9|max:255',
         ];
     }
 

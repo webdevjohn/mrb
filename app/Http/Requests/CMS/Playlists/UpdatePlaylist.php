@@ -32,7 +32,7 @@ class UpdatePlaylist extends Request
                 Rule::unique('playlists')->ignore($this->route('playlist')->id)
             ],    
             'genre_id' => 'required|numeric|min:1|exists:genres,id',  
-            'image' => 'nullable|mimes:jpeg,jpg,png,gif|dimensions:ratio=16/9'
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif|dimensions:ratio=16/9|max:255'
         ];
     }
 

@@ -30,7 +30,7 @@ class UpdateLabel extends Request
                 'max:50',
                 Rule::unique('labels')->ignore($this->route('label')->id)
             ],        
-            'image' => 'nullable|mimes:jpeg,jpg,png,gif|dimensions:ratio=1/1',
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif|dimensions:ratio=1/1|max:255',
         ];
     }
 
