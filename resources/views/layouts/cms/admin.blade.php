@@ -31,26 +31,23 @@
             <a href="{{ route('cms.dashboard') }}" id="logo"><div>MyRecordBox <strong>CMS</strong></div></a>
         </div>
         
-        <div class="icon-bar">                    
-            <a href="{{ route('cms.dashboard') }}" class="{{ (request()->segments()['1'] == 'dashboard') ? 'active' : '' }}">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>Dashboard</span>              
-            </a> 
+        <div class="icon-bar">
+            <div class="wrapper">                    
+                <a href="{{ route('cms.dashboard') }}" class="{{ (request()->segments()['1'] == 'dashboard') ? 'active' : '' }}">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>              
+                </a> 
 
-            <a href="{{ route('cms.basedata.index') }}" class="{{ (request()->segments()['1'] == 'basedata') ? 'active' : '' }}">
-                <i class="fa fa-database"></i>
-                <span>Base Data</span>
-            </a> 
+                <a href="{{ route('cms.basedata.index') }}" class="{{ (request()->segments()['1'] == 'basedata') ? 'active' : '' }}">
+                    <i class="fa fa-database"></i>
+                    <span>Base Data</span>
+                </a> 
 
-            <a href="{{ route('cms.reports.index') }}" class="{{ (request()->segments()['1'] == 'reports') ? 'active' : '' }}">
-                <i class="fas fa-chart-pie"></i>
-                <span>Reports</span>
-            </a> 
-
-            <a href="javascript:{}" onclick="document.getElementById('logout-form').submit();">
-                <i class="fas fa-power-off"></i>
-                <span>Logout</span>
-            </a>
+                <a href="{{ route('cms.reports.index') }}" class="{{ (request()->segments()['1'] == 'reports') ? 'active' : '' }}">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Reports</span>
+                </a> 
+            </div>
         </div>
      
         <section id="page-header">
@@ -73,7 +70,10 @@
         
         <footer id="page-footer">
             <div class="wrapper">  
-                <a href="{{ route('cms.dashboard') }}" class="logo"><div>MyRecordBox <strong>CMS (Admin)</strong></div></a>
+                <a href="{{ route('cms.dashboard') }}" class="logo" id="btn-home"><div>MyRecordBox <strong>CMS (Admin)</strong></div></a>
+                <a href="javascript:{}" 
+                    onclick="document.getElementById('logout-form').submit();" 
+                    id="btn-logout">Logout: <strong>Admin</strong></a>
             </div>
         </footer>
 
