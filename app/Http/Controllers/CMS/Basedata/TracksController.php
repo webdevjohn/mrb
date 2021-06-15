@@ -9,13 +9,13 @@ use App\Http\Requests\CMS\Tracks\UpdateTrack;
 use App\Models\Track;
 use App\Services\CRUD\Track\TrackCreationService;
 use App\Services\CRUD\Track\TrackUpdateService;
-use App\Services\SelectBoxes\Pages\CMS\TracksCreateEdit;
+use App\Services\SelectBoxes\Groups\CMS\Tracks\CreateEdit;
 
 class TracksController extends Controller
 {
     public function __construct(
         protected Track $tracks, 
-        protected TracksCreateEdit $selectBoxes
+        protected CreateEdit $selectBoxes
     ){}
 
     /**

@@ -7,7 +7,7 @@ use App\Http\Requests\CMS\Albums\Tracks\CreateAlbumTrack;
 use App\Http\Requests\CMS\Albums\Tracks\UpdateAlbumTrack;
 use App\Models\Album;
 use App\Models\Track;
-use App\Services\SelectBoxes\Pages\CMS\AlbumsTracksCreateEdit;
+use App\Services\SelectBoxes\Groups\CMS\Albums\Tracks\CreateEdit;
 use Illuminate\Http\Request;
 
 class TracksController extends Controller
@@ -15,7 +15,7 @@ class TracksController extends Controller
     public function __construct(
        protected Album $albums, 
        protected Track $tracks,
-       protected AlbumsTracksCreateEdit $selectBoxes
+       protected CreateEdit $selectBoxes
     ){}
 
     /**

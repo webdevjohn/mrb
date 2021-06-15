@@ -6,14 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CMS\Albums\CreateAlbum;
 use App\Http\Requests\CMS\Albums\UpdateAlbum;
 use App\Models\Album;
-use App\Services\SelectBoxes\Pages\CMS\AlbumsCreateEdit;
+use App\Services\SelectBoxes\Groups\CMS\Albums\CreateEdit;
 use Illuminate\Support\Str;
 
 class AlbumsController extends Controller
 {
     public function __construct(
        protected Album $albums, 
-       protected AlbumsCreateEdit $selectBoxes
+       protected CreateEdit $selectBoxes
     ){}
 
     /**
