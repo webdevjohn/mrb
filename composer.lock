@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6e16ab24ceea5a4d9ce32d1e83d0ded",
+    "content-hash": "88d211dbd18f735aa8afecda4dba4b4b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1095,16 +1095,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.46.0",
+            "version": "v8.47.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "a18266c612e0e6aba5e0174b3c873d2d217dccfb"
+                "reference": "93db226946453f4285558b7c3166ddb6e7ea5400"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/a18266c612e0e6aba5e0174b3c873d2d217dccfb",
-                "reference": "a18266c612e0e6aba5e0174b3c873d2d217dccfb",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/93db226946453f4285558b7c3166ddb6e7ea5400",
+                "reference": "93db226946453f4285558b7c3166ddb6e7ea5400",
                 "shasum": ""
             },
             "require": {
@@ -1259,7 +1259,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-06-08T13:36:46+00:00"
+            "time": "2021-06-15T14:00:32+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -5255,23 +5255,22 @@
         },
         {
             "name": "webdevjohn/selectboxes",
-            "version": "dev-master",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webdevjohn/selectboxes.git",
-                "reference": "3df153b6e0860bfedcef14a9926d5434733cf3b3"
+                "reference": "56283bffa39459859cbccd748a36266451e3add7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webdevjohn/selectboxes/zipball/3df153b6e0860bfedcef14a9926d5434733cf3b3",
-                "reference": "3df153b6e0860bfedcef14a9926d5434733cf3b3",
+                "url": "https://api.github.com/repos/webdevjohn/selectboxes/zipball/56283bffa39459859cbccd748a36266451e3add7",
+                "reference": "56283bffa39459859cbccd748a36266451e3add7",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^8.0",
                 "php": "^8.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -5301,9 +5300,9 @@
             ],
             "support": {
                 "issues": "https://github.com/webdevjohn/selectboxes/issues",
-                "source": "https://github.com/webdevjohn/selectboxes/tree/master"
+                "source": "https://github.com/webdevjohn/selectboxes/tree/v1.0.0"
             },
-            "time": "2021-06-14T20:54:12+00:00"
+            "time": "2021-06-16T14:05:21+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -7708,16 +7707,16 @@
         },
         {
             "name": "sebastian/type",
-            "version": "2.3.2",
+            "version": "2.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/type.git",
-                "reference": "0d1c587401514d17e8f9258a27e23527cb1b06c1"
+                "reference": "b8cd8a1c753c90bc1a0f5372170e3e489136f914"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/0d1c587401514d17e8f9258a27e23527cb1b06c1",
-                "reference": "0d1c587401514d17e8f9258a27e23527cb1b06c1",
+                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/b8cd8a1c753c90bc1a0f5372170e3e489136f914",
+                "reference": "b8cd8a1c753c90bc1a0f5372170e3e489136f914",
                 "shasum": ""
             },
             "require": {
@@ -7752,7 +7751,7 @@
             "homepage": "https://github.com/sebastianbergmann/type",
             "support": {
                 "issues": "https://github.com/sebastianbergmann/type/issues",
-                "source": "https://github.com/sebastianbergmann/type/tree/2.3.2"
+                "source": "https://github.com/sebastianbergmann/type/tree/2.3.4"
             },
             "funding": [
                 {
@@ -7760,7 +7759,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-04T13:02:07+00:00"
+            "time": "2021-06-15T12:49:02+00:00"
         },
         {
             "name": "sebastian/version",
@@ -7868,9 +7867,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "webdevjohn/selectboxes": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
