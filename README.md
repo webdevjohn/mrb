@@ -15,14 +15,14 @@ My Record Box is a music management application.
 
 ## Screenshots
 
-#### Home Page
-![My Record Box - Home Page](_screenshots/mrb_homepage.jpg?raw=true "My Record Box - Home Page")
-
 #### Genre Page
-![My Record Box - Genre Page](_screenshots/mrb_genre_page.jpg?raw=true "My Record Box - Genre Page")
+![My Record Box - Genre Page](_screenshots/mrb_genre_page.png?raw=true "My Record Box - Genre Page")
 
-#### Admin CMS - Home Page (Dashboard)
-![My Record Box - CMS Home Page (Dashboard)](_screenshots/mrb_cms_homepage.jpg?raw=true "My Record Box - CMS Home Page (Dashboard)")
+#### Track Search
+![My Record Box - Track Search](_screenshots/mrb_track_search.png?raw=true "My Record Box - Track Search")
+
+#### Admin CMS - Dashboard
+![My Record Box - Admin CMS Dashboard](_screenshots/mrb_admin_cms_dashboard.png?raw=true "My Record Box - Admin CMS Dashboard")
 
 #### Admin CMS - Track Management
-![My Record Box - CMS Track Management](_screenshots/mrb_cms_tracks.jpg?raw=true "My Record Box - CMS Track Management")
+![My Record Box - Admin CMS Track Management](_screenshots/mrb_cms_tracks.png?raw=true "My Record Box - Admin CMS Track Management")
