@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Genre;
 use App\Services\FacetCreators\GenresTracksFacets;
-use App\Services\Paginator\Paginator;
 
 class GenresTracksController extends Controller
 {
 	public function __construct(
-		protected GenresTracksFacets $facets, 
-		protected Paginator $paginator
+		protected GenresTracksFacets $facets
 	) {}
 
 
